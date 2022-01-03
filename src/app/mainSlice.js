@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
-    name: "authorization",
+    name: "mainSlice",
     initialState: {
         recomendedList: [
             {
@@ -40,6 +40,44 @@ const mainSlice = createSlice({
                 artist: "HYONNA",
                 song: "Chaff & Dust"
             }
+        ],
+        playList: [
+            {
+                id: 1,
+                image: "albom_preview-1.png",
+                artist: "IMAGINE DRAGON",
+                song: "Believer"
+            },
+            {
+                id: 2,
+                image: "albom_preview-3.png",
+                artist: "RYAN GRIGDRY",
+                song: "Shortwave"
+            },
+            {
+                id: 3,
+                image: "albom_preview-6.png",
+                artist: "HYONNA",
+                song: "Chaff & Dust"
+            },
+            {
+                id: 4,
+                image: "albom_preview-4.png",
+                artist: "ROGER TERRY",
+                song: "Dream On"
+            },
+            {
+                id: 5,
+                image: "albom_preview-7.png",
+                artist: "ODESZA",
+                song: "Moment Apart"
+            },
+            {
+                id: 6,
+                image: "albom_preview-5.png",
+                artist: "IMAGINE DRAGON",
+                song: "Origins"
+            },
         ]
     },
     reducers: {

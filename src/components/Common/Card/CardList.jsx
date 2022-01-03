@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./CardTemplate";
-import { useSelector } from "react-redux";
 import "./card.scss";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,10 +7,10 @@ import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const CardList = () => {
-  const { recomendedList } = useSelector((state) => state.mainSlice);
+const CardList = ({ recomendedList, playList }) => {
+  const list = recomendedList ? recomendedList : playList;
 
-  const RecomendedList = recomendedList.map((item) => {
+  const list1 = recomendedList.map((item) => {
     return (
       <SwiperSlide>
         <Card
@@ -23,17 +22,18 @@ const CardList = () => {
       </SwiperSlide>
     );
   });
+
   return (
-    <div className="recommendation">
+    <>
       <Swiper
-        slidesPerView={1.5}
-        spaceBetween={0}
+        slidesPerView={1.6}
+        spaceBetween={30}
         freeMode={true}
         className="mySwiper"
       >
-        {RecomendedList}
+        {list1}
       </Swiper>
-    </div>
+    </>
   );
 };
 

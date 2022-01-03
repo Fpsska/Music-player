@@ -53,6 +53,17 @@ input {
 }
 
 .page {
+    max-height: 70vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+    }
     &__title {
         font-size: 24px;
         font-weight: 700;
@@ -60,7 +71,7 @@ input {
         margin: 0 0 20px 0;
     }
     &__section--playlist {
-        margin: 48px 0 0 0;
+        margin: 42px 0 0 0;
     }
 }
 
