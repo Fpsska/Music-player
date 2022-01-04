@@ -10,20 +10,7 @@
         display: flex;
         justify-content: space-between;
     }
-    &__buttons {
-        display: flex;
-        align-items: center;
-        padding: 0 28px 0 0;
-    }
-    &__button {
-        outline: none;
-        border: none;
-        transform: scale(1);
-        transition: all 0.1s linear;
-        &:active {
-            transform: scale(1.1);
-        }
-    }
+
     &__description {
         display: flex;
         align-items: center;
@@ -43,24 +30,3 @@
     }
 }
 
-.progress {
-    background-color: rgba(255, 255, 255, 0.31);
-    width: 100%;
-    height: 4px;
-    &__line {
-        background-color: #fff;
-        width: 50%;
-        height: 100%;
-        position: relative;
-    }
-    &__circle {
-        position: absolute;
-        content: "";
-        right: 0;
-        top: -64%;
-        background-color: #fff;
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-    }
-}

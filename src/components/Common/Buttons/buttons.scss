@@ -1,0 +1,14 @@
+.nav {
+    display: flex;
+    align-items: center;
+    padding: 0 28px 0 0;
+    &__button {
+        outline: none;
+        border: none;
+        transform: scale(1);
+        transition: all 0.1s linear;
+        &:active {
+            transform: scale(1.1);
+        }
+    }
+}

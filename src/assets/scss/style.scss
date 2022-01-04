@@ -46,6 +46,8 @@ a {
     color: #fff;
 }
 
+// /.NULLSTYLES
+
 .title {
     color: #eaf0ff;
     font-weight: 500;
@@ -59,6 +61,8 @@ a {
     font-size: 10px;
     text-transform: uppercase;
 }
+
+// /.GENERAL
 
 .page {
     &__wrapper {
@@ -94,6 +98,31 @@ a {
         justify-content: space-between;
     }
 }
+.player {
+    &__navigation {
+        display: flex;
+        margin: 34px 0 60px 0;
+    }
+    &__button {
+        padding: 0;
+    }
+    &__button--volume {
+        flex: 1;
+        text-align: start;
+    }
+    &__button--repeat {
+        margin: 0 12px;
+    }
+}
+.time {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 13.92px;
+    color: rgba(165, 192, 255, 0.7);
+    display: flex;
+    justify-content: space-between;
+}
+// /.PAGES
 
 .swiper {
     width: 100%;
@@ -115,3 +144,5 @@ a {
     -webkit-align-items: center;
     align-items: center;
 }
+
+// /.SLIDER
