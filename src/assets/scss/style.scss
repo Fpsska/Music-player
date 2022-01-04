@@ -30,6 +30,9 @@ body {
 svg {
     flex-shrink: 0;
 }
+.icon {
+    z-index: 1;
+}
 
 button,
 input {
@@ -76,6 +79,14 @@ input {
     }
     &__section--playlist {
         margin: 42px 0 0 0;
+    }
+}
+
+.playlist {
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 }
 

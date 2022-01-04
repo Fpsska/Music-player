@@ -43,6 +43,7 @@ const SvgTemplate = (props) => {
       return (
         <span className="icon">
           <svg
+            className="icon_arrow-prev"
             width="30"
             height="33"
             viewBox="0 0 30 33"
@@ -80,6 +81,7 @@ const SvgTemplate = (props) => {
       return (
         <span className="icon">
           <svg
+            className="icon__search"
             width="20"
             height="21"
             viewBox="0 0 20 21"
@@ -91,6 +93,122 @@ const SvgTemplate = (props) => {
               stroke="#EAF0FF"
               strokeWidth="2"
             />
+          </svg>
+        </span>
+      );
+    case "mixer":
+      return (
+        <span className="icon">
+          <svg
+            className="icon__mixer"
+            width="33"
+            height="31"
+            viewBox="0 0 33 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_d_1_2491)">
+              <path
+                d="M28.8907 5.98934L15.2907 5.98934M15.2907 5.98934C15.2907 4.22203 13.8581 2.78934 12.0907 2.78934C10.3234 2.78934 8.89075 4.22203 8.89075 5.98934M15.2907 5.98934C15.2907 7.75665 13.8581 9.18934 12.0907 9.18934C10.3234 9.18934 8.89075 7.75665 8.89075 5.98934M8.89075 5.98934L4.89075 5.98934M28.8907 18.7893L24.8907 18.7893M24.8907 18.7893C24.8907 17.022 23.4581 15.5893 21.6907 15.5893C19.9234 15.5893 18.4907 17.022 18.4907 18.7893M24.8907 18.7893C24.8907 20.5566 23.4581 21.9893 21.6907 21.9893C19.9234 21.9893 18.4907 20.5566 18.4907 18.7893M18.4907 18.7893L4.89075 18.7893"
+                stroke="#EAF0FF"
+                strokeWidth="2"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_d_1_2491"
+                x="0.890747"
+                y="0.389343"
+                width="32"
+                height="32"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_1_2491"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_1_2491"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+        </span>
+      );
+    case "arrow-back":
+      return (
+        <span className="icon">
+          <svg
+            className="icon__arrow-back"
+            width="30"
+            height="29"
+            viewBox="0 0 30 29"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g filter="url(#filter0_d_1_2672)">
+              <path
+                d="M5.99225 12.9894L12.3922 6.58939M5.99225 12.9894L12.3922 19.3894M5.99225 12.9894H25.9922"
+                stroke="#EAF0FF"
+                strokeWidth="2"
+              />
+            </g>
+            <defs>
+              <filter
+                id="filter0_d_1_2672"
+                x="-0.407776"
+                y="0.98938"
+                width="32"
+                height="32"
+                filterUnits="userSpaceOnUse"
+                colorInterpolationFilters="sRGB"
+              >
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dy="4" />
+                <feGaussianBlur stdDeviation="2" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_1_2672"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_1_2672"
+                  result="shape"
+                />
+              </filter>
+            </defs>
           </svg>
         </span>
       );

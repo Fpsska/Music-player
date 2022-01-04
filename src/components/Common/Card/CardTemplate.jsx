@@ -1,10 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Card = ({ image, artist, song }) => {
+  const { isPlaylistPage } = useSelector((state) => state.mainSlice);
   return (
-    <div className="card">
+    <div className={isPlaylistPage ? "card card--playlist" : "card"}>
       <img
-        className="card__image"
+        className={
+          isPlaylistPage ? "card__image card__image--playlist" : "card__image"
+        }
         src={require(`../../../assets/images/${image}`)}
         alt="albom-preview"
       />

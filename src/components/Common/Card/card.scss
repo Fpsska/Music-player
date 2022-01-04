@@ -21,6 +21,7 @@
         height: 190px;
         object-fit: cover;
         position: relative;
+        border-radius: 8px;
     }
     &__title {
         margin: 16px 0 6px 0;
@@ -30,4 +31,16 @@
         z-index: 1;
         position: relative;
     }
+}
+
+.card--playlist {
+    max-width: 150px;
+    width: 100%;
+    &:not(:last-child) {
+        margin: 0 0 24px 0;
+    }
+}
+.card__image--playlist {
+    width: 150px;
+    height: 145px;
 }
