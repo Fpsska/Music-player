@@ -87,13 +87,17 @@ const mainSlice = createSlice({
         ]
     },
     isPlaylistPage: false,
+    isPlayerPage: false,
     reducers: {
         switchPlaylistPageStatus(state, action) {
             state.isPlaylistPage = action.payload
+        },
+        switchPlayerPageStatus(state, action) {
+            state.isPlayerPage = action.payload
         }
     }
 })
 
-export const { switchPlaylistPageStatus } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

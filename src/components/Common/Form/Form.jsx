@@ -1,38 +1,56 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
 import SvgTemplate from "../SvgTemplaye";
-import { switchPlaylistPageStatus } from "../../../app/mainSlice";
+import {
+  switchPlaylistPageStatus,
+  switchPlayerPageStatus,
+} from "../../../app/mainSlice";
 import "./form.scss";
 
 const Form = () => {
-  const { isPlaylistPage } = useSelector((state) => state.mainSlice);
+  const { isPlaylistPage, isPlayerPage } = useSelector(
+    (state) => state.mainSlice
+  );
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const goBack = () => {
-    navigate(-1);
+    navigate("/Music-player");
     dispatch(switchPlaylistPageStatus(false));
-    console.log("DSFSDF");
+    dispatch(switchPlayerPageStatus(false));
   };
   return (
     <form className="form" action="#">
-      <button className="form__button">
+      <>
         {isPlaylistPage ? (
-          <SvgTemplate id="arrow-back" onClick={goBack} />
+          <button className="form__button" type="button" onClick={goBack}>
+            <SvgTemplate id="arrow-back" />
+          </button>
+        ) : isPlayerPage ? (
+          <button className="form__button" type="button" onClick={goBack}>
+            <SvgTemplate id="arrow-back" />
+          </button>
         ) : (
-          <SvgTemplate id="menu" />
+          <button className="form__button" type="button">
+            <SvgTemplate id="menu" />
+          </button>
         )}
-      </button>
+      </>
       <input className="form__input" type="text" />
-      <button className="form__button" type="submit">
+      <>
         {isPlaylistPage ? (
-          <SvgTemplate id="mixer" />
+          <button className="form__button" type="button">
+            <SvgTemplate id="mixer" />
+          </button>
+        ) : isPlayerPage ? (
+          <></>
         ) : (
-          <SvgTemplate id="search" />
+          <button className="form__button" type="submit">
+            <SvgTemplate id="search" />
+          </button>
         )}
-      </button>
+      </>
     </form>
   );
 };
