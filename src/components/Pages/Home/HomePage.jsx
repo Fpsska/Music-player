@@ -17,7 +17,7 @@ const HomePage = () => {
         <div className="page__section page__section--playlist">
           <h2 className="page__title title">My Playlist</h2>
           <div className="playlist">
-            <CardList recomendedList={recomendedList}/>
+            <CardList recomendedList={recomendedList} />
           </div>
         </div>
       </div>

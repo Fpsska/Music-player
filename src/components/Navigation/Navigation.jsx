@@ -7,27 +7,35 @@ const Navigation = () => {
   return (
     <footer className="navigation">
       <div className="navigation__wrapper">
-        <div className="navigation__description">
-          <img
-            className="navigation__image"
-            src={albomPreview}
-            alt="albom-preview"
-          />
-          <div className="navigation__informantion">
-            <span className="navigation__track-name title">Chaff Dust</span>
-            <span className="navigation__artist-name subtitle">HYONNA</span>
+        <div className="navigation__progress progress">
+          <div className="progress__line">
+            <span className="progress__circle"></span>
           </div>
         </div>
-        <div className="navigation__buttons">
-          <button className="navigation__button">
-            <SvgTemplate id="arrow_prev_icon" />
-          </button>
-          <button className="navigation__button">
-            <SvgTemplate id="pause" />
-          </button>
-          <button className="navigation__button">
-            <SvgTemplate id="arrow_next-icon" />
-          </button>
+
+        <div className="navigation__bar">
+          <div className="navigation__description">
+            <img
+              className="navigation__image"
+              src={albomPreview}
+              alt="albom-preview"
+            />
+            <div className="navigation__informantion">
+              <span className="navigation__track-name title">Chaff Dust</span>
+              <span className="navigation__artist-name subtitle">HYONNA</span>
+            </div>
+          </div>
+          <div className="navigation__buttons">
+            <button className="navigation__button">
+              <SvgTemplate id="arrow_prev_icon" />
+            </button>
+            <button className="navigation__button">
+              <SvgTemplate id="pause" />
+            </button>
+            <button className="navigation__button">
+              <SvgTemplate id="arrow_next-icon" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

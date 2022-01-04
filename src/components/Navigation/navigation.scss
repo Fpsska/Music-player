@@ -3,6 +3,11 @@
     margin: 0 0 42px 0;
     &__wrapper {
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__bar {
+        display: flex;
         justify-content: space-between;
     }
     &__buttons {
@@ -13,6 +18,11 @@
     &__button {
         outline: none;
         border: none;
+        transform: scale(1);
+        transition: all 0.1s linear;
+        &:active {
+            transform: scale(1.1);
+        }
     }
     &__description {
         display: flex;
@@ -30,5 +40,27 @@
         width: 65px;
         height: 65px;
         margin: 0 12px 0 0;
+    }
+}
+
+.progress {
+    background-color: rgba(255, 255, 255, 0.31);
+    width: 100%;
+    height: 4px;
+    &__line {
+        background-color: #fff;
+        width: 50%;
+        height: 100%;
+        position: relative;
+    }
+    &__circle {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: -64%;
+        background-color: #fff;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
     }
 }

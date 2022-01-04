@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Card from "./CardTemplate";
 import "./card.scss";
 // Import Swiper React components
@@ -7,21 +7,18 @@ import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const CardList = ({ recomendedList, playList }) => {
-  const list = recomendedList ? recomendedList : playList;
-
-  const list1 = recomendedList.map((item) => {
-    return (
-      <SwiperSlide>
-        <Card
-          key={item.id}
-          image={item.image}
-          artist={item.artist}
-          song={item.song}
-        />
-      </SwiperSlide>
-    );
-  });
+const CardList = ({ recomendedList }) => {
+  const list = useMemo(
+    () =>
+      recomendedList.map((item) => {
+        return (
+          <SwiperSlide key={item.id}>
+            <Card image={item.image} artist={item.artist} song={item.song} />
+          </SwiperSlide>
+        );
+      }),
+    [recomendedList]
+  );
 
   return (
     <>
@@ -31,7 +28,7 @@ const CardList = ({ recomendedList, playList }) => {
         freeMode={true}
         className="mySwiper"
       >
-        {list1}
+        {list}
       </Swiper>
     </>
   );
