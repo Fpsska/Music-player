@@ -4,6 +4,7 @@
     border-radius: 8px;
     text-align: center;
     position: relative;
+    transition: scale 1s linear;
     &::before {
         content: "";
         position: absolute;
@@ -43,4 +44,18 @@
 .card__image--playlist {
     width: 150px;
     height: 145px;
+}
+.card--player {
+    max-width: 230px;
+    width: 100%;
+}
+.card__image--player {
+    width: 230px;
+    height: 230px;
+}
+.card__title--player.card__title--player {
+    font-size: 22px;
+}
+.card__subtitle--player.card__subtitle--player {
+    font-size: 14px;
 }

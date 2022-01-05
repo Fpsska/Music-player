@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import SvgTemplate from "../SvgTemplaye";
 import {
   switchPlaylistPageStatus,
@@ -20,6 +21,11 @@ const Form = () => {
     dispatch(switchPlaylistPageStatus(false));
     dispatch(switchPlayerPageStatus(false));
   };
+
+  const goHomePage = () => {
+    navigate("/Music-player");
+    dispatch(switchPlayerPageStatus(false));
+  };
   return (
     <form className="form" action="#">
       <>
@@ -37,7 +43,20 @@ const Form = () => {
           </button>
         )}
       </>
-      <input className="form__input" type="text" />
+      <>
+        {isPlaylistPage ? (
+          <></>
+        ) : isPlayerPage ? (
+          <h1
+            className="page__title page__title--player title"
+            onClick={goHomePage}
+          >
+            <Link to="/Music-player">Playing Now</Link>
+          </h1>
+        ) : (
+          <input className="form__input" type="text" />
+        )}
+      </>
       <>
         {isPlaylistPage ? (
           <button className="form__button" type="button">

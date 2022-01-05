@@ -5,26 +5,56 @@ import { useNavigate } from "react-router";
 import { switchPlayerPageStatus } from "../../../app/mainSlice";
 
 const Card = ({ image, artist, song }) => {
-  const { isPlaylistPage } = useSelector((state) => state.mainSlice);
+  const { isPlaylistPage, isPlayerPage } = useSelector(
+    (state) => state.mainSlice
+  );
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const goPlayerPage = () => {
     dispatch(switchPlayerPageStatus(true));
-    navigate("player")
+    navigate("player");
   };
   return (
-    <div className={isPlaylistPage ? "card card--playlist" : "card"}>
+    <div
+      className={
+        isPlaylistPage
+          ? "card card--playlist"
+          : isPlayerPage
+          ? "card card--player"
+          : "card"
+      }
+    >
       <img
         className={
-          isPlaylistPage ? "card__image card__image--playlist" : "card__image"
+          isPlaylistPage
+            ? "card__image card__image--playlist"
+            : isPlayerPage
+            ? "card__image card__image--player"
+            : "card__image"
         }
         src={require(`../../../assets/images/${image}`)}
         alt="albom-preview"
         onClick={goPlayerPage}
       />
-      <h2 className="card__title title">{song}</h2>
-      <span className="card__subtitle subtitle">{artist}</span>
+      <h2
+        className={
+          isPlayerPage
+            ? "card__title card__title--player title"
+            : "card__title title"
+        }
+      >
+        {song}
+      </h2>
+      <span
+        className={
+          isPlayerPage
+            ? "card__subtitle card__subtitle--player subtitle"
+            : "card__subtitle subtitle"
+        }
+      >
+        {artist}
+      </span>
     </div>
   );
 };

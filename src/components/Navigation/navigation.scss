@@ -6,11 +6,13 @@
         flex-direction: column;
         justify-content: space-between;
     }
+    &__wrapper--player {
+        padding: 0 28px;
+    }
     &__bar {
         display: flex;
         justify-content: space-between;
     }
-
     &__description {
         display: flex;
         align-items: center;
@@ -30,3 +32,11 @@
     }
 }
 
+.navigation--player {
+    margin: 0 0 68px 0;
+}
+.nav--player {
+    padding: 0 0 60px 0;
+    margin: 80px 0 0 0;
+    justify-content: center;
+}

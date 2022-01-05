@@ -12,3 +12,18 @@
         }
     }
 }
+.nav__button--player {
+    padding: 0;
+}
+.nav__button--player.nav__button--pause {
+    margin: 0 26px;
+    width: 37px;
+    height: 41px;
+}
+.nav__button--player.nav__button--next,
+.nav__button--player.nav__button--prev {
+    width: 30px;
+    height: 32px;
+}
+
+

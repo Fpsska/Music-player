@@ -39,7 +39,10 @@ const HomePage = () => {
               <Link to="playlist">My Playlist</Link>
             </h2>
             <div className="playlist">
-              <Slider recomendedList={recomendedList} />
+              <Slider
+                recomendedList={recomendedList}
+                isPlayerPage={isPlayerPage}
+              />
             </div>
           </div>
         </>

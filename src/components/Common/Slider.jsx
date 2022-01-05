@@ -6,7 +6,7 @@ import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const SliderCard = ({ recomendedList }) => {
+const SliderCard = ({ recomendedList, isPlayerPage }) => {
   const list = useMemo(
     () =>
       recomendedList.map((item) => {
@@ -22,9 +22,10 @@ const SliderCard = ({ recomendedList }) => {
   return (
     <>
       <Swiper
-        slidesPerView={1.6}
+        slidesPerView={isPlayerPage ? 1 : 1.6}
         spaceBetween={30}
-        freeMode={true}
+        centeredSlides={isPlayerPage ? true : false}
+        freeMode={isPlayerPage ? false : true}
         className="mySwiper"
       >
         {list}
