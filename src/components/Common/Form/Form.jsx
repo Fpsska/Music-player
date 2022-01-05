@@ -27,50 +27,40 @@ const Form = () => {
     dispatch(switchPlayerPageStatus(false));
   };
   return (
-    <form className="form" action="#">
-      <>
-        {isPlaylistPage ? (
-          <button className="form__button" type="button" onClick={goBack}>
+    <>
+      {isPlaylistPage ? (
+        <div className="header__section">
+          <button className="header__button" type="button" onClick={goBack}>
             <SvgTemplate id="arrow-back" />
           </button>
-        ) : isPlayerPage ? (
-          <button className="form__button" type="button" onClick={goBack}>
+          <button className="header__button" type="button">
+            <SvgTemplate id="mixer" />
+          </button>
+        </div>
+      ) : isPlayerPage ? (
+        <div className="header__section header__section--player">
+          <button className="header__button header__button--player" type="button" onClick={goBack}>
             <SvgTemplate id="arrow-back" />
           </button>
-        ) : (
-          <button className="form__button" type="button">
-            <SvgTemplate id="menu" />
-          </button>
-        )}
-      </>
-      <>
-        {isPlaylistPage ? (
-          <></>
-        ) : isPlayerPage ? (
           <h1
             className="page__title page__title--player title"
             onClick={goHomePage}
           >
             <Link to="/Music-player">Playing Now</Link>
           </h1>
-        ) : (
-          <input className="form__input" type="text" />
-        )}
-      </>
-      <>
-        {isPlaylistPage ? (
+        </div>
+      ) : (
+        <form className="form" action="#">
           <button className="form__button" type="button">
-            <SvgTemplate id="mixer" />
+            <SvgTemplate id="menu" />
           </button>
-        ) : isPlayerPage ? (
-          <></>
-        ) : (
+          <input className="form__input" type="text" />
           <button className="form__button" type="submit">
             <SvgTemplate id="search" />
           </button>
-        )}
-      </>
-    </form>
+        </form>
+      )}
+    </>
   );
 };
 

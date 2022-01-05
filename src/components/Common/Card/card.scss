@@ -24,6 +24,14 @@
         position: relative;
         border-radius: 8px;
     }
+    &__image--player {
+        width: 230px;
+        height: 230px;
+    }
+    &__image--playlist {
+        width: 150px;
+        height: 145px;
+    }
     &__title {
         margin: 16px 0 6px 0;
         position: relative;
@@ -41,17 +49,9 @@
         margin: 0 0 24px 0;
     }
 }
-.card__image--playlist {
-    width: 150px;
-    height: 145px;
-}
 .card--player {
     max-width: 230px;
     width: 100%;
-}
-.card__image--player {
-    width: 230px;
-    height: 230px;
 }
 .card__title--player.card__title--player {
     font-size: 22px;

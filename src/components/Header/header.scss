@@ -1,4 +1,16 @@
 .header {
     flex: 0 0 auto;
     padding: 40px 28px 0 28px;
+    &__section {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__section--player {
+        position: relative;
+        justify-content: center;
+    }
+    &__button--player {
+        position: absolute;
+        left: 0;
+    }
 }
