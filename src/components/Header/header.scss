@@ -12,5 +12,9 @@
     &__button--player {
         position: absolute;
         left: 0;
+        padding: 0;
+    }
+    &__button--playlist {
+        padding: 0;
     }
 }

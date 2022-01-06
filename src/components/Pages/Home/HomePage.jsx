@@ -21,33 +21,38 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className="home">
       {isPlaylistPage ? (
         <PlayListPage />
       ) : isPlayerPage ? (
         <PlayerPage />
       ) : (
         <>
-          <h1 className="page__title title">Recomended for you</h1>
           <div className="page__section page__section--recommendation">
-            <div className="recommendation">
-              <Slider recomendedList={recomendedList} />
-            </div>
+            <h1 className="page__title title">Recomended for you</h1>
+            <Slider recomendedList={recomendedList} />
           </div>
           <div className="page__section page__section--playlist">
             <h2 className="page__title title" onClick={goPlayListPage}>
               <Link to="playlist">My Playlist</Link>
             </h2>
-            <div className="playlist">
-              <Slider
-                recomendedList={recomendedList}
-                isPlayerPage={isPlayerPage}
-              />
-            </div>
+            <Slider
+              recomendedList={recomendedList}
+              isPlayerPage={isPlayerPage}
+            />
+          </div>
+          <div className="page__section page__section--playlist">
+            <h2 className="page__title title" onClick={goPlayListPage}>
+              <Link to="playlist">Test</Link>
+            </h2>
+            <Slider
+              recomendedList={recomendedList}
+              isPlayerPage={isPlayerPage}
+            />
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

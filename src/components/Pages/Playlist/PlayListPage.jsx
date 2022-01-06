@@ -18,10 +18,10 @@ const PlayListPage = () => {
 
   return (
     <>
-      <h1 className="page__title title" onClick={goHomePage}>
-        <Link to="/Music-player">Liked Songs</Link>
-      </h1>
       <div className="playlist">
+        <h1 className="page__title title" onClick={goHomePage}>
+          <Link to="/Music-player">Liked Songs</Link>
+        </h1>
         <div className="playlist__wrapper">
           <CardList recomendedList={recomendedList} />
         </div>

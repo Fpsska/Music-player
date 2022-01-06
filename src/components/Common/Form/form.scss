@@ -2,7 +2,39 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &__search {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
     &__button {
         padding: 0;
+    }
+    &__button--menu {
+        flex: 1;
+        text-align: start;
+    }
+    &__button--search {
+        position: absolute;
+        right: 0;
+        margin: 0 5px 0 0;
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    &__input {
+        padding: 12px 24px 12px 5px;
+        border-radius: 5px;
+        height: 20px;
+        color: #fff;
+        border: 1px solid transparent;
+        transition: 0.25s linear;
+        &:hover {
+            border: 1px solid #a5c0ff;
+            + .form__button--search .icon__search {
+                stroke: #a5c0ff;
+            }
+        }
     }
 }
