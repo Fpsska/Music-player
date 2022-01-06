@@ -34,6 +34,12 @@ const PlayerPage = () => {
           <button className="player__button player__button--oder" type="button">
             <SvgTemplate id="oder" />
           </button>
+          <button
+            className="player__button player__button--like"
+            type="button"
+          >
+            <SvgTemplate id="like" />
+          </button>
         </div>
         <div className="player__time time">
           <span className="time__current">00:50</span>

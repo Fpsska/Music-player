@@ -95,6 +95,11 @@ a {
 }
 .home {
     padding: 0 0 0 28px;
+    &__section {
+        &:not(:first-child) {
+            margin: 34px 0 0 0;
+        }
+    }
 }
 .playlist {
     padding: 0 28px;
@@ -105,6 +110,7 @@ a {
     }
 }
 .player {
+    padding: 40px 0 0 0;
     &__section {
         margin: 34px 0 0 0;
         padding: 0 28px 10px 28px;
@@ -114,6 +120,7 @@ a {
     }
     &__navigation {
         display: flex;
+        position: relative;
     }
     &__button {
         padding: 0;
@@ -124,6 +131,19 @@ a {
     }
     &__button--repeat {
         margin: 0 12px;
+    }
+    &__button--like {
+        position: absolute;
+        right: 0;
+        top: -295%;
+        fill: #555b6a;
+        transform: scale(1);
+        transition: all 0.25s linear;
+        z-index: 1;
+        &:active {
+            fill: #FF3333;
+            transform: scale(1.3);
+        }
     }
 }
 .time {
@@ -155,7 +175,6 @@ a {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
-    // padding: 20px;
 }
 .swiper-overflow-container {
     overflow-x: hidden;
@@ -167,10 +186,6 @@ a {
         overflow: visible;
     }
 }
-
-// .swiper-slide-active .card {
-//     transform: scale(1.2);
-// }
 
 // /.SLIDER
 

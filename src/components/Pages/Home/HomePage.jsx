@@ -28,11 +28,13 @@ const HomePage = () => {
         <PlayerPage />
       ) : (
         <>
-          <div className="page__section page__section--recommendation">
+          <div className="home__section home__section--recommendation">
             <h1 className="page__title title">Recomended for you</h1>
-            <Slider recomendedList={recomendedList} />
+            <div className="home__slider">
+              <Slider recomendedList={recomendedList} />
+            </div>
           </div>
-          <div className="page__section page__section--playlist">
+          <div className="home__section home__section--playlist">
             <h2 className="page__title title" onClick={goPlayListPage}>
               <Link to="playlist">My Playlist</Link>
             </h2>
@@ -41,14 +43,16 @@ const HomePage = () => {
               isPlayerPage={isPlayerPage}
             />
           </div>
-          <div className="page__section page__section--playlist">
+          <div className="home__section home__section--playlist">
             <h2 className="page__title title" onClick={goPlayListPage}>
               <Link to="playlist">Test</Link>
             </h2>
-            <Slider
-              recomendedList={recomendedList}
-              isPlayerPage={isPlayerPage}
-            />
+            <div className="home__slider">
+              <Slider
+                recomendedList={recomendedList}
+                isPlayerPage={isPlayerPage}
+              />
+            </div>
           </div>
         </>
       )}
