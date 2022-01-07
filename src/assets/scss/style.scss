@@ -193,5 +193,18 @@ a {
     stroke: #eaf0ff;
     transition: 0.25s linear;
 }
+.icon__theme {
+    width: 24px;
+    height: 24px;
+}
+
+.icon__profile,
+.icon__language,
+.icon__message,
+.icon__faqs,
+.icon__main-settings {
+    width: 20px;
+    height: 20px;
+}
 
 // /.SVG

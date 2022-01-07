@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SliderCard from "../../Common/Slider";
-import SvgTemplate from "../../Common/SvgTemplaye";
+import SvgTemplate from "../../Common/SvgTemplate";
 import Bar from "../../Common/Bar/Bar";
 
 const PlayerPage = () => {

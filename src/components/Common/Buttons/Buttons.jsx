@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import SvgTemplate from "../SvgTemplaye";
+import SvgTemplate from "../SvgTemplate";
 import "./buttons.scss";
 
 const Buttons = () => {

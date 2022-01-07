@@ -6,6 +6,7 @@ import { switchPlaylistPageStatus } from "../../../app/mainSlice";
 import Slider from "../../Common/Slider";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
+import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
 
 const HomePage = () => {
   const { recomendedList, isPlaylistPage, isPlayerPage } = useSelector(
@@ -28,6 +29,9 @@ const HomePage = () => {
         <PlayerPage />
       ) : (
         <>
+          <>
+            <BurgerMenu />
+          </>
           <div className="home__section home__section--recommendation">
             <h1 className="page__title title">Recomended for you</h1>
             <div className="home__slider">
