@@ -7,12 +7,14 @@ import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
 } from "../../../app/mainSlice";
+import { switchBurgerStatus } from "../../../app/burgerSlice";
 import "./form.scss";
 
 const Form = () => {
   const { isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,6 +27,10 @@ const Form = () => {
   const goHomePage = () => {
     navigate("/Music-player");
     dispatch(switchPlayerPageStatus(false));
+  };
+
+  const openBurger = () => {
+    dispatch(switchBurgerStatus(true));
   };
   return (
     <>
@@ -62,7 +68,11 @@ const Form = () => {
         </div>
       ) : (
         <form className="form" action="#">
-          <button className="form__button form__button--menu" type="button">
+          <button
+            className="form__button form__button--menu"
+            type="button"
+            onClick={openBurger}
+          >
             <SvgTemplate id="menu" />
           </button>
           <div className="form__search">

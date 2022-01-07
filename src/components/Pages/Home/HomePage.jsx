@@ -12,6 +12,7 @@ const HomePage = () => {
   const { recomendedList, isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
+  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
   const dispath = useDispatch();
   const navigate = useNavigate();
@@ -29,9 +30,9 @@ const HomePage = () => {
         <PlayerPage />
       ) : (
         <>
-          <>
-            <BurgerMenu />
-          </>
+          <div className="home__section">
+            {isBurgerOpen ? <BurgerMenu isBurgerOpen={isBurgerOpen} /> : <></>}
+          </div>
           <div className="home__section home__section--recommendation">
             <h1 className="page__title title">Recomended for you</h1>
             <div className="home__slider">
