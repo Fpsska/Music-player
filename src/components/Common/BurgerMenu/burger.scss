@@ -4,7 +4,6 @@
     height: 100%;
     position: absolute;
     top: 0;
-    // left: -300px;
     left: 0;
     z-index: 3;
     background-color: #091227;
@@ -29,10 +28,6 @@
     }
 }
 
-.burger.active {
-    // left: 0;
-    // transition: all 0.45s linear;
-}
 .menu {
     list-style: none;
     padding: 0;

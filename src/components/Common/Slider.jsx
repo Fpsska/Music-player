@@ -31,7 +31,7 @@ const SliderCard = ({ recomendedList, isPlayerPage }) => {
     <>
       <Swiper
         slidesPerView={isPlayerPage ? "auto" : 1.7}
-        spaceBetween={10}
+        spaceBetween={30}
         centeredSlides={isPlayerPage ? true : false}
         freeMode={isPlayerPage ? false : true}
         effect={isPlayerPage ? "coverflow" : ""}

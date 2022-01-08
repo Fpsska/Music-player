@@ -31,7 +31,7 @@ const HomePage = () => {
       ) : (
         <>
           <div className="home__section">
-            {isBurgerOpen ? <BurgerMenu isBurgerOpen={isBurgerOpen} /> : <></>}
+            {isBurgerOpen ? <BurgerMenu /> : <></>}
           </div>
           <div className="home__section home__section--recommendation">
             <h1 className="page__title title">Recomended for you</h1>
