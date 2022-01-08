@@ -102,6 +102,11 @@ a {
         }
     }
 }
+
+.home.opacity {
+    opacity: 0.6;
+}
+
 .playlist {
     padding: 0 28px;
     &__wrapper {
@@ -142,7 +147,7 @@ a {
         transition: all 0.25s linear;
         z-index: 1;
         &:active {
-            fill: #FF3333;
+            fill: #ff3333;
             transform: scale(1.3);
         }
     }

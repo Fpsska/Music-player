@@ -23,45 +23,47 @@ const HomePage = () => {
   };
 
   return (
-    <div className="home">
-      {isPlaylistPage ? (
-        <PlayListPage />
-      ) : isPlayerPage ? (
-        <PlayerPage />
-      ) : (
-        <>
-          <div className="home__section">
-            {isBurgerOpen ? <BurgerMenu /> : <></>}
-          </div>
-          <div className="home__section home__section--recommendation">
-            <h1 className="page__title title">Recomended for you</h1>
-            <div className="home__slider">
-              <Slider recomendedList={recomendedList} />
+    <>
+      <div className="page__burger">
+        {isBurgerOpen ? <BurgerMenu /> : <></>}
+      </div>
+      <div className={isBurgerOpen ? "home opacity" : "home"}>
+        {isPlaylistPage ? (
+          <PlayListPage />
+        ) : isPlayerPage ? (
+          <PlayerPage />
+        ) : (
+          <>
+            <div className="home__section home__section--recommendation">
+              <h1 className="page__title title">Recomended for you</h1>
+              <div className="home__slider">
+                <Slider recomendedList={recomendedList} />
+              </div>
             </div>
-          </div>
-          <div className="home__section home__section--playlist">
-            <h2 className="page__title title" onClick={goPlayListPage}>
-              <Link to="playlist">My Playlist</Link>
-            </h2>
-            <Slider
-              recomendedList={recomendedList}
-              isPlayerPage={isPlayerPage}
-            />
-          </div>
-          <div className="home__section home__section--playlist">
-            <h2 className="page__title title" onClick={goPlayListPage}>
-              <Link to="playlist">Test</Link>
-            </h2>
-            <div className="home__slider">
+            <div className="home__section home__section--playlist">
+              <h2 className="page__title title" onClick={goPlayListPage}>
+                <Link to="playlist">My Playlist</Link>
+              </h2>
               <Slider
                 recomendedList={recomendedList}
                 isPlayerPage={isPlayerPage}
               />
             </div>
-          </div>
-        </>
-      )}
-    </div>
+            <div className="home__section home__section--playlist">
+              <h2 className="page__title title" onClick={goPlayListPage}>
+                <Link to="playlist">Test</Link>
+              </h2>
+              <div className="home__slider">
+                <Slider
+                  recomendedList={recomendedList}
+                  isPlayerPage={isPlayerPage}
+                />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 };
 

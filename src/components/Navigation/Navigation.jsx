@@ -7,10 +7,17 @@ import "./navigation.scss";
 
 const Navigation = () => {
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
+  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
   return (
     <footer
-      className={isPlayerPage ? "navigation navigation--player" : "navigation"}
+      className={
+        isPlayerPage
+          ? "navigation navigation--player"
+          : isBurgerOpen
+          ? "navigation opacity"
+          : "navigation"
+      }
     >
       <div
         className={

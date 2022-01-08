@@ -13,7 +13,7 @@ const BurgerMenu = () => {
     setIsVisible(!isVisible);
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
-    }, 500);
+    }, 300);
   };
 
   return (
@@ -23,19 +23,23 @@ const BurgerMenu = () => {
         to={{ transform: "translateX(0px)" }}
         reverse={isVisible}
         reset={true}
+        delay={100}
       >
         {(styles) => (
           <animated.div className="burger" style={styles}>
             <div className="burger__wrapper">
               <div className="burger__navigation">
                 <button
-                  className="burger__button"
+                  className="burger__button burger__button--close"
                   type="button"
                   onClick={closeBurger}
                 >
                   <SvgTemplate id="close" />
                 </button>
-                <button className="burger__button" type="button">
+                <button
+                  className="burger__button burger__button--theme"
+                  type="button"
+                >
                   <SvgTemplate id="theme" />
                 </button>
               </div>

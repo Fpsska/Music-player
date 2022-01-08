@@ -14,6 +14,7 @@ const Form = () => {
   const { isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
+  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -77,7 +78,14 @@ const Form = () => {
           </button>
           <div className="form__search">
             <input className="form__input" type="text" />
-            <button className="form__button form__button--search" type="button">
+            <button
+              className={
+                isBurgerOpen
+                  ? "form__button form__button--search opacity"
+                  : "form__button form__button--search"
+              }
+              type="button"
+            >
               <SvgTemplate id="search" />
             </button>
           </div>
