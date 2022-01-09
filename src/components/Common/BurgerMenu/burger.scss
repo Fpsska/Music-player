@@ -37,8 +37,26 @@
     &__item {
         display: flex;
         align-items: center;
+        transition: transform 0.25s linear;
         &:not(:last-child) {
             margin: 0 0 32px 0;
+        }
+        &:hover {
+            transform: scale(1.01);
+        }
+        &:hover .menu__link {
+            color: rgba(165, 192, 255, 0.7);
+        }
+        &:hover svg {
+            transition: transform 0.25s linear;
+            transform: scale(1.1);
+            fill: rgba(165, 192, 255, 0.7);
+        }
+        &:hover .icon__main-settings {
+            transition: transform 0.25s linear;
+            transform: scale(1.1);
+            fill: none;
+            stroke: rgba(165, 192, 255, 0.7);
         }
     }
     &__link {

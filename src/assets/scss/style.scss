@@ -203,14 +203,19 @@ a {
     width: 24px;
     height: 24px;
 }
+.icon__main-settings {
+    width: 20px;
+    height: 20px;
+    stroke: #8996b8;
+}
 
 .icon__profile,
 .icon__language,
 .icon__message,
-.icon__faqs,
-.icon__main-settings {
+.icon__faqs {
     width: 20px;
     height: 20px;
+    fill: #8996b8;
 }
 
 // /.SVG

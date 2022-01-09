@@ -48,6 +48,9 @@
     &:not(:last-child) {
         margin: 0 0 24px 0;
     }
+    &:nth-last-child(2) {
+        margin: 0;
+    }
 }
 .card--player {
     max-width: 230px;

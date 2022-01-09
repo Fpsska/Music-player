@@ -47,39 +47,27 @@ const BurgerMenu = () => {
                 <ul className="menu">
                   <li className="menu__item">
                     <SvgTemplate id="profile" />
-                    <a className="menu__link" href="#">
-                      Profile
-                    </a>
+                    <span className="menu__link">Profile</span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="like" />
-                    <a className="menu__link" href="#">
-                      Liked Songs
-                    </a>
+                    <span className="menu__link">Liked Songs</span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="language" />
-                    <a className="menu__link" href="#">
-                      Language
-                    </a>
+                    <span className="menu__link">Language</span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="message" />
-                    <a className="menu__link" href="#">
-                      Contact us
-                    </a>
+                    <span className="menu__link">Contact us</span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="faqs" />
-                    <a className="menu__link" href="#">
-                      FAQs
-                    </a>
+                    <span className="menu__link">FAQs</span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="main-settings" />
-                    <a className="menu__link" href="#">
-                      Settings
-                    </a>
+                    <span className="menu__link">Settings</span>
                   </li>
                 </ul>
               </nav>

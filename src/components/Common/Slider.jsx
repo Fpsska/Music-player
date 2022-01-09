@@ -6,7 +6,7 @@ import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-const SliderCard = ({ recomendedList, isPlayerPage }) => {
+const SliderCard = ({ recomendedList, playList, isPlayerPage }) => {
   const [coverEffect] = useState({
     rotate: 50,
     stretch: 0,
@@ -17,7 +17,7 @@ const SliderCard = ({ recomendedList, isPlayerPage }) => {
 
   const list = useMemo(
     () =>
-      recomendedList.map((item) => {
+      (playList ? playList : recomendedList).map((item) => {
         return (
           <SwiperSlide key={item.id}>
             <Card image={item.image} artist={item.artist} song={item.song} />
