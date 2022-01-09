@@ -1,13 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { switchPlaylistPageStatus } from "../../../app/mainSlice";
 import CardList from "../../Common/Card/CardList";
 
 const PlayListPage = () => {
-  const { recomendedList } = useSelector((state) => state.mainSlice);
-
   const dispath = useDispatch();
   const navigate = useNavigate();
 
@@ -23,7 +21,7 @@ const PlayListPage = () => {
           <Link to="/Music-player">Liked Songs</Link>
         </h1>
         <div className="playlist__wrapper">
-          <CardList recomendedList={recomendedList} />
+          <CardList />
         </div>
       </div>
     </>

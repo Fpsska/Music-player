@@ -1,11 +1,16 @@
 import React, { useMemo } from "react";
 import Card from "./CardTemplate";
 import "./card.scss";
+import { useSelector } from "react-redux";
 
-const CardList = ({ recomendedList }) => {
+const CardList = () => {
+  const { playList, recomendedList } = useSelector((state) => state.mainSlice);
+  //
+  const generalList = recomendedList.concat(playList);
+  //
   const list = useMemo(
     () =>
-      recomendedList.map((item) => {
+      generalList.map((item) => {
         return (
           <Card
             key={item.id}
@@ -15,7 +20,7 @@ const CardList = ({ recomendedList }) => {
           />
         );
       }),
-    [recomendedList]
+    [generalList]
   );
 
   return <>{list}</>;

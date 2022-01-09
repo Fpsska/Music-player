@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -6,19 +6,21 @@ import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
 } from "../../../app/mainSlice";
-import Slider from "../../Common/Slider";
+import SliderRecomendedList from "../../Common/Slider/SliderRecomendedList";
+import SliderPlayList from "../../Common/Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
 import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
 
 const HomePage = () => {
-  const { recomendedList, playList, isPlaylistPage, isPlayerPage } =
+  //
+  const { playList, recomendedList, isPlaylistPage, isPlayerPage } =
     useSelector((state) => state.mainSlice);
   const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
-
+  //
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  //
   const goPlayListPage = () => {
     dispatch(switchPlaylistPageStatus(true));
     navigate("playlist");
@@ -46,26 +48,23 @@ const HomePage = () => {
                 <Link to="player">Recomended for you</Link>
               </h1>
               <div className="home__slider">
-                <Slider recomendedList={recomendedList} playList={playList} />
+                <SliderRecomendedList
+                  recomendedList={recomendedList}
+                  isPlayerPage={isPlayerPage}
+                />
               </div>
             </div>
             <div className="home__section home__section--playlist">
               <h2 className="page__title title" onClick={goPlayListPage}>
                 <Link to="playlist">My Playlist</Link>
               </h2>
-              <Slider
-                recomendedList={recomendedList}
-                isPlayerPage={isPlayerPage}
-              />
+              <SliderPlayList playList={playList} isPlayerPage={isPlayerPage} />
             </div>
             <div className="home__section home__section--playlist">
-              <h2 className="page__title title">Test</h2>
-              <div className="home__slider">
-                <Slider
-                  recomendedList={recomendedList}
-                  isPlayerPage={isPlayerPage}
-                />
-              </div>
+              <h2 className="page__title title" onClick={goPlayListPage}>
+                <Link to="playlist">Test</Link>
+              </h2>
+              <SliderPlayList playList={playList} isPlayerPage={isPlayerPage} />
             </div>
           </>
         )}

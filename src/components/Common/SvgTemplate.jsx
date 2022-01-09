@@ -305,12 +305,12 @@ const SvgTemplate = (props) => {
           >
             <path
               d="M1.01636 0.949158L18.001 17.9338"
-              stroke="#EAF0FF"
+              stroke=""
               strokeWidth="2"
             />
             <path
               d="M1.01636 17.9337L18.001 0.949148"
-              stroke="#EAF0FF"
+              stroke=""
               strokeWidth="2"
             />
           </svg>

@@ -24,6 +24,16 @@
             transform: scale(1.25);
         }
     }
+    &__button--close {
+        &:active svg {
+            transition: all 0.25s linear;
+            stroke: #cc0000;
+        }
+        &:hover svg {
+            transition: all 0.25s linear;
+            stroke: #cc0000;
+        }
+    }
     .icon__like {
         fill: #8996b8;
         fill-opacity: 0.6;

@@ -1,21 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import SliderCard from "../../Common/Slider";
 import SvgTemplate from "../../Common/SvgTemplate";
 import Bar from "../../Common/Bar/Bar";
+import Slider from "../../Common/Slider/Slider";
+import { useSelector } from "react-redux";
 
 const PlayerPage = () => {
-  const { recomendedList, isPlayerPage } = useSelector(
-    (state) => state.mainSlice
-  );
-
+  //
+  const { isPlayerPage } = useSelector((state) => state.mainSlice);
+  //
   return (
     <div className="player">
       <div className="player__slider">
-        <SliderCard
-          recomendedList={recomendedList}
-          isPlayerPage={isPlayerPage}
-        />
+        <Slider isPlayerPage={isPlayerPage} />
       </div>
       <div className="player__section">
         <div className="player__navigation">
@@ -34,10 +30,7 @@ const PlayerPage = () => {
           <button className="player__button player__button--oder" type="button">
             <SvgTemplate id="oder" />
           </button>
-          <button
-            className="player__button player__button--like"
-            type="button"
-          >
+          <button className="player__button player__button--like" type="button">
             <SvgTemplate id="like" />
           </button>
         </div>

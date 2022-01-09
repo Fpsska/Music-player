@@ -29,8 +29,9 @@
         height: 20px;
         color: #fff;
         border: 1px solid transparent;
-        transition: 0.25s linear;
+        transition: all 0.25s linear;
         &:hover {
+            cursor: pointer;
             border: 1px solid #a5c0ff;
             + .form__button--search .icon__search {
                 stroke: #a5c0ff;
