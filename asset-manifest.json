@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Music-player/static/css/main.0b4d7c5f.css",
-    "main.js": "/Music-player/static/js/main.ca452d1f.js",
+    "main.css": "/Music-player/static/css/main.253d4753.css",
+    "main.js": "/Music-player/static/js/main.f4f18881.js",
+    "static/media/albom_preview-5.png": "/Music-player/static/media/albom_preview-5.e792983b8257e7bbe9bc.png",
+    "static/media/albom_preview-6.png": "/Music-player/static/media/albom_preview-6.a84fa8c08a5b260c88e0.png",
+    "static/media/albom_preview-3.png": "/Music-player/static/media/albom_preview-3.3254996e2df54e1ddb75.png",
     "static/media/albom_preview-2.png": "/Music-player/static/media/albom_preview-2.db0ee6a3b3fe97649006.png",
+    "static/media/albom_preview-4.png": "/Music-player/static/media/albom_preview-4.c339df0b129b88bb9585.png",
+    "static/media/albom_preview-1.png": "/Music-player/static/media/albom_preview-1.42b92a2badc5acc58afb.png",
     "static/media/albom_preview-7.png": "/Music-player/static/media/albom_preview-7.d62f593c53a3e93675c9.png",
-    "static/media/albom_preview-1.png": "/Music-player/static/media/albom_preview-1.12a94184f55dc3e41e49.png",
-    "static/media/albom_preview-5.png": "/Music-player/static/media/albom_preview-5.fee87d9ccf41302d32a8.png",
-    "static/media/albom_preview-6.png": "/Music-player/static/media/albom_preview-6.c69026b240114c27346f.png",
-    "static/media/albom_preview-3.png": "/Music-player/static/media/albom_preview-3.fa96d526980365f5e5b9.png",
-    "static/media/albom_preview-4.png": "/Music-player/static/media/albom_preview-4.2cfed5282b107c9f35a7.png",
     "static/media/language-icon.svg": "/Music-player/static/media/language-icon.8f71140ae0a863f50beb.svg",
     "static/media/order-icon.svg": "/Music-player/static/media/order-icon.65a2222621753f392f66.svg",
     "static/media/faqs-icon.svg": "/Music-player/static/media/faqs-icon.0de7bfbbf8e997023edb.svg",
@@ -29,11 +29,11 @@
     "static/media/close-icon.svg": "/Music-player/static/media/close-icon.d32a288f4b6638f74a1e.svg",
     "static/media/menu-icon.svg": "/Music-player/static/media/menu-icon.77ad9e09ba2366f3536f.svg",
     "static/media/pause-icon.svg": "/Music-player/static/media/pause-icon.c732f93ea6c7e3f78ba0.svg",
-    "main.0b4d7c5f.css.map": "/Music-player/static/css/main.0b4d7c5f.css.map",
-    "main.ca452d1f.js.map": "/Music-player/static/js/main.ca452d1f.js.map"
+    "main.253d4753.css.map": "/Music-player/static/css/main.253d4753.css.map",
+    "main.f4f18881.js.map": "/Music-player/static/js/main.f4f18881.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b4d7c5f.css",
-    "static/js/main.ca452d1f.js"
+    "static/css/main.253d4753.css",
+    "static/js/main.f4f18881.js"
   ]
 }
