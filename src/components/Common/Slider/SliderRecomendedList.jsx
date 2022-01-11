@@ -1,20 +1,12 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Card from "../Card/CardTemplate";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
+import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
-SwiperCore.use([FreeMode, EffectCoverflow]);
+SwiperCore.use([FreeMode]);
 
 const SliderRecomendedList = ({ recomendedList, isPlayerPage }) => {
-  //
-  const [coverEffect] = useState({
-    rotate: 50,
-    stretch: 0,
-    depth: 500,
-    modifier: 1,
-    slideShadows: false,
-  });
   //
   const list = useMemo(
     () =>
@@ -32,10 +24,7 @@ const SliderRecomendedList = ({ recomendedList, isPlayerPage }) => {
     <Swiper
       slidesPerView={isPlayerPage ? "auto" : 1.7}
       spaceBetween={30}
-      centeredSlides={isPlayerPage ? true : false}
       freeMode={isPlayerPage ? false : true}
-      effect={isPlayerPage ? "coverflow" : ""}
-      coverflowEffect={isPlayerPage ? coverEffect : ""}
       className="mySwiper"
     >
       {list}

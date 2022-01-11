@@ -9,6 +9,12 @@
         position: relative;
         justify-content: center;
     }
+    &__button {
+        transition: transform 0.25s linear;
+        &:active {
+            transform: scale(1.25);
+        }
+    }
     &__button--player {
         position: absolute;
         left: 0;

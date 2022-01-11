@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -30,6 +30,8 @@ const HomePage = () => {
     dispatch(switchPlayerPageStatus(true));
     navigate("player");
   };
+
+
 
   return (
     <>

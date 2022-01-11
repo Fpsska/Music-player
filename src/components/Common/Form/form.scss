@@ -11,12 +11,17 @@
         padding: 0;
     }
     &__button--menu {
-        flex: 1;
         text-align: start;
+        transition: transform 0.25s linear;
+        &:active {
+            transform: scale(1.25);
+        }
     }
     &__button--search {
-        position: absolute;
+        top: 50%;
         right: 0;
+        transform: translate(0, -45%);
+        position: absolute;
         margin: 0 5px 0 0;
         svg {
             width: 18px;

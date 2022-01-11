@@ -20,14 +20,11 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const goBack = () => {
-    navigate("/Music-player");
-    dispatch(switchPlaylistPageStatus(false));
-    dispatch(switchPlayerPageStatus(false));
-  };
-
-  const goHomePage = () => {
-    navigate("/Music-player");
-    dispatch(switchPlayerPageStatus(false));
+    setTimeout(() => {
+      navigate("/Music-player");
+      dispatch(switchPlaylistPageStatus(false));
+      dispatch(switchPlayerPageStatus(false));
+    }, 200);
   };
 
   const openBurger = () => {
@@ -60,12 +57,7 @@ const Form = () => {
           >
             <SvgTemplate id="arrow-back" />
           </button>
-          <h1
-            className="page__title page__title--player title"
-            onClick={goHomePage}
-          >
-            <Link to="/Music-player">Playing Now</Link>
-          </h1>
+          <h1 className="page__title page__title--player title">Playing Now</h1>
         </div>
       ) : (
         <form className="form" action="#">

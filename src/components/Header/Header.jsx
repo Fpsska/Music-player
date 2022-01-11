@@ -1,12 +1,11 @@
 import React from "react";
 import Form from "../Common/Form/Form";
-import "./header.scss"
-
+import "./header.scss";
 
 const Header = () => {
   return (
     <header className="header">
-        <Form/>
+      <Form />
     </header>
   );
 };
