@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-const SliderCard = (isPlayerPage) => {
+const SliderCard = ({ isPlayerPage, trackOrder }) => {
   const { playList, recomendedList } = useSelector((state) => state.mainSlice);
   //
   const generalList = recomendedList.concat(playList);
@@ -25,7 +25,12 @@ const SliderCard = (isPlayerPage) => {
       generalList.map((item) => {
         return (
           <SwiperSlide key={item.id}>
-            <Card image={item.image} artist={item.artist} song={item.song} />
+            <Card
+              image={item.image}
+              artist={item.artist}
+              song={item.song}
+              trackOrder={trackOrder}
+            />
           </SwiperSlide>
         );
       }),

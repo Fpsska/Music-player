@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import SvgTemplate from "../../Common/SvgTemplate";
 import Bar from "../../Common/Bar/Bar";
 import Slider from "../../Common/Slider/Slider";
 import { useSelector } from "react-redux";
 
+// import song from "../../../assets/audio/track-2.mp3";
+
 const PlayerPage = () => {
   //
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
+  const trackOrder = useRef();
   //
+
   return (
     <div className="player">
       <div className="player__slider">
-        <Slider isPlayerPage={isPlayerPage} />
+        <Slider isPlayerPage={isPlayerPage} trackOrder={trackOrder} />
       </div>
       <div className="player__section">
         <div className="player__navigation">
@@ -40,6 +44,11 @@ const PlayerPage = () => {
         </div>
         <Bar />
       </div>
+      <audio
+        className="player__audio"
+        ref={trackOrder}
+        src={trackOrder}
+      ></audio>
     </div>
   );
 };

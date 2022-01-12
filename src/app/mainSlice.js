@@ -4,80 +4,108 @@ const mainSlice = createSlice({
     name: "mainSlice",
     initialState: {
         recomendedList: [
+            // {
+            //     id: 1,
+            //     image: "albom_preview-1.png",
+            //     artist: "ERIKA RECINOS",
+            //     song: "Monsters Go Bump"
+            // },
+            // {
+            //     id: 2,
+            //     image: "albom_preview-7.png",
+            //     artist: "ODESZA",
+            //     song: "Moment Apart"
+            // },
+            // {
+            //     id: 3,
+            //     image: "albom_preview-3.png",
+            //     artist: "RYAN GRIGDRY",
+            //     song: "Shortwave"
+            // },
+            // {
+            //     id: 4,
+            //     image: "albom_preview-4.png",
+            //     artist: "ROGER TERRY",
+            //     song: "Dream On"
+            // },
+            // {
+            //     id: 5,
+            //     image: "albom_preview-5.png",
+            //     artist: "IMAGINE DRAGON",
+            //     song: "Origins"
+            // },
+            // {
+            //     id: 6,
+            //     image: "albom_preview-6.png",
+            //     artist: "HYONNA",
+            //     song: "Chaff & Dust"
+            // }
             {
                 id: 1,
-                image: "albom_preview-1.png",
-                artist: "ERIKA RECINOS",
-                song: "Monsters Go Bump"
+                image: "albom_preview-10.jpg",
+                artist: "Mike Posner",
+                song: "I Took A Pill In Ibiza",
+                audio: "track-2.mp3"
             },
             {
                 id: 2,
-                image: "albom_preview-7.png",
-                artist: "ODESZA",
-                song: "Moment Apart"
+                image: "albom_preview-11.jpg",
+                artist: "LXST CXNTURY",
+                song: "Alpha",
+                audio: "track-1.mp3"
             },
-            {
-                id: 3,
-                image: "albom_preview-3.png",
-                artist: "RYAN GRIGDRY",
-                song: "Shortwave"
-            },
-            {
-                id: 4,
-                image: "albom_preview-4.png",
-                artist: "ROGER TERRY",
-                song: "Dream On"
-            },
-            {
-                id: 5,
-                image: "albom_preview-5.png",
-                artist: "IMAGINE DRAGON",
-                song: "Origins"
-            },
-            {
-                id: 6,
-                image: "albom_preview-6.png",
-                artist: "HYONNA",
-                song: "Chaff & Dust"
-            }
         ],
         playList: [
             {
-                id: 7,
-                image: "albom_preview-2.png",
-                artist: "IMAGINE DRAGON",
-                song: "Believer"
+                id: 3,
+                image: "albom_preview-10.jpg",
+                artist: "Mike Posner",
+                song: "I Took A Pill In Ibiza",
+                audio: "track-2.mp3"
             },
             {
-                id: 8,
-                image: "albom_preview-3.png",
-                artist: "RYAN GRIGDRY",
-                song: "Shortwave"
+                id: 4,
+                image: "albom_preview-11.jpg",
+                artist: "LXST CXNTURY",
+                song: "Alpha",
+                audio: "track-1.mp3"
             },
-            {
-                id: 9,
-                image: "albom_preview-6.png",
-                artist: "HYONNA",
-                song: "Chaff & Dust"
-            },
-            {
-                id: 10,
-                image: "albom_preview-4.png",
-                artist: "ROGER TERRY",
-                song: "Dream On"
-            },
-            {
-                id: 11,
-                image: "albom_preview-7.png",
-                artist: "ODESZA",
-                song: "Moment Apart"
-            },
-            {
-                id: 12,
-                image: "albom_preview-5.png",
-                artist: "IMAGINE DRAGON",
-                song: "Origins"
-            },
+            // {
+            //     id: 7,
+            //     image: "albom_preview-2.png",
+            //     artist: "IMAGINE DRAGON",
+            //     song: "Believer"
+            // },
+            // {
+            //     id: 8,
+            //     image: "albom_preview-3.png",
+            //     artist: "RYAN GRIGDRY",
+            //     song: "Shortwave"
+            // },
+            // {
+            //     id: 9,
+            //     image: "albom_preview-6.png",
+            //     artist: "HYONNA",
+            //     song: "Chaff & Dust"
+            // },
+            // {
+            //     id: 10,
+            //     image: "albom_preview-4.png",
+            //     artist: "ROGER TERRY",
+            //     song: "Dream On"
+            // },
+            // {
+            //     id: 11,
+            //     image: "albom_preview-7.png",
+            //     artist: "ODESZA",
+            //     song: "Moment Apart"
+            // },
+            // {
+            //     id: 12,
+            //     image: "albom_preview-5.png",
+            //     artist: "IMAGINE DRAGON",
+            //     song: "Origins"
+            // },
         ],
         isPlaylistPage: false,
         isPlayerPage: false,

@@ -66,7 +66,7 @@ a {
 
 .page {
     &__wrapper {
-        max-height: 75vh;
+        // max-height: 75vh;
         overflow-y: scroll;
         padding: 0 !important;
         &::-webkit-scrollbar {
@@ -95,6 +95,7 @@ a {
     }
 }
 .home {
+    max-height: 75vh;
     padding: 0 0 0 28px;
     &__section {
         &:not(:first-child) {
@@ -116,6 +117,7 @@ a {
     }
 }
 .player {
+    // max-height: 75vh;
     padding: 40px 0 0 0;
     &__section {
         margin: 34px 0 0 0;

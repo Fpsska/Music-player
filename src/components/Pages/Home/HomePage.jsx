@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import SliderPlayList from "../../Common/Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
 import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
+import Navigation from "../../Navigation/Navigation";
 
 const HomePage = () => {
   //
@@ -25,13 +26,11 @@ const HomePage = () => {
     dispatch(switchPlaylistPageStatus(true));
     navigate("playlist");
   };
-
+  //
   const goPlayerPage = () => {
     dispatch(switchPlayerPageStatus(true));
     navigate("player");
   };
-
-
 
   return (
     <>
