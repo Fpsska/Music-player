@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { switchPlaylistPageStatus } from "../../../app/mainSlice";
 import CardList from "../../Common/Card/CardList";
+import Navigation from "../../Navigation/Navigation";
 
 const PlayListPage = () => {
   const dispath = useDispatch();
@@ -23,6 +24,9 @@ const PlayListPage = () => {
         <div className="playlist__wrapper">
           <CardList />
         </div>
+      </div>
+      <div className="page__navigation">
+        <Navigation />
       </div>
     </>
   );

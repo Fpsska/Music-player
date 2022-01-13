@@ -10,7 +10,7 @@ const Navigation = ({ trackOrder }) => {
   const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
   return (
-    <footer
+    <div
       className={
         isPlayerPage
           ? "navigation navigation--player"
@@ -54,7 +54,7 @@ const Navigation = ({ trackOrder }) => {
           </>
         )}
       </div>
-    </footer>
+    </div>
   );
 };
 

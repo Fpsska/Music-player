@@ -51,7 +51,7 @@ const HomePage = () => {
               <div className="home__slider">
                 <SliderRecomendedList
                   recomendedList={recomendedList}
-                  isPlayerPage={isPlayerPage}
+                  playList={playList}
                 />
               </div>
             </div>
@@ -59,16 +59,22 @@ const HomePage = () => {
               <h2 className="page__title title" onClick={goPlayListPage}>
                 <Link to="playlist">My Playlist</Link>
               </h2>
-              <SliderPlayList playList={playList} isPlayerPage={isPlayerPage} />
+              <SliderPlayList
+                recomendedList={recomendedList}
+                playList={playList}
+              />
             </div>
             <div className="home__section home__section--playlist">
               <h2 className="page__title title" onClick={goPlayListPage}>
                 <Link to="playlist">Test</Link>
               </h2>
-              <SliderPlayList playList={playList} isPlayerPage={isPlayerPage} />
+              <SliderPlayList playList={playList} />
             </div>
           </>
         )}
+      </div>
+      <div className="page__navigation">
+        <Navigation />
       </div>
     </>
   );

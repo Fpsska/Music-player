@@ -27,6 +27,10 @@ body {
     margin: 30px 0 0 0;
 }
 
+.footer {
+    flex: 0 0 auto;
+}
+
 svg {
     flex-shrink: 0;
 }
@@ -65,9 +69,9 @@ a {
 // /.GENERAL
 
 .page {
+    height: 100%;
     &__wrapper {
-        // max-height: 75vh;
-        overflow-y: scroll;
+        height: 100%;
         padding: 0 !important;
         &::-webkit-scrollbar {
             background-color: transparent;
@@ -95,6 +99,7 @@ a {
     }
 }
 .home {
+    overflow-y: scroll;
     max-height: 75vh;
     padding: 0 0 0 28px;
     &__section {
@@ -109,6 +114,9 @@ a {
 }
 
 .playlist {
+    max-height: 75vh;
+    height: 100%;
+    overflow-y: scroll;
     padding: 0 28px;
     &__wrapper {
         display: flex;
@@ -117,7 +125,6 @@ a {
     }
 }
 .player {
-    // max-height: 75vh;
     padding: 40px 0 0 0;
     &__section {
         margin: 34px 0 0 0;

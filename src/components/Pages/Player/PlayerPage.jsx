@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import SvgTemplate from "../../Common/SvgTemplate";
 import Bar from "../../Common/Bar/Bar";
-import Slider from "../../Common/Slider/Slider";
+import SliderPlayerList from "../../Common/Slider/SliderPlayerList";
+import Navigation from "../../Navigation/Navigation";
 import { useSelector } from "react-redux";
 
 // import song from "../../../assets/audio/track-2.mp3";
@@ -11,11 +12,31 @@ const PlayerPage = () => {
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
   const trackOrder = useRef();
   //
+  const musicIndex = 1;
+  //
+
+  const loadMusic = (musicIndex) => {
+    if (isPlayerPage) {
+      songElement.current.innerText = recomendedList[musicIndex - 1].song;
+      artistElement.current.innerText = recomendedList[musicIndex - 1].artist;
+      albumElement.current.src = require(`../../../assets/images/${
+        recomendedList[musicIndex - 1].image
+      }`);
+      trackOrder.current.src = `../../../assets/audio${
+        recomendedList[musicIndex - 1].audio
+      }`;
+    }
+  };
+  useEffect(() => {
+    loadMusic(musicIndex);
+    console.log("mounted");
+  }, []);
+  //
 
   return (
     <div className="player">
       <div className="player__slider">
-        <Slider isPlayerPage={isPlayerPage} trackOrder={trackOrder} />
+        <SliderPlayerList isPlayerPage={isPlayerPage} trackOrder={trackOrder} />
       </div>
       <div className="player__section">
         <div className="player__navigation">
@@ -49,6 +70,9 @@ const PlayerPage = () => {
         ref={trackOrder}
         src={trackOrder}
       ></audio>
+      <div className="page__navigation">
+        <Navigation trackOrder={trackOrder} />
+      </div>
     </div>
   );
 };

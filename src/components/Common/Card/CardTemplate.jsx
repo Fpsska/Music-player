@@ -5,28 +5,10 @@ const Card = ({ image, artist, song, trackOrder }) => {
   const { isPlaylistPage, isPlayerPage, recomendedList } = useSelector(
     (state) => state.mainSlice
   );
-  const artistName = useRef();
-  const albumImage = useRef();
-  const songName = useRef();
-  const musicIndex = 1;
-  //
-  const loadMusic = (musicIndex) => {
-    if (isPlayerPage) {
-      songName.current.innerText = recomendedList[musicIndex - 1].song;
-      artistName.current.innerText = recomendedList[musicIndex - 1].artist;
-      albumImage.current.src = require(`../../../assets/images/${
-        recomendedList[musicIndex - 1].image
-      }`);
-      // trackOrder.current.src = `../../../assets/audio${
-      //   recomendedList[musicIndex - 1].audio
-      // }`;
-    }
-  };
-  useEffect(() => {
-    loadMusic(musicIndex);
-    console.log("mounted");
-  }, []);
-  //
+  const artistElement = useRef();
+  const albumElement = useRef();
+  const songElement = useRef();
+
   return (
     <div
       className={
@@ -38,7 +20,7 @@ const Card = ({ image, artist, song, trackOrder }) => {
       }
     >
       <img
-        ref={albumImage}
+        ref={albumElement}
         className={
           isPlaylistPage
             ? "card__image card__image--playlist"
@@ -47,26 +29,32 @@ const Card = ({ image, artist, song, trackOrder }) => {
             : "card__image"
         }
         src={
-          isPlayerPage ? albumImage : require(`../../../assets/images/${image}`)
+          isPlayerPage
+            ? albumElement
+            : require(`../../../assets/images/${image}`)
         }
         alt="albom-preview"
       />
       <h2
-        ref={songName}
+        ref={songElement}
         className={
           isPlayerPage
             ? "card__title card__title--player title"
             : "card__title title"
         }
-      ></h2>
+      >
+        {/* {isPlayerPage ? songElement : "untitled"} */}
+      </h2>
       <span
-        ref={artistName}
+        ref={artistElement}
         className={
           isPlayerPage
             ? "card__subtitle card__subtitle--player subtitle"
             : "card__subtitle subtitle"
         }
-      ></span>
+      >
+        {/* {isPlayerPage ? artistElement : "untitled"} */}
+      </span>
     </div>
   );
 };

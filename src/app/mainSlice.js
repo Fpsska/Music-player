@@ -57,14 +57,14 @@ const mainSlice = createSlice({
         ],
         playList: [
             {
-                id: 3,
+                id: 13,
                 image: "albom_preview-10.jpg",
                 artist: "Mike Posner",
                 song: "I Took A Pill In Ibiza",
                 audio: "track-2.mp3"
             },
             {
-                id: 4,
+                id: 14,
                 image: "albom_preview-11.jpg",
                 artist: "LXST CXNTURY",
                 song: "Alpha",

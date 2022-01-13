@@ -14,7 +14,7 @@ const Layout = () => {
           </div>
         </div>
       </main>
-      <Navigation />
+      <footer className="footer"></footer>
     </>
   );
 };
