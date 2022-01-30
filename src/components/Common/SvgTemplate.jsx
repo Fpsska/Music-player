@@ -21,7 +21,7 @@ const SvgTemplate = (props) => {
           </svg>
         </span>
       );
-    case "arrow_next-icon":
+    case "arrow__next-icon":
       return (
         <span className="icon">
           <svg
@@ -456,6 +456,24 @@ const SvgTemplate = (props) => {
               strokeWidth="2"
               strokeLinecap="square"
               strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      );
+    case "play":
+      return (
+        <span className="icon">
+          <svg
+            className="icon__play"
+            width="33"
+            height="42"
+            viewBox="0 0 33 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 6.35258C0 3.10921 0 1.48753 1.04423 0.919444C2.08846 0.351356 3.44997 1.23234 6.173 2.9943L28.8099 17.6417C31.149 19.1552 32.3185 19.9119 32.3185 21C32.3185 22.0881 31.149 22.8448 28.8099 24.3583L6.173 39.0057C3.44997 40.7677 2.08846 41.6486 1.04423 41.0806C0 40.5125 0 38.8908 0 35.6474V6.35258Z"
+              fill="#F1F1F1"
             />
           </svg>
         </span>

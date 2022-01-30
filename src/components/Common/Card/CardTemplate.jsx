@@ -1,13 +1,32 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
-const Card = ({ image, artist, song, trackOrder }) => {
+const Card = ({ image, artist, song, trackOrder, musicIndex }) => {
   const { isPlaylistPage, isPlayerPage, recomendedList } = useSelector(
     (state) => state.mainSlice
   );
   const artistElement = useRef();
   const albumElement = useRef();
   const songElement = useRef();
+  //
+  const loadMusic = (musicIndex) => {
+    if (isPlayerPage) {
+      songElement.current.innerText = recomendedList[musicIndex - 1].song;
+      artistElement.current.innerText = recomendedList[musicIndex - 1].artist;
+      albumElement.current.src = require(`../../../assets/images/${
+        recomendedList[musicIndex - 1].image
+      }`);
+      trackOrder.current.src = require(`../../../assets/audio/${
+        recomendedList[musicIndex - 1].audio
+      }`);
+    }
+    return;
+  };
+  //
+  useEffect(() => {
+    loadMusic(musicIndex);
+  }, [isPlayerPage]);
+  //
 
   return (
     <div
@@ -43,7 +62,7 @@ const Card = ({ image, artist, song, trackOrder }) => {
             : "card__title title"
         }
       >
-        {/* {isPlayerPage ? songElement : "untitled"} */}
+        {song}
       </h2>
       <span
         ref={artistElement}
@@ -53,7 +72,7 @@ const Card = ({ image, artist, song, trackOrder }) => {
             : "card__subtitle subtitle"
         }
       >
-        {/* {isPlayerPage ? artistElement : "untitled"} */}
+        {artist}
       </span>
     </div>
   );

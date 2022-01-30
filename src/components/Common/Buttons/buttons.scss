@@ -12,18 +12,57 @@
         }
     }
 }
-.nav__button--player {
-    padding: 0;
+
+.nav__button--play {
+    width: 44px;
+    height: 37px;
 }
-.nav__button--player.nav__button--pause {
-    margin: 0 26px;
+.nav__button--play.nav__button--player {
+    width: 48px;
+    height: 42px;
+}
+
+.nav__button--next .icon__arrow-next,
+.nav__button--prev .icon_arrow-prev {
+    width: 20px;
+    height: 20px;
+}
+.nav__button--pause .icon__pause {
+    width: 32px;
+    height: 32px;
+}
+.nav__button--play .icon__play {
+    width: 22px;
+    height: 22px;
+}
+
+//
+
+.nav--player.nav--player {
+    max-width: 170px;
+    width: 100%;
+    margin: 80px auto 0 auto;
+}
+
+.nav__button--player {
+    position: relative;
+    padding: 0;
+    flex-grow: 1;
+    &:nth-child(2) {
+        margin: 0 22px;
+    }
+}
+.nav__button--player .icon__pause {
     width: 37px;
     height: 41px;
 }
-.nav__button--player.nav__button--next,
-.nav__button--player.nav__button--prev {
+.nav__button--player .icon__play {
+    width: 37px;
+    height: 38px;
+}
+
+.nav__button--player.nav__button--next .icon__arrow-next,
+.nav__button--player.nav__button--prev .icon_arrow-prev {
     width: 30px;
     height: 32px;
 }
-
-

@@ -109,6 +109,7 @@ const mainSlice = createSlice({
         ],
         isPlaylistPage: false,
         isPlayerPage: false,
+        isPaused: true
     },
     reducers: {
         switchPlaylistPageStatus(state, action) {
@@ -116,10 +117,13 @@ const mainSlice = createSlice({
         },
         switchPlayerPageStatus(state, action) {
             state.isPlayerPage = action.payload
+        },
+        switchPauseStatus(state, action) {
+            state.isPaused = action.payload
         }
     }
 })
 
-export const { switchPlaylistPageStatus, switchPlayerPageStatus } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

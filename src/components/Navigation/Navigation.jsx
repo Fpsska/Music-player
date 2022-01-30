@@ -5,7 +5,7 @@ import Bar from "../Common/Bar/Bar";
 import albomPreview from "../../assets/images/albom_preview-6.png";
 import "./navigation.scss";
 
-const Navigation = ({ trackOrder }) => {
+const Navigation = ({ trackOrder, musicIndex }) => {
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
   const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
@@ -28,7 +28,7 @@ const Navigation = ({ trackOrder }) => {
       >
         {isPlayerPage ? (
           <div className="navigation__section">
-            <Buttons trackOrder={trackOrder} />
+            <Buttons trackOrder={trackOrder} musicIndex={musicIndex} />
           </div>
         ) : (
           <>

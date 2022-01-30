@@ -1,32 +1,36 @@
-import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../SvgTemplate";
+import { switchPauseStatus } from "../../../app/mainSlice";
 import "./buttons.scss";
 
-const Buttons = ({trackOrder}) => {
-  const { isPlayerPage } = useSelector((state) => state.mainSlice);
-  const [isPaused, setPausedStatus] = useState(true);
-
+const Buttons = ({ trackOrder, musicIndex }) => {
+  const { isPlayerPage, isPaused } = useSelector((state) => state.mainSlice);
+  const dispatch = useDispatch();
+  //
   const prevBtn = useRef();
   const pauseBtn = useRef();
   const nextBtn = useRef();
+  //
+  const nextSong = () => {
+    musicIndex++;
+    pauseMusic();
+  };
 
   const playMusic = () => {
-    console.log("play func");
+    trackOrder.current.play();
   };
 
   const pauseMusic = () => {
-    trackOrder.current.play()
-    console.log(trackOrder);
-    console.log("pause func");
+    trackOrder.current.pause();
   };
 
-  const defineEvent = () => {
-    trackOrder.current.pause()
-    setPausedStatus(!isPaused);
-    isPaused ? pauseMusic() : playMusic();
+  const defineButtonEvent = () => {
+    dispatch(switchPauseStatus(!isPaused));
+    !isPaused ? pauseMusic() : playMusic();
   };
 
+  //
   return (
     <nav className={isPlayerPage ? "nav nav--player" : "nav"}>
       <button
@@ -41,24 +45,23 @@ const Buttons = ({trackOrder}) => {
       </button>
       <button
         ref={pauseBtn}
-        onClick={defineEvent}
-        className={
-          isPlayerPage
-            ? "nav__button nav__button--player nav__button--pause"
-            : "nav__button nav__button--pause"
-        }
+        onClick={defineButtonEvent}
+        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${
+          isPaused ? "nav__button--play" : "nav__button--pause"
+        }`}
       >
-        <SvgTemplate id="pause" />
+        {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>
       <button
         ref={nextBtn}
+        onClick={nextSong}
         className={
           isPlayerPage
             ? "nav__button nav__button--player nav__button--next"
             : "nav__button nav__button--next"
         }
       >
-        <SvgTemplate id="arrow_next-icon" />
+        <SvgTemplate id="arrow__next-icon" />
       </button>
     </nav>
   );
