@@ -6,6 +6,7 @@ import "./buttons.scss";
 
 const Buttons = ({ trackOrder, musicIndex }) => {
   const { isPlayerPage, isPaused } = useSelector((state) => state.mainSlice);
+  const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const prevBtn = useRef();
@@ -32,7 +33,11 @@ const Buttons = ({ trackOrder, musicIndex }) => {
 
   //
   return (
-    <nav className={isPlayerPage ? "nav nav--player" : "nav"}>
+    <nav
+      className={
+        isPlayerPage ? "nav nav--player" : isLightTheme ? "nav light" : "nav"
+      }
+    >
       <button
         ref={prevBtn}
         className={

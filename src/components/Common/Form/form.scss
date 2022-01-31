@@ -51,7 +51,9 @@
         stroke: #091127;
     }
     .form__input {
-        border: 1px solid #091127;
+        &:hover {
+            border: 1px solid #091127;
+        }
     }
 }
 

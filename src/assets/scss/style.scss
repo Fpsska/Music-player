@@ -24,7 +24,10 @@ body {
 
 .main {
     flex: 1 0 auto;
-    margin: 30px 0 0 0;
+    padding: 30px 0 0 0;
+}
+.main.light {
+    background-color: #f7faff;
 }
 
 .footer {
@@ -90,14 +93,20 @@ a {
         line-height: 29.02px;
         margin: 0 0 20px 0;
     }
-    &__title--player {
-        font-weight: 500;
-        margin: 0;
-    }
     &__section--playlist {
         margin: 42px 0 0 0;
     }
 }
+.page.light {
+    background-color: #f7faff;
+    .page__title a {
+        color: #091227;
+    }
+    .title {
+        color: #091227;
+    }
+}
+
 .home {
     overflow-y: scroll;
     max-height: 75vh;
@@ -227,7 +236,19 @@ a {
     stroke: #eaf0ff;
 }
 .icon__mixer {
-    stroke: #EAF0FF;
+    stroke: #eaf0ff;
+}
+.icon_arrow-prev {
+    fill: #eaf0ff;
+}
+.icon__arrow-next {
+    fill: #eaf0ff;
+}
+.icon__play {
+    fill: #f1f1f1;
+}
+.icon__pause {
+    stroke: #eaf0ff;
 }
 
 .icon__profile {

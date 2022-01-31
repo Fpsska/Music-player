@@ -61,7 +61,7 @@ const Form = () => {
           >
             <SvgTemplate id="arrow-back" />
           </button>
-          <h1 className="page__title page__title--player title">Playing Now</h1>
+          <h1 className="header__title">Playing Now</h1>
         </div>
       ) : (
         <form className={isLightTheme ? "form light" : "form"} action="#">

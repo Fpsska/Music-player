@@ -20,3 +20,11 @@
         z-index: 1;
     }
 }
+
+.progress.light {
+    background-color: #cacaca;
+    .progress__line,
+    .progress__circle {
+        background-color: #091227;
+    }
+}

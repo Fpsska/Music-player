@@ -23,6 +23,11 @@
     &__button--playlist {
         padding: 0;
     }
+    &__title {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+    }
 }
 
 .header.light {
@@ -30,5 +35,8 @@
     .header__button .icon__arrow-back,
     .icon__mixer {
         stroke: #091127;
+    }
+    .header__title {
+        color: #091227;
     }
 }

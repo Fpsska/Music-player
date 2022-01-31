@@ -66,3 +66,14 @@
     width: 30px;
     height: 32px;
 }
+
+.nav.light {
+    .nav__button .icon_arrow-prev,
+    .icon__play,
+    .icon__arrow-next {
+        fill: #091127;
+    }
+    .icon__pause {
+        stroke: #091127;
+    }
+}

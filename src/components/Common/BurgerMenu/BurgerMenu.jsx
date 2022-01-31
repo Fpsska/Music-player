@@ -17,7 +17,6 @@ const BurgerMenu = () => {
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
     }, 300);
-    console.log("closeBurger");
   };
 
   const changeTheme = () => {
