@@ -45,6 +45,16 @@
     }
 }
 
+.form.light {
+    .form__button .icon__search,
+    .icon__menu {
+        stroke: #091127;
+    }
+    .form__input {
+        border: 1px solid #091127;
+    }
+}
+
 .form__button--search.opacity {
     opacity: 0.6;
 }

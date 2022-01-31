@@ -40,6 +40,33 @@
     }
 }
 
+.burger__wrapper.light {
+    background-color: #eaf0ff;
+}
+.burger__navigation.light {
+    .burger__button--close .icon__close {
+        stroke: #091127;
+    }
+}
+.menu.light {
+    .menu__item .menu__link {
+        color: #091227;
+    }
+    .menu__item {
+        &:hover svg {
+            fill: #091227;
+        }
+        &:hover .icon__profile {
+            stroke: #091227;
+            fill: none;
+        }
+        &:hover .icon__main-settings {
+            stroke: #091227;
+            fill: none;
+        }
+    }
+}
+
 .menu {
     list-style: none;
     padding: 0;

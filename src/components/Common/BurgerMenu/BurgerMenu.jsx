@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { switchBurgerStatus } from "../../../app/burgerSlice";
+import { switchBurgerStatus, swithTheme } from "../../../app/burgerSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../SvgTemplate";
 import "./burger.scss";
+import { useSelector } from "react-redux";
 
 const BurgerMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [ligthTheme, setLigthTheme] = useState(false);
+  const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
 
   const closeBurger = () => {
@@ -14,6 +17,12 @@ const BurgerMenu = () => {
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
     }, 300);
+    console.log("closeBurger");
+  };
+
+  const changeTheme = () => {
+    setLigthTheme(!ligthTheme);
+    dispatch(swithTheme(ligthTheme));
   };
 
   return (
@@ -22,13 +31,23 @@ const BurgerMenu = () => {
         from={{ transform: "translateX(-300px)" }}
         to={{ transform: "translateX(0px)" }}
         reverse={isVisible}
-        reset={true}
+        // reset={true}
         delay={100}
       >
         {(styles) => (
           <animated.div className="burger" style={styles}>
-            <div className="burger__wrapper">
-              <div className="burger__navigation">
+            <div
+              className={
+                isLightTheme ? "burger__wrapper light" : "burger__wrapper"
+              }
+            >
+              <div
+                className={
+                  isLightTheme
+                    ? "burger__navigation light"
+                    : "burger__navigation"
+                }
+              >
                 <button
                   className="burger__button burger__button--close"
                   type="button"
@@ -39,12 +58,13 @@ const BurgerMenu = () => {
                 <button
                   className="burger__button burger__button--theme"
                   type="button"
+                  onClick={changeTheme}
                 >
                   <SvgTemplate id="theme" />
                 </button>
               </div>
               <nav className="burger__menu">
-                <ul className="menu">
+                <ul className={isLightTheme ? "menu light" : "menu"}>
                   <li className="menu__item">
                     <SvgTemplate id="profile" />
                     <span className="menu__link">Profile</span>

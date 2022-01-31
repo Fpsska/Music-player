@@ -24,3 +24,11 @@
         padding: 0;
     }
 }
+
+.header.light {
+    background-color: #f7faff;
+    .header__button .icon__arrow-back,
+    .icon__mixer {
+        stroke: #091127;
+    }
+}

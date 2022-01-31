@@ -220,8 +220,20 @@ a {
 .icon__close {
     stroke: #eaf0ff;
 }
+.icon__menu {
+    stroke: #eaf0ff;
+}
+.icon__arrow-back {
+    stroke: #eaf0ff;
+}
+.icon__mixer {
+    stroke: #EAF0FF;
+}
 
-.icon__profile,
+.icon__profile {
+    fill: none;
+    stroke: #8996b8;
+}
 .icon__language,
 .icon__message,
 .icon__faqs {

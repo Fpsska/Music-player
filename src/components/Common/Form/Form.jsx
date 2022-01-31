@@ -14,7 +14,9 @@ const Form = () => {
   const { isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
-  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
+  const { isBurgerOpen, isLightTheme } = useSelector(
+    (state) => state.burgerSlice
+  );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,7 +35,9 @@ const Form = () => {
   return (
     <>
       {isPlaylistPage ? (
-        <div className="header__section">
+        <div
+          className={isLightTheme ? "header__section light" : "header__section"}
+        >
           <button
             className="header__button header__button--playlist"
             type="button"
@@ -60,7 +64,7 @@ const Form = () => {
           <h1 className="page__title page__title--player title">Playing Now</h1>
         </div>
       ) : (
-        <form className="form" action="#">
+        <form className={isLightTheme ? "form light" : "form"} action="#">
           <button
             className="form__button form__button--menu"
             type="button"
