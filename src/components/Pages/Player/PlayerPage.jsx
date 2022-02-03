@@ -10,6 +10,7 @@ import Navigation from "../../Navigation/Navigation";
 const PlayerPage = () => {
   //
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
+  const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const trackOrder = useRef();
   //
   const musicIndex = 1;
@@ -44,7 +45,11 @@ const PlayerPage = () => {
             <SvgTemplate id="like" />
           </button>
         </div>
-        <div className="player__time time">
+        <div
+          className={
+            isLightTheme ? "player__time time light" : "player__time time"
+          }
+        >
           <span className="time__current">00:50</span>
           <span className="time__length">04:00</span>
         </div>

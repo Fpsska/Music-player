@@ -121,6 +121,9 @@ a {
 .home.opacity {
     opacity: 0.6;
 }
+.home.opacity.ligth {
+    background: rgba(9, 18, 39, 0.7);
+}
 
 .playlist {
     max-height: 75vh;
@@ -178,6 +181,9 @@ a {
     display: flex;
     justify-content: space-between;
 }
+.time.light {
+    color: #0e172d;
+}
 // /.PAGES
 
 .swiper {
@@ -226,29 +232,18 @@ a {
     height: 20px;
     stroke: #8996b8;
 }
-.icon__close {
-    stroke: #eaf0ff;
-}
-.icon__menu {
-    stroke: #eaf0ff;
-}
-.icon__arrow-back {
-    stroke: #eaf0ff;
-}
-.icon__mixer {
-    stroke: #eaf0ff;
-}
-.icon_arrow-prev {
-    fill: #eaf0ff;
-}
-.icon__arrow-next {
-    fill: #eaf0ff;
-}
-.icon__play {
-    fill: #f1f1f1;
-}
+.icon__close,
+.icon__menu,
+.icon__arrow-back,
+.icon__mixer,
+.icon__play,
 .icon__pause {
     stroke: #eaf0ff;
+}
+
+.icon_arrow-prev,
+.icon__arrow-next {
+    fill: #eaf0ff;
 }
 
 .icon__profile {

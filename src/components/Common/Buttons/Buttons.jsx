@@ -34,9 +34,9 @@ const Buttons = ({ trackOrder, musicIndex }) => {
   //
   return (
     <nav
-      className={
-        isPlayerPage ? "nav nav--player" : isLightTheme ? "nav light" : "nav"
-      }
+      className={`nav ${isPlayerPage ? "nav--player" : ""} ${
+        isLightTheme ? "light" : ""
+      }`}
     >
       <button
         ref={prevBtn}

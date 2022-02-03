@@ -44,6 +44,9 @@
     background-color: #eaf0ff;
 }
 .burger__navigation.light {
+    .burger__button--close {
+        @extend .burger__button--close;
+    }
     .burger__button--close .icon__close {
         stroke: #091127;
     }
