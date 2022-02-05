@@ -7,17 +7,10 @@ import "./navigation.scss";
 
 const Navigation = ({ trackOrder, musicIndex }) => {
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
-  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
 
   return (
     <div
-      className={
-        isPlayerPage
-          ? "navigation navigation--player"
-          : isBurgerOpen
-          ? "navigation opacity"
-          : "navigation"
-      }
+      className={isPlayerPage ? "navigation navigation--player" : "navigation"}
     >
       <div
         className={

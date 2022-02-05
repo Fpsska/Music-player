@@ -15,7 +15,7 @@ const BurgerMenu = () => {
     setIsVisible(!isVisible);
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
-    }, 300);
+    }, 400);
   };
 
   const changeTheme = () => {
@@ -27,11 +27,16 @@ const BurgerMenu = () => {
       <Spring
         from={{ transform: "translateX(-300px)" }}
         to={{ transform: "translateX(0px)" }}
+        config={{ duration: 360 }}
         reverse={isVisible}
         delay={100}
       >
         {(styles) => (
           <animated.div className="burger" style={styles}>
+            <animated.div
+              className="burger__background"
+              style={styles}
+            ></animated.div>
             <div
               className={
                 isLightTheme ? "burger__wrapper light" : "burger__wrapper"

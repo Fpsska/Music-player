@@ -5,7 +5,15 @@
     top: 0;
     left: 0;
     z-index: 3;
+    &__background {
+        background: rgba(9, 18, 39, 0.7);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
     &__wrapper {
+        z-index: 2;
+        position: relative;
         padding: 35px 25px;
         max-width: 265px;
         width: 100%;

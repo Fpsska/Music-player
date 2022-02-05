@@ -5,6 +5,7 @@ import "./header.scss";
 
 const Header = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
+
   return (
     <header className={isLightTheme ? "header light" : "header"}>
       <Form />

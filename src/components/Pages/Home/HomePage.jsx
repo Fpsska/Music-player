@@ -18,7 +18,9 @@ const HomePage = () => {
   //
   const { playList, recomendedList, isPlaylistPage, isPlayerPage } =
     useSelector((state) => state.mainSlice);
-  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
+  const { isBurgerOpen, isLightTheme } = useSelector(
+    (state) => state.burgerSlice
+  );
   //
   const [isVisible, setIsVisible] = useState(true);
   //
@@ -44,7 +46,7 @@ const HomePage = () => {
       <div className="page__burger">
         {isBurgerOpen ? <BurgerMenu /> : <></>}
       </div>
-      <div className={isBurgerOpen ? "home opacity" : "home"}>
+      <div className={isLightTheme ? "home light" : "home"}>
         {isPlaylistPage ? (
           <PlayListPage />
         ) : isPlayerPage ? (

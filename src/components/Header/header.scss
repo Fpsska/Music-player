@@ -1,6 +1,6 @@
 .header {
     flex: 0 0 auto;
-    padding: 40px 28px 0 28px;
+    padding: 40px 28px 30px 28px;
     &__section {
         display: flex;
         justify-content: space-between;
@@ -40,3 +40,7 @@
         color: #091227;
     }
 }
+
+// .header.light {
+//     background-color: #f7faff;
+// }

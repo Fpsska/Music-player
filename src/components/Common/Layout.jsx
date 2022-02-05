@@ -5,10 +5,11 @@ import Header from "../Header/Header";
 
 const Layout = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
+
   return (
     <>
       <Header />
-      <main className={isLightTheme ? "main light" : "main"}>
+      <main className="main">
         <div className={isLightTheme ? "page light" : "page"}>
           <div className="page__wrapper">
             <Outlet />
