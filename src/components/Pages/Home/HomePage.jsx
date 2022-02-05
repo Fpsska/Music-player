@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { Spring, animated } from "react-spring";
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
@@ -19,6 +20,8 @@ const HomePage = () => {
     useSelector((state) => state.mainSlice);
   const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
   //
+  const [isVisible, setIsVisible] = useState(true);
+  //
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //
@@ -31,6 +34,10 @@ const HomePage = () => {
     dispatch(switchPlayerPageStatus(true));
     navigate("player");
   };
+
+  useEffect(() => {
+    setIsVisible(!isVisible);
+  }, [isBurgerOpen]);
 
   return (
     <>
@@ -73,9 +80,17 @@ const HomePage = () => {
           </>
         )}
       </div>
-      <div className="page__navigation">
-        <Navigation />
-      </div>
+      <Spring
+        from={{ transform: "translateY(200px)" }}
+        to={{ transform: "translateY(0px)" }}
+        reverse={isVisible}
+      >
+        {(styles) => (
+          <animated.div className="page__navigation" style={styles}>
+            <Navigation />
+          </animated.div>
+        )}
+      </Spring>
     </>
   );
 };

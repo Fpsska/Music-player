@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { switchBurgerStatus, swithTheme } from "../../../app/burgerSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../SvgTemplate";
 import "./burger.scss";
-import { useSelector } from "react-redux";
 
 const BurgerMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [ligthTheme, setLigthTheme] = useState(false);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
 
@@ -20,8 +19,7 @@ const BurgerMenu = () => {
   };
 
   const changeTheme = () => {
-    setLigthTheme(!ligthTheme);
-    dispatch(swithTheme(ligthTheme));
+    dispatch(swithTheme(!isLightTheme));
   };
 
   return (
@@ -30,7 +28,6 @@ const BurgerMenu = () => {
         from={{ transform: "translateX(-300px)" }}
         to={{ transform: "translateX(0px)" }}
         reverse={isVisible}
-        // reset={true}
         delay={100}
       >
         {(styles) => (
