@@ -1,16 +1,9 @@
-const express = require("express");
+const express = require('express');
 const axios = require('axios');
 
-const PORT = process.env.PORT
-
-if (PORT == null || PORT == "") {
-    PORT = 8000;
-}
+const PORT = process.env.PORT || 8080;
 
 const app = express();
-
-//  Serve the static files from the React app
-app.use(express.static('/public'));
 
 
 app.use((req, res, next) => {
@@ -20,12 +13,12 @@ app.use((req, res, next) => {
     next()
 });
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     axios.get("https://api.deezer.com/user/2529/flow")
-        .then(response => {
-            responseData = response.data.response.players
-            res.json(responseData)
-        })
+    .then(response => {
+        responseData = response.data
+        res.json(responseData)
+    })
 });
 
 
