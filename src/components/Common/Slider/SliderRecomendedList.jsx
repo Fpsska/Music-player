@@ -6,18 +6,21 @@ import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const SliderRecomendedList = ({ recomendedList, isPlayerPage }) => {
-  //
+const SliderRecomendedList = ({ albumList, isPlayerPage }) => {
   const list = useMemo(
     () =>
-      recomendedList.map((item) => {
+      albumList.map((item) => {
         return (
           <SwiperSlide key={item.id}>
-            <Card image={item.image} artist={item.artist} song={item.song} />
+            <Card
+              artist={item.artist.name}
+              track={item.title}
+              image={item.artist.picture_medium}
+            />
           </SwiperSlide>
         );
       }),
-    [recomendedList]
+    [albumList]
   );
 
   return (

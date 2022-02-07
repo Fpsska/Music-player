@@ -1,26 +1,25 @@
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import Card from "./CardTemplate";
 import "./card.scss";
-import { useSelector } from "react-redux";
 
 const CardList = () => {
-  const { playList, recomendedList } = useSelector((state) => state.mainSlice);
-  //
-  const generalList = recomendedList.concat(playList);
-  //
+  const { albumList } = useSelector((state) => state.mainSlice);
+
   const list = useMemo(
     () =>
-      generalList.map((item) => {
+      albumList.map((item) => {
         return (
           <Card
-            key={item.id}
-            image={item.image}
-            artist={item.artist}
-            song={item.song}
+              key={item.id}
+              artist={item.artist.name}
+              track={item.title}
+              image={item.artist.picture_medium}
+              song={item.preview}
           />
         );
       }),
-    [generalList]
+    [albumList]
   );
 
   return <>{list}</>;

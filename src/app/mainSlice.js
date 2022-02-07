@@ -1,115 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchAlbumsData = createAsyncThunk(
+    "mainSlice/fetchAlbumData", async () => {
+        const response = await fetch("https://backend-music-player.herokuapp.com/")
+        const data = await response.json();
+        const result =  data.data; 
+        return result
+    }
+)
+
 
 const mainSlice = createSlice({
     name: "mainSlice",
     initialState: {
-        recomendedList: [
-            // {
-            //     id: 1,
-            //     image: "albom_preview-1.png",
-            //     artist: "ERIKA RECINOS",
-            //     song: "Monsters Go Bump"
-            // },
-            // {
-            //     id: 2,
-            //     image: "albom_preview-7.png",
-            //     artist: "ODESZA",
-            //     song: "Moment Apart"
-            // },
-            // {
-            //     id: 3,
-            //     image: "albom_preview-3.png",
-            //     artist: "RYAN GRIGDRY",
-            //     song: "Shortwave"
-            // },
-            // {
-            //     id: 4,
-            //     image: "albom_preview-4.png",
-            //     artist: "ROGER TERRY",
-            //     song: "Dream On"
-            // },
-            // {
-            //     id: 5,
-            //     image: "albom_preview-5.png",
-            //     artist: "IMAGINE DRAGON",
-            //     song: "Origins"
-            // },
-            // {
-            //     id: 6,
-            //     image: "albom_preview-6.png",
-            //     artist: "HYONNA",
-            //     song: "Chaff & Dust"
-            // }
-            {
-                id: 1,
-                image: "albom_preview-10.jpg",
-                artist: "Mike Posner",
-                song: "I Took A Pill In Ibiza",
-                audio: "track-2.mp3"
-            },
-            {
-                id: 2,
-                image: "albom_preview-11.jpg",
-                artist: "LXST CXNTURY",
-                song: "Alpha",
-                audio: "track-1.mp3"
-            },
-        ],
-        playList: [
-            {
-                id: 13,
-                image: "albom_preview-10.jpg",
-                artist: "Mike Posner",
-                song: "I Took A Pill In Ibiza",
-                audio: "track-2.mp3"
-            },
-            {
-                id: 14,
-                image: "albom_preview-11.jpg",
-                artist: "LXST CXNTURY",
-                song: "Alpha",
-                audio: "track-1.mp3"
-            },
-            // {
-            //     id: 7,
-            //     image: "albom_preview-2.png",
-            //     artist: "IMAGINE DRAGON",
-            //     song: "Believer"
-            // },
-            // {
-            //     id: 8,
-            //     image: "albom_preview-3.png",
-            //     artist: "RYAN GRIGDRY",
-            //     song: "Shortwave"
-            // },
-            // {
-            //     id: 9,
-            //     image: "albom_preview-6.png",
-            //     artist: "HYONNA",
-            //     song: "Chaff & Dust"
-            // },
-            // {
-            //     id: 10,
-            //     image: "albom_preview-4.png",
-            //     artist: "ROGER TERRY",
-            //     song: "Dream On"
-            // },
-            // {
-            //     id: 11,
-            //     image: "albom_preview-7.png",
-            //     artist: "ODESZA",
-            //     song: "Moment Apart"
-            // },
-            // {
-            //     id: 12,
-            //     image: "albom_preview-5.png",
-            //     artist: "IMAGINE DRAGON",
-            //     song: "Origins"
-            // },
-        ],
+        albumList: [],
         isPlaylistPage: false,
         isPlayerPage: false,
-        isPaused: true
+        isPaused: true,
+        status: null
     },
     reducers: {
         switchPlaylistPageStatus(state, action) {
@@ -120,6 +28,18 @@ const mainSlice = createSlice({
         },
         switchPauseStatus(state, action) {
             state.isPaused = action.payload
+        }
+    },
+    extraReducers: {
+        [fetchAlbumsData.pending]: (state) => {
+            state.status = "loading"
+        },
+        [fetchAlbumsData.fulfilled]: (state, action) => {
+            state.albumList = action.payload
+            state.status = "success"
+        },
+        [fetchAlbumsData.rejected]: (state) => {
+            state.status = "failed"
         }
     }
 })

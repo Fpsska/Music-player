@@ -14,10 +14,14 @@ import PlayerPage from "../Player/PlayerPage";
 import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
 import Navigation from "../../Navigation/Navigation";
 
+import { fetchAlbumsData } from "../../../app/mainSlice";
+
 const HomePage = () => {
   //
-  const { playList, recomendedList, isPlaylistPage, isPlayerPage } =
-    useSelector((state) => state.mainSlice);
+  const { albumList, isPlaylistPage, isPlayerPage } = useSelector(
+    (state) => state.mainSlice
+  );
+
   const { isBurgerOpen, isLightTheme } = useSelector(
     (state) => state.burgerSlice
   );
@@ -41,6 +45,10 @@ const HomePage = () => {
     setIsVisible(!isVisible);
   }, [isBurgerOpen]);
 
+  useEffect(() => {
+    dispatch(fetchAlbumsData());
+  }, [dispatch]);
+
   return (
     <>
       <div className="page__burger">
@@ -58,32 +66,26 @@ const HomePage = () => {
                 <Link to="player">Recomended for you</Link>
               </h1>
               <div className="home__slider">
-                <SliderRecomendedList
-                  recomendedList={recomendedList}
-                  playList={playList}
-                />
+                <SliderRecomendedList albumList={albumList} />
               </div>
             </div>
             <div className="home__section home__section--playlist">
               <h2 className="page__title title" onClick={goPlayListPage}>
                 <Link to="playlist">My Playlist</Link>
               </h2>
-              <SliderPlayList
-                recomendedList={recomendedList}
-                playList={playList}
-              />
+              <SliderPlayList albumList={albumList} />
             </div>
             <div className="home__section home__section--playlist">
               <h2 className="page__title title" onClick={goPlayListPage}>
                 <Link to="playlist">Test</Link>
               </h2>
-              <SliderPlayList playList={playList} />
+              <SliderPlayList albumList={albumList} />
             </div>
           </>
         )}
       </div>
       <Spring
-        from={{ transform: "translateY(200px)" }}
+        from={{ transform: "translateY(0px)" }}
         to={{ transform: "translateY(0px)" }}
         reverse={isVisible}
       >

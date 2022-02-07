@@ -6,18 +6,22 @@ import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const SliderPlayList = ({ playList, isPlayerPage }) => {
+const SliderPlayList = ({ albumList, isPlayerPage }) => {
   //
   const list = useMemo(
     () =>
-      playList.map((item) => {
+      albumList.map((item) => {
         return (
           <SwiperSlide key={item.id}>
-            <Card image={item.image} artist={item.artist} song={item.song} />
+            <Card
+              artist={item.artist.name}
+              track={item.title}
+              image={item.artist.picture_medium}
+            />
           </SwiperSlide>
         );
       }),
-    [playList]
+    [albumList]
   );
 
   return (

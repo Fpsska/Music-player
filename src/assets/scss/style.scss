@@ -19,17 +19,11 @@ body {
 
 .App {
     height: 100%;
-    display: flex;
-    flex-direction: column;
     position: relative;
 }
 
 .main {
-    flex: 1 0 auto;
-}
-
-.footer {
-    flex: 0 0 auto;
+    height: 100%;
 }
 
 svg {
@@ -72,6 +66,8 @@ a {
 .page {
     height: 100%;
     &__wrapper {
+        display: flex;
+        flex-direction: column;
         height: 100%;
         padding: 0 !important;
         &::-webkit-scrollbar {
@@ -106,6 +102,8 @@ a {
 }
 
 .home {
+    flex-grow: 1;
+
     overflow-y: scroll;
     max-height: 75vh;
     padding: 0 0 0 28px;
@@ -116,12 +114,6 @@ a {
     }
 }
 
-// .home.opacity {
-//     opacity: 0.6;
-// }
-// .home.opacity.light {
-//     background: rgba(9, 18, 39, 0.7);
-// }
 
 .playlist {
     max-height: 75vh;

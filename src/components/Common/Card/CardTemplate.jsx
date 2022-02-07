@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import IMG from "../../../assets/images/albom_preview-11.jpg";
 
-const Card = ({ image, artist, song, trackOrder, musicIndex }) => {
-  const { isPlaylistPage, isPlayerPage, recomendedList } = useSelector(
+const Card = ({ image, artist, track, song, trackOrder, musicIndex }) => {
+  const { isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
   const artistElement = useRef();
@@ -10,17 +11,17 @@ const Card = ({ image, artist, song, trackOrder, musicIndex }) => {
   const songElement = useRef();
   //
   const loadMusic = (musicIndex) => {
-    if (isPlayerPage) {
-      songElement.current.innerText = recomendedList[musicIndex - 1].song;
-      artistElement.current.innerText = recomendedList[musicIndex - 1].artist;
-      albumElement.current.src = require(`../../../assets/images/${
-        recomendedList[musicIndex - 1].image
-      }`);
-      trackOrder.current.src = require(`../../../assets/audio/${
-        recomendedList[musicIndex - 1].audio
-      }`);
-    }
-    return;
+    // if (isPlayerPage) {
+    //   songElement.current.innerText = recomendedList[musicIndex - 1].song;
+    //   artistElement.current.innerText = recomendedList[musicIndex - 1].artist;
+    //   albumElement.current.src = require(`../../../assets/images/${
+    //     recomendedList[musicIndex - 1].image
+    //   }`);
+    //   trackOrder.current.src = require(`../../../assets/audio/${
+    //     recomendedList[musicIndex - 1].audio
+    //   }`);
+    // }
+    // return;
   };
   //
   useEffect(() => {
@@ -47,11 +48,12 @@ const Card = ({ image, artist, song, trackOrder, musicIndex }) => {
             ? "card__image card__image--player"
             : "card__image"
         }
-        src={
-          isPlayerPage
-            ? albumElement
-            : require(`../../../assets/images/${image}`)
-        }
+        // src={
+        //   isPlayerPage
+        //     ? albumElement
+        //     : require(`../../../assets/images/${image}`)
+        // }
+        src={image}
         alt="albom-preview"
       />
       <h2
@@ -62,7 +64,7 @@ const Card = ({ image, artist, song, trackOrder, musicIndex }) => {
             : "card__title title"
         }
       >
-        {song}
+        {track}
       </h2>
       <span
         ref={artistElement}

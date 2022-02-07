@@ -8,9 +8,8 @@ import { useSelector } from "react-redux";
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
 const SliderCard = ({ isPlayerPage, trackOrder, musicIndex }) => {
-  const { playList, recomendedList } = useSelector((state) => state.mainSlice);
+  const { albumList } = useSelector((state) => state.mainSlice);
   //
-  const generalList = recomendedList.concat(playList);
   //
   const [coverEffect] = useState({
     rotate: 50,
@@ -23,20 +22,20 @@ const SliderCard = ({ isPlayerPage, trackOrder, musicIndex }) => {
 
   const list = useMemo(
     () =>
-      generalList.map((item) => {
+      albumList.map((item) => {
         return (
           <SwiperSlide key={item.id}>
             <Card
-              image={item.image}
-              artist={item.artist}
-              song={item.song}
+              artist={item.artist.name}
+              track={item.title}
+              image={item.artist.picture_medium}
               trackOrder={trackOrder}
               musicIndex={musicIndex}
             />
           </SwiperSlide>
         );
       }),
-    [generalList]
+    [albumList]
   );
 
   return (
