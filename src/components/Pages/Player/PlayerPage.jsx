@@ -5,8 +5,6 @@ import Bar from "../../Common/Bar/Bar";
 import SliderPlayerList from "../../Common/Slider/SliderPlayerList";
 import Navigation from "../../Navigation/Navigation";
 
-// import song from "../../../assets/audio/track-1.mp3";
-
 const PlayerPage = () => {
   //
   const { isPlayerPage } = useSelector((state) => state.mainSlice);

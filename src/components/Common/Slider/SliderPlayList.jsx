@@ -7,10 +7,11 @@ import SwiperCore, { FreeMode } from "swiper";
 SwiperCore.use([FreeMode]);
 
 const SliderPlayList = ({ albumList, isPlayerPage }) => {
+  const playList = albumList.slice(3, 7);
   //
   const list = useMemo(
     () =>
-      albumList.map((item) => {
+      playList.map((item) => {
         return (
           <SwiperSlide key={item.id}>
             <Card
@@ -21,7 +22,7 @@ const SliderPlayList = ({ albumList, isPlayerPage }) => {
           </SwiperSlide>
         );
       }),
-    [albumList]
+    [playList]
   );
 
   return (

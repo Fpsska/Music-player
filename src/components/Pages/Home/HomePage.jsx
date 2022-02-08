@@ -85,7 +85,7 @@ const HomePage = () => {
         )}
       </div>
       <Spring
-        from={{ transform: "translateY(0px)" }}
+        from={{ transform: "translateY(200px)" }}
         to={{ transform: "translateY(0px)" }}
         reverse={isVisible}
       >

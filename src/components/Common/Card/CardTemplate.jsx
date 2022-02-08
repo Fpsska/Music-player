@@ -1,27 +1,29 @@
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import IMG from "../../../assets/images/albom_preview-11.jpg";
+import IMG from "../../../assets/images/albom_preview-6.png";
 
-const Card = ({ image, artist, track, song, trackOrder, musicIndex }) => {
-  const { isPlaylistPage, isPlayerPage } = useSelector(
+const Card = ({ image, artist, track, trackOrder, musicIndex }) => {
+  const { isPlaylistPage, isPlayerPage, albumList } = useSelector(
     (state) => state.mainSlice
   );
   const artistElement = useRef();
   const albumElement = useRef();
-  const songElement = useRef();
+  const trackElement = useRef();
   //
+
   const loadMusic = (musicIndex) => {
-    // if (isPlayerPage) {
-    //   songElement.current.innerText = recomendedList[musicIndex - 1].song;
-    //   artistElement.current.innerText = recomendedList[musicIndex - 1].artist;
-    //   albumElement.current.src = require(`../../../assets/images/${
-    //     recomendedList[musicIndex - 1].image
-    //   }`);
-    //   trackOrder.current.src = require(`../../../assets/audio/${
-    //     recomendedList[musicIndex - 1].audio
-    //   }`);
-    // }
-    // return;
+    if (isPlayerPage) {
+      // trackElement.current.innerText = albumList[musicIndex - 1].song;
+      artistElement.current.innerText = albumList[musicIndex - 1].artist;
+      // albumElement.current.src = require(`../../../assets/images/${
+      //   albumList[musicIndex - 1].image
+      // }`);
+      // albumElement.current.src = albumList[musicIndex - 1].artist.picture_medium
+      // trackOrder.current.src = require(`../../../assets/audio/${
+      //   albumList[musicIndex - 1].audio
+      // }`);
+    }
+    return;
   };
   //
   useEffect(() => {
@@ -48,16 +50,12 @@ const Card = ({ image, artist, track, song, trackOrder, musicIndex }) => {
             ? "card__image card__image--player"
             : "card__image"
         }
-        // src={
-        //   isPlayerPage
-        //     ? albumElement
-        //     : require(`../../../assets/images/${image}`)
-        // }
-        src={image}
+        src={isPlayerPage ? albumElement : image}
+        // src={image}
         alt="albom-preview"
       />
       <h2
-        ref={songElement}
+        ref={trackElement}
         className={
           isPlayerPage
             ? "card__title card__title--player title"

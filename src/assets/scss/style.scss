@@ -90,6 +90,9 @@ a {
     &__section--playlist {
         margin: 42px 0 0 0;
     }
+    &__navigation {
+        z-index: 1;
+    }
 }
 .page.light {
     background-color: #f7faff;

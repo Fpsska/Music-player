@@ -4,7 +4,7 @@ export const fetchAlbumsData = createAsyncThunk(
     "mainSlice/fetchAlbumData", async () => {
         const response = await fetch("https://backend-music-player.herokuapp.com/")
         const data = await response.json();
-        const result =  data.data; 
+        const result = data.data;
         return result
     }
 )

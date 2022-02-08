@@ -15,7 +15,7 @@ const CardList = () => {
               artist={item.artist.name}
               track={item.title}
               image={item.artist.picture_medium}
-              song={item.preview}
+              // song={item.preview}
           />
         );
       }),
