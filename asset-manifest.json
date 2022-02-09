@@ -1,44 +1,14 @@
 {
   "files": {
-    "main.css": "/Music-player/static/css/main.662a4616.css",
-    "main.js": "/Music-player/static/js/main.00dea7bc.js",
-    "static/media/track-2.mp3": "/Music-player/static/media/track-2.fd67999a29f5c11f8dfc.mp3",
-    "static/media/track-1.mp3": "/Music-player/static/media/track-1.e6e8af6ba05c560b94e4.mp3",
-    "static/media/albom_preview-5.png": "/Music-player/static/media/albom_preview-5.e792983b8257e7bbe9bc.png",
-    "static/media/albom_preview-6.png": "/Music-player/static/media/albom_preview-6.a84fa8c08a5b260c88e0.png",
-    "static/media/albom_preview-11.jpg": "/Music-player/static/media/albom_preview-11.69bc36021e948eaa3870.jpg",
-    "static/media/albom_preview-3.png": "/Music-player/static/media/albom_preview-3.3254996e2df54e1ddb75.png",
-    "static/media/albom_preview-2.png": "/Music-player/static/media/albom_preview-2.db0ee6a3b3fe97649006.png",
-    "static/media/albom_preview-4.png": "/Music-player/static/media/albom_preview-4.c339df0b129b88bb9585.png",
-    "static/media/albom_preview-10.jpg": "/Music-player/static/media/albom_preview-10.84df978788aff712f349.jpg",
-    "static/media/albom_preview-1.png": "/Music-player/static/media/albom_preview-1.42b92a2badc5acc58afb.png",
-    "static/media/albom_preview-7.png": "/Music-player/static/media/albom_preview-7.d62f593c53a3e93675c9.png",
-    "static/media/language-icon.svg": "/Music-player/static/media/language-icon.8f71140ae0a863f50beb.svg",
-    "static/media/order-icon.svg": "/Music-player/static/media/order-icon.65a2222621753f392f66.svg",
-    "static/media/faqs-icon.svg": "/Music-player/static/media/faqs-icon.0de7bfbbf8e997023edb.svg",
-    "static/media/like-icon.svg": "/Music-player/static/media/like-icon.90b913c55f6f88897738.svg",
-    "static/media/message-icon.svg": "/Music-player/static/media/message-icon.cb3a17886ae0eb06653d.svg",
-    "static/media/main_settings-icon.svg": "/Music-player/static/media/main_settings-icon.aadfd048980d64e29f7e.svg",
-    "static/media/mixer_settings-icon.svg": "/Music-player/static/media/mixer_settings-icon.735a1405fd71ea4f8442.svg",
-    "static/media/repeat-icon.svg": "/Music-player/static/media/repeat-icon.971fd83851850b5a9b1a.svg",
-    "static/media/volume-icon.svg": "/Music-player/static/media/volume-icon.334e8f42406fe51e8bf8.svg",
-    "static/media/arrow_back-icon.svg": "/Music-player/static/media/arrow_back-icon.7ae3106121f1f935e41c.svg",
-    "static/media/arrow_prev_icon.svg": "/Music-player/static/media/arrow_prev_icon.be0ec8d199baf8483573.svg",
-    "static/media/arrow_next-icon.svg": "/Music-player/static/media/arrow_next-icon.1b38398a08783bc4756a.svg",
-    "static/media/profile-icon.svg": "/Music-player/static/media/profile-icon.cfa44b3376ceb65e8f6b.svg",
+    "main.css": "/Music-player/static/css/main.49e6fbf6.css",
+    "main.js": "/Music-player/static/js/main.ff13ece3.js",
+    "static/media/no-photo.jpg": "/Music-player/static/media/no-photo.a02768030f6830fe0ecd.jpg",
     "index.html": "/Music-player/index.html",
-    "static/media/theme-icon.svg": "/Music-player/static/media/theme-icon.380e45397462d6c97e51.svg",
-    "static/media/play-icon.svg": "/Music-player/static/media/play-icon.1e0b33474903b1120baa.svg",
-    "static/media/page_indicator.svg": "/Music-player/static/media/page_indicator.a90f416b56483f1b353c.svg",
-    "static/media/search-icon.svg": "/Music-player/static/media/search-icon.466f6ca15a37634a98e1.svg",
-    "static/media/close-icon.svg": "/Music-player/static/media/close-icon.d32a288f4b6638f74a1e.svg",
-    "static/media/menu-icon.svg": "/Music-player/static/media/menu-icon.77ad9e09ba2366f3536f.svg",
-    "static/media/pause-icon.svg": "/Music-player/static/media/pause-icon.c732f93ea6c7e3f78ba0.svg",
-    "main.662a4616.css.map": "/Music-player/static/css/main.662a4616.css.map",
-    "main.00dea7bc.js.map": "/Music-player/static/js/main.00dea7bc.js.map"
+    "main.49e6fbf6.css.map": "/Music-player/static/css/main.49e6fbf6.css.map",
+    "main.ff13ece3.js.map": "/Music-player/static/js/main.ff13ece3.js.map"
   },
   "entrypoints": [
-    "static/css/main.662a4616.css",
-    "static/js/main.00dea7bc.js"
+    "static/css/main.49e6fbf6.css",
+    "static/js/main.ff13ece3.js"
   ]
 }
