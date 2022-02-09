@@ -2,11 +2,15 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Buttons from "../Common/Buttons/Buttons";
 import Bar from "../Common/Bar/Bar";
-import albomPreview from "../../assets/images/albom_preview-6.png";
 import "./navigation.scss";
 
-const Navigation = ({ trackOrder, musicIndex }) => {
-  const { isPlayerPage } = useSelector((state) => state.mainSlice);
+const Navigation = () => {
+  const {
+    isPlayerPage,
+    currentTrackPreview,
+    currentArtistName,
+    currentTrackName,
+  } = useSelector((state) => state.mainSlice);
 
   return (
     <div
@@ -21,7 +25,7 @@ const Navigation = ({ trackOrder, musicIndex }) => {
       >
         {isPlayerPage ? (
           <div className="navigation__section">
-            <Buttons trackOrder={trackOrder} musicIndex={musicIndex} />
+            <Buttons />
           </div>
         ) : (
           <>
@@ -30,15 +34,15 @@ const Navigation = ({ trackOrder, musicIndex }) => {
               <div className="navigation__description">
                 <img
                   className="navigation__image"
-                  src={albomPreview}
+                  src={currentTrackPreview}
                   alt="albom-preview"
                 />
                 <div className="navigation__informantion">
                   <span className="navigation__track-name title">
-                    Chaff Dust
+                    {currentTrackName}
                   </span>
                   <span className="navigation__artist-name subtitle">
-                    HYONNA
+                    {currentArtistName}
                   </span>
                 </div>
               </div>

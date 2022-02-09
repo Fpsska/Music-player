@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import Card from "../Card/CardTemplate";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
-import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-const SliderCard = ({ isPlayerPage, trackOrder, musicIndex }) => {
+const SliderCard = ({ isPlayerPage }) => {
   const { albumList } = useSelector((state) => state.mainSlice);
   //
   //
@@ -29,8 +29,7 @@ const SliderCard = ({ isPlayerPage, trackOrder, musicIndex }) => {
               artist={item.artist.name}
               track={item.title}
               image={item.artist.picture_medium}
-              trackOrder={trackOrder}
-              musicIndex={musicIndex}
+              song={item.preview}
             />
           </SwiperSlide>
         );

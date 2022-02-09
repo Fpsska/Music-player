@@ -9,13 +9,14 @@ const CardList = () => {
   const list = useMemo(
     () =>
       albumList.map((item) => {
+        // console.log(item.preview);
         return (
           <Card
               key={item.id}
               artist={item.artist.name}
               track={item.title}
               image={item.artist.picture_medium}
-              // song={item.preview}
+              song={item.preview}
           />
         );
       }),

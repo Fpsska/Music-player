@@ -17,7 +17,10 @@ const mainSlice = createSlice({
         isPlaylistPage: false,
         isPlayerPage: false,
         isPaused: true,
-        status: null
+        status: null,
+        currentTrackPreview: "",
+        currentArtistName: "untitled",
+        currentTrackName: "untitled"
     },
     reducers: {
         switchPlaylistPageStatus(state, action) {
@@ -28,6 +31,15 @@ const mainSlice = createSlice({
         },
         switchPauseStatus(state, action) {
             state.isPaused = action.payload
+        },
+        setTrackPreview(state, action) {
+            state.currentTrackPreview = action.payload
+        },
+        setArtistName(state, action) {
+            state.currentArtistName = action.payload
+        },
+        setTrackName(state, action) {
+            state.currentTrackName = action.payload
         }
     },
     extraReducers: {
@@ -44,6 +56,6 @@ const mainSlice = createSlice({
     }
 })
 
-export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName } = mainSlice.actions;
 
 export default mainSlice.reducer;

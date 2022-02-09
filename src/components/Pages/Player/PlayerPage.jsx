@@ -9,18 +9,12 @@ const PlayerPage = () => {
   //
   const { isPlayerPage } = useSelector((state) => state.mainSlice);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
-  const trackOrder = useRef();
   //
-  const musicIndex = 1;
-  //
+
   return (
     <div className="player">
       <div className="player__slider">
-        <SliderPlayerList
-          isPlayerPage={isPlayerPage}
-          trackOrder={trackOrder}
-          musicIndex={musicIndex}
-        />
+        <SliderPlayerList isPlayerPage={isPlayerPage} />
       </div>
       <div className="player__section">
         <div className="player__navigation">
@@ -53,13 +47,8 @@ const PlayerPage = () => {
         </div>
         <Bar />
       </div>
-      <audio
-        className="player__audio"
-        src={trackOrder}
-        ref={trackOrder}
-      ></audio>
       <div className="page__navigation">
-        <Navigation trackOrder={trackOrder} musicIndex={musicIndex} />
+        <Navigation />
       </div>
     </div>
   );

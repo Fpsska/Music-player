@@ -1,22 +1,36 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../SvgTemplate";
-import { switchPauseStatus } from "../../../app/mainSlice";
+import {
+  switchPauseStatus,
+  setTrackPreview,
+  setArtistName,
+  setTrackName,
+} from "../../../app/mainSlice";
 import "./buttons.scss";
 
-const Buttons = ({ trackOrder, musicIndex }) => {
-  const { isPlayerPage, isPaused } = useSelector((state) => state.mainSlice);
+const Buttons = () => {
+  const { isPlayerPage, isPaused, albumList } = useSelector(
+    (state) => state.mainSlice
+  );
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const prevBtn = useRef();
   const pauseBtn = useRef();
   const nextBtn = useRef();
+  const trackOrder = useRef();
+  let musicIndex = Math.floor(Math.random() * albumList.length + 1);
   //
-  const nextSong = () => {
-    musicIndex++;
-    pauseMusic();
-  };
+  const loadMusic = useCallback(
+    (index) => {
+      trackOrder.current.src = albumList[index - 1].preview;
+      dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
+      dispatch(setArtistName(albumList[index - 1].artist.name));
+      dispatch(setTrackName(albumList[index - 1].title));
+    },
+    [musicIndex]
+  );
 
   const playMusic = () => {
     trackOrder.current.play();
@@ -26,11 +40,30 @@ const Buttons = ({ trackOrder, musicIndex }) => {
     trackOrder.current.pause();
   };
 
+  const nextSong = () => {
+    musicIndex++;
+    musicIndex > albumList.length
+      ? (musicIndex = 1)
+      : (musicIndex = musicIndex);
+    loadMusic(musicIndex);
+    playMusic();
+    dispatch(switchPauseStatus(false));
+  };
+
+  const prevSong = () => {
+    musicIndex--;
+    musicIndex < 1
+      ? (musicIndex = albumList.length)
+      : (musicIndex = musicIndex);
+    loadMusic(musicIndex);
+    playMusic();
+    dispatch(switchPauseStatus(false));
+  };
+
   const defineButtonEvent = () => {
     dispatch(switchPauseStatus(!isPaused));
     !isPaused ? pauseMusic() : playMusic();
   };
-
   //
   return (
     <nav
@@ -40,6 +73,7 @@ const Buttons = ({ trackOrder, musicIndex }) => {
     >
       <button
         ref={prevBtn}
+        onClick={prevSong}
         className={
           isPlayerPage
             ? "nav__button nav__button--player nav__button--prev"
@@ -68,6 +102,11 @@ const Buttons = ({ trackOrder, musicIndex }) => {
       >
         <SvgTemplate id="arrow__next-icon" />
       </button>
+      <audio
+        className="player__audio"
+        src={trackOrder}
+        ref={trackOrder}
+      ></audio>
     </nav>
   );
 };
