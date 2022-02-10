@@ -7,6 +7,7 @@ import "./navigation.scss";
 const Navigation = () => {
   const {
     isPlayerPage,
+    isLoading,
     currentTrackPreview,
     currentArtistName,
     currentTrackName,
@@ -32,17 +33,37 @@ const Navigation = () => {
             <Bar />
             <div className="navigation__bar">
               <div className="navigation__description">
-                <img
-                  className="navigation__image"
-                  src={currentTrackPreview}
-                  alt="albom-preview"
-                />
+                <>
+                  {isLoading ? (
+                    <div className="loading">
+                      <div className="loading__image animated"></div>
+                    </div>
+                  ) : (
+                    <img
+                      className="navigation__image"
+                      src={currentTrackPreview}
+                      alt="albom-preview"
+                    />
+                  )}
+                </>
                 <div className="navigation__informantion">
                   <span className="navigation__track-name title">
-                    {currentTrackName}
+                    {isLoading ? (
+                      <div className="loading">
+                        <div className="loading__text loading__text--track animated"></div>
+                      </div>
+                    ) : (
+                      currentTrackName
+                    )}
                   </span>
                   <span className="navigation__artist-name subtitle">
-                    {currentArtistName}
+                    {isLoading ? (
+                      <div className="loading loading--nav">
+                        <div className="loading__text loading__text--artist animated"></div>
+                      </div>
+                    ) : (
+                      currentArtistName
+                    )}
                   </span>
                 </div>
               </div>

@@ -117,7 +117,6 @@ a {
     }
 }
 
-
 .playlist {
     max-height: 75vh;
     height: 100%;
@@ -252,3 +251,62 @@ a {
 }
 
 // /.SVG
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    :nth-child(2) {
+        margin: 16px 0 6px 0;
+    }
+    :nth-child(3) {
+        width: 70%;
+    }
+}
+
+.loading__card {
+    width: 190px;
+    height: 190px;
+    background-color: #555b6a;
+    border-radius: 8px;
+}
+.loading__image {
+    width: 65px;
+    height: 65px;
+    background-color: #555b6a;
+    margin: 0 12px 0 0;
+}
+.loading__text {
+    width: 85%;
+    height: 12px;
+    background-color: #555b6a;
+    border-radius: 8px;
+}
+
+.loading--nav {
+    @extend .loading;
+    :not(:last-child) {
+        margin: 0 0 6px 0;
+    }
+    align-items: flex-start;
+}
+.loading__text--track {
+    width: 100px;
+}
+.loading__text--artist {
+    width: 70px;
+}
+
+.animated {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: rgba($color: #555b6a, $alpha: 0.45);
+    }
+
+    100% {
+        background-color: rgba($color: #555b6a, $alpha: 0.95);
+    }
+}

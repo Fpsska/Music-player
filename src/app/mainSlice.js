@@ -14,10 +14,25 @@ const mainSlice = createSlice({
     name: "mainSlice",
     initialState: {
         albumList: [],
+        mockData: [
+            {
+                id: 1
+            },
+            {
+                id: 2
+            },
+            {
+                id: 3
+            },
+            {
+                id: 4
+            }
+        ],
         isPlaylistPage: false,
         isPlayerPage: false,
         isPaused: true,
         status: null,
+        isLoading: true,
         currentTrackPreview: "",
         currentArtistName: "untitled",
         currentTrackName: "untitled"
@@ -40,6 +55,9 @@ const mainSlice = createSlice({
         },
         setTrackName(state, action) {
             state.currentTrackName = action.payload
+        },
+        switchLoadingStatus(state, action) {
+            state.isLoading = action.payload
         }
     },
     extraReducers: {
@@ -56,6 +74,6 @@ const mainSlice = createSlice({
     }
 })
 
-export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName, switchLoadingStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

@@ -9,7 +9,6 @@ const CardList = () => {
   const list = useMemo(
     () =>
       albumList.map((item) => {
-        // console.log(item.preview);
         return (
           <Card
               key={item.id}

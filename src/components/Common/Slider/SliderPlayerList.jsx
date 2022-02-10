@@ -8,8 +8,9 @@ import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
 const SliderCard = ({ isPlayerPage }) => {
-  const { albumList } = useSelector((state) => state.mainSlice);
-  //
+  const { albumList, mockData, isLoading } = useSelector(
+    (state) => state.mainSlice
+  );
   //
   const [coverEffect] = useState({
     rotate: 50,
@@ -37,6 +38,23 @@ const SliderCard = ({ isPlayerPage }) => {
     [albumList]
   );
 
+  const mockList = useMemo(
+    () =>
+      mockData.map((item) => {
+        console.log("mock");
+        return (
+          <SwiperSlide key={item.id}>
+            <div className="loading">
+              <div className="loading__card animated"></div>
+              <div className="loading__text animated"></div>
+              <div className="loading__text animated"></div>
+            </div>
+          </SwiperSlide>
+        );
+      }),
+    [isLoading]
+  );
+
   return (
     <>
       <Swiper
@@ -48,7 +66,7 @@ const SliderCard = ({ isPlayerPage }) => {
         coverflowEffect={isPlayerPage ? coverEffect : ""}
         className="mySwiper"
       >
-        {list}
+        {isLoading ? mockList : list}
       </Swiper>
     </>
   );

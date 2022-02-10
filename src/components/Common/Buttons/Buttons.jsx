@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../SvgTemplate";
 import {
@@ -10,7 +10,7 @@ import {
 import "./buttons.scss";
 
 const Buttons = () => {
-  const { isPlayerPage, isPaused, albumList } = useSelector(
+  const { isPlayerPage, isPaused, isLoading, albumList } = useSelector(
     (state) => state.mainSlice
   );
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
@@ -31,6 +31,12 @@ const Buttons = () => {
     },
     [musicIndex]
   );
+
+  useEffect(() => {
+    setTimeout(() => {
+      loadMusic(musicIndex);
+    }, 100);
+  }, [isLoading]);
 
   const playMusic = () => {
     trackOrder.current.play();

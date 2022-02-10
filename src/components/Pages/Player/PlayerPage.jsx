@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import SvgTemplate from "../../Common/SvgTemplate";
 import Bar from "../../Common/Bar/Bar";
