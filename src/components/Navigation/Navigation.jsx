@@ -36,7 +36,7 @@ const Navigation = () => {
                 <>
                   {isLoading ? (
                     <div className="loading">
-                      <div className="loading__image animated"></div>
+                      <div className="loading__preview loading__preview--nav animated"></div>
                     </div>
                   ) : (
                     <img
@@ -49,7 +49,7 @@ const Navigation = () => {
                 <div className="navigation__informantion">
                   <span className="navigation__track-name title">
                     {isLoading ? (
-                      <div className="loading">
+                      <div className="loading loading--nav">
                         <div className="loading__text loading__text--track animated"></div>
                       </div>
                     ) : (

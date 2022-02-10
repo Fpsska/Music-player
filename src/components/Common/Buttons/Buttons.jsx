@@ -6,6 +6,7 @@ import {
   setTrackPreview,
   setArtistName,
   setTrackName,
+  setCurrentLineProgress,
 } from "../../../app/mainSlice";
 import "./buttons.scss";
 
@@ -29,14 +30,29 @@ const Buttons = () => {
       dispatch(setArtistName(albumList[index - 1].artist.name));
       dispatch(setTrackName(albumList[index - 1].title));
     },
-    [musicIndex]
+    [musicIndex, albumList]
   );
+
+  const defineTimeCount = useCallback((event) => {
+    let currentTime = event.target.currentTime;
+    let duration = event.target.duration;
+    dispatch(setCurrentLineProgress((currentTime / duration) * 100));
+    console.log("defineTimeCount");
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
       loadMusic(musicIndex);
     }, 100);
-  }, [isLoading]);
+  }, [isLoading, albumList]);
+
+  useEffect(() => {
+    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
+    return () => {
+      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+      console.log("removeEventListener");
+    };
+  }, [defineTimeCount]);
 
   const playMusic = () => {
     trackOrder.current.play();
@@ -79,6 +95,7 @@ const Buttons = () => {
     >
       <button
         ref={prevBtn}
+        disabled={isLoading ? true : ""}
         onClick={prevSong}
         className={
           isPlayerPage
@@ -90,6 +107,7 @@ const Buttons = () => {
       </button>
       <button
         ref={pauseBtn}
+        disabled={isLoading ? true : ""}
         onClick={defineButtonEvent}
         className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${
           isPaused ? "nav__button--play" : "nav__button--pause"
@@ -99,6 +117,7 @@ const Buttons = () => {
       </button>
       <button
         ref={nextBtn}
+        disabled={isLoading ? true : ""}
         onClick={nextSong}
         className={
           isPlayerPage

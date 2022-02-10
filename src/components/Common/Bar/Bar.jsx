@@ -4,11 +4,14 @@ import "./bar.scss";
 
 const Bar = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
+  const { currentLineProgress } = useSelector((state) => state.mainSlice);
+  //
   return (
     <div className={isLightTheme ? "progress light" : "progress"}>
-      <div className="progress__line">
-        <span className="progress__circle"></span>
-      </div>
+      <div
+        className="progress__line"
+        style={{ width: currentLineProgress + "%" }}
+      ></div>
     </div>
   );
 };

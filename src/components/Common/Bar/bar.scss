@@ -2,21 +2,28 @@
     background-color: rgba(255, 255, 255, 0.31);
     width: 100%;
     height: 4px;
+    &:hover > {
+        ::before {
+            display: block;
+        }
+    }
     &__line {
+        transition: all linear 1s;
         background-color: #fff;
-        width: 50%;
+        width: 0;
         height: 100%;
         position: relative;
-    }
-    &__circle {
-        position: absolute;
-        content: "";
-        right: 0;
-        top: -150%;
-        background-color: #fff;
-        width: 16px;
-        height: 16px;
-        border-radius: 100%;
+        &:before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: -120%;
+            background-color: #fff;
+            width: 14px;
+            height: 14px;
+            border-radius: 100%;
+            display: none;
+        }
     }
 }
 

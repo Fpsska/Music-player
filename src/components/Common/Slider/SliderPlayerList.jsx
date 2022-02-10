@@ -45,9 +45,11 @@ const SliderCard = ({ isPlayerPage }) => {
         return (
           <SwiperSlide key={item.id}>
             <div className="loading">
-              <div className="loading__card animated"></div>
-              <div className="loading__text animated"></div>
-              <div className="loading__text animated"></div>
+              <div className="loading__card">
+                <div className="loading__preview--player animated"></div>
+                <div className="loading__text--player animated"></div>
+                <div className="loading__text--player animated"></div>
+              </div>
             </div>
           </SwiperSlide>
         );

@@ -5,7 +5,6 @@ const Card = ({ image, artist, track }) => {
   const {
     isPlaylistPage,
     isPlayerPage,
-    isLoading,
     currentTrackPreview,
     currentArtistName,
     currentTrackName,

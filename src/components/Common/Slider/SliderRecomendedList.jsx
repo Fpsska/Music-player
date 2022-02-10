@@ -14,7 +14,6 @@ const SliderRecomendedList = ({ albumList, isPlayerPage }) => {
   const list = useMemo(
     () =>
       recomendedList.map((item) => {
-        // console.log("list");
         return (
           <SwiperSlide key={item.id}>
             <Card
@@ -34,9 +33,11 @@ const SliderRecomendedList = ({ albumList, isPlayerPage }) => {
         return (
           <SwiperSlide key={item.id}>
             <div className="loading">
-              <div className="loading__card animated"></div>
-              <div className="loading__text animated"></div>
-              <div className="loading__text animated"></div>
+              <div className="loading__card">
+                <div className="loading__preview animated"></div>
+                <div className="loading__text animated"></div>
+                <div className="loading__text animated"></div>
+              </div>
             </div>
           </SwiperSlide>
         );
