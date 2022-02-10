@@ -3,6 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ###### _designed by [Om Arya](https://omarya.in/)_
 ###### _powered by [Deezer API](https://developers.deezer.com/)_
 
+### `Watch demo` _[music-player](https://fpsska.github.io/Music-player/)_
 
 ## Available Scripts
 
