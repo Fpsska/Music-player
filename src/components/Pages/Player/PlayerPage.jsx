@@ -1,9 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SvgTemplate from "../../Common/SvgTemplate";
-import Bar from "../../Common/Bar/Bar";
 import SliderPlayerList from "../../Common/Slider/SliderPlayerList";
-import Navigation from "../../Navigation/Navigation";
 
 const PlayerPage = () => {
   //
@@ -57,10 +55,6 @@ const PlayerPage = () => {
               {isLoading ? "00:00" : songDuration}
             </span>
           </div>
-          <Bar />
-        </div>
-        <div className="page__navigation">
-          <Navigation />
         </div>
       </div>
     </div>

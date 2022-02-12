@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Spring, animated } from "react-spring";
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
@@ -12,9 +11,6 @@ import SliderPlayList from "../../Common/Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
 import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
-import Navigation from "../../Navigation/Navigation";
-
-import { fetchAlbumsData } from "../../../app/mainSlice";
 
 const HomePage = () => {
   //
@@ -44,10 +40,6 @@ const HomePage = () => {
   useEffect(() => {
     setIsVisible(!isVisible);
   }, [isBurgerOpen]);
-
-  useEffect(() => {
-    dispatch(fetchAlbumsData());
-  }, [dispatch]);
 
   return (
     <>
@@ -84,17 +76,6 @@ const HomePage = () => {
           </>
         )}
       </div>
-      <Spring
-        from={{ transform: "translateY(200px)" }}
-        to={{ transform: "translateY(0px)" }}
-        reverse={isVisible}
-      >
-        {(styles) => (
-          <animated.div className="page__navigation" style={styles}>
-            <Navigation />
-          </animated.div>
-        )}
-      </Spring>
     </>
   );
 };

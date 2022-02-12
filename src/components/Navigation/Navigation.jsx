@@ -24,53 +24,51 @@ const Navigation = () => {
             : "navigation__wrapper"
         }
       >
-        {isPlayerPage ? (
-          <div className="navigation__section">
-            <Buttons />
-          </div>
-        ) : (
-          <>
-            <Bar />
-            <div className="navigation__bar">
-              <div className="navigation__description">
-                <>
+        <Bar />
+        <div className="navigation__bar">
+          <div className="navigation__description">
+            <>
+              {isLoading ? (
+                <div className="loading">
+                  <div className="loading__preview loading__preview--nav animated"></div>
+                </div>
+              ) : isPlayerPage ? (
+                <></>
+              ) : (
+                <img
+                  className="navigation__image"
+                  src={currentTrackPreview}
+                  alt="albom-preview"
+                />
+              )}
+            </>
+            {isPlayerPage ? (
+              <></>
+            ) : (
+              <div className="navigation__informantion">
+                <span className="navigation__track-name title">
                   {isLoading ? (
-                    <div className="loading">
-                      <div className="loading__preview loading__preview--nav animated"></div>
+                    <div className="loading loading--nav">
+                      <div className="loading__text loading__text--track animated"></div>
                     </div>
                   ) : (
-                    <img
-                      className="navigation__image"
-                      src={currentTrackPreview}
-                      alt="albom-preview"
-                    />
+                    currentTrackName
                   )}
-                </>
-                <div className="navigation__informantion">
-                  <span className="navigation__track-name title">
-                    {isLoading ? (
-                      <div className="loading loading--nav">
-                        <div className="loading__text loading__text--track animated"></div>
-                      </div>
-                    ) : (
-                      currentTrackName
-                    )}
-                  </span>
-                  <span className="navigation__artist-name subtitle">
-                    {isLoading ? (
-                      <div className="loading loading--nav">
-                        <div className="loading__text loading__text--artist animated"></div>
-                      </div>
-                    ) : (
-                      currentArtistName
-                    )}
-                  </span>
-                </div>
+                </span>
+                <span className="navigation__artist-name subtitle">
+                  {isLoading ? (
+                    <div className="loading loading--nav">
+                      <div className="loading__text loading__text--artist animated"></div>
+                    </div>
+                  ) : (
+                    currentArtistName
+                  )}
+                </span>
               </div>
-              <Buttons />
-            </div>
-          </>
-        )}
+            )}
+          </div>
+          <Buttons />
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import Header from "../Header/Header";
-import { switchLoadingStatus } from "../../app/mainSlice";
+import Footer from "../Footer/Footer";
+import { fetchAlbumsData, switchLoadingStatus } from "../../app/mainSlice";
 
 const Layout = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
@@ -19,6 +20,10 @@ const Layout = () => {
     }
   }, [status]);
 
+  useEffect(() => {
+    dispatch(fetchAlbumsData());
+  }, []);
+
   return (
     <>
       <Header />
@@ -29,7 +34,7 @@ const Layout = () => {
           </div>
         </div>
       </main>
-      <footer className="footer"></footer>
+      <Footer />
     </>
   );
 };

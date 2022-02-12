@@ -13,6 +13,7 @@
         transition: all 0.4s linear 0s;
         background-color: #fff;
         height: 100%;
+        width: 0;
         position: relative;
         &::before {
             content: "";

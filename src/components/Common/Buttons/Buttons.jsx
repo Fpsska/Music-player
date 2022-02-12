@@ -47,16 +47,12 @@ const Buttons = () => {
       totalSecond = `0${totalSecond}`;
     }
     //
-    if (isPlayerPage === true) {
-      let currentSecond = Math.floor(currentTime % 60);
-      let currentMinute = Math.floor(currentTime / 60);
-      if (currentSecond < 10) {
-        currentSecond = `0${currentSecond}`;
-      }
-      dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
-      console.log("setCurrentTimeProgress");
+    let currentSecond = Math.floor(currentTime % 60);
+    let currentMinute = Math.floor(currentTime / 60);
+    if (currentSecond < 10) {
+      currentSecond = `0${currentSecond}`;
     }
-    //
+    dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
     dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
   }, []);
