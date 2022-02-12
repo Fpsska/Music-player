@@ -10,7 +10,7 @@ import { switchBurgerStatus } from "../../../app/burgerSlice";
 import "./form.scss";
 
 const Form = () => {
-  const { isPlaylistPage, isPlayerPage } = useSelector(
+  const { isPlaylistPage, isPlayerPage, isLoading } = useSelector(
     (state) => state.mainSlice
   );
   const { isBurgerOpen, isLightTheme } = useSelector(
@@ -72,7 +72,11 @@ const Form = () => {
             <SvgTemplate id="menu" />
           </button>
           <div className="form__search">
-            <input className="form__input" type="text" />
+            <input
+              className="form__input"
+              type="text"
+              disabled={isLoading ? true : ""}
+            />
             <button
               className={
                 isBurgerOpen

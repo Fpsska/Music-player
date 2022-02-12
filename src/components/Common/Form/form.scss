@@ -41,6 +41,9 @@
             + .form__button--search .icon__search {
                 stroke: #a5c0ff;
             }
+            &:disabled {
+                border: 1px solid rgba(233, 65, 65, 0.5);
+            }
         }
     }
 }

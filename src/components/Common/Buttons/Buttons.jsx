@@ -7,6 +7,8 @@ import {
   setArtistName,
   setTrackName,
   setCurrentLineProgress,
+  setCurrentTimeProgress,
+  setSongDuration,
 } from "../../../app/mainSlice";
 import "./buttons.scss";
 
@@ -25,10 +27,12 @@ const Buttons = () => {
   //
   const loadMusic = useCallback(
     (index) => {
-      trackOrder.current.src = albumList[index - 1].preview;
-      dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
-      dispatch(setArtistName(albumList[index - 1].artist.name));
-      dispatch(setTrackName(albumList[index - 1].title));
+      if (isLoading === false) {
+        trackOrder.current.src = albumList[index - 1].preview;
+        dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
+        dispatch(setArtistName(albumList[index - 1].artist.name));
+        dispatch(setTrackName(albumList[index - 1].title));
+      }
     },
     [musicIndex, albumList]
   );
@@ -36,22 +40,36 @@ const Buttons = () => {
   const defineTimeCount = useCallback((event) => {
     let currentTime = event.target.currentTime;
     let duration = event.target.duration;
+    //
+    let totalSecond = Math.floor(duration % 60);
+    let totalMinute = Math.floor(duration / 60);
+    if (totalSecond < 10) {
+      totalSecond = `0${totalSecond}`;
+    }
+    //
+    if (isPlayerPage === true) {
+      let currentSecond = Math.floor(currentTime % 60);
+      let currentMinute = Math.floor(currentTime / 60);
+      if (currentSecond < 10) {
+        currentSecond = `0${currentSecond}`;
+      }
+      dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
+      console.log("setCurrentTimeProgress");
+    }
+    //
+    dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
-    console.log("defineTimeCount");
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      loadMusic(musicIndex);
-    }, 100);
+    loadMusic(musicIndex);
   }, [isLoading, albumList]);
 
   useEffect(() => {
     trackOrder.current.addEventListener("timeupdate", defineTimeCount);
-    return () => {
-      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
-      console.log("removeEventListener");
-    };
+    // return () => {
+    //   trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+    // };
   }, [defineTimeCount]);
 
   const playMusic = () => {
@@ -70,6 +88,8 @@ const Buttons = () => {
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
+    dispatch(setCurrentLineProgress(0));
+    dispatch(setCurrentTimeProgress(0));
   };
 
   const prevSong = () => {
@@ -80,6 +100,8 @@ const Buttons = () => {
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
+    dispatch(setCurrentLineProgress(0));
+    dispatch(setCurrentTimeProgress(0));
   };
 
   const defineButtonEvent = () => {

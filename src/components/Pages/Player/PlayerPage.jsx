@@ -7,7 +7,8 @@ import Navigation from "../../Navigation/Navigation";
 
 const PlayerPage = () => {
   //
-  const { isPlayerPage } = useSelector((state) => state.mainSlice);
+  const { isPlayerPage, isLoading, songDuration, currentTimeProgress } =
+    useSelector((state) => state.mainSlice);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   //
 
@@ -49,8 +50,12 @@ const PlayerPage = () => {
               isLightTheme ? "player__time time light" : "player__time time"
             }
           >
-            <span className="time__current">00:50</span>
-            <span className="time__length">04:00</span>
+            <span className="time__current">
+              {isLoading ? "00:00" : currentTimeProgress}
+            </span>
+            <span className="time__length">
+              {isLoading ? "00:00" : songDuration}
+            </span>
           </div>
           <Bar />
         </div>

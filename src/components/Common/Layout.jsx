@@ -15,7 +15,7 @@ const Layout = () => {
     if (status === "success") {
       setTimeout(() => {
         dispatch(switchLoadingStatus(false));
-      }, 121312000);
+      }, 2000);
     }
   }, [status]);
 

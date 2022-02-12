@@ -43,6 +43,8 @@ const mainSlice = createSlice({
         currentArtistName: "untitled",
         currentTrackName: "untitled",
         currentLineProgress: "",
+        currentTimeProgress: "",
+        songDuration: "",
     },
     reducers: {
         switchPlaylistPageStatus(state, action) {
@@ -68,6 +70,12 @@ const mainSlice = createSlice({
         },
         setCurrentLineProgress(state, action) {
             state.currentLineProgress = action.payload
+        },
+        setCurrentTimeProgress(state, action) {
+            state.currentTimeProgress = action.payload
+        },
+        setSongDuration(state, action) {
+            state.songDuration = action.payload
         }
     },
     extraReducers: {
@@ -84,6 +92,6 @@ const mainSlice = createSlice({
     }
 })
 
-export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName, switchLoadingStatus, setCurrentLineProgress } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName, switchLoadingStatus, setCurrentLineProgress, setCurrentTimeProgress, setSongDuration } = mainSlice.actions;
 
 export default mainSlice.reducer;

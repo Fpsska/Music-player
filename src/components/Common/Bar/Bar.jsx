@@ -10,7 +10,7 @@ const Bar = () => {
     <div className={isLightTheme ? "progress light" : "progress"}>
       <div
         className="progress__line"
-        style={{ width: currentLineProgress + "%" }}
+        style={{ width: `${currentLineProgress}%` }}
       ></div>
     </div>
   );
