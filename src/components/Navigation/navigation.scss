@@ -5,9 +5,6 @@
         flex-direction: column;
         justify-content: space-between;
     }
-    &__wrapper--player {
-        padding: 0 28px;
-    }
     &__bar {
         display: flex;
         justify-content: space-between;
@@ -19,6 +16,8 @@
     &__informantion {
         display: flex;
         flex-direction: column;
+
+        max-width: 150px;
     }
     &__track-name {
         margin: 0 0 6px 0;

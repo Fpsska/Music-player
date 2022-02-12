@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 body {
     background-color: #091227;
     color: #eaf0ff;
@@ -47,11 +51,18 @@ a {
 
 // /.NULLSTYLES
 
+@mixin textSlice {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .title {
     color: #eaf0ff;
     font-weight: 500;
     line-height: 16px;
     font-size: 14px;
+    @include textSlice;
 }
 .subtitle {
     color: #a5c0ff;
@@ -59,6 +70,7 @@ a {
     line-height: 11.6px;
     font-size: 10px;
     text-transform: uppercase;
+    @include textSlice;
 }
 
 // /.GENERAL
@@ -121,7 +133,6 @@ a {
     max-height: 75vh;
     height: 100%;
     overflow-y: scroll;
-    padding: 0 28px;
     &__wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -132,7 +143,6 @@ a {
     padding: 40px 0 0 0;
     &__section {
         margin: 34px 0 0 0;
-        padding: 0 28px 10px 28px;
     }
     &__time {
         margin: 60px 0 34px 0;
@@ -176,6 +186,18 @@ a {
 .time.light {
     color: #0e172d;
 }
+
+.container {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.container--loading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 // /.PAGES
 
 .swiper {
@@ -321,11 +343,6 @@ a {
     width: 70px;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
 .animated {
     animation: skeleton-loading 1s linear infinite alternate;
 }

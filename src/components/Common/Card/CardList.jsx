@@ -40,7 +40,7 @@ const CardList = () => {
     [isLoading]
   );
 
-  return <>{isLoading ? <div className="container">{mockList}</div> : list}</>;
+  return <>{isLoading ? <div className="container container--loading">{mockList}</div> : list}</>;
 };
 
 export default CardList;

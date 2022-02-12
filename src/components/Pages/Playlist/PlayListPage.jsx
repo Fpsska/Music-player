@@ -18,11 +18,13 @@ const PlayListPage = () => {
   return (
     <>
       <div className="playlist">
-        <h1 className="page__title title" onClick={goHomePage}>
-          <Link to="/Music-player">Liked Songs</Link>
-        </h1>
-        <div className="playlist__wrapper">
-          <CardList />
+        <div className="container">
+          <h1 className="page__title title" onClick={goHomePage}>
+            <Link to="/Music-player">Liked Songs</Link>
+          </h1>
+          <div className="playlist__wrapper">
+            <CardList />
+          </div>
         </div>
       </div>
       <div className="page__navigation">
