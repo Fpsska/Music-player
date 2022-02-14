@@ -22,6 +22,7 @@ const Buttons = () => {
     albumList,
     duration,
     offsetCurrentTime,
+    isAudioMuted
   } = useSelector((state) => state.mainSlice);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
@@ -159,6 +160,7 @@ const Buttons = () => {
       </button>
       <audio
         className="player__audio"
+        muted={isAudioMuted ? true : ""}
         src={trackOrder}
         ref={trackOrder}
       ></audio>

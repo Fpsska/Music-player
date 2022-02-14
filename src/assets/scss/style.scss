@@ -154,6 +154,11 @@ a {
     &__button--volume {
         flex: 1;
         text-align: start;
+        transform: scale(1);
+        transition: transform .35s linear;
+        &:active {
+            transform: scale(1.025);
+        }
     }
     &__button--repeat {
         margin: 0 12px;
@@ -171,6 +176,27 @@ a {
             transform: scale(1.3);
         }
     }
+}
+.volume {
+    position: relative;
+    &__label {
+        background-color: #cc0000;
+        position: absolute;
+        height: 10px;
+        width: 1px;
+        bottom: 35%;
+        left: 10%;
+        display: none;
+    }
+    :nth-child(2) {
+        transform: rotate(45deg);
+    }
+    :nth-child(3) {
+        transform: rotate(-45deg);
+    }
+}
+.volume__label.muted {
+    display: block;
 }
 .time {
     font-size: 12px;

@@ -1,15 +1,25 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SvgTemplate from "../../Common/SvgTemplate";
 import SliderPlayerList from "../../Common/Slider/SliderPlayerList";
+import { switchMutedStatus } from "../../../app/mainSlice";
 
 const PlayerPage = () => {
   //
-  const { isPlayerPage, isLoading, songDuration, currentTimeProgress } =
-    useSelector((state) => state.mainSlice);
+  const {
+    isPlayerPage,
+    isLoading,
+    songDuration,
+    currentTimeProgress,
+    isAudioMuted,
+  } = useSelector((state) => state.mainSlice);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
+  const dispatch = useDispatch();
   //
-
+  const muteVolume = () => {
+    dispatch(switchMutedStatus(!isAudioMuted));
+  };
+  //
   return (
     <div className="container">
       <div className="player">
@@ -19,10 +29,21 @@ const PlayerPage = () => {
         <div className="player__section">
           <div className="player__navigation">
             <button
-              className="player__button player__button--volume"
+              className="player__button player__button--volume volume"
               type="button"
+              onClick={muteVolume}
             >
               <SvgTemplate id="volume" />
+              <span
+                className={
+                  isAudioMuted ? "volume__label muted" : "volume__label"
+                }
+              ></span>
+              <span
+                className={
+                  isAudioMuted ? "volume__label muted" : "volume__label"
+                }
+              ></span>
             </button>
             <button
               className="player__button player__button--repeat"

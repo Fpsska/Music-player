@@ -46,7 +46,8 @@ const mainSlice = createSlice({
         currentTimeProgress: "",
         songDuration: "",
         duration: "",
-        offsetCurrentTime: ""
+        offsetCurrentTime: "",
+        isAudioMuted: false,
     },
     reducers: {
         switchPlaylistPageStatus(state, action) {
@@ -84,6 +85,9 @@ const mainSlice = createSlice({
         },
         setDuration(state, action) {
             state.duration = action.payload
+        },
+        switchMutedStatus(state, action) {
+            state.isAudioMuted = action.payload
         }
     },
     extraReducers: {
@@ -100,6 +104,6 @@ const mainSlice = createSlice({
     }
 })
 
-export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName, switchLoadingStatus, setCurrentLineProgress, setCurrentTimeProgress, setSongDuration, setDuration, setOffsetTime } = mainSlice.actions;
+export const { switchPlaylistPageStatus, switchPlayerPageStatus, switchPauseStatus, setTrackPreview, setArtistName, setTrackName, switchLoadingStatus, setCurrentLineProgress, setCurrentTimeProgress, setSongDuration, setDuration, setOffsetTime, switchMutedStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { switchBurgerStatus, swithTheme } from "../../../app/burgerSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../SvgTemplate";
+import { fetchAlbumsData, switchPauseStatus } from "../../../app/mainSlice";
 import "./burger.scss";
 
 const BurgerMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
-
+  //
   const closeBurger = () => {
     setIsVisible(!isVisible);
     setTimeout(() => {
@@ -22,6 +22,11 @@ const BurgerMenu = () => {
     dispatch(swithTheme(!isLightTheme));
   };
 
+  const fetchNewSong = () => {
+    dispatch(fetchAlbumsData());
+    dispatch(switchPauseStatus(true));
+  };
+  //
   return (
     <>
       <Spring
@@ -72,7 +77,9 @@ const BurgerMenu = () => {
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="like" />
-                    <span className="menu__link">Liked Songs</span>
+                    <span className="menu__link" onClick={fetchNewSong}>
+                      Liked Songs
+                    </span>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="language" />
