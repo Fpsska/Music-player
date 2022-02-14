@@ -37,11 +37,12 @@
 }
 
 //
-
-.nav--player.nav--player {
+.nav--player {
     max-width: 170px;
     width: 100%;
+    padding: 0 0 60px 0;
     margin: 80px auto 0 auto;
+    justify-content: center;
 }
 
 .nav__button--player {

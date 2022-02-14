@@ -26,10 +26,6 @@ body {
     position: relative;
 }
 
-.main {
-    // height: 100%;
-}
-
 svg {
     flex-shrink: 0;
 }
@@ -137,7 +133,7 @@ a {
     }
 }
 .player {
-    padding: 40px 0 0 0;
+    padding: 20px 0 0 0;
     &__section {
         margin: 34px 0 0 0;
     }

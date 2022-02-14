@@ -9,13 +9,20 @@ import {
   setCurrentLineProgress,
   setCurrentTimeProgress,
   setSongDuration,
+  setDuration,
+  setOffsetTime,
 } from "../../../app/mainSlice";
 import "./buttons.scss";
 
 const Buttons = () => {
-  const { isPlayerPage, isPaused, isLoading, albumList } = useSelector(
-    (state) => state.mainSlice
-  );
+  const {
+    isPlayerPage,
+    isPaused,
+    isLoading,
+    albumList,
+    duration,
+    offsetCurrentTime,
+  } = useSelector((state) => state.mainSlice);
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
   //
@@ -37,9 +44,9 @@ const Buttons = () => {
     [musicIndex, albumList]
   );
 
-  const defineTimeCount = useCallback((event) => {
-    let currentTime = event.target.currentTime;
-    let duration = event.target.duration;
+  const defineTimeCount = (event) => {
+    const { duration, currentTime } = event.srcElement;
+    dispatch(setDuration(duration));
     //
     let totalSecond = Math.floor(duration % 60);
     let totalMinute = Math.floor(duration / 60);
@@ -55,7 +62,7 @@ const Buttons = () => {
     dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
     dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
-  }, []);
+  };
 
   useEffect(() => {
     loadMusic(musicIndex);
@@ -63,10 +70,13 @@ const Buttons = () => {
 
   useEffect(() => {
     trackOrder.current.addEventListener("timeupdate", defineTimeCount);
-    // return () => {
-    //   trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
-    // };
-  }, [defineTimeCount]);
+    return () =>
+      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+  }, [duration, offsetCurrentTime]);
+
+  useEffect(() => {
+    trackOrder.current.currentTime = offsetCurrentTime;
+  }, [offsetCurrentTime]);
 
   const playMusic = () => {
     trackOrder.current.play();
@@ -86,6 +96,7 @@ const Buttons = () => {
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
+    dispatch(setOffsetTime(0));
   };
 
   const prevSong = () => {
@@ -98,6 +109,7 @@ const Buttons = () => {
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
+    dispatch(setOffsetTime(0));
   };
 
   const defineButtonEvent = () => {

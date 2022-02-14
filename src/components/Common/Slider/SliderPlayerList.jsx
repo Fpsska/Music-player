@@ -54,7 +54,7 @@ const SliderCard = ({ isPlayerPage }) => {
           </SwiperSlide>
         );
       }),
-    [isLoading]
+    [mockData]
   );
 
   return (
