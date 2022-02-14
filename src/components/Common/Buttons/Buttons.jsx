@@ -64,20 +64,6 @@ const Buttons = () => {
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
   };
 
-  useEffect(() => {
-    loadMusic(musicIndex);
-  }, [isLoading, albumList]);
-
-  useEffect(() => {
-    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
-    return () =>
-      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
-  }, [duration, offsetCurrentTime]);
-
-  useEffect(() => {
-    trackOrder.current.currentTime = offsetCurrentTime;
-  }, [offsetCurrentTime]);
-
   const playMusic = () => {
     trackOrder.current.play();
   };
@@ -116,6 +102,20 @@ const Buttons = () => {
     dispatch(switchPauseStatus(!isPaused));
     !isPaused ? pauseMusic() : playMusic();
   };
+  //
+  useEffect(() => {
+    loadMusic(musicIndex);
+  }, [isLoading, albumList]);
+
+  useEffect(() => {
+    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
+    return () =>
+      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+  }, [duration, offsetCurrentTime]);
+
+  useEffect(() => {
+    trackOrder.current.currentTime = offsetCurrentTime;
+  }, [offsetCurrentTime]);
   //
   return (
     <nav

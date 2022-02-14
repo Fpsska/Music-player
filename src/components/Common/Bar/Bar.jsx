@@ -5,7 +5,7 @@ import "./bar.scss";
 
 const Bar = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
-  const { currentLineProgress, duration } = useSelector(
+  const { currentLineProgress, duration, isPaused } = useSelector(
     (state) => state.mainSlice
   );
   const progressArea = useRef();
@@ -13,10 +13,12 @@ const Bar = () => {
 
   const setNewCurrentTime = useCallback(
     (event) => {
-      const width = progressArea.current.clientWidth;
-      const offset = event.offsetX;
-      const newCurrentTime = (offset / width) * duration;
-      dispatch(setOffsetTime(newCurrentTime));
+      if (isPaused === false) {
+        const width = progressArea.current.clientWidth;
+        const offset = event.offsetX;
+        const newCurrentTime = (offset / width) * duration;
+        dispatch(setOffsetTime(newCurrentTime));
+      }
     },
     [duration]
   );
