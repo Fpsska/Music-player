@@ -12,10 +12,11 @@ const Navigation = () => {
     currentArtistName,
     currentTrackName,
   } = useSelector((state) => state.mainSlice);
+  const { isLightTheme } = useSelector((state) => state.burgerSlice);
 
   return (
     <div
-      className={isPlayerPage ? "navigation navigation--player" : "navigation"}
+      className={`navigation ${isPlayerPage ? "navigation--player" : ""} ${isLightTheme ? "light" : ""}`}
     >
       <div
         className={

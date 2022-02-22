@@ -7,9 +7,8 @@
 }
 
 body {
-    background-color: #091227;
     color: #eaf0ff;
-    font-family: Gilroy;
+    font-family: Gilroy, sans-serif;
     height: 100vh;
     margin: 0;
     padding: 0;
@@ -24,6 +23,11 @@ body {
 .App {
     height: 100%;
     position: relative;
+
+    background-color: #091227;
+}
+.App.light {
+    background-color: #f7faff;
 }
 
 svg {
@@ -98,10 +102,6 @@ a {
     &__section--playlist {
         margin: 42px 0 0 0;
     }
-    &__navigation {
-        z-index: 2;
-        position: relative;
-    }
 }
 .page.light {
     background-color: #f7faff;
@@ -155,7 +155,7 @@ a {
         flex: 1;
         text-align: start;
         transform: scale(1);
-        transition: transform .35s linear;
+        transition: transform 0.35s linear;
         &:active {
             transform: scale(1.025);
         }

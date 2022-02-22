@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import Layout from "./components/Common/Layout"
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './components/Pages/Home/HomePage';
@@ -8,8 +9,10 @@ import "./assets/scss/style.scss"
 import "../node_modules/swiper/swiper.scss"
 
 function App() {
+  const { isLightTheme } = useSelector(state => state.burgerSlice)
+
   return (
-    <div className="App">
+    <div className={isLightTheme ? "App light" : "App"}>
       <Routes>
         <Route path="/Music-player" element={<Layout />}>
           <Route index element={<HomePage />} />

@@ -13,19 +13,19 @@ const Footer = () => {
   }, [isBurgerOpen]);
 
   return (
-    <div className={isPlayerPage ? "footer container" : "footer"}>
+    <footer className={isPlayerPage ? "footer container" : "footer"}>
       <Spring
         from={{ transform: "translateY(200px)" }}
         to={{ transform: "translateY(0px)" }}
         reverse={isVisible}
       >
         {(styles) => (
-          <animated.div className="page__navigation" style={styles}>
+          <animated.div className="footer__navigation" style={styles}>
             <Navigation />
           </animated.div>
         )}
       </Spring>
-    </div>
+    </footer>
   );
 };
 
