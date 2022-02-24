@@ -6,6 +6,7 @@ import HomePage from './components/Pages/Home/HomePage';
 import PlayListPage from './components/Pages/Playlist/PlayListPage';
 import PlayerPage from './components/Pages/Player/PlayerPage';
 import "./assets/scss/style.scss"
+import "./assets/scss/media.scss"
 import "../node_modules/swiper/swiper.scss"
 
 function App() {

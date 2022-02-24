@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 import { Spring, animated } from "react-spring";
+import "./footer.scss"
 
 const Footer = () => {
   const { isBurgerOpen } = useSelector((state) => state.burgerSlice);

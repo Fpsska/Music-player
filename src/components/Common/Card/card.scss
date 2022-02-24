@@ -50,7 +50,7 @@
     max-width: 150px;
     width: 100%;
     &:nth-child(1) {
-        margin: 0 15px 0 0 !important;
+        margin: 0 15px 0 0;
     }
     &:not(:last-child) {
         margin: 0 0 24px 0;

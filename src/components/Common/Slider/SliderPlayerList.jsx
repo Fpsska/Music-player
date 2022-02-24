@@ -7,7 +7,7 @@ import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-const SliderCard = ({ isPlayerPage }) => {
+const SliderCard = () => {
   const { albumList, mockData, isLoading } = useSelector(
     (state) => state.mainSlice
   );
@@ -60,12 +60,12 @@ const SliderCard = ({ isPlayerPage }) => {
   return (
     <>
       <Swiper
-        slidesPerView={isPlayerPage ? "auto" : 1.7}
+        slidesPerView={1}
         spaceBetween={30}
-        centeredSlides={isPlayerPage ? true : false}
-        freeMode={isPlayerPage ? false : true}
-        effect={isPlayerPage ? "coverflow" : ""}
-        coverflowEffect={isPlayerPage ? coverEffect : ""}
+        centeredSlides={true}
+        freeMode={false}
+        effect={"coverflow"}
+        coverflowEffect={coverEffect}
         className="mySwiper"
       >
         {isLoading ? mockList : list}

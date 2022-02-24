@@ -1,0 +1,43 @@
+@media screen and (min-width: 320px) {
+    .container {
+        max-width: calc(100% - 10px);
+    }
+    .container--playlist {
+        max-width: 320px;
+        padding: 0 5px;
+    }
+    .card--playlist {
+        &:nth-child(1) {
+            margin: 0 5px 0 0;
+        }
+    }
+    .navigation__informantion {
+        max-width: 100px;
+    }
+    .nav {
+        padding: 0 10px 0 0;
+    }
+    .home {
+        padding: 0 0 0 15px;
+    }
+    .header {
+        padding: 40px 15px 30px 15px;
+    }
+}
+
+@media screen and (min-width: 540px) { 
+    .container {
+        max-width: calc(100% - 10px);
+    }
+    .card--playlist {
+        &:nth-child(1) {
+            margin: 25px;
+        }
+        &:not(:last-child) {
+            margin: 25px;
+        }
+        &:last-child {
+            margin: 25px;
+        }
+    }
+}

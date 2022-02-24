@@ -23,11 +23,17 @@ body {
 .App {
     height: 100%;
     position: relative;
-
     background-color: #091227;
+
+    display: flex;
+    flex-direction: column;
 }
 .App.light {
     background-color: #f7faff;
+}
+
+.main {
+    flex: 1 0 auto;
 }
 
 svg {
@@ -211,14 +217,17 @@ a {
 }
 
 .container {
-    max-width: 320px;
+    max-width: 330px;
+    padding: 0 5px;
     margin: 0 auto;
 }
-
 .container--loading {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.container--playlist {
+    @extend .container;
 }
 
 // /.PAGES

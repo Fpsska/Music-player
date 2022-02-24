@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 
-const SliderRecomendedList = ({ albumList, isPlayerPage }) => {
+const SliderRecomendedList = ({ albumList }) => {
   const { isLoading, mockData } = useSelector((state) => state.mainSlice);
   const recomendedList = albumList.slice(0, 4);
   //
@@ -47,9 +47,26 @@ const SliderRecomendedList = ({ albumList, isPlayerPage }) => {
 
   return (
     <Swiper
-      slidesPerView={isPlayerPage ? "auto" : 1.7}
-      spaceBetween={30}
-      freeMode={isPlayerPage ? false : true}
+      freeMode={true}
+      breakpoints={{
+        320: {
+          slidesPerView: 1.4,
+          spaceBetween: 40,
+          centeredSlides: false
+        },
+        360: {
+          slidesPerView: 1.7,
+          spaceBetween: 30
+        },
+        768: {
+          slidesPerView: 3.2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3.2,
+          spaceBetween: 30
+        },
+      }}
       className="mySwiper"
     >
       {isLoading ? mockList : list}
