@@ -17,6 +17,9 @@
     .nav {
         padding: 0 10px 0 0;
     }
+    .nav--player {
+        padding: 0 0 60px 0;
+    }
     .home {
         padding: 0 0 0 15px;
     }
@@ -39,5 +42,8 @@
         &:last-child {
             margin: 25px;
         }
+    }
+    .navigation__informantion {
+        max-width: 100%;
     }
 }

@@ -5,6 +5,7 @@
     text-align: center;
     position: relative;
     transition: scale 1s linear;
+    overflow: hidden;
     &::before {
         content: "";
         position: absolute;
@@ -34,11 +35,7 @@
     }
     &__title {
         margin: 16px 0 6px 0;
-        position: relative;
-
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
+        white-space: nowrap !important;
     }
     &__subtitle {
         z-index: 1;

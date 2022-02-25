@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import Card from "../Card/CardTemplate";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { FreeMode } from "swiper";
-import { useSelector } from "react-redux";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
 

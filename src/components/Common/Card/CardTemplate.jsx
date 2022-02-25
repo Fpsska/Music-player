@@ -34,7 +34,7 @@ const Card = ({ image, artist, track }) => {
       <h2
         className={
           isPlayerPage
-            ? "card__title card__title--player title"
+            ? "card__title card__title--player slide"
             : "card__title title"
         }
       >

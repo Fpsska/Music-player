@@ -16,7 +16,7 @@
     &__informantion {
         display: flex;
         flex-direction: column;
-
+        overflow: hidden;
         max-width: 150px;
     }
     &__track-name {

@@ -48,6 +48,7 @@ input {
     background-color: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
 }
 
 a {
@@ -378,7 +379,6 @@ a {
 .animated {
     animation: skeleton-loading 1s linear infinite alternate;
 }
-
 @keyframes skeleton-loading {
     0% {
         background-color: rgba($color: #555b6a, $alpha: 0.45);
@@ -386,5 +386,17 @@ a {
 
     100% {
         background-color: rgba($color: #555b6a, $alpha: 0.95);
+    }
+}
+
+.slide {
+    animation: slider 7s infinite linear;
+}
+@keyframes slider {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-150%);
     }
 }
