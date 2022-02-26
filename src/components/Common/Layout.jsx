@@ -9,7 +9,7 @@ import { fetchAlbumsData, switchLoadingStatus } from "../../app/mainSlice";
 
 const Layout = () => {
   const { isLightTheme } = useSelector((state) => state.burgerSlice);
-  const { status } = useSelector((state) => state.mainSlice);
+  const { status, isPlayerPage } = useSelector((state) => state.mainSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Layout = () => {
     <>
       <Header />
       <main className="main">
-        <div className={isLightTheme ? "page light" : "page"}>
+        <div className={isLightTheme ? "page light" : isPlayerPage ? "page page--player" : "page"}>
           <div className="page__wrapper">
             <Outlet />
           </div>

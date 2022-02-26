@@ -50,7 +50,7 @@ const Navigation = () => {
                 <></>
               ) : (
                 <div className="navigation__informantion">
-                  <span className="navigation__track-name title slide">
+                  <span className="navigation__track-name slide">
                     {isLoading ? (
                       <div className="loading loading--nav">
                         <div className="loading__text loading__text--track animated"></div>

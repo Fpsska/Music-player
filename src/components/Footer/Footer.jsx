@@ -14,7 +14,7 @@ const Footer = () => {
   }, [isBurgerOpen]);
 
   return (
-    <footer className={isPlayerPage ? "footer container" : "footer"}>
+    <footer className={isPlayerPage ? "footer container container--footer" : "footer"}>
       <Spring
         from={{ transform: "translateY(200px)" }}
         to={{ transform: "translateY(0px)" }}

@@ -13,7 +13,7 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 #root {
@@ -85,9 +85,9 @@ a {
 .page {
     height: 100%;
     &__wrapper {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
         padding: 0 !important;
         &::-webkit-scrollbar {
             background-color: transparent;
@@ -119,12 +119,17 @@ a {
         color: #091227;
     }
 }
+.page--player {
+    @extend .page;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .home {
     flex-grow: 1;
-
     overflow-y: scroll;
-    max-height: 75vh;
+    max-height: calc(100vh - 96px - 69px);
     padding: 0 0 0 28px;
     &__section {
         &:not(:first-child) {
@@ -144,12 +149,11 @@ a {
     }
 }
 .player {
-    padding: 20px 0 0 0;
     &__section {
-        margin: 34px 0 0 0;
+        margin: 35px 0 0 0;
     }
     &__time {
-        margin: 60px 0 34px 0;
+        margin: 40px 0 20px 0;
     }
     &__navigation {
         display: flex;
@@ -229,6 +233,9 @@ a {
 }
 .container--playlist {
     @extend .container;
+}
+.container--footer {
+    margin: 0 auto calc(100vh / 5) auto;
 }
 
 // /.PAGES
@@ -397,6 +404,6 @@ a {
         transform: translateX(100%);
     }
     100% {
-        transform: translateX(-150%);
+        transform: translateX(-200%);
     }
 }
