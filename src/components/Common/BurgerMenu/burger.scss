@@ -92,9 +92,6 @@
         &:not(:last-child) {
             margin: 0 0 32px 0;
         }
-        &:hover {
-            transform: scale(1.01);
-        }
         &:hover .menu__link {
             color: rgba(165, 192, 255, 0.7);
         }

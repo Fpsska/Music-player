@@ -7,7 +7,6 @@
     &__wrapper--player {
         justify-content: space-between;
         height: 100%;
-        // padding: 20px 0 30px 0;
     }
     &__bar {
         display: flex;
@@ -26,6 +25,10 @@
     &__track-name {
         margin: 0 0 6px 0;
         white-space: nowrap;
+        cursor: pointer;
+    }
+    &__artist-name {
+        cursor: pointer;
     }
     &__image {
         object-fit: cover;
@@ -37,7 +40,6 @@
 
 .navigation--player {
     margin: 0;
-    // height: calc(100vh - 93px - 401px);
 }
 
 .navigation.light {

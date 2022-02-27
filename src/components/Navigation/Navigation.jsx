@@ -50,7 +50,7 @@ const Navigation = () => {
                 <></>
               ) : (
                 <div className="navigation__informantion">
-                  <span className="navigation__track-name slide">
+                  <span className="navigation__track-name slide" title={currentTrackName}>
                     {isLoading ? (
                       <div className="loading loading--nav">
                         <div className="loading__text loading__text--track animated"></div>
@@ -59,7 +59,7 @@ const Navigation = () => {
                       currentTrackName
                     )}
                   </span>
-                  <span className="navigation__artist-name subtitle">
+                  <span className="navigation__artist-name subtitle" title={currentArtistName}>
                     {isLoading ? (
                       <div className="loading loading--nav">
                         <div className="loading__text loading__text--artist animated"></div>

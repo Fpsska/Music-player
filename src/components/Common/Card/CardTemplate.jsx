@@ -9,24 +9,19 @@ const Card = ({ image, artist, track }) => {
     currentArtistName,
     currentTrackName,
   } = useSelector((state) => state.mainSlice);
+  const { isLightTheme } = useSelector(state => state.burgerSlice)
 
   return (
     <div
-      className={
-        isPlaylistPage
-          ? "card card--playlist"
-          : isPlayerPage
-          ? "card card--player"
-          : "card"
-      }
+      className={`card ${isPlaylistPage ? "card--playlist" : ""} ${isPlayerPage ? "card--player" : ""} ${isLightTheme ? "light" : ""}`}
     >
       <img
         className={
           isPlaylistPage
             ? "card__image card__image--playlist"
             : isPlayerPage
-            ? "card__image card__image--player"
-            : "card__image"
+              ? "card__image card__image--player"
+              : "card__image"
         }
         src={isPlayerPage ? currentTrackPreview : image}
         alt="albom-preview"
@@ -37,6 +32,7 @@ const Card = ({ image, artist, track }) => {
             ? "card__title card__title--player slide"
             : "card__title title"
         }
+        title={currentTrackName}
       >
         {isPlayerPage ? currentTrackName : track}
       </h2>

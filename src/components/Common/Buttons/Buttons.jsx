@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../SvgTemplate";
 import {
@@ -31,21 +31,20 @@ const Buttons = () => {
   const pauseBtn = useRef();
   const nextBtn = useRef();
   const trackOrder = useRef();
-  let musicIndex = Math.floor(Math.random() * albumList.length + 1);
+  const [musicIndex, setMusicIndex] = useState(1)
   //
-  const loadMusic = useCallback(
-    (index) => {
-      if (isLoading === false) {
-        trackOrder.current.src = albumList[index - 1].preview;
-        dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
-        dispatch(setArtistName(albumList[index - 1].artist.name));
-        dispatch(setTrackName(albumList[index - 1].title));
-      }
-    },
-    [musicIndex, albumList]
-  );
+  const loadMusic = (index) => {
+    if (isLoading === false) {
+      console.log("loadMusic FUNC")
+      trackOrder.current.src = albumList[index - 1].preview;
+      dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
+      dispatch(setArtistName(albumList[index - 1].artist.name));
+      dispatch(setTrackName(albumList[index - 1].title));
+    }
+  };
 
   const defineTimeCount = (event) => {
+    console.log("defineTimeCount func")
     const { duration, currentTime } = event.srcElement;
     dispatch(setDuration(duration));
     //
@@ -74,10 +73,11 @@ const Buttons = () => {
   };
 
   const nextSong = () => {
-    musicIndex++;
-    musicIndex > albumList.length
-      ? (musicIndex = 1)
-      : (musicIndex = musicIndex);
+    setMusicIndex(musicIndex + 1);
+    musicIndex >= albumList.length
+      ? (setMusicIndex(1))
+      : (setMusicIndex(musicIndex + 1))
+
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
@@ -87,10 +87,11 @@ const Buttons = () => {
   };
 
   const prevSong = () => {
-    musicIndex--;
-    musicIndex < 1
-      ? (musicIndex = albumList.length)
-      : (musicIndex = musicIndex);
+    setMusicIndex(musicIndex - 1);
+    musicIndex <= 1
+      ? (setMusicIndex(albumList.length))
+      : (setMusicIndex(musicIndex - 1));
+
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
@@ -120,9 +121,8 @@ const Buttons = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? "nav--player" : ""} ${
-        isLightTheme ? "light" : ""
-      }`}
+      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""
+        }`}
     >
       <button
         ref={prevBtn}
@@ -140,9 +140,8 @@ const Buttons = () => {
         ref={pauseBtn}
         disabled={isLoading ? true : ""}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${
-          isPaused ? "nav__button--play" : "nav__button--pause"
-        }`}
+        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "nav__button--play" : "nav__button--pause"
+          }`}
       >
         {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>

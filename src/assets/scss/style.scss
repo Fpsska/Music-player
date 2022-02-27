@@ -13,7 +13,7 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 #root {
@@ -85,9 +85,6 @@ a {
 .page {
     height: 100%;
     &__wrapper {
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: space-between;
         padding: 0 !important;
         &::-webkit-scrollbar {
             background-color: transparent;
@@ -168,7 +165,7 @@ a {
         transform: scale(1);
         transition: transform 0.35s linear;
         &:active {
-            transform: scale(1.025);
+            transform: scale(1.005);
         }
     }
     &__button--repeat {
@@ -397,7 +394,7 @@ a {
 }
 
 .slide {
-    animation: slider 7s infinite linear;
+    animation: slider 10s infinite linear;
 }
 @keyframes slider {
     0% {

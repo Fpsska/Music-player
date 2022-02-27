@@ -45,6 +45,9 @@
                 border: 1px solid rgba(233, 65, 65, 0.5);
             }
         }
+        &:focus {
+            border: 1px solid #a5c0ff;
+        }
     }
 }
 

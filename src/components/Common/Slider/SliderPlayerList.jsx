@@ -41,7 +41,6 @@ const SliderCard = () => {
   const mockList = useMemo(
     () =>
       mockData.map((item) => {
-        console.log("mock");
         return (
           <SwiperSlide key={item.id}>
             <div className="loading">
@@ -67,6 +66,7 @@ const SliderCard = () => {
         effect={"coverflow"}
         coverflowEffect={coverEffect}
         className="mySwiper"
+        onSlideChange={() => console.log('slide change')}
       >
         {isLoading ? mockList : list}
       </Swiper>

@@ -38,10 +38,10 @@ const BurgerMenu = () => {
       >
         {(styles) => (
           <animated.div className="burger" style={styles}>
-            <animated.div
+            {/* <animated.div
               className="burger__background"
               style={styles}
-            ></animated.div>
+            ></animated.div> */}
             <div
               className={
                 isLightTheme ? "burger__wrapper light" : "burger__wrapper"
@@ -73,7 +73,7 @@ const BurgerMenu = () => {
                 <ul className={isLightTheme ? "menu light" : "menu"}>
                   <li className="menu__item">
                     <SvgTemplate id="profile" />
-                    <span className="menu__link">Profile</span>
+                    <a className="menu__link" href="https://github.com/Fpsska" target="_blank">Profile</a>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="like" />
