@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { switchBurgerStatus, swithTheme } from "../../../app/burgerSlice";
+import { switchBurgerStatus, swithTheme } from "../../app/burgerSlice";
 import { Spring, animated } from "react-spring";
-import SvgTemplate from "../SvgTemplate";
-import { fetchAlbumsData, switchPauseStatus } from "../../../app/mainSlice";
+import SvgTemplate from "../Common/SvgTemplate";
+import { fetchAlbumsData, switchPauseStatus } from "../../app/mainSlice";
 import "./burger.scss";
 
 const BurgerMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
+  const { isLightTheme, isCurtainVisible } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const closeBurger = () => {
@@ -17,6 +17,19 @@ const BurgerMenu = () => {
       dispatch(switchBurgerStatus(false));
     }, 400);
   };
+
+  const keyHandler = (e) => {
+    if (e.code === "Escape") {
+      closeBurger()
+    }
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener("keydown", keyHandler)
+    return () => {
+      window.removeEventListener("keydown", keyHandler)
+    }
+  }, [isVisible])
 
   const changeTheme = () => {
     dispatch(swithTheme(!isLightTheme));
@@ -38,10 +51,17 @@ const BurgerMenu = () => {
       >
         {(styles) => (
           <animated.div className="burger" style={styles}>
-            {/* <animated.div
-              className="burger__background"
-              style={styles}
-            ></animated.div> */}
+            <>
+              {
+                isCurtainVisible ?
+                  <animated.div
+                    className="burger__background"
+                    style={styles}
+                  ></animated.div>
+                  :
+                  <></>
+              }
+            </>
             <div
               className={
                 isLightTheme ? "burger__wrapper light" : "burger__wrapper"

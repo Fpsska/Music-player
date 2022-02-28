@@ -4,7 +4,8 @@ const burgerSlice = createSlice({
     name: "burgerSlice",
     initialState: {
         isBurgerOpen: false,
-        isLightTheme: false
+        isLightTheme: false,
+        isCurtainVisible: true
     },
     reducers: {
         switchBurgerStatus(state, action) {
@@ -12,10 +13,13 @@ const burgerSlice = createSlice({
         },
         swithTheme(state, action) {
             state.isLightTheme = action.payload
+        },
+        switchCurtainStatus(state, action) {
+            state.isCurtainVisible = action.payload
         }
     }
 })
 
-export const { switchBurgerStatus, swithTheme } = burgerSlice.actions;
+export const { switchBurgerStatus, swithTheme, switchCurtainStatus } = burgerSlice.actions;
 
 export default burgerSlice.reducer;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Form from "../Common/Form/Form";
+import Form from "../Form/Form";
 import "./header.scss";
 
 const Header = () => {

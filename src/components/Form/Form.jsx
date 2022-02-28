@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import SvgTemplate from "../SvgTemplate";
+import SvgTemplate from "../Common/SvgTemplate";
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
-} from "../../../app/mainSlice";
-import { switchBurgerStatus } from "../../../app/burgerSlice";
+} from "../../app/mainSlice";
+import { switchBurgerStatus } from "../../app/burgerSlice";
 import "./form.scss";
 
 const Form = () => {

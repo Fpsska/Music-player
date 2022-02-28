@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import {
   switchPlaylistPageStatus,
-  switchPlayerPageStatus,
+  switchPlayerPageStatus
 } from "../../../app/mainSlice";
-import SliderRecomendedList from "../../Common/Slider/SliderRecomendedList";
-import SliderPlayList from "../../Common/Slider/SliderPlayList";
+import { switchCurtainStatus } from "../../../app/burgerSlice";
+import SliderRecomendedList from "../../Slider/SliderRecomendedList";
+import SliderPlayList from "../../Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
-import BurgerMenu from "../../Common/BurgerMenu/BurgerMenu";
+import BurgerMenu from "../../BurgerMenu/BurgerMenu";
 
 const HomePage = () => {
-  //
   const { albumList, isPlaylistPage, isPlayerPage } = useSelector(
     (state) => state.mainSlice
   );
-
   const { isBurgerOpen, isLightTheme } = useSelector(
     (state) => state.burgerSlice
   );
@@ -40,6 +39,24 @@ const HomePage = () => {
   useEffect(() => {
     setIsVisible(!isVisible);
   }, [isBurgerOpen]);
+  // 
+
+  const defineCurtainStatus = () => {
+    if (window.innerWidth >= 768) {
+      dispatch(switchCurtainStatus(false))
+    } else {
+      dispatch(switchCurtainStatus(true))
+    }
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener("resize", defineCurtainStatus)
+    window.addEventListener("load", defineCurtainStatus)
+    return () => {
+      window.removeEventListener("resize", defineCurtainStatus)
+      window.removeEventListener("load", defineCurtainStatus);
+    }
+  }, [])
 
   return (
     <>

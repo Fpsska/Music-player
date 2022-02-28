@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { switchPlaylistPageStatus } from "../../../app/mainSlice";
-import CardList from "../../Common/Card/CardList";
+import CardList from "../../Card/CardList";
 
 const PlayListPage = () => {
   const dispath = useDispatch();

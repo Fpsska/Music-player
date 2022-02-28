@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Buttons from "../Common/Buttons/Buttons";
-import Bar from "../Common/Bar/Bar";
+import Bar from "../Bar/Bar";
 import "./navigation.scss";
 
 const Navigation = () => {

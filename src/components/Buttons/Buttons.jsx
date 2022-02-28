@@ -35,7 +35,6 @@ const Buttons = () => {
   //
   const loadMusic = (index) => {
     if (isLoading === false) {
-      console.log("loadMusic FUNC")
       trackOrder.current.src = albumList[index - 1].preview;
       dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
       dispatch(setArtistName(albumList[index - 1].artist.name));
@@ -44,7 +43,6 @@ const Buttons = () => {
   };
 
   const defineTimeCount = (event) => {
-    console.log("defineTimeCount func")
     const { duration, currentTime } = event.srcElement;
     dispatch(setDuration(duration));
     //
