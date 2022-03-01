@@ -474,6 +474,26 @@ const SvgTemplate = (props) => {
           </svg>
         </span>
       );
+    case "arrow_dropdown":
+      return (
+        <span className="icon">
+          <svg
+            className="icon__arrow-dropdown"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M7.97612 10.0719L12.3334 5.7146L12.9521 6.33332L8.28548 11L7.66676 11L3.0001 6.33332L3.61882 5.7146L7.97612 10.0719Z"
+              fill="#C5C5C5"
+            />
+          </svg>
+        </span>
+      );
     default:
       return <svg className="empty"></svg>;
   }

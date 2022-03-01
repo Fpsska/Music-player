@@ -1,26 +1,42 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { switchBurgerStatus, swithTheme } from "../../app/burgerSlice";
+import { switchBurgerStatus, swithTheme, switchInformationStatus, switchContactInfoStatus, switchFaqsInfoStatus } from "../../app/burgerSlice";
+import { fetchAlbumsData, switchPauseStatus } from "../../app/mainSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../Common/SvgTemplate";
-import { fetchAlbumsData, switchPauseStatus } from "../../app/mainSlice";
+import Details from "../Details/Details";
 import "./burger.scss";
 
 const BurgerMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { isLightTheme, isCurtainVisible } = useSelector((state) => state.burgerSlice);
+  const { isLightTheme, isCurtainVisible, isInformationVisible } = useSelector((state) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const closeBurger = () => {
     setIsVisible(!isVisible);
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
+      dispatch(switchInformationStatus(false))
     }, 400);
   };
+
+  const displaySocial = () => {
+    dispatch(switchInformationStatus(true))
+    dispatch(switchContactInfoStatus(true))
+    dispatch(switchFaqsInfoStatus(false))
+  }
+  const displayFAQs = () => {
+    dispatch(switchInformationStatus(true))
+    dispatch(switchFaqsInfoStatus(true))
+    dispatch(switchContactInfoStatus(false))
+  }
 
   const keyHandler = (e) => {
     if (e.code === "Escape") {
       closeBurger()
+      setTimeout(() => {
+        dispatch(switchInformationStatus(false))
+      }, 450);
     }
   }
 
@@ -90,7 +106,7 @@ const BurgerMenu = () => {
                 </button>
               </div>
               <nav className="burger__menu">
-                <ul className={isLightTheme ? "menu light" : "menu"}>
+                <ul className={isLightTheme ? "menu light" : isInformationVisible ? "menu opened" : "menu"}>
                   <li className="menu__item">
                     <SvgTemplate id="profile" />
                     <a className="menu__link" href="https://github.com/Fpsska" target="_blank">Profile</a>
@@ -105,11 +121,11 @@ const BurgerMenu = () => {
                     <SvgTemplate id="language" />
                     <span className="menu__link">Language</span>
                   </li>
-                  <li className="menu__item">
+                  <li className="menu__item" onClick={displaySocial}>
                     <SvgTemplate id="message" />
                     <span className="menu__link">Contact us</span>
                   </li>
-                  <li className="menu__item">
+                  <li className="menu__item" onClick={displayFAQs}>
                     <SvgTemplate id="faqs" />
                     <span className="menu__link">FAQs</span>
                   </li>
@@ -118,6 +134,7 @@ const BurgerMenu = () => {
                     <span className="menu__link">Settings</span>
                   </li>
                 </ul>
+                {isInformationVisible ? <Details /> : <></>}
               </nav>
             </div>
           </animated.div>

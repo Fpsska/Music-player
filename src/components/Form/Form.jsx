@@ -75,7 +75,7 @@ const Form = () => {
             <input
               className="form__input"
               type="text"
-              disabled={isLoading ? true : ""}
+              disabled={isLoading ? true : isBurgerOpen ? true : ""}
             />
             <button
               className={

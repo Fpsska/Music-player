@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import SvgTemplate from "../SvgTemplate";
+import SvgTemplate from "../Common/SvgTemplate";
 import {
   switchPauseStatus,
   setTrackPreview,
@@ -11,7 +11,7 @@ import {
   setSongDuration,
   setDuration,
   setOffsetTime,
-} from "../../../app/mainSlice";
+} from "../../app/mainSlice";
 import "./buttons.scss";
 
 const Buttons = () => {

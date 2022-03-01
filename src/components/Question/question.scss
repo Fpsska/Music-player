@@ -1,0 +1,25 @@
+.question {
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    &__header {
+      display: flex;
+      align-items: start;
+    }
+    &__item {
+      &:not(:last-child) {
+        margin: 0 0 10px 0;
+      }
+    }
+    &__title {
+      margin: 0;
+    }
+    &__answer {
+      display: block;
+      color: #8b949e;
+    }
+  }
+  .question__answer.closed {
+    display: none;
+  }

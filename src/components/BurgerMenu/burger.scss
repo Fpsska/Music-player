@@ -14,15 +14,16 @@
     &__wrapper {
         z-index: 2;
         position: relative;
-        padding: 35px 25px;
         max-width: 265px;
         width: 100%;
         height: 100%;
         background-color: #091227;
+        transition: all 0.25s linear;
     }
     &__navigation {
         display: flex;
         justify-content: space-between;
+        padding: 35px 25px 0 25px;
         margin: 0 0 50px 0;
     }
     &__button {
@@ -33,6 +34,7 @@
         }
     }
     &__button--close {
+        padding: 0;
         &:active svg {
             transition: all 0.25s linear;
             stroke: #cc0000;
@@ -48,6 +50,13 @@
     }
 }
 
+.burger__wrapper.opened {
+    max-width: 100%;
+    padding: 35px 25px 35px 10px;
+    .menu__link {
+        display: none;
+    }
+}
 .burger__wrapper.light {
     background-color: #eaf0ff;
 }
@@ -77,8 +86,12 @@
         }
     }
 }
+.menu.opened {
+    border-bottom: 1px solid rgb(137, 150, 184);
+}
 
 .menu {
+    border-bottom: 1px solid transparent;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -89,8 +102,12 @@
         display: flex;
         align-items: center;
         transition: transform 0.25s linear;
+        padding: 0 25px;
         &:not(:last-child) {
             margin: 0 0 32px 0;
+        }
+        &:last-child {
+            padding: 0 25px 25px 25px;
         }
         &:hover .menu__link {
             color: rgba(165, 192, 255, 0.7);
