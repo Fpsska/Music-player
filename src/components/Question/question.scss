@@ -19,7 +19,13 @@
       display: block;
       color: #8b949e;
     }
+    &__button {
+      transition: transform .35s ease;
+    }
   }
   .question__answer.closed {
     display: none;
+  }
+  .question__button.opened {
+    transform: rotate(180deg);
   }

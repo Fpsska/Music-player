@@ -11,14 +11,14 @@ const burgerSlice = createSlice({
     isFaqsInfo: false,
     questions: [
       {
-        id: 1,
+        id: "0",
         question: "Which technologies used in this app?",
         answer:
           "This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.",
         isDropDownHidden: true,
       },
       {
-        id: 2,
+        id: "1",
         question:
           "Where did you get all the information about the tracks from?",
         answer: "We used free Deezer API for get data of all provided tracks.",
@@ -45,16 +45,12 @@ const burgerSlice = createSlice({
     switchFaqsInfoStatus(state, action) {
       state.isFaqsInfo = action.payload;
     },
-    switchDrowDownStatus(state, action) {
-      console.log(action.payload.id, action.payload.status);
-      state.questions.map((item) => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            isDropDownHidden: action.payload.status,
-          };
-        }
-      });
+    switchDropDownStatus(state, action) {
+      const { id, status } = action.payload;
+      if (id) {
+        state.questions.forEach((item) => (item.isDropDownHidden = true));
+      }
+      state.questions[id].isDropDownHidden = status;
     },
   },
 });
@@ -66,7 +62,7 @@ export const {
   switchInformationStatus,
   switchContactInfoStatus,
   switchFaqsInfoStatus,
-  switchDrowDownStatus,
+  switchDropDownStatus,
 } = burgerSlice.actions;
 
 export default burgerSlice.reducer;

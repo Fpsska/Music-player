@@ -1,23 +1,17 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { switchDrowDownStatus } from "../../app/burgerSlice";
+import { switchDropDownStatus } from "../../app/burgerSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import "./question.scss";
 
 const Question = ({ id, question, answer, isDropDownHidden }) => {
     const dispatch = useDispatch();
+    const icon = useRef()
 
     const handleDropDown = () => {
-        // isDropDownHidden
-        //     ? dispatch(switchDrowDownStatus({ id: id, status: false }))
-        //     : dispatch(switchDrowDownStatus({ id: id, status: true }));
-        dispatch(switchDrowDownStatus(!isDropDownHidden))
+        dispatch(switchDropDownStatus({ id, status: !isDropDownHidden }))
     };
-
-    useEffect(() => {
-        console.log(isDropDownHidden)
-    }, [isDropDownHidden])
 
     return (
         <div className="question__item" key={id} onClick={handleDropDown}>
@@ -25,12 +19,11 @@ const Question = ({ id, question, answer, isDropDownHidden }) => {
                 <h4 className="question__title">
                     {question}
                 </h4>
-                <button className="question__button">
+                <button className={isDropDownHidden ? "question__button" : "question__button opened"} ref={icon}>
                     <SvgTemplate id="arrow_dropdown" />
                 </button>
             </div>
-            {/* {isDropDownHidden ? <></> : <p className="question__answer">{answer}</p>} */}
-            <p className="question__answer">{answer}</p>
+            {isDropDownHidden ? <></> : <p className="question__answer">{answer}</p>}
         </div>
     );
 };
