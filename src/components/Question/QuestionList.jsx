@@ -4,7 +4,7 @@ import Question from "./Question";
 import "./question.scss"
 
 const QuestionList = () => {
-    const { questions } = useSelector((state) => state.burgerSlice)
+    const { questions, isLightTheme } = useSelector((state) => state.burgerSlice)
 
     const list = questions.map(item => {
         return (
@@ -19,7 +19,7 @@ const QuestionList = () => {
     })
 
     return (
-        <div className="question">
+        <div className={isLightTheme ? "question light" : "question"}>
             <div className="question__wrapper">
                 {list}
             </div>

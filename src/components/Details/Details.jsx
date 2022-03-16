@@ -6,13 +6,13 @@ import "./details.scss";
 
 
 const Details = () => {
-    const { isContactInfo, isFaqsInfo } = useSelector((state) => state.burgerSlice)
+    const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector((state) => state.burgerSlice)
 
     return (
         <div className="details">
             <div className="details__wrapper">
                 {isContactInfo ?
-                    <ul className="details__list list">
+                    <ul className={isLightTheme ? "details__list list ligth" : "details__list list"}>
                         <li className="list__item">
                             <span className="list__title">Developed by Fpsska</span>
                             <div className="list__social">
