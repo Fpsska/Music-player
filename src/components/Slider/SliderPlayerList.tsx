@@ -1,15 +1,17 @@
 import React, { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../Card/CardTemplate";
+import { RootState } from "../../app/store";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-const SliderCard = () => {
+
+const SliderCard: React.FC = () => {
   const { albumList, mockData, isLoading } = useSelector(
-    (state) => state.mainSlice
+    (state: RootState) => state.mainSlice
   );
   //
   const [coverEffect] = useState({
@@ -30,7 +32,6 @@ const SliderCard = () => {
               artist={item.artist.name}
               track={item.title}
               image={item.artist.picture_medium}
-              song={item.preview}
             />
           </SwiperSlide>
         );
@@ -66,7 +67,7 @@ const SliderCard = () => {
         effect={"coverflow"}
         coverflowEffect={coverEffect}
         className="mySwiper"
-        onSlideChange={() => console.log('slide change')}
+        onSlideChange={() => console.log("slide change")}
       >
         {isLoading ? mockList : list}
       </Swiper>

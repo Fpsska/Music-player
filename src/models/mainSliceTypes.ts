@@ -2,7 +2,6 @@ export interface albumListTypes {
   id: number;
   title: string;
   preview: string;
-  song: string;
   artist: artistTypes;
 }
 
