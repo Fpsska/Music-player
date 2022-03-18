@@ -6,12 +6,15 @@ import { Outlet } from "react-router";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { fetchAlbumsData, switchLoadingStatus } from "../../app/mainSlice";
+import { RootState } from "../../app/store";
 
-const Layout = () => {
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
-  const { status, isPlayerPage } = useSelector((state) => state.mainSlice);
+const Layout: React.FC = () => {
+  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
+  const { status, isPlayerPage } = useSelector(
+    (state: RootState) => state.mainSlice
+  );
   const dispatch = useDispatch();
-
+  //
   useEffect(() => {
     if (status === "success") {
       setTimeout(() => {
@@ -28,7 +31,15 @@ const Layout = () => {
     <>
       <Header />
       <main className="main">
-        <div className={isLightTheme ? "page light" : isPlayerPage ? "page page--player" : "page"}>
+        <div
+          className={
+            isLightTheme
+              ? "page light"
+              : isPlayerPage
+              ? "page page--player"
+              : "page"
+          }
+        >
           <div className="page__wrapper">
             <Outlet />
           </div>
