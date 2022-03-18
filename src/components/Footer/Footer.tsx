@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 import { Spring, animated } from "react-spring";
-import "./footer.scss"
+import "./footer.scss";
+import { RootState } from "../../app/store";
 
-const Footer = () => {
-  const { isBurgerOpen } = useSelector((state) => state.burgerSlice);
-  const { isPlayerPage } = useSelector((state) => state.mainSlice);
+const Footer: React.FC = () => {
+  const { isBurgerOpen } = useSelector((state: RootState) => state.burgerSlice);
+  const { isPlayerPage } = useSelector((state: RootState) => state.mainSlice);
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -14,7 +15,9 @@ const Footer = () => {
   }, [isBurgerOpen]);
 
   return (
-    <footer className={isPlayerPage ? "footer container container--footer" : "footer"}>
+    <footer
+      className={isPlayerPage ? "footer container container--footer" : "footer"}
+    >
       <Spring
         from={{ transform: "translateY(200px)" }}
         to={{ transform: "translateY(0px)" }}

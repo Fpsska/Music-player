@@ -3,16 +3,22 @@ import { useSelector } from "react-redux";
 import QuestionList from "../Question/QuestionList";
 import SvgTemplate from "../Common/SvgTemplate";
 import "./details.scss";
+import { RootState } from "../../app/store";
 
-
-const Details = () => {
-    const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector((state) => state.burgerSlice)
+const Details: React.FC = () => {
+    const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector(
+        (state: RootState) => state.burgerSlice
+    );
 
     return (
         <div className="details">
             <div className="details__wrapper">
-                {isContactInfo ?
-                    <ul className={isLightTheme ? "details__list list ligth" : "details__list list"}>
+                {isContactInfo ? (
+                    <ul
+                        className={
+                            isLightTheme ? "details__list list ligth" : "details__list list"
+                        }
+                    >
                         <li className="list__item">
                             <span className="list__title">Developed by Fpsska</span>
                             <div className="list__social">
@@ -83,9 +89,11 @@ const Details = () => {
                             </div>
                         </li>
                     </ul>
-                    :
-                    isFaqsInfo ? <QuestionList /> : <></>
-                }
+                ) : isFaqsInfo ? (
+                    <QuestionList />
+                ) : (
+                    <></>
+                )}
             </div>
         </div>
     );

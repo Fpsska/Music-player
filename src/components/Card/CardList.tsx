@@ -2,10 +2,11 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Card from "./CardTemplate";
 import "./card.scss";
+import { RootState } from "../../app/store";
 
-const CardList = () => {
+const CardList: React.FC = () => {
   const { albumList, mockData, isLoading } = useSelector(
-    (state) => state.mainSlice
+    (state: RootState) => state.mainSlice
   );
 
   const list = useMemo(
@@ -17,7 +18,6 @@ const CardList = () => {
             artist={item.artist.name}
             track={item.title}
             image={item.artist.picture_medium}
-            song={item.preview}
           />
         );
       }),
@@ -40,7 +40,15 @@ const CardList = () => {
     [isLoading]
   );
 
-  return <>{isLoading ? <div className="container container--loading">{mockList}</div> : list}</>;
+  return (
+    <>
+      {isLoading ? (
+        <div className="container container--loading">{mockList}</div>
+      ) : (
+        list
+      )}
+    </>
+  );
 };
 
 export default CardList;
