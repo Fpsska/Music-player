@@ -13,8 +13,9 @@ import {
   setOffsetTime,
 } from "../../app/mainSlice";
 import "./buttons.scss";
+import { RootState } from "../../app/store";
 
-const Buttons = () => {
+const Buttons: React.FC = () => {
   const {
     isPlayerPage,
     isPaused,
@@ -22,18 +23,18 @@ const Buttons = () => {
     albumList,
     duration,
     offsetCurrentTime,
-    isAudioMuted
-  } = useSelector((state) => state.mainSlice);
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
+    isAudioMuted,
+  } = useSelector((state: RootState) => state.mainSlice);
+  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
   //
-  const prevBtn = useRef();
-  const pauseBtn = useRef();
-  const nextBtn = useRef();
-  const trackOrder = useRef();
-  const [musicIndex, setMusicIndex] = useState(1)
+  const prevBtn = useRef<HTMLButtonElement>(null);
+  const pauseBtn = useRef<HTMLButtonElement>(null);
+  const nextBtn = useRef<HTMLButtonElement>(null);
+  const trackOrder = useRef<HTMLAudioElement>(null!);
+  const [musicIndex, setMusicIndex] = useState(1);
   //
-  const loadMusic = (index) => {
+  const loadMusic = (index: number): void => {
     if (isLoading === false) {
       trackOrder.current.src = albumList[index - 1].preview;
       dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
@@ -42,39 +43,40 @@ const Buttons = () => {
     }
   };
 
-  const defineTimeCount = (event) => {
-    const { duration, currentTime } = event.srcElement;
+  const defineTimeCount = (e: any): void => {
+    // e: React.ChangeEvent<HTMLAudioElement>
+    const { duration, currentTime } = e.target;
     dispatch(setDuration(duration));
     //
-    let totalSecond = Math.floor(duration % 60);
-    let totalMinute = Math.floor(duration / 60);
-    if (totalSecond < 10) {
+    let totalSecond = String(Math.floor(duration % 60));
+    let totalMinute = String(Math.floor(duration / 60));
+    if (+totalSecond < 10) {
       totalSecond = `0${totalSecond}`;
     }
     //
-    let currentSecond = Math.floor(currentTime % 60);
-    let currentMinute = Math.floor(currentTime / 60);
-    if (currentSecond < 10) {
+    let currentSecond = String(Math.floor(currentTime % 60));
+    let currentMinute = String(Math.floor(currentTime / 60));
+    if (+currentSecond < 10) {
       currentSecond = `0${currentSecond}`;
     }
-    dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
-    dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
+    dispatch(setCurrentTimeProgress({ currentMinute, currentSecond }));
+    dispatch(setSongDuration({ totalMinute, totalSecond }));
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
   };
 
-  const playMusic = () => {
+  const playMusic = (): void => {
     trackOrder.current.play();
   };
 
-  const pauseMusic = () => {
+  const pauseMusic = (): void => {
     trackOrder.current.pause();
   };
 
-  const nextSong = () => {
+  const nextSong = (): void => {
     setMusicIndex(musicIndex + 1);
     musicIndex >= albumList.length
-      ? (setMusicIndex(1))
-      : (setMusicIndex(musicIndex + 1))
+      ? setMusicIndex(1)
+      : setMusicIndex(musicIndex + 1);
 
     loadMusic(musicIndex);
     playMusic();
@@ -84,11 +86,11 @@ const Buttons = () => {
     dispatch(setOffsetTime(0));
   };
 
-  const prevSong = () => {
+  const prevSong = (): void => {
     setMusicIndex(musicIndex - 1);
     musicIndex <= 1
-      ? (setMusicIndex(albumList.length))
-      : (setMusicIndex(musicIndex - 1));
+      ? setMusicIndex(albumList.length)
+      : setMusicIndex(musicIndex - 1);
 
     loadMusic(musicIndex);
     playMusic();
@@ -98,7 +100,7 @@ const Buttons = () => {
     dispatch(setOffsetTime(0));
   };
 
-  const defineButtonEvent = () => {
+  const defineButtonEvent = (): void => {
     dispatch(switchPauseStatus(!isPaused));
     !isPaused ? pauseMusic() : playMusic();
   };
@@ -119,12 +121,13 @@ const Buttons = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""
-        }`}
+      className={`nav ${isPlayerPage ? "nav--player" : ""} ${
+        isLightTheme ? "light" : ""
+      }`}
     >
       <button
         ref={prevBtn}
-        disabled={isLoading ? true : ""}
+        disabled={isLoading ? true : false}
         onClick={prevSong}
         className={
           isPlayerPage
@@ -136,16 +139,17 @@ const Buttons = () => {
       </button>
       <button
         ref={pauseBtn}
-        disabled={isLoading ? true : ""}
+        disabled={isLoading ? true : false}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "nav__button--play" : "nav__button--pause"
-          }`}
+        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${
+          isPaused ? "nav__button--play" : "nav__button--pause"
+        }`}
       >
         {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>
       <button
         ref={nextBtn}
-        disabled={isLoading ? true : ""}
+        disabled={isLoading ? true : false}
         onClick={nextSong}
         className={
           isPlayerPage
@@ -157,8 +161,8 @@ const Buttons = () => {
       </button>
       <audio
         className="player__audio"
-        muted={isAudioMuted ? true : ""}
-        src={trackOrder}
+        muted={isAudioMuted ? true : false}
+        // src={trackOrder}
         ref={trackOrder}
       ></audio>
     </nav>

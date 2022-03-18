@@ -2,17 +2,18 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setOffsetTime } from "../../app/mainSlice";
 import "./bar.scss";
+import { RootState } from "../../app/store";
 
-const Bar = () => {
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
+const Bar: React.FC = () => {
+  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const { currentLineProgress, duration, isPaused } = useSelector(
-    (state) => state.mainSlice
+    (state: RootState) => state.mainSlice
   );
-  const progressArea = useRef();
+  const progressArea = useRef<HTMLDivElement>(null!);
   const dispatch = useDispatch();
 
   const setNewCurrentTime = useCallback(
-    (event) => {
+    (event): void => {
       if (isPaused === false) {
         const width = progressArea.current.clientWidth;
         const offset = event.offsetX;

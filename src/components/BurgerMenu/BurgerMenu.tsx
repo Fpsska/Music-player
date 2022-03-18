@@ -1,57 +1,66 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { switchBurgerStatus, swithTheme, switchInformationStatus, switchContactInfoStatus, switchFaqsInfoStatus } from "../../app/burgerSlice";
+import {
+  switchBurgerStatus,
+  swithTheme,
+  switchInformationStatus,
+  switchContactInfoStatus,
+  switchFaqsInfoStatus,
+} from "../../app/burgerSlice";
 import { fetchAlbumsData, switchPauseStatus } from "../../app/mainSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../Common/SvgTemplate";
 import Details from "../Details/Details";
 import "./burger.scss";
+import { RootState } from "../../app/store";
 
-const BurgerMenu = () => {
+const BurgerMenu: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { isLightTheme, isCurtainVisible, isInformationVisible } = useSelector((state) => state.burgerSlice);
+  const { isLightTheme, isCurtainVisible, isInformationVisible } = useSelector(
+    (state: RootState) => state.burgerSlice
+  );
   const dispatch = useDispatch();
   //
-  const closeBurger = () => {
+  const closeBurger = (): void => {
     setIsVisible(!isVisible);
     setTimeout(() => {
       dispatch(switchBurgerStatus(false));
-      dispatch(switchInformationStatus(false))
+      dispatch(switchInformationStatus(false));
     }, 400);
   };
 
-  const displaySocial = () => {
-    dispatch(switchInformationStatus(true))
-    dispatch(switchContactInfoStatus(true))
-    dispatch(switchFaqsInfoStatus(false))
-  }
-  const displayFAQs = () => {
-    dispatch(switchInformationStatus(true))
-    dispatch(switchFaqsInfoStatus(true))
-    dispatch(switchContactInfoStatus(false))
-  }
+  const displaySocial = (): void => {
+    dispatch(switchInformationStatus(true));
+    dispatch(switchContactInfoStatus(true));
+    dispatch(switchFaqsInfoStatus(false));
+  };
+  const displayFAQs = (): void => {
+    dispatch(switchInformationStatus(true));
+    dispatch(switchFaqsInfoStatus(true));
+    dispatch(switchContactInfoStatus(false));
+  };
 
-  const keyHandler = (e) => {
+  const keyHandler = (e: KeyboardEvent): void => {
     if (e.code === "Escape") {
-      closeBurger()
+      closeBurger();
       setTimeout(() => {
-        dispatch(switchInformationStatus(false))
+        dispatch(switchInformationStatus(false));
       }, 450);
     }
-  }
+  };
 
   useLayoutEffect(() => {
-    window.addEventListener("keydown", keyHandler)
+    window.addEventListener("keydown", keyHandler);
     return () => {
-      window.removeEventListener("keydown", keyHandler)
-    }
-  }, [isVisible])
+      window.removeEventListener("keydown", keyHandler);
+    };
+  }, [isVisible]);
 
-  const changeTheme = () => {
+  const changeTheme = (): void => {
     dispatch(swithTheme(!isLightTheme));
   };
 
-  const fetchNewSong = () => {
+  const fetchNewSong = (): void => {
     dispatch(fetchAlbumsData());
     dispatch(switchPauseStatus(true));
   };
@@ -68,15 +77,14 @@ const BurgerMenu = () => {
         {(styles) => (
           <animated.div className="burger" style={styles}>
             <>
-              {
-                isCurtainVisible ?
-                  <animated.div
-                    className="burger__background"
-                    style={styles}
-                  ></animated.div>
-                  :
-                  <></>
-              }
+              {isCurtainVisible ? (
+                <animated.div
+                  className="burger__background"
+                  style={styles}
+                ></animated.div>
+              ) : (
+                <></>
+              )}
             </>
             <div
               className={
@@ -106,10 +114,24 @@ const BurgerMenu = () => {
                 </button>
               </div>
               <nav className="burger__menu">
-                <ul className={isLightTheme ? "menu light" : isInformationVisible ? "menu opened" : "menu"}>
+                <ul
+                  className={
+                    isLightTheme
+                      ? "menu light"
+                      : isInformationVisible
+                      ? "menu opened"
+                      : "menu"
+                  }
+                >
                   <li className="menu__item">
                     <SvgTemplate id="profile" />
-                    <a className="menu__link" href="https://github.com/Fpsska" target="_blank">Profile</a>
+                    <a
+                      className="menu__link"
+                      href="https://github.com/Fpsska"
+                      target="_blank"
+                    >
+                      Profile
+                    </a>
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="like" />

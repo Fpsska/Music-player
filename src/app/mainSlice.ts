@@ -23,11 +23,11 @@ interface mainSliceState {
   currentTrackPreview: string;
   currentArtistName: string;
   currentTrackName: string;
-  currentLineProgress: string;
+  currentLineProgress: number;
   currentTimeProgress: string;
   songDuration: string;
-  duration: string;
-  offsetCurrentTime: string;
+  duration: number;
+  offsetCurrentTime: number;
 }
 
 const initialState: mainSliceState = {
@@ -60,11 +60,11 @@ const initialState: mainSliceState = {
   currentTrackPreview: "",
   currentArtistName: "untitled",
   currentTrackName: "untitled",
-  currentLineProgress: "",
+  currentLineProgress: 0,
   currentTimeProgress: "",
   songDuration: "",
-  duration: "",
-  offsetCurrentTime: "",
+  duration: 0,
+  offsetCurrentTime: 0,
   isAudioMuted: false,
 };
 
@@ -93,19 +93,21 @@ const mainSlice = createSlice({
     switchLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    setCurrentLineProgress(state, action: PayloadAction<string>) {
+    setCurrentLineProgress(state, action: PayloadAction<number>) {
       state.currentLineProgress = action.payload;
     },
-    setCurrentTimeProgress(state, action: PayloadAction<string>) {
-      state.currentTimeProgress = action.payload;
+    setCurrentTimeProgress(state, action) {
+      const { currentMinute, currentSecond } = action.payload;
+      state.currentTimeProgress = `${currentMinute}:${currentSecond}`;
     },
-    setOffsetTime(state, action: PayloadAction<string>) {
+    setOffsetTime(state, action: PayloadAction<number>) {
       state.offsetCurrentTime = action.payload;
     },
-    setSongDuration(state, action: PayloadAction<string>) {
-      state.songDuration = action.payload;
+    setSongDuration(state, action: PayloadAction<any>) {
+      const { totalMinute, totalSecond } = action.payload;
+      state.songDuration = `${totalMinute}:${totalSecond}`;
     },
-    setDuration(state, action: PayloadAction<string>) {
+    setDuration(state, action: PayloadAction<number>) {
       state.duration = action.payload;
     },
     switchMutedStatus(state, action: PayloadAction<boolean>) {
