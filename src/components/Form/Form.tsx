@@ -8,19 +8,20 @@ import {
 } from "../../app/mainSlice";
 import { switchBurgerStatus } from "../../app/burgerSlice";
 import "./form.scss";
+import { RootState } from "../../app/store";
 
-const Form = () => {
+const Form: React.FC = () => {
   const { isPlaylistPage, isPlayerPage, isLoading } = useSelector(
-    (state) => state.mainSlice
+    (state: RootState) => state.mainSlice
   );
   const { isBurgerOpen, isLightTheme } = useSelector(
-    (state) => state.burgerSlice
+    (state: RootState) => state.burgerSlice
   );
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const goBack = () => {
+  const goBack = (): void => {
     setTimeout(() => {
       navigate("/Music-player");
       dispatch(switchPlaylistPageStatus(false));
@@ -28,7 +29,7 @@ const Form = () => {
     }, 200);
   };
 
-  const openBurger = () => {
+  const openBurger = (): void => {
     dispatch(switchBurgerStatus(true));
   };
   return (
@@ -75,7 +76,7 @@ const Form = () => {
             <input
               className="form__input"
               type="text"
-              disabled={isLoading ? true : isBurgerOpen ? true : ""}
+              disabled={isLoading ? true : isBurgerOpen ? true : false}
             />
             <button
               className={

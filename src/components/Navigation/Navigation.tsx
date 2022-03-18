@@ -3,20 +3,23 @@ import { useSelector } from "react-redux";
 import Buttons from "../Buttons/Buttons";
 import Bar from "../Bar/Bar";
 import "./navigation.scss";
+import { RootState } from "../../app/store";
 
-const Navigation = () => {
+const Navigation: React.FC = () => {
   const {
     isPlayerPage,
     isLoading,
     currentTrackPreview,
     currentArtistName,
     currentTrackName,
-  } = useSelector((state) => state.mainSlice);
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
+  } = useSelector((state: RootState) => state.mainSlice);
+  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
 
   return (
     <div
-      className={`navigation ${isPlayerPage ? "navigation--player" : ""} ${isLightTheme ? "light" : ""}`}
+      className={`navigation ${isPlayerPage ? "navigation--player" : ""} ${
+        isLightTheme ? "light" : ""
+      }`}
     >
       <div
         className={
@@ -50,7 +53,10 @@ const Navigation = () => {
                 <></>
               ) : (
                 <div className="navigation__informantion">
-                  <span className="navigation__track-name slide" title={currentTrackName}>
+                  <span
+                    className="navigation__track-name slide"
+                    title={currentTrackName}
+                  >
                     {isLoading ? (
                       <div className="loading loading--nav">
                         <div className="loading__text loading__text--track animated"></div>
@@ -59,7 +65,10 @@ const Navigation = () => {
                       currentTrackName
                     )}
                   </span>
-                  <span className="navigation__artist-name subtitle" title={currentArtistName}>
+                  <span
+                    className="navigation__artist-name subtitle"
+                    title={currentArtistName}
+                  >
                     {isLoading ? (
                       <div className="loading loading--nav">
                         <div className="loading__text loading__text--artist animated"></div>
