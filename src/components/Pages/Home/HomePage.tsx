@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import {
   switchPlaylistPageStatus,
-  switchPlayerPageStatus
+  switchPlayerPageStatus,
 } from "../../../app/mainSlice";
 import { switchCurtainStatus } from "../../../app/burgerSlice";
 import SliderRecomendedList from "../../Slider/SliderRecomendedList";
@@ -12,13 +12,14 @@ import SliderPlayList from "../../Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
 import BurgerMenu from "../../BurgerMenu/BurgerMenu";
+import { RootState } from "../../../app/store";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   const { albumList, isPlaylistPage, isPlayerPage } = useSelector(
-    (state) => state.mainSlice
+    (state: RootState) => state.mainSlice
   );
   const { isBurgerOpen, isLightTheme } = useSelector(
-    (state) => state.burgerSlice
+    (state: RootState) => state.burgerSlice
   );
   //
   const [isVisible, setIsVisible] = useState(true);
@@ -26,37 +27,36 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //
-  const goPlayListPage = () => {
+  const goPlayListPage = (): void => {
     dispatch(switchPlaylistPageStatus(true));
     navigate("playlist");
   };
   //
-  const goPlayerPage = () => {
+  const goPlayerPage = (): void => {
     dispatch(switchPlayerPageStatus(true));
     navigate("player");
   };
 
+  const defineCurtainStatus = (): void => {
+    if (window.innerWidth >= 768) {
+      dispatch(switchCurtainStatus(false));
+    } else {
+      dispatch(switchCurtainStatus(true));
+    }
+  };
+  //
   useEffect(() => {
     setIsVisible(!isVisible);
   }, [isBurgerOpen]);
-  // 
-
-  const defineCurtainStatus = () => {
-    if (window.innerWidth >= 768) {
-      dispatch(switchCurtainStatus(false))
-    } else {
-      dispatch(switchCurtainStatus(true))
-    }
-  }
 
   useLayoutEffect(() => {
-    window.addEventListener("resize", defineCurtainStatus)
-    window.addEventListener("load", defineCurtainStatus)
+    window.addEventListener("resize", defineCurtainStatus);
+    window.addEventListener("load", defineCurtainStatus);
     return () => {
-      window.removeEventListener("resize", defineCurtainStatus)
+      window.removeEventListener("resize", defineCurtainStatus);
       window.removeEventListener("load", defineCurtainStatus);
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <>

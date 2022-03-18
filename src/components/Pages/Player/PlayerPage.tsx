@@ -3,20 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { switchMutedStatus } from "../../../app/mainSlice";
 import SvgTemplate from "../../Common/SvgTemplate";
 import SliderPlayerList from "../../Slider/SliderPlayerList";
+import { RootState } from "../../../app/store";
 
-const PlayerPage = () => {
+const PlayerPage: React.FC = () => {
   //
-  const {
-    isPlayerPage,
-    isLoading,
-    songDuration,
-    currentTimeProgress,
-    isAudioMuted,
-  } = useSelector((state) => state.mainSlice);
-  const { isLightTheme } = useSelector((state) => state.burgerSlice);
+  const { isLoading, songDuration, currentTimeProgress, isAudioMuted } =
+    useSelector((state: RootState) => state.mainSlice);
+  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
   //
-  const muteVolume = () => {
+  const muteVolume = (): void => {
     dispatch(switchMutedStatus(!isAudioMuted));
   };
   //
@@ -24,7 +20,7 @@ const PlayerPage = () => {
     <div className="container">
       <div className="player">
         <div className="player__slider">
-          <SliderPlayerList isPlayerPage={isPlayerPage} />
+          <SliderPlayerList />
         </div>
         <div className="player__section">
           <div className="player__navigation">

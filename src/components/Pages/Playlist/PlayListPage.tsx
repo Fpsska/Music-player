@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import { switchPlaylistPageStatus } from "../../../app/mainSlice";
 import CardList from "../../Card/CardList";
 
-const PlayListPage = () => {
+const PlayListPage: React.FC = () => {
   const dispath = useDispatch();
   const navigate = useNavigate();
-
-  const goHomePage = () => {
+  //
+  const goHomePage = (): void => {
     dispath(switchPlaylistPageStatus(false));
     navigate("/Music-player");
   };
