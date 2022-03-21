@@ -34,8 +34,9 @@ const Buttons: React.FC = () => {
   const trackOrder = useRef<HTMLAudioElement>(null!);
   const [musicIndex, setMusicIndex] = useState(1);
   //
+
   const loadMusic = (index: number): void => {
-    if (isLoading === false) {
+    if (!isLoading) {
       trackOrder.current.src = albumList[index - 1].preview;
       dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
       dispatch(setArtistName(albumList[index - 1].artist.name));
@@ -44,7 +45,6 @@ const Buttons: React.FC = () => {
   };
 
   const defineTimeCount = (e: any): void => {
-    // e: React.ChangeEvent<HTMLAudioElement>
     const { duration, currentTime } = e.target;
     dispatch(setDuration(duration));
     //
@@ -59,10 +59,16 @@ const Buttons: React.FC = () => {
     if (+currentSecond < 10) {
       currentSecond = `0${currentSecond}`;
     }
-    dispatch(setCurrentTimeProgress({ currentMinute, currentSecond }));
-    dispatch(setSongDuration({ totalMinute, totalSecond }));
+    dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
+    dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
     dispatch(setCurrentLineProgress((currentTime / duration) * 100));
   };
+
+  useEffect(() => {
+    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
+    return () =>
+      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+  }, [duration, offsetCurrentTime]);
 
   const playMusic = (): void => {
     trackOrder.current.play();
@@ -108,12 +114,6 @@ const Buttons: React.FC = () => {
   useEffect(() => {
     loadMusic(musicIndex);
   }, [isLoading, albumList]);
-
-  useEffect(() => {
-    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
-    return () =>
-      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
-  }, [duration, offsetCurrentTime]);
 
   useEffect(() => {
     trackOrder.current.currentTime = offsetCurrentTime;
@@ -162,7 +162,6 @@ const Buttons: React.FC = () => {
       <audio
         className="player__audio"
         muted={isAudioMuted ? true : false}
-        // src={trackOrder}
         ref={trackOrder}
       ></audio>
     </nav>

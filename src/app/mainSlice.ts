@@ -24,8 +24,8 @@ interface mainSliceState {
   currentArtistName: string;
   currentTrackName: string;
   currentLineProgress: number;
-  currentTimeProgress: string;
-  songDuration: string;
+  currentTimeProgress: number;
+  songDuration: number;
   duration: number;
   offsetCurrentTime: number;
 }
@@ -61,8 +61,8 @@ const initialState: mainSliceState = {
   currentArtistName: "untitled",
   currentTrackName: "untitled",
   currentLineProgress: 0,
-  currentTimeProgress: "",
-  songDuration: "",
+  currentTimeProgress: 0,
+  songDuration: 0,
   duration: 0,
   offsetCurrentTime: 0,
   isAudioMuted: false,
@@ -96,16 +96,16 @@ const mainSlice = createSlice({
     setCurrentLineProgress(state, action: PayloadAction<number>) {
       state.currentLineProgress = action.payload;
     },
-    setCurrentTimeProgress(state, action) {
-      const { currentMinute, currentSecond } = action.payload;
-      state.currentTimeProgress = `${currentMinute}:${currentSecond}`;
-    },
     setOffsetTime(state, action: PayloadAction<number>) {
       state.offsetCurrentTime = action.payload;
     },
-    setSongDuration(state, action: PayloadAction<any>) {
-      const { totalMinute, totalSecond } = action.payload;
-      state.songDuration = `${totalMinute}:${totalSecond}`;
+    setCurrentTimeProgress(state, action) {
+      // const { currentMinute, currentSecond } = action.payload;
+      state.currentTimeProgress = action.payload;
+    },
+    setSongDuration(state, action) {
+      // const { totalMinute, totalSecond } = action.payload;
+      state.songDuration = action.payload;
     },
     setDuration(state, action: PayloadAction<number>) {
       state.duration = action.payload;
