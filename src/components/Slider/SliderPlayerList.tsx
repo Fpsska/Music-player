@@ -1,6 +1,15 @@
 import React, { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/CardTemplate";
+import {
+  setTrackPreview,
+  setArtistName,
+  setTrackName,
+  setCurrentmusicIndex,
+  setTrack,
+  switchPauseStatus,
+  setCurrentLineProgress
+} from "../../app/mainSlice";
 import { RootState } from "../../app/store";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,11 +17,11 @@ import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
-
 const SliderCard: React.FC = () => {
-  const { albumList, mockData, isLoading } = useSelector(
+  const { albumList, mockData, isLoading, musicIndex } = useSelector(
     (state: RootState) => state.mainSlice
   );
+  const dispatch = useDispatch();
   //
   const [coverEffect] = useState({
     rotate: 50,
@@ -57,6 +66,25 @@ const SliderCard: React.FC = () => {
     [mockData]
   );
 
+  // const swipeToNextSong = (): void => {
+  //   if (!isLoading) {
+  //     dispatch(switchPauseStatus(false))
+  //     dispatch(setCurrentLineProgress(0))
+  //     dispatch(setCurrentmusicIndex(musicIndex + 1));
+  //     musicIndex <= 1
+  //       ? dispatch(setCurrentmusicIndex(albumList.length))
+  //       : dispatch(setCurrentmusicIndex(musicIndex - 1));
+  //     // 
+  //     dispatch(setTrack(albumList[musicIndex - 1].preview));
+  //     dispatch(
+  //       setTrackPreview(albumList[musicIndex - 1].artist.picture_medium)
+  //     );
+  //     dispatch(setArtistName(albumList[musicIndex - 1].artist.name));
+  //     dispatch(setTrackName(albumList[musicIndex - 1].title));
+  //   }
+  //   console.log("slide change");
+  // };
+
   return (
     <>
       <Swiper
@@ -67,7 +95,7 @@ const SliderCard: React.FC = () => {
         effect={"coverflow"}
         coverflowEffect={coverEffect}
         className="mySwiper"
-        onSlideChange={() => console.log("slide change")}
+        // onSlideChange={swipeToNextSong}
       >
         {isLoading ? mockList : list}
       </Swiper>

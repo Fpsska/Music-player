@@ -14,7 +14,7 @@ const Bar: React.FC = () => {
 
   const setNewCurrentTime = useCallback(
     (event): void => {
-      if (isPaused === false) {
+      if (!isPaused) {
         const width = progressArea.current.clientWidth;
         const offset = event.offsetX;
         const newCurrentTime = (offset / width) * duration;
@@ -30,7 +30,7 @@ const Bar: React.FC = () => {
       progressArea.current.removeEventListener("click", setNewCurrentTime);
     };
   }, [duration]);
-  //
+  // 
   return (
     <div
       ref={progressArea}

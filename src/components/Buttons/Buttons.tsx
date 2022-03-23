@@ -6,11 +6,13 @@ import {
   setTrackPreview,
   setArtistName,
   setTrackName,
+  setTrack,
   setCurrentLineProgress,
   setCurrentTimeProgress,
   setSongDuration,
   setDuration,
   setOffsetTime,
+  setCurrentmusicIndex,
 } from "../../app/mainSlice";
 import "./buttons.scss";
 import { RootState } from "../../app/store";
@@ -24,6 +26,8 @@ const Buttons: React.FC = () => {
     duration,
     offsetCurrentTime,
     isAudioMuted,
+    musicIndex,
+    currentTrack,
   } = useSelector((state: RootState) => state.mainSlice);
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
@@ -32,7 +36,6 @@ const Buttons: React.FC = () => {
   const pauseBtn = useRef<HTMLButtonElement>(null);
   const nextBtn = useRef<HTMLButtonElement>(null);
   const trackOrder = useRef<HTMLAudioElement>(null!);
-  const [musicIndex, setMusicIndex] = useState(1);
   //
 
   const loadMusic = (index: number): void => {
@@ -79,10 +82,10 @@ const Buttons: React.FC = () => {
   };
 
   const nextSong = (): void => {
-    setMusicIndex(musicIndex + 1);
+    dispatch(setCurrentmusicIndex(musicIndex + 1));
     musicIndex >= albumList.length
-      ? setMusicIndex(1)
-      : setMusicIndex(musicIndex + 1);
+      ? dispatch(setCurrentmusicIndex(1))
+      : dispatch(setCurrentmusicIndex(musicIndex + 1));
 
     loadMusic(musicIndex);
     playMusic();
@@ -93,10 +96,10 @@ const Buttons: React.FC = () => {
   };
 
   const prevSong = (): void => {
-    setMusicIndex(musicIndex - 1);
+    dispatch(setCurrentmusicIndex(musicIndex - 1));
     musicIndex <= 1
-      ? setMusicIndex(albumList.length)
-      : setMusicIndex(musicIndex - 1);
+      ? dispatch(setCurrentmusicIndex(albumList.length))
+      : dispatch(setCurrentmusicIndex(musicIndex - 1));
 
     loadMusic(musicIndex);
     playMusic();
@@ -121,9 +124,8 @@ const Buttons: React.FC = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? "nav--player" : ""} ${
-        isLightTheme ? "light" : ""
-      }`}
+      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""
+        }`}
     >
       <button
         ref={prevBtn}
@@ -141,9 +143,8 @@ const Buttons: React.FC = () => {
         ref={pauseBtn}
         disabled={isLoading ? true : false}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${
-          isPaused ? "nav__button--play" : "nav__button--pause"
-        }`}
+        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "nav__button--play" : "nav__button--pause"
+          }`}
       >
         {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>
@@ -163,6 +164,7 @@ const Buttons: React.FC = () => {
         className="player__audio"
         muted={isAudioMuted ? true : false}
         ref={trackOrder}
+        src={currentTrack}
       ></audio>
     </nav>
   );

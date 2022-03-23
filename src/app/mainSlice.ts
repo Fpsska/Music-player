@@ -23,6 +23,8 @@ interface mainSliceState {
   currentTrackPreview: string;
   currentArtistName: string;
   currentTrackName: string;
+  currentTrack: string;
+  musicIndex: number;
   currentLineProgress: number;
   currentTimeProgress: number;
   songDuration: number;
@@ -60,6 +62,8 @@ const initialState: mainSliceState = {
   currentTrackPreview: "",
   currentArtistName: "untitled",
   currentTrackName: "untitled",
+  currentTrack: "",
+  musicIndex: 1,
   currentLineProgress: 0,
   currentTimeProgress: 0,
   songDuration: 0,
@@ -81,7 +85,7 @@ const mainSlice = createSlice({
     switchPauseStatus(state, action: PayloadAction<boolean>) {
       state.isPaused = action.payload;
     },
-    setTrackPreview(state, action: PayloadAction<string>) {
+    setTrackPreview(state, action: PayloadAction<string>) { // img
       state.currentTrackPreview = action.payload;
     },
     setArtistName(state, action: PayloadAction<string>) {
@@ -89,6 +93,10 @@ const mainSlice = createSlice({
     },
     setTrackName(state, action: PayloadAction<string>) {
       state.currentTrackName = action.payload;
+    },
+    setTrack(state, action: PayloadAction<string>) {  // mp3
+      state.currentTrack = action.payload;
+      console.log(action.payload)
     },
     switchLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
@@ -99,12 +107,10 @@ const mainSlice = createSlice({
     setOffsetTime(state, action: PayloadAction<number>) {
       state.offsetCurrentTime = action.payload;
     },
-    setCurrentTimeProgress(state, action) {
-      // const { currentMinute, currentSecond } = action.payload;
+    setCurrentTimeProgress(state, action: PayloadAction<any>) {
       state.currentTimeProgress = action.payload;
     },
-    setSongDuration(state, action) {
-      // const { totalMinute, totalSecond } = action.payload;
+    setSongDuration(state, action: PayloadAction<any>) {
       state.songDuration = action.payload;
     },
     setDuration(state, action: PayloadAction<number>) {
@@ -112,6 +118,9 @@ const mainSlice = createSlice({
     },
     switchMutedStatus(state, action: PayloadAction<boolean>) {
       state.isAudioMuted = action.payload;
+    },
+    setCurrentmusicIndex(state, action: PayloadAction<number>) {
+      state.musicIndex = action.payload;
     },
   },
   extraReducers: {
@@ -138,6 +147,7 @@ export const {
   setTrackPreview,
   setArtistName,
   setTrackName,
+  setTrack,
   switchLoadingStatus,
   setCurrentLineProgress,
   setCurrentTimeProgress,
@@ -145,6 +155,7 @@ export const {
   setDuration,
   setOffsetTime,
   switchMutedStatus,
+  setCurrentmusicIndex,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;
