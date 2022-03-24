@@ -11,11 +11,12 @@ import SliderRecomendedList from "../../Slider/SliderRecomendedList";
 import SliderPlayList from "../../Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
+import FilterPage from "../Search/SearchPage";
 import BurgerMenu from "../../BurgerMenu/BurgerMenu";
 import { RootState } from "../../../app/store";
 
 const HomePage: React.FC = () => {
-  const { albumList, isPlaylistPage, isPlayerPage } = useSelector(
+  const { albumList, isPlaylistPage, isPlayerPage, isSearchPage } = useSelector(
     (state: RootState) => state.mainSlice
   );
   const { isBurgerOpen, isLightTheme } = useSelector(
@@ -68,30 +69,33 @@ const HomePage: React.FC = () => {
           <PlayListPage />
         ) : isPlayerPage ? (
           <PlayerPage />
-        ) : (
-          <>
-            <div className="home__section home__section--recommendation">
-              <h1 className="page__title title" onClick={goPlayerPage}>
-                <Link to="player">Recomended for you</Link>
-              </h1>
-              <div className="home__slider">
-                <SliderRecomendedList albumList={albumList} />
+        ) : isSearchPage ? (
+          <FilterPage />
+        ) :
+          (
+            <>
+              <div className="home__section home__section--recommendation">
+                <h1 className="page__title title" onClick={goPlayerPage}>
+                  <Link to="player">Recomended for you</Link>
+                </h1>
+                <div className="home__slider">
+                  <SliderRecomendedList albumList={albumList} />
+                </div>
               </div>
-            </div>
-            <div className="home__section home__section--playlist">
-              <h2 className="page__title title" onClick={goPlayListPage}>
-                <Link to="playlist">My Playlist</Link>
-              </h2>
-              <SliderPlayList albumList={albumList} />
-            </div>
-            <div className="home__section home__section--playlist">
-              <h2 className="page__title title" onClick={goPlayListPage}>
-                <Link to="playlist">Test</Link>
-              </h2>
-              <SliderPlayList albumList={albumList} />
-            </div>
-          </>
-        )}
+              <div className="home__section home__section--playlist">
+                <h2 className="page__title title" onClick={goPlayListPage}>
+                  <Link to="playlist">My Playlist</Link>
+                </h2>
+                <SliderPlayList albumList={albumList} />
+              </div>
+              <div className="home__section home__section--playlist">
+                <h2 className="page__title title" onClick={goPlayListPage}>
+                  <Link to="playlist">Test</Link>
+                </h2>
+                <SliderPlayList albumList={albumList} />
+              </div>
+            </>
+          )}
       </div>
     </>
   );

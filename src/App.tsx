@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "./components/Pages/Home/HomePage";
 import PlayListPage from "./components/Pages/Playlist/PlayListPage";
 import PlayerPage from "./components/Pages/Player/PlayerPage";
+import FilterPage from "./components/Pages/Search/SearchPage";
 import "./assets/scss/style.scss";
 import "./assets/scss/media.scss";
 import "../node_modules/swiper/swiper.scss";
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route index element={<HomePage />} />
           <Route path="playlist" element={<PlayListPage />} />
           <Route path="player" element={<PlayerPage />} />
+          <Route path="search" element={<FilterPage />} />
         </Route>
       </Routes>
     </div>

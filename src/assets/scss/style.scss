@@ -135,6 +135,11 @@ a {
     }
 }
 
+.search {
+    max-height: calc(100vh - 102px - 69px);
+    overflow-y: scroll;
+}
+
 .playlist {
     max-height: 75vh;
     height: 100%;

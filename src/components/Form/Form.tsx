@@ -5,13 +5,14 @@ import SvgTemplate from "../Common/SvgTemplate";
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
+  switchSearchPageStatus
 } from "../../app/mainSlice";
 import { switchBurgerStatus } from "../../app/burgerSlice";
 import "./form.scss";
 import { RootState } from "../../app/store";
 
 const Form: React.FC = () => {
-  const { isPlaylistPage, isPlayerPage, isLoading } = useSelector(
+  const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useSelector(
     (state: RootState) => state.mainSlice
   );
   const { isBurgerOpen, isLightTheme } = useSelector(
@@ -26,12 +27,24 @@ const Form: React.FC = () => {
       navigate("/Music-player");
       dispatch(switchPlaylistPageStatus(false));
       dispatch(switchPlayerPageStatus(false));
+      dispatch(switchSearchPageStatus(false));
     }, 200);
   };
 
   const openBurger = (): void => {
     dispatch(switchBurgerStatus(true));
   };
+
+  const openSearchPage = (e: React.SyntheticEvent): void => {
+    console.log("SUBMITED")
+    setTimeout(() => {
+      e.preventDefault()
+      dispatch(switchSearchPageStatus(true))
+      navigate("search");
+      console.log(isSearchPage)
+    }, 1000);
+  }
+
   return (
     <>
       {isPlaylistPage ? (
@@ -63,34 +76,68 @@ const Form: React.FC = () => {
           </button>
           <h1 className="header__title">Playing Now</h1>
         </div>
-      ) : (
-        <form className={isLightTheme ? "form light" : "form"} action="#">
+      ) : isSearchPage ? (
+        <div className="header__section">
           <button
-            className="form__button form__button--menu"
+            className="header__button header__button--search"
             type="button"
-            onClick={openBurger}
+            onClick={goBack}
           >
-            <SvgTemplate id="menu" />
+            <SvgTemplate id="arrow-back" />
           </button>
-          <div className="form__search">
-            <input
-              className="form__input"
-              type="text"
-              disabled={isLoading ? true : isBurgerOpen ? true : false}
-            />
+          <form className={isLightTheme ? "form light" : "form"} action="#">
+            <div className="form__search">
+              <input
+                className="form__input"
+                type="text"
+                disabled={isLoading ? true : isBurgerOpen ? true : false}
+              />
+              <button
+                className={
+                  isBurgerOpen
+                    ? "form__button form__button--search opacity"
+                    : "form__button form__button--search"
+                }
+                type="button"
+              >
+                <SvgTemplate id="search" />
+              </button>
+            </div>
+          </form>
+        </div>
+      )
+        :
+        (
+          <div className="header__section">
             <button
-              className={
-                isBurgerOpen
-                  ? "form__button form__button--search opacity"
-                  : "form__button form__button--search"
-              }
+              className="form__button form__button--menu"
               type="button"
+              onClick={openBurger}
             >
-              <SvgTemplate id="search" />
+              <SvgTemplate id="menu" />
             </button>
+            <form className={isLightTheme ? "form light" : "form"} action="#" onSubmit={openSearchPage}>
+              <div className="form__search">
+                <input
+                  className="form__input"
+                  type="text"
+                  disabled={isLoading ? true : isBurgerOpen ? true : false}
+                />
+                <button
+                  onClick={(e) => openSearchPage(e)}
+                  className={
+                    isBurgerOpen
+                      ? "form__button form__button--search opacity"
+                      : "form__button form__button--search"
+                  }
+                  type="button"
+                >
+                  <SvgTemplate id="search" />
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
-      )}
+        )}
     </>
   );
 };

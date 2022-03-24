@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import QuestionList from "../Question/QuestionList";
 import SvgTemplate from "../Common/SvgTemplate";
-import "./details.scss";
+import "./details.module.scss";
 import { RootState } from "../../app/store";
 
 const Details: React.FC = () => {

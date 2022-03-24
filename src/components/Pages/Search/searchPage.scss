@@ -1,0 +1,42 @@
+.list {
+    &__item {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        &:not(:last-child) {
+            margin: 0 0 20px 0;
+        }
+    }
+    &__information {
+        display: flex;
+        flex-direction: column;
+        :not(:last-child) {
+            margin: 0 0 10px 0;
+        }
+    }
+    &__artist {
+        color: #b0b0b0;
+    }
+    &__controls {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+        margin: 0 0 0 10px;
+        :not(:last-child) {
+            margin: 0 40px 0 0;
+        }
+    }
+    &__button {
+        padding: 0;
+        .icon__like {
+            fill: #5c5c5c;
+        }
+    }
+    &__image {
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+        object-fit: cover;
+        margin: 0 20px 0 0;
+    }
+}

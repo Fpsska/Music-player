@@ -14,6 +14,7 @@ export const fetchAlbumsData = createAsyncThunk(
 interface mainSliceState {
   albumList: albumListTypes[];
   mockData: mockDataTypes[];
+  isSearchPage: boolean;
   isPlaylistPage: boolean;
   isPlayerPage: boolean;
   isPaused: boolean;
@@ -54,6 +55,7 @@ const initialState: mainSliceState = {
       id: 7,
     },
   ],
+  isSearchPage: false,
   isPlaylistPage: false,
   isPlayerPage: false,
   isPaused: true,
@@ -76,6 +78,9 @@ const mainSlice = createSlice({
   name: "mainSlice",
   initialState,
   reducers: {
+    switchSearchPageStatus(state, action: PayloadAction<boolean>) {
+      state.isSearchPage = action.payload
+    },
     switchPlaylistPageStatus(state, action: PayloadAction<boolean>) {
       state.isPlaylistPage = action.payload;
     },
@@ -141,6 +146,7 @@ const mainSlice = createSlice({
 });
 
 export const {
+  switchSearchPageStatus,
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
   switchPauseStatus,
