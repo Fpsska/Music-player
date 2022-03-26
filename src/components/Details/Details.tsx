@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import QuestionList from "../Question/QuestionList";
 import SvgTemplate from "../Common/SvgTemplate";
-import "./details.module.scss";
 import { RootState } from "../../app/store";
+import "./details.scss";
+
 
 const Details: React.FC = () => {
     const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector(

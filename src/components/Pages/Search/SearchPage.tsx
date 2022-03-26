@@ -10,22 +10,22 @@ const SearchPage: React.FC = () => {
         <div className="container">
             <div className="search">
                 <h3 className="search__title">Tracks</h3>
-                <div className="search__list">
-                    <div className="list">
+                <div className="search__wrapper">
+                    <div className="search__list">
                         {
                             albumList.map(item => {
                                 return (
-                                    <div className="list__item" key={item.id}>
-                                        <img className="list__image" src={item.artist.picture_medium} alt="album" />
-                                        <div className="list__information">
-                                            <span className="list__song">{item.title}</span>
-                                            <span className="list__artist">{item.artist.name}</span>
+                                    <div className="search__list-item" key={item.id}>
+                                        <img className="search__list-image" src={item.artist.picture_medium} alt="album" />
+                                        <div className="search__list-information">
+                                            <span className="search__list-song">{item.title}</span>
+                                            <span className="search__list-artist">{item.artist.name}</span>
                                         </div>
-                                        <div className="list__controls">
-                                            <button className="list__button">
+                                        <div className="search__list-controls">
+                                            <button className="search__list-button">
                                                 <SvgTemplate id="like" />
                                             </button>
-                                            <span className="list__song-duration">{isLoading ? "0:00" : isPaused ? "0:00" : songDuration}</span>
+                                            <span className="search__list-time">{isLoading ? "0:00" : isPaused ? "0:00" : songDuration}</span>
                                         </div>
                                     </div>
                                 )

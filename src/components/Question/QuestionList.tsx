@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Question from "./QuestionTemplate";
-import "./question.scss";
 import { RootState } from "../../app/store";
+import "./question.scss";
 
 const QuestionList: React.FC = () => {
   const { questions, isLightTheme } = useSelector(

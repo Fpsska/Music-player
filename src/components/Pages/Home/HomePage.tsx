@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
       window.removeEventListener("load", defineCurtainStatus);
     };
   }, []);
-
+  // 
   return (
     <>
       <div className="page__burger">

@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { switchDropDownStatus } from "../../app/burgerSlice";
 import SvgTemplate from "../Common/SvgTemplate";
-import "./question.scss";
+
 
 interface QuestionPropTypes {
   id: string;

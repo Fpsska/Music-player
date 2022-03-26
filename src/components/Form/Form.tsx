@@ -35,13 +35,12 @@ const Form: React.FC = () => {
     dispatch(switchBurgerStatus(true));
   };
 
-  const openSearchPage = (e: React.SyntheticEvent): void => {
+  const relocateToSearchPage = (e: React.SyntheticEvent): void => {
     console.log("SUBMITED")
     setTimeout(() => {
       e.preventDefault()
       dispatch(switchSearchPageStatus(true))
       navigate("search");
-      console.log(isSearchPage)
     }, 1000);
   }
 
@@ -116,7 +115,7 @@ const Form: React.FC = () => {
             >
               <SvgTemplate id="menu" />
             </button>
-            <form className={isLightTheme ? "form light" : "form"} action="#" onSubmit={openSearchPage}>
+            <form className={isLightTheme ? "form light" : "form"} action="#" onSubmit={relocateToSearchPage}>
               <div className="form__search">
                 <input
                   className="form__input"
@@ -124,7 +123,7 @@ const Form: React.FC = () => {
                   disabled={isLoading ? true : isBurgerOpen ? true : false}
                 />
                 <button
-                  onClick={(e) => openSearchPage(e)}
+                  onClick={(e) => relocateToSearchPage(e)}
                   className={
                     isBurgerOpen
                       ? "form__button form__button--search opacity"

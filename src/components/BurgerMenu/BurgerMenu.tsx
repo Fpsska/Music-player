@@ -1,5 +1,6 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import {
   switchBurgerStatus,
   swithTheme,
@@ -7,7 +8,7 @@ import {
   switchContactInfoStatus,
   switchFaqsInfoStatus,
 } from "../../app/burgerSlice";
-import { fetchAlbumsData, switchPauseStatus } from "../../app/mainSlice";
+import { switchSearchPageStatus, switchPlaylistPageStatus, switchPlayerPageStatus } from "../../app/mainSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../Common/SvgTemplate";
 import Details from "../Details/Details";
@@ -20,6 +21,7 @@ const BurgerMenu: React.FC = () => {
     (state: RootState) => state.burgerSlice
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   //
   const closeBurger = (): void => {
     setIsVisible(!isVisible);
@@ -60,10 +62,13 @@ const BurgerMenu: React.FC = () => {
     dispatch(swithTheme(!isLightTheme));
   };
 
-  const fetchNewSong = (): void => {
-    dispatch(fetchAlbumsData());
-    dispatch(switchPauseStatus(true));
-  };
+  const relocateToSearchPage = (): void => {
+    setTimeout(() => {
+      navigate("search");
+      dispatch(switchBurgerStatus(false))
+      dispatch(switchSearchPageStatus(true))
+    }, 200);
+  }
   //
   return (
     <>
@@ -119,8 +124,8 @@ const BurgerMenu: React.FC = () => {
                     isLightTheme
                       ? "menu light"
                       : isInformationVisible
-                      ? "menu opened"
-                      : "menu"
+                        ? "menu opened"
+                        : "menu"
                   }
                 >
                   <li className="menu__item">
@@ -135,7 +140,7 @@ const BurgerMenu: React.FC = () => {
                   </li>
                   <li className="menu__item">
                     <SvgTemplate id="like" />
-                    <span className="menu__link" onClick={fetchNewSong}>
+                    <span className="menu__link" onClick={relocateToSearchPage}>
                       Liked Songs
                     </span>
                   </li>

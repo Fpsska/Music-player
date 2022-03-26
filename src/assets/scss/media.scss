@@ -22,9 +22,10 @@
     }
     .home {
         padding: 0 0 0 15px;
+        max-height: calc(100vh - 46px - 69px);
     }
     .header {
-        padding: 40px 15px 30px 15px;
+        padding: 10px 15px;
     }
 }
 
@@ -45,5 +46,14 @@
     }
     .navigation__informantion {
         max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .header {
+        padding: 20px 28px 20px 28px;
+    }
+    .home {
+        max-height: calc(100vh - 66px - 69px);
     }
 }

@@ -1,6 +1,6 @@
 .header {
     flex: 0 0 auto;
-    padding: 40px 28px 30px 28px;
+    transition: all .1s linear;
     &__section {
         display: flex;
         justify-content: space-between;
@@ -31,6 +31,10 @@
     }
 }
 
+.header.squeezed {
+    padding: 10px 15px;
+}
+
 .header.light {
     background-color: #f7faff;
     .header__button .icon__arrow-back,
@@ -41,4 +45,3 @@
         color: #091227;
     }
 }
-

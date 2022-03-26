@@ -26,7 +26,7 @@ const Layout: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAlbumsData());
   }, []);
-
+  // 
   return (
     <>
       <Header />
@@ -36,8 +36,8 @@ const Layout: React.FC = () => {
             isLightTheme
               ? "page light"
               : isPlayerPage
-              ? "page page--player"
-              : "page"
+                ? "page page--player"
+                : "page"
           }
         >
           <div className="page__wrapper">

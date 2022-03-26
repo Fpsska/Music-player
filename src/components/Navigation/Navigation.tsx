@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Buttons from "../Buttons/Buttons";
 import Bar from "../Bar/Bar";
-import "./navigation.scss";
 import { RootState } from "../../app/store";
+import "./navigation.scss";
 
 const Navigation: React.FC = () => {
   const {
