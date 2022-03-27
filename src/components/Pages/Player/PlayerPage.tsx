@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchMutedStatus } from "../../../app/mainSlice";
+import { switchMutedStatus, setFavouriteSong } from "../../../app/mainSlice";
 import SvgTemplate from "../../Common/SvgTemplate";
 import SliderPlayerList from "../../Slider/SliderPlayerList";
 import { RootState } from "../../../app/store";
@@ -15,6 +15,10 @@ const PlayerPage: React.FC = () => {
   const muteVolume = (): void => {
     dispatch(switchMutedStatus(!isAudioMuted));
   };
+  // 
+  const addToFavorite = (): void => {
+    dispatch(setFavouriteSong())
+  }
   //
   return (
     <div className="container">
@@ -56,6 +60,7 @@ const PlayerPage: React.FC = () => {
             <button
               className="player__button player__button--like"
               type="button"
+              onClick={addToFavorite}
             >
               <SvgTemplate id="like" />
             </button>

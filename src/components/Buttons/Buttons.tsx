@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../Common/SvgTemplate";
 import {
@@ -124,8 +124,7 @@ const Buttons: React.FC = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""
-        }`}
+      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""}`}
     >
       <button
         ref={prevBtn}

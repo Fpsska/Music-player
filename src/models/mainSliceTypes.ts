@@ -3,6 +3,7 @@ export interface albumListTypes {
   title: string;
   preview: string;
   artist: artistTypes;
+  isFavourite: boolean;
 }
 
 interface artistTypes {

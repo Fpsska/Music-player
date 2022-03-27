@@ -1,3 +1,12 @@
+.search {
+    max-height: calc(100vh - 72px - 69px);
+    overflow-y: scroll;
+    &__title--empty {
+        font-size: 22px;
+        text-align: center;
+    }
+}
+
 .search__list {
     &-item {
         display: flex;
@@ -40,3 +49,8 @@
         margin: 0 20px 0 0;
     }
 }
+.search__list-button.active {
+    .icon__like {
+        fill: #CC3333;
+    }
+}    

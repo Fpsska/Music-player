@@ -25,9 +25,11 @@ const SliderPlayList: React.FC<SliderPlayListPropTypes> = ({ albumList }) => {
         return (
           <SwiperSlide key={item.id}>
             <Card
+              id={item.id}
               artist={item.artist.name}
               track={item.title}
               image={item.artist.picture_medium}
+              isFavourite={item.isFavourite}
             />
           </SwiperSlide>
         );

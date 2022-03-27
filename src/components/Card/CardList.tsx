@@ -15,9 +15,11 @@ const CardList: React.FC = () => {
         return (
           <Card
             key={item.id}
+            id={item.id}
             artist={item.artist.name}
             track={item.title}
             image={item.artist.picture_medium}
+            isFavourite={item.isFavourite}
           />
         );
       }),

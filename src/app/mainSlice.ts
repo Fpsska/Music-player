@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction, current } from "@reduxjs/toolkit";
 import { albumListTypes, mockDataTypes } from "../models/mainSliceTypes";
 
 export const fetchAlbumsData = createAsyncThunk(
@@ -13,6 +13,7 @@ export const fetchAlbumsData = createAsyncThunk(
 
 interface mainSliceState {
   albumList: albumListTypes[];
+  likedData: albumListTypes[];
   mockData: mockDataTypes[];
   isSearchPage: boolean;
   isPlaylistPage: boolean;
@@ -26,6 +27,7 @@ interface mainSliceState {
   currentTrackName: string;
   currentTrack: string;
   musicIndex: number;
+  currentSlideID: string;
   currentLineProgress: number;
   currentTimeProgress: number;
   songDuration: number;
@@ -35,6 +37,7 @@ interface mainSliceState {
 
 const initialState: mainSliceState = {
   albumList: [],
+  likedData: [],
   mockData: [
     {
       id: 1,
@@ -59,19 +62,20 @@ const initialState: mainSliceState = {
   isPlaylistPage: false,
   isPlayerPage: false,
   isPaused: true,
-  status: "",
+  isAudioMuted: false,
   isLoading: true,
+  status: "",
   currentTrackPreview: "",
   currentArtistName: "untitled",
   currentTrackName: "untitled",
   currentTrack: "",
+  currentSlideID: "",
   musicIndex: 1,
   currentLineProgress: 0,
   currentTimeProgress: 0,
   songDuration: 0,
   duration: 0,
   offsetCurrentTime: 0,
-  isAudioMuted: false,
 };
 
 const mainSlice = createSlice({
@@ -101,7 +105,7 @@ const mainSlice = createSlice({
     },
     setTrack(state, action: PayloadAction<string>) {  // mp3
       state.currentTrack = action.payload;
-      console.log(action.payload)
+      // console.log(action.payload)
     },
     switchLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
@@ -127,6 +131,20 @@ const mainSlice = createSlice({
     setCurrentmusicIndex(state, action: PayloadAction<number>) {
       state.musicIndex = action.payload;
     },
+    setCurrentSlideID(state, action: PayloadAction<any>) {
+      const { id } = action.payload
+      // console.log("id /", typeof id, id)
+      state.currentSlideID = id
+    },
+    setFavouriteSong(state) {
+      state.albumList.forEach(item => {
+        if (String(item.id) === state.currentSlideID) {
+          item.isFavourite = true
+          console.log("currentSlideID /", state.currentSlideID, ":", item.id)
+        }
+      })
+      state.likedData = state.albumList.filter(item => item.isFavourite === true)
+    }
   },
   extraReducers: {
     [fetchAlbumsData.pending.type]: (state) => {
@@ -137,6 +155,7 @@ const mainSlice = createSlice({
       action: PayloadAction<albumListTypes[]>
     ) => {
       state.albumList = action.payload;
+      state.albumList.map(item => item.isFavourite = false)
       state.status = "success";
     },
     [fetchAlbumsData.rejected.type]: (state) => {
@@ -162,6 +181,8 @@ export const {
   setOffsetTime,
   switchMutedStatus,
   setCurrentmusicIndex,
+  setCurrentSlideID,
+  setFavouriteSong
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

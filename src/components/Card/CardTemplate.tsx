@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
 interface CardPropTypes {
+  id: number;
   image: string;
   artist: string;
   track: string;
+  isFavourite: boolean;
 }
 
-const Card: React.FC<CardPropTypes> = ({ image, artist, track }) => {
+const Card: React.FC<CardPropTypes> = ({ id, image, artist, track, isFavourite }) => {
   const {
     isPlaylistPage,
     isPlayerPage,
@@ -19,18 +21,16 @@ const Card: React.FC<CardPropTypes> = ({ image, artist, track }) => {
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
 
   return (
-    <div
-      className={`card ${isPlaylistPage ? "card--playlist" : ""} ${
-        isPlayerPage ? "card--player" : ""
-      } ${isLightTheme ? "light" : ""}`}
+    <div id={String(id)}  // Standard HTML Attributes
+      className={`card ${isPlaylistPage ? "card--playlist" : ""} ${isPlayerPage ? "card--player" : ""} ${isLightTheme ? "light" : ""} ${isFavourite ? "favourite" : ""}`}
     >
       <img
         className={
           isPlaylistPage
             ? "card__image card__image--playlist"
             : isPlayerPage
-            ? "card__image card__image--player"
-            : "card__image"
+              ? "card__image card__image--player"
+              : "card__image"
         }
         src={isPlayerPage ? currentTrackPreview : image}
         alt="albom-preview"
