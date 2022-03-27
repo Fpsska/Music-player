@@ -21,15 +21,16 @@ const Question: React.FC<QuestionPropTypes> = ({
   const dispatch = useDispatch();
   const icon = useRef<HTMLButtonElement>(null);
 
-  const handleDropDown = () => {
+  const handleDropDown = (): void => {
     dispatch(switchDropDownStatus({ id, status: !isDropDownHidden }));
   };
 
   return (
-    <div className="question__item" key={id} onClick={handleDropDown}>
+    <div className="question__item" key={id}>
       <div className="question__header">
         <h4 className="question__title">{question}</h4>
         <button
+          onClick={handleDropDown}
           className={
             isDropDownHidden ? "question__button" : "question__button opened"
           }

@@ -12,7 +12,7 @@ import SliderPlayList from "../../Slider/SliderPlayList";
 import PlayListPage from "../Playlist/PlayListPage";
 import PlayerPage from "../Player/PlayerPage";
 import FilterPage from "../Search/SearchPage";
-import BurgerMenu from "../../BurgerMenu/BurgerMenu";
+import BurgerMenu from "../../BurgerMenu/Burger";
 import { RootState } from "../../../app/store";
 
 const HomePage: React.FC = () => {
