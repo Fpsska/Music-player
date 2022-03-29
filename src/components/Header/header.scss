@@ -1,6 +1,6 @@
 .header {
     flex: 0 0 auto;
-    transition: all .1s linear;
+    transition: all 0.1s linear;
     &__section {
         display: flex;
         justify-content: space-between;
@@ -19,6 +19,13 @@
         position: absolute;
         left: 0;
         padding: 0;
+    }
+    &__button--menu {
+        text-align: start;
+        transition: transform 0.25s linear;
+        &:active {
+            transform: scale(1.25);
+        }
     }
     &__button--playlist,
     &__button--search {
@@ -43,5 +50,8 @@
     }
     .header__title {
         color: #091227;
+    }
+    .icon__menu {
+        stroke: #091127;
     }
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SvgTemplate from "../Common/SvgTemplate";
 import {
@@ -6,7 +6,6 @@ import {
   setTrackPreview,
   setArtistName,
   setTrackName,
-  setTrack,
   setCurrentLineProgress,
   setCurrentTimeProgress,
   setSongDuration,
@@ -132,8 +131,8 @@ const Buttons: React.FC = () => {
         onClick={prevSong}
         className={
           isPlayerPage
-            ? "nav__button nav__button--player nav__button--prev"
-            : "nav__button nav__button--prev"
+            ? "nav__button nav__button--player prev"
+            : "nav__button prev"
         }
       >
         <SvgTemplate id="arrow_prev_icon" />
@@ -142,8 +141,7 @@ const Buttons: React.FC = () => {
         ref={pauseBtn}
         disabled={isLoading ? true : false}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "nav__button--play" : "nav__button--pause"
-          }`}
+        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "pause" : "play"}`}
       >
         {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>
@@ -153,8 +151,8 @@ const Buttons: React.FC = () => {
         onClick={nextSong}
         className={
           isPlayerPage
-            ? "nav__button nav__button--player nav__button--next"
-            : "nav__button nav__button--next"
+            ? "nav__button nav__button--player next"
+            : "nav__button next"
         }
       >
         <SvgTemplate id="arrow__next-icon" />

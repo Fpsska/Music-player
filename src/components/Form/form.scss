@@ -10,13 +10,6 @@
     &__button {
         padding: 0;
     }
-    &__button--menu {
-        text-align: start;
-        transition: transform 0.25s linear;
-        &:active {
-            transform: scale(1.25);
-        }
-    }
     &__button--search {
         top: 50%;
         right: 0;
@@ -53,9 +46,6 @@
 
 .form.light {
     .form__button .icon__search,
-    .icon__menu {
-        stroke: #091127;
-    }
     .form__input {
         color: #091127;
         &:hover {
@@ -67,3 +57,4 @@
 .form__button--search.opacity {
     opacity: 0.6;
 }
+

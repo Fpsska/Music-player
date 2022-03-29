@@ -8,8 +8,8 @@ import {
   switchSearchPageStatus
 } from "../../app/mainSlice";
 import { switchBurgerStatus } from "../../app/burgerSlice";
-import "./form.scss";
 import { RootState } from "../../app/store";
+import "./form.scss";
 
 const Form: React.FC = () => {
   const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useSelector(
@@ -21,7 +21,7 @@ const Form: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  // 
   const goBack = (): void => {
     setTimeout(() => {
       navigate("/Music-player");
@@ -43,7 +43,7 @@ const Form: React.FC = () => {
       navigate("search");
     }, 1000);
   }
-
+  // 
   return (
     <>
       {isPlaylistPage ? (
@@ -109,7 +109,7 @@ const Form: React.FC = () => {
         (
           <div className="header__section">
             <button
-              className="form__button form__button--menu"
+              className="header__button header__button--menu"
               type="button"
               onClick={openBurger}
             >

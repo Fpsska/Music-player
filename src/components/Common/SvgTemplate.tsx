@@ -47,7 +47,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
       return (
         <span className="icon">
           <svg
-            className="icon_arrow-prev"
+            className="icon__arrow-prev"
             width="30"
             height="33"
             viewBox="0 0 30 33"

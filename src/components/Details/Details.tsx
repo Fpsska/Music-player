@@ -10,7 +10,7 @@ const Details: React.FC = () => {
     const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector(
         (state: RootState) => state.burgerSlice
     );
-
+    // 
     return (
         <div className="details">
             <div className="details__wrapper">
