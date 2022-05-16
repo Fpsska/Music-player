@@ -14,7 +14,7 @@ import {
 import { RootState } from "../../app/store";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { FreeMode, EffectCoverflow } from "swiper";
+import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
 
@@ -69,23 +69,23 @@ const SliderCard: React.FC = () => {
     [mockData]
   );
 
-  const changeSong = useMemo(() => (swiper: any): void => {
-    if (!isLoading) {
-      musicIndex >= albumList.length
-        ? dispatch(setCurrentmusicIndex(1))
-        : dispatch(setCurrentmusicIndex(musicIndex + 1));
-      musicIndex <= 1
-        ? dispatch(setCurrentmusicIndex(albumList.length))
-        : dispatch(setCurrentmusicIndex(musicIndex - 1));
-      // value check
-      dispatch(setTrackPreview(albumList[musicIndex - 1].artist.picture_medium))
-      dispatch(setTrack(albumList[musicIndex - 1].preview));
-      dispatch(setArtistName(albumList[musicIndex - 1].artist.name));
-      dispatch(setTrackName(albumList[musicIndex - 1].title));
-      // 
-      dispatch(setCurrentSlideID({ id: [...swiper.wrapperEl.children].filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id }))
-    }
-  }, [isLoading, albumList, musicIndex]);
+  // const changeSong = useMemo(() => (swiper: any): void => {
+  //   if (!isLoading) {
+  //     musicIndex >= albumList.length
+  //       ? dispatch(setCurrentmusicIndex(1))
+  //       : dispatch(setCurrentmusicIndex(musicIndex + 1));
+  //     musicIndex <= 1
+  //       ? dispatch(setCurrentmusicIndex(albumList.length))
+  //       : dispatch(setCurrentmusicIndex(musicIndex - 1));
+  //     // value check
+  //     dispatch(setTrackPreview(albumList[musicIndex - 1].artist.picture_medium))
+  //     dispatch(setTrack(albumList[musicIndex - 1].preview));
+  //     dispatch(setArtistName(albumList[musicIndex - 1].artist.name));
+  //     dispatch(setTrackName(albumList[musicIndex - 1].title));
+  //     // 
+  //     dispatch(setCurrentSlideID({ id: [...swiper.wrapperEl.children].filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id }))
+  //   }
+  // }, [isLoading, albumList, musicIndex]);
   // 
   return (
     <>
@@ -97,8 +97,11 @@ const SliderCard: React.FC = () => {
         freeMode={false}
         effect={"coverflow"}
         coverflowEffect={coverEffect}
-        onSwiper={(swiper) => dispatch(setCurrentSlideID({ id: Array.from(swiper.wrapperEl.children).filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id }))}
-        onSlideChange={(swiper) => changeSong(swiper)}
+
+        navigation={true}
+        modules={[Navigation]}
+      // onSwiper={(swiper) => dispatch(setCurrentSlideID({ id: Array.from(swiper.wrapperEl.children).filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id }))}
+      // onSlideChange={(swiper) => changeSong(swiper)}
       >
         {isLoading ? mockList : list}
       </Swiper>

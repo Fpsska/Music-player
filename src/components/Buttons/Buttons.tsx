@@ -85,13 +85,14 @@ const Buttons: React.FC = () => {
     musicIndex >= albumList.length
       ? dispatch(setCurrentmusicIndex(1))
       : dispatch(setCurrentmusicIndex(musicIndex + 1));
-
+    // value check
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
+    console.log(document.querySelector('.swiper-slide'))
   };
 
   const prevSong = (): void => {
@@ -99,13 +100,14 @@ const Buttons: React.FC = () => {
     musicIndex <= 1
       ? dispatch(setCurrentmusicIndex(albumList.length))
       : dispatch(setCurrentmusicIndex(musicIndex - 1));
-
+    // value check
     loadMusic(musicIndex);
     playMusic();
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
+    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id)
   };
 
   const defineButtonEvent = (): void => {

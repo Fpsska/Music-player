@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Layout from "./components/Common/Layout";
+import Layout from "../Common/Layout";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./components/Pages/Home/HomePage";
-import PlayListPage from "./components/Pages/Playlist/PlayListPage";
-import PlayerPage from "./components/Pages/Player/PlayerPage";
-import FilterPage from "./components/Pages/Search/SearchPage";
-import "./assets/scss/style.scss";
-import "./assets/scss/media.scss";
-import "../node_modules/swiper/swiper.scss";
-import { RootState } from "./app/store";
+import HomePage from "../Pages/Home/HomePage";
+import PlayListPage from "../Pages/Playlist/PlayListPage";
+import PlayerPage from "../Pages/Player/PlayerPage";
+import FilterPage from "../Pages/Search/SearchPage";
+import "../../assets/scss/style.scss";
+import "../../assets/scss/media.scss";
+import "../../../node_modules/swiper/swiper.scss";
+import "./App.css";
+import { RootState } from "../../app/store";
 
 const App: React.FC = () => {
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);

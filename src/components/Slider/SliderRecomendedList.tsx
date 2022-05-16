@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Card from "../Card/CardTemplate";
 import { RootState } from "../../app/store";
-import { albumListTypes } from "../../models/mainSliceTypes";
+import { albumListTypes } from "../../Types/mainSliceTypes";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { FreeMode } from "swiper";

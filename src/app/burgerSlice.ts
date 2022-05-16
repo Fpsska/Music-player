@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { questionsTypes } from "../models/burgerSliceTypes";
+import { questionsTypes } from "../Types/burgerSliceTypes";
 
 interface burgerSliceState {
   questions: questionsTypes[];
