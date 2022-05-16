@@ -1,8 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Question from "./QuestionTemplate";
-import { RootState } from "../../app/store";
-import "./question.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../app/store';
+
+import Question from './QuestionTemplate';
+import './question.scss';
+
+// /. imports
 
 const QuestionList: React.FC = () => {
   const { questions, isLightTheme } = useSelector(
@@ -22,7 +26,7 @@ const QuestionList: React.FC = () => {
   });
 
   return (
-    <div className={isLightTheme ? "question light" : "question"}>
+    <div className={isLightTheme ? 'question light' : 'question'}>
       <div className="question__wrapper">{list}</div>
     </div>
   );

@@ -1,9 +1,11 @@
-import React from "react";
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { switchDropDownStatus } from "../../app/slices/burgerSlice";
-import SvgTemplate from "../Common/SvgTemplate";
+import React from 'react';
+import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { switchDropDownStatus } from '../../app/slices/burgerSlice';
+import SvgTemplate from '../Common/SvgTemplate';
+
+// /. imports
 
 interface QuestionPropTypes {
   id: string;
@@ -12,13 +14,15 @@ interface QuestionPropTypes {
   isDropDownHidden: boolean;
 }
 
+// /. interfaces
+
 const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
 
   const {
     id,
     question,
     answer,
-    isDropDownHidden,
+    isDropDownHidden
   } = props;
 
   const dispatch = useDispatch();
@@ -35,7 +39,7 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
         <button
           onClick={handleDropDown}
           className={
-            isDropDownHidden ? "question__button" : "question__button opened"
+            isDropDownHidden ? 'question__button' : 'question__button opened'
           }
           ref={icon}
         >

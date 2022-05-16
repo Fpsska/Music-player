@@ -1,6 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../app/store';
+
+// /. imports
 
 interface CardPropTypes {
   id: number;
@@ -9,6 +12,8 @@ interface CardPropTypes {
   track: string;
   isFavourite: boolean;
 }
+
+// /. interfaces
 
 const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
@@ -25,21 +30,21 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     isPlayerPage,
     currentTrackPreview,
     currentArtistName,
-    currentTrackName,
+    currentTrackName
   } = useSelector((state: RootState) => state.mainSlice);
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
 
   return (
     <div id={String(id)}  // Standard HTML Attributes
-      className={`card ${isPlaylistPage ? "card--playlist" : ""} ${isPlayerPage ? "card--player" : ""} ${isLightTheme ? "light" : ""} ${isFavourite ? "favourite" : ""}`}
+      className={`card ${isPlaylistPage ? 'card--playlist' : ''} ${isPlayerPage ? 'card--player' : ''} ${isLightTheme ? 'light' : ''} ${isFavourite ? 'favourite' : ''}`}
     >
       <img
         className={
           isPlaylistPage
-            ? "card__image card__image--playlist"
+            ? 'card__image card__image--playlist'
             : isPlayerPage
-              ? "card__image card__image--player"
-              : "card__image"
+              ? 'card__image card__image--player'
+              : 'card__image'
         }
         src={isPlayerPage ? currentTrackPreview : image}
         alt="albom-preview"
@@ -47,8 +52,8 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
       <h2
         className={
           isPlayerPage
-            ? "card__title card__title--player slide"
-            : "card__title title"
+            ? 'card__title card__title--player slide'
+            : 'card__title title'
         }
         title={currentTrackName}
       >
@@ -57,8 +62,8 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
       <span
         className={
           isPlayerPage
-            ? "card__subtitle card__subtitle--player subtitle"
-            : "card__subtitle subtitle"
+            ? 'card__subtitle card__subtitle--player subtitle'
+            : 'card__subtitle subtitle'
         }
       >
         {isPlayerPage ? currentArtistName : artist}

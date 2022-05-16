@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import SvgTemplate from "../../Common/SvgTemplate";
-import { RootState } from "../../../app/store";
-import "./searchPage.scss"
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import SvgTemplate from '../../Common/SvgTemplate';
+import { RootState } from '../../../app/store';
+import './searchPage.scss';
+
+// /. imports
 
 const SearchPage: React.FC = () => {
-    const { likedData, songDuration, isLoading, isPaused } = useSelector((state: RootState) => state.mainSlice)
-    const [isEmpty, setEmptyStatus] = useState(false)
+    const { likedData, songDuration, isLoading, isPaused } = useSelector((state: RootState) => state.mainSlice);
+    const [isEmpty, setEmptyStatus] = useState(false);
     useEffect(() => {
         if (likedData.length === 0) {
-            setEmptyStatus(true)
+            setEmptyStatus(true);
         }
-    }, [likedData])
+    }, [likedData]);
 
     return (
         <div className="container">
@@ -34,17 +37,17 @@ const SearchPage: React.FC = () => {
                                                 <button className="search__list-button">
                                                     <SvgTemplate id="like" />
                                                 </button>
-                                                <span className="search__list-time">{isLoading ? "0:00" : isPaused ? "0:00" : songDuration}</span>
+                                                <span className="search__list-time">{isLoading ? '0:00' : isPaused ? '0:00' : songDuration}</span>
                                             </div>
                                         </div>
-                                    )
+                                    );
                                 })
                         }
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default SearchPage;

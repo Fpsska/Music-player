@@ -1,15 +1,18 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import SvgTemplate from "../Common/SvgTemplate";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+
+import SvgTemplate from '../Common/SvgTemplate';
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
   switchSearchPageStatus
-} from "../../app/slices/mainSlice";
-import { switchBurgerStatus } from "../../app/slices/burgerSlice";
-import { RootState } from "../../app/store";
-import "./form.scss";
+} from '../../app/slices/mainSlice';
+import { switchBurgerStatus } from '../../app/slices/burgerSlice';
+import { RootState } from '../../app/store';
+import './form.scss';
+
+// /. imports
 
 const Form: React.FC = () => {
   const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useSelector(
@@ -24,7 +27,7 @@ const Form: React.FC = () => {
   // 
   const goBack = (): void => {
     setTimeout(() => {
-      navigate("/Music-player");
+      navigate('/Music-player');
       dispatch(switchPlaylistPageStatus(false));
       dispatch(switchPlayerPageStatus(false));
       dispatch(switchSearchPageStatus(false));
@@ -36,19 +39,19 @@ const Form: React.FC = () => {
   };
 
   const relocateToSearchPage = (e: React.SyntheticEvent): void => {
-    console.log("SUBMITED")
+    console.log('SUBMITED');
     setTimeout(() => {
-      e.preventDefault()
-      dispatch(switchSearchPageStatus(true))
-      navigate("search");
+      e.preventDefault();
+      dispatch(switchSearchPageStatus(true));
+      navigate('search');
     }, 1000);
-  }
+  };
   // 
   return (
     <>
       {isPlaylistPage ? (
         <div
-          className={isLightTheme ? "header__section light" : "header__section"}
+          className={isLightTheme ? 'header__section light' : 'header__section'}
         >
           <button
             className="header__button header__button--playlist"
@@ -84,7 +87,7 @@ const Form: React.FC = () => {
           >
             <SvgTemplate id="arrow-back" />
           </button>
-          <form className={isLightTheme ? "form light" : "form"} action="#">
+          <form className={isLightTheme ? 'form light' : 'form'} action="#">
             <div className="form__search">
               <input
                 className="form__input"
@@ -94,8 +97,8 @@ const Form: React.FC = () => {
               <button
                 className={
                   isBurgerOpen
-                    ? "form__button form__button--search opacity"
-                    : "form__button form__button--search"
+                    ? 'form__button form__button--search opacity'
+                    : 'form__button form__button--search'
                 }
                 type="button"
               >
@@ -115,7 +118,7 @@ const Form: React.FC = () => {
             >
               <SvgTemplate id="menu" />
             </button>
-            <form className={isLightTheme ? "form light" : "form"} action="#" onSubmit={relocateToSearchPage}>
+            <form className={isLightTheme ? 'form light' : 'form'} action="#" onSubmit={relocateToSearchPage}>
               <div className="form__search">
                 <input
                   className="form__input"
@@ -126,8 +129,8 @@ const Form: React.FC = () => {
                   onClick={(e) => relocateToSearchPage(e)}
                   className={
                     isBurgerOpen
-                      ? "form__button form__button--search opacity"
-                      : "form__button form__button--search"
+                      ? 'form__button form__button--search opacity'
+                      : 'form__button form__button--search'
                   }
                   type="button"
                 >

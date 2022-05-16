@@ -1,9 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import Buttons from "../Buttons/Buttons";
-import Bar from "../Bar/Bar";
-import { RootState } from "../../app/store";
-import "./navigation.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import Buttons from '../Buttons/Buttons';
+import Bar from '../Bar/Bar';
+import { RootState } from '../../app/store';
+import './navigation.scss';
+
+// /. imports
 
 const Navigation: React.FC = () => {
   const {
@@ -11,19 +14,19 @@ const Navigation: React.FC = () => {
     isLoading,
     currentTrackPreview,
     currentArtistName,
-    currentTrackName,
+    currentTrackName
   } = useSelector((state: RootState) => state.mainSlice);
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   // 
   return (
     <div
-      className={`navigation ${isPlayerPage ? "navigation--player" : ""} ${isLightTheme ? "light" : ""}`}
+      className={`navigation ${isPlayerPage ? 'navigation--player' : ''} ${isLightTheme ? 'light' : ''}`}
     >
       <div
         className={
           isPlayerPage
-            ? "navigation__wrapper navigation__wrapper--player"
-            : "navigation__wrapper"
+            ? 'navigation__wrapper navigation__wrapper--player'
+            : 'navigation__wrapper'
         }
       >
         <Bar />

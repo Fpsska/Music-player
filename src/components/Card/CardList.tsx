@@ -1,8 +1,12 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
-import Card from "./CardTemplate";
-import "./card.scss";
-import { RootState } from "../../app/store";
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../app/store';
+
+import Card from './CardTemplate';
+import './card.scss';
+
+// /. imports
 
 const CardList: React.FC = () => {
   const { albumList, mockData, isLoading } = useSelector(

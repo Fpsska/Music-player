@@ -1,16 +1,19 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
-import { switchSearchPageStatus } from "../../app/slices/mainSlice";
-import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from "../../app/slices/burgerSlice";
-import SvgTemplate from "../Common/SvgTemplate";
-import Details from "../Details/Details";
-import { RootState } from "../../app/store";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+
+import { switchSearchPageStatus } from '../../app/slices/mainSlice';
+import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from '../../app/slices/burgerSlice';
+import SvgTemplate from '../Common/SvgTemplate';
+import Details from '../Details/Details';
+import { RootState } from '../../app/store';
+
+// /. imports
 
 const BurgerNav: React.FC = () => {
-    const { isLightTheme, isInformationVisible, isContactInfo, isFaqsInfo } = useSelector((state: RootState) => state.burgerSlice)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const { isLightTheme, isInformationVisible, isContactInfo, isFaqsInfo } = useSelector((state: RootState) => state.burgerSlice);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     // 
     const displaySocial = (): void => {
         if (isContactInfo) {
@@ -38,16 +41,16 @@ const BurgerNav: React.FC = () => {
 
     const relocateToSearchPage = (): void => {
         setTimeout(() => {
-            navigate("search");
-            dispatch(switchBurgerStatus(false))
-            dispatch(switchSearchPageStatus(true))
+            navigate('search');
+            dispatch(switchBurgerStatus(false));
+            dispatch(switchSearchPageStatus(true));
         }, 200);
-    }
+    };
     // 
     return (
         <nav className="burger__menu">
             <ul
-                className={`menu ${isLightTheme ? "light" : ""} ${isInformationVisible ? "opened" : ""}`
+                className={`menu ${isLightTheme ? 'light' : ''} ${isInformationVisible ? 'opened' : ''}`
                 }
             >
                 <li className="menu__item">
@@ -55,7 +58,7 @@ const BurgerNav: React.FC = () => {
                     <a
                         className="menu__link"
                         href="https://github.com/Fpsska"
-                        target="_blank"
+                        target="_blank" rel="noreferrer"
                     >
                         Profile
                     </a>
@@ -85,7 +88,7 @@ const BurgerNav: React.FC = () => {
             </ul>
             {isInformationVisible ? <Details /> : <></>}
         </nav>
-    )
-}
+    );
+};
 
 export default BurgerNav;

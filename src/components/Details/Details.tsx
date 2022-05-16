@@ -1,10 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import QuestionList from "../Question/QuestionList";
-import SvgTemplate from "../Common/SvgTemplate";
-import { RootState } from "../../app/store";
-import "./details.scss";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
+import QuestionList from '../Question/QuestionList';
+import SvgTemplate from '../Common/SvgTemplate';
+import { RootState } from '../../app/store';
+import './details.scss';
+
+// /. imports
 
 const Details: React.FC = () => {
     const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector(
@@ -17,7 +19,7 @@ const Details: React.FC = () => {
                 {isContactInfo ? (
                     <ul
                         className={
-                            isLightTheme ? "details__list list ligth" : "details__list list"
+                            isLightTheme ? 'details__list list ligth' : 'details__list list'
                         }
                     >
                         <li className="list__item">
@@ -26,7 +28,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="https://t.me/Fpsska"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="telegram" />
                                     <span>Telegram</span>
@@ -36,7 +38,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="mailto:fpsska1337@gmail.com"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="mail" />
                                     <span>Mail</span>
@@ -49,7 +51,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="https://omarya.in/c06bb8267814418890050935c1319f52"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="website" />
                                     <span>WebSite</span>
@@ -59,7 +61,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="mailto:omkumar9031@gmail.com"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="mail" />
                                     <span>Mail</span>
@@ -69,7 +71,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="https://www.instagram.com/uiux.om"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="instagram" />
                                     <span>Instagram</span>
@@ -82,7 +84,7 @@ const Details: React.FC = () => {
                                 <a
                                     className="list__link"
                                     href="https://developers.deezer.com/"
-                                    target="_blank"
+                                    target="_blank" rel="noreferrer"
                                 >
                                     <SvgTemplate id="website" />
                                     <span>WebSite</span>

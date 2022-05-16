@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import SvgTemplate from "../Common/SvgTemplate";
+import React, { useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import SvgTemplate from '../Common/SvgTemplate';
 import {
   switchPauseStatus,
   setTrackPreview,
@@ -11,10 +12,12 @@ import {
   setSongDuration,
   setDuration,
   setOffsetTime,
-  setCurrentmusicIndex,
-} from "../../app/slices/mainSlice";
-import "./buttons.scss";
-import { RootState } from "../../app/store";
+  setCurrentmusicIndex
+} from '../../app/slices/mainSlice';
+import './buttons.scss';
+import { RootState } from '../../app/store';
+
+// /. imports
 
 const Buttons: React.FC = () => {
   const {
@@ -26,7 +29,7 @@ const Buttons: React.FC = () => {
     offsetCurrentTime,
     isAudioMuted,
     musicIndex,
-    currentTrack,
+    currentTrack
   } = useSelector((state: RootState) => state.mainSlice);
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
@@ -51,13 +54,13 @@ const Buttons: React.FC = () => {
     dispatch(setDuration(duration));
     //
     let totalSecond = String(Math.floor(duration % 60));
-    let totalMinute = String(Math.floor(duration / 60));
+    const totalMinute = String(Math.floor(duration / 60));
     if (+totalSecond < 10) {
       totalSecond = `0${totalSecond}`;
     }
     //
     let currentSecond = String(Math.floor(currentTime % 60));
-    let currentMinute = String(Math.floor(currentTime / 60));
+    const currentMinute = String(Math.floor(currentTime / 60));
     if (+currentSecond < 10) {
       currentSecond = `0${currentSecond}`;
     }
@@ -67,9 +70,9 @@ const Buttons: React.FC = () => {
   };
 
   useEffect(() => {
-    trackOrder.current.addEventListener("timeupdate", defineTimeCount);
+    trackOrder.current.addEventListener('timeupdate', defineTimeCount);
     return () =>
-      trackOrder.current.removeEventListener("timeupdate", defineTimeCount);
+      trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
   }, [duration, offsetCurrentTime]);
 
   const playMusic = (): void => {
@@ -92,7 +95,7 @@ const Buttons: React.FC = () => {
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-    console.log(document.querySelector('.swiper-slide'))
+    console.log(document.querySelector('.swiper-slide'));
   };
 
   const prevSong = (): void => {
@@ -107,7 +110,7 @@ const Buttons: React.FC = () => {
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains("swiper-slide-active"))[0].children[0].id)
+    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
   const defineButtonEvent = (): void => {
@@ -125,7 +128,7 @@ const Buttons: React.FC = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? "nav--player" : ""} ${isLightTheme ? "light" : ""}`}
+      className={`nav ${isPlayerPage ? 'nav--player' : ''} ${isLightTheme ? 'light' : ''}`}
     >
       <button
         ref={prevBtn}
@@ -133,8 +136,8 @@ const Buttons: React.FC = () => {
         onClick={prevSong}
         className={
           isPlayerPage
-            ? "nav__button nav__button--player prev"
-            : "nav__button prev"
+            ? 'nav__button nav__button--player prev'
+            : 'nav__button prev'
         }
       >
         <SvgTemplate id="arrow_prev_icon" />
@@ -143,7 +146,7 @@ const Buttons: React.FC = () => {
         ref={pauseBtn}
         disabled={isLoading ? true : false}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? "nav__button--player" : ""} ${isPaused ? "pause" : "play"}`}
+        className={`nav__button ${isPlayerPage ? 'nav__button--player' : ''} ${isPaused ? 'pause' : 'play'}`}
       >
         {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
       </button>
@@ -153,8 +156,8 @@ const Buttons: React.FC = () => {
         onClick={nextSong}
         className={
           isPlayerPage
-            ? "nav__button nav__button--player next"
-            : "nav__button next"
+            ? 'nav__button nav__button--player next'
+            : 'nav__button next'
         }
       >
         <SvgTemplate id="arrow__next-icon" />

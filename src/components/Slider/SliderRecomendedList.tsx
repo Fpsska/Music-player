@@ -1,20 +1,27 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
-import Card from "../Card/CardTemplate";
-import { RootState } from "../../app/store";
-import { albumListTypes } from "../../Types/mainSliceTypes";
+import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import SwiperCore, { FreeMode } from 'swiper';
+
+import Card from '../Card/CardTemplate';
+import { RootState } from '../../app/store';
+import { albumListTypes } from '../../Types/mainSliceTypes';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { FreeMode } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode]);
+
+// /. imports
 
 interface SliderPlayListPropTypes {
   albumList: albumListTypes[];
 }
 
+// /. interfaces
+
 const SliderRecomendedList: React.FC<SliderPlayListPropTypes> = ({
-  albumList,
+  albumList
 }) => {
   const { isLoading, mockData } = useSelector(
     (state: RootState) => state.mainSlice
@@ -64,20 +71,20 @@ const SliderRecomendedList: React.FC<SliderPlayListPropTypes> = ({
         320: {
           slidesPerView: 1.4,
           spaceBetween: 40,
-          centeredSlides: false,
+          centeredSlides: false
         },
         360: {
           slidesPerView: 1.7,
-          spaceBetween: 30,
+          spaceBetween: 30
         },
         768: {
           slidesPerView: 3.2,
-          spaceBetween: 30,
+          spaceBetween: 30
         },
         1024: {
           slidesPerView: 3.2,
-          spaceBetween: 30,
-        },
+          spaceBetween: 30
+        }
       }}
       className="mySwiper"
     >

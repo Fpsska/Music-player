@@ -1,12 +1,15 @@
-import React from "react";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { Outlet } from "react-router";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import { fetchAlbumsData, switchLoadingStatus } from "../../app/slices/mainSlice";
-import { RootState } from "../../app/store";
+import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router';
+
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import { fetchAlbumsData, switchLoadingStatus } from '../../app/slices/mainSlice';
+import { RootState } from '../../app/store';
+
+// /. imports
 
 const Layout: React.FC = () => {
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
@@ -16,7 +19,7 @@ const Layout: React.FC = () => {
   const dispatch = useDispatch();
   //
   useEffect(() => {
-    if (status === "success") {
+    if (status === 'success') {
       setTimeout(() => {
         dispatch(switchLoadingStatus(false));
       }, 2000);
@@ -34,10 +37,10 @@ const Layout: React.FC = () => {
         <div
           className={
             isLightTheme
-              ? "page light"
+              ? 'page light'
               : isPlayerPage
-                ? "page page--player"
-                : "page"
+                ? 'page page--player'
+                : 'page'
           }
         >
           <div className="page__wrapper">

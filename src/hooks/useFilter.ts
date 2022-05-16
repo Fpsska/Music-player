@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState } from 'react';
+
+// /. imports
 
 interface propTypes {
     items: any[],
     filterProp: string
 }
+
+// /. interfaces
 
 export function useFilter(props: propTypes) {
 
@@ -12,17 +16,17 @@ export function useFilter(props: propTypes) {
         filterProp
     } = props;
 
-    const [enteredSearchValue, setEnteredSearchValue] = useState<string>("");
+    const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
 
     const sortedItems = enteredSearchValue
         ? items.filter((item) =>
-            RegExp(enteredSearchValue, "i").test(item[filterProp])
+            RegExp(enteredSearchValue, 'i').test(item[filterProp])
         )
         : items;
 
     return {
         enteredSearchValue,
         setEnteredSearchValue,
-        sortedItems,
+        sortedItems
     };
 }

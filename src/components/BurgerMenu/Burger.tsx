@@ -1,15 +1,22 @@
-import React, { useState, useLayoutEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useLayoutEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { Spring, animated } from 'react-spring';
+
 import {
   switchBurgerStatus,
   swithTheme,
-  switchInformationStatus,
-} from "../../app/slices/burgerSlice";
-import { Spring, animated } from "react-spring";
-import SvgTemplate from "../Common/SvgTemplate";
-import BurgerNav from "./BurgerNav";
-import "./burger.scss";
-import { RootState } from "../../app/store";
+  switchInformationStatus
+} from '../../app/slices/burgerSlice';
+import SvgTemplate from '../Common/SvgTemplate';
+
+import { RootState } from '../../app/store';
+
+import BurgerNav from './BurgerNav';
+
+import './burger.scss';
+
+// /. imports
 
 const BurgerMenu: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +34,7 @@ const BurgerMenu: React.FC = () => {
   };
 
   const keyHandler = (e: KeyboardEvent): void => {
-    if (e.code === "Escape") {
+    if (e.code === 'Escape') {
       closeBurger();
       setTimeout(() => {
         dispatch(switchInformationStatus(false));
@@ -36,9 +43,9 @@ const BurgerMenu: React.FC = () => {
   };
 
   useLayoutEffect(() => {
-    window.addEventListener("keydown", keyHandler);
+    window.addEventListener('keydown', keyHandler);
     return () => {
-      window.removeEventListener("keydown", keyHandler);
+      window.removeEventListener('keydown', keyHandler);
     };
   }, [isVisible]);
 
@@ -49,8 +56,8 @@ const BurgerMenu: React.FC = () => {
   return (
     <>
       <Spring
-        from={{ transform: "translateX(-300px)" }}
-        to={{ transform: "translateX(0px)" }}
+        from={{ transform: 'translateX(-300px)' }}
+        to={{ transform: 'translateX(0px)' }}
         config={{ duration: 360 }}
         reverse={isVisible}
         delay={100}
@@ -69,14 +76,14 @@ const BurgerMenu: React.FC = () => {
             </>
             <div
               className={
-                isLightTheme ? "burger__wrapper light" : "burger__wrapper"
+                isLightTheme ? 'burger__wrapper light' : 'burger__wrapper'
               }
             >
               <div
                 className={
                   isLightTheme
-                    ? "burger__navigation light"
-                    : "burger__navigation"
+                    ? 'burger__navigation light'
+                    : 'burger__navigation'
                 }
               >
                 <button

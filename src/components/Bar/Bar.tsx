@@ -1,8 +1,11 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setOffsetTime } from "../../app/slices/mainSlice";
-import "./bar.scss";
-import { RootState } from "../../app/store";
+import React, { useRef, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setOffsetTime } from '../../app/slices/mainSlice';
+import './bar.scss';
+import { RootState } from '../../app/store';
+
+// /. imports
 
 const Bar: React.FC = () => {
   const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
@@ -26,26 +29,26 @@ const Bar: React.FC = () => {
   );
 
   useEffect(() => {
-    progressArea.current.addEventListener("click", setNewCurrentTime);
+    progressArea.current.addEventListener('click', setNewCurrentTime);
     return () => {
-      progressArea.current.removeEventListener("click", setNewCurrentTime);
+      progressArea.current.removeEventListener('click', setNewCurrentTime);
     };
   }, [duration]);
 
   useEffect(() => {
     if (!isPaused && !isLoading) {
       setTimeout(() => {
-        progressLine.current.classList.add("active")
-      }, 500)
+        progressLine.current.classList.add('active');
+      }, 500);
     } else {
-      progressLine.current.classList.remove("active")
+      progressLine.current.classList.remove('active');
     }
-  }, [isPaused, isLoading])
+  }, [isPaused, isLoading]);
   // 
   return (
     <div
       ref={progressArea}
-      className={isLightTheme ? "progress light" : "progress"}
+      className={isLightTheme ? 'progress light' : 'progress'}
     >
       <div
         ref={progressLine}

@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Provider } from 'react-redux';
+
+import { BrowserRouter } from 'react-router-dom';
+
 import App from './components/App/App';
 import { store } from './app/store';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+
 import * as serviceWorker from './serviceWorker';
+
+// /. imports
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,9 +1,12 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { switchMutedStatus, setFavouriteSong } from "../../../app/slices/mainSlice";
-import SvgTemplate from "../../Common/SvgTemplate";
-import SliderPlayerList from "../../Slider/SliderPlayerList";
-import { RootState } from "../../../app/store";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/mainSlice';
+import SvgTemplate from '../../Common/SvgTemplate';
+import SliderPlayerList from '../../Slider/SliderPlayerList';
+import { RootState } from '../../../app/store';
+
+// /. imports
 
 const PlayerPage: React.FC = () => {
   //
@@ -17,8 +20,8 @@ const PlayerPage: React.FC = () => {
   };
   // 
   const addToFavorite = (): void => {
-    dispatch(setFavouriteSong())
-  }
+    dispatch(setFavouriteSong());
+  };
   //
   return (
     <div className="container">
@@ -36,12 +39,12 @@ const PlayerPage: React.FC = () => {
               <SvgTemplate id="volume" />
               <span
                 className={
-                  isAudioMuted ? "volume__label muted" : "volume__label"
+                  isAudioMuted ? 'volume__label muted' : 'volume__label'
                 }
               ></span>
               <span
                 className={
-                  isAudioMuted ? "volume__label muted" : "volume__label"
+                  isAudioMuted ? 'volume__label muted' : 'volume__label'
                 }
               ></span>
             </button>
@@ -67,14 +70,14 @@ const PlayerPage: React.FC = () => {
           </div>
           <div
             className={
-              isLightTheme ? "player__time time light" : "player__time time"
+              isLightTheme ? 'player__time time light' : 'player__time time'
             }
           >
             <span className="time__current">
-              {isLoading ? "00:00" : currentTimeProgress}
+              {isLoading ? '00:00' : currentTimeProgress}
             </span>
             <span className="time__length">
-              {isLoading ? "00:00" : songDuration}
+              {isLoading ? '00:00' : songDuration}
             </span>
           </div>
         </div>

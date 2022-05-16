@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
+
+// /. imports
 
 interface SvgTemplatePropTypes {
   id: string;
 }
 
+// /. interfaces
+
 const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
   switch (props.id) {
-    case "pause":
+    case 'pause':
       return (
         <span className="icon">
           <svg
@@ -25,7 +29,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "arrow__next-icon":
+    case 'arrow__next-icon':
       return (
         <span className="icon">
           <svg
@@ -43,7 +47,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "arrow_prev_icon":
+    case 'arrow_prev_icon':
       return (
         <span className="icon">
           <svg
@@ -61,7 +65,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "menu":
+    case 'menu':
       return (
         <span className="icon">
           <svg
@@ -77,7 +81,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "search":
+    case 'search':
       return (
         <span className="icon">
           <svg
@@ -96,7 +100,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "mixer":
+    case 'mixer':
       return (
         <span className="icon">
           <svg
@@ -154,7 +158,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "arrow-back":
+    case 'arrow-back':
       return (
         <span className="icon">
           <svg
@@ -212,7 +216,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "volume":
+    case 'volume':
       return (
         <span className="icon">
           <svg
@@ -231,7 +235,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "repeat":
+    case 'repeat':
       return (
         <span className="icon">
           <svg
@@ -250,7 +254,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "oder":
+    case 'oder':
       return (
         <span className="icon">
           <svg
@@ -274,7 +278,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "like":
+    case 'like':
       return (
         <span className="icon">
           <svg
@@ -292,7 +296,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "close":
+    case 'close':
       return (
         <span className="icon">
           <svg
@@ -316,7 +320,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "theme":
+    case 'theme':
       return (
         <span className="icon">
           <svg
@@ -337,7 +341,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "language":
+    case 'language':
       return (
         <span className="icon">
           <svg
@@ -356,7 +360,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "message":
+    case 'message':
       return (
         <span className="icon">
           <svg
@@ -375,7 +379,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "faqs":
+    case 'faqs':
       return (
         <span className="icon">
           <svg
@@ -394,7 +398,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "profile":
+    case 'profile':
       return (
         <span className="icon">
           <svg
@@ -426,7 +430,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "main-settings":
+    case 'main-settings':
       return (
         <span className="icon">
           <svg
@@ -460,7 +464,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "play":
+    case 'play':
       return (
         <span className="icon">
           <svg
@@ -478,7 +482,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "arrow_dropdown":
+    case 'arrow_dropdown':
       return (
         <span className="icon">
           <svg
@@ -498,7 +502,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "telegram":
+    case 'telegram':
       return (
         <span className="icon">
           <svg
@@ -518,7 +522,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "instagram":
+    case 'instagram':
       return (
         <span className="icon">
           <svg
@@ -548,7 +552,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "mail":
+    case 'mail':
       return (
         <span className="icon">
           <svg
@@ -564,7 +568,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
           </svg>
         </span>
       );
-    case "website":
+    case 'website':
       return (
         <span className="icon">
           <svg

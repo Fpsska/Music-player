@@ -1,16 +1,19 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import React, { useEffect, useLayoutEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+
 import {
   switchPlaylistPageStatus,
-  switchPlayerPageStatus,
-} from "../../../app/slices/mainSlice";
-import { switchCurtainStatus } from "../../../app/slices/burgerSlice";
-import SliderRecomendedList from "../../Slider/SliderRecomendedList";
-import SliderPlayList from "../../Slider/SliderPlayList";
-import BurgerMenu from "../../BurgerMenu/Burger";
-import { RootState } from "../../../app/store";
+  switchPlayerPageStatus
+} from '../../../app/slices/mainSlice';
+import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
+import SliderRecomendedList from '../../Slider/SliderRecomendedList';
+import SliderPlayList from '../../Slider/SliderPlayList';
+import BurgerMenu from '../../BurgerMenu/Burger';
+import { RootState } from '../../../app/store';
+
+// /. imports
 
 const HomePage: React.FC = () => {
   const { albumList } = useSelector(
@@ -27,12 +30,12 @@ const HomePage: React.FC = () => {
   //
   const goPlayListPage = (): void => {
     dispatch(switchPlaylistPageStatus(true));
-    navigate("playlist");
+    navigate('playlist');
   };
   //
   const goPlayerPage = (): void => {
     dispatch(switchPlayerPageStatus(true));
-    navigate("player");
+    navigate('player');
   };
 
   const defineCurtainStatus = (): void => {
@@ -48,11 +51,11 @@ const HomePage: React.FC = () => {
   }, [isBurgerOpen]);
 
   useLayoutEffect(() => {
-    window.addEventListener("resize", defineCurtainStatus);
-    window.addEventListener("load", defineCurtainStatus);
+    window.addEventListener('resize', defineCurtainStatus);
+    window.addEventListener('load', defineCurtainStatus);
     return () => {
-      window.removeEventListener("resize", defineCurtainStatus);
-      window.removeEventListener("load", defineCurtainStatus);
+      window.removeEventListener('resize', defineCurtainStatus);
+      window.removeEventListener('load', defineCurtainStatus);
     };
   }, []);
   // 
@@ -61,7 +64,7 @@ const HomePage: React.FC = () => {
       <div className="page__burger">
         {isBurgerOpen ? <BurgerMenu /> : <></>}
       </div>
-      <div className={isLightTheme ? "home light" : "home"}>
+      <div className={isLightTheme ? 'home light' : 'home'}>
         <div className="home__section home__section--recommendation">
           <h1 className="page__title title" onClick={goPlayerPage}>
             <Link to="player">Recomended for you</Link>

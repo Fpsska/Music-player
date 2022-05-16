@@ -1,5 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { questionsTypes } from "../../Types/burgerSliceTypes";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { questionsTypes } from '../../Types/burgerSliceTypes';
+
+// /. imports
 
 interface burgerSliceState {
   questions: questionsTypes[];
@@ -11,6 +14,8 @@ interface burgerSliceState {
   isFaqsInfo: boolean;
 }
 
+// /. interfaces
+
 const initialState: burgerSliceState = {
   isBurgerOpen: false,
   isLightTheme: false,
@@ -20,23 +25,25 @@ const initialState: burgerSliceState = {
   isFaqsInfo: false,
   questions: [
     {
-      id: "0",
-      question: "Which technologies used in this app?",
+      id: '0',
+      question: 'Which technologies used in this app?',
       answer:
-        "This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.",
-      isDropDownHidden: true,
+        'This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.',
+      isDropDownHidden: true
     },
     {
-      id: "1",
-      question: "Where did you get all the information about the tracks from?",
-      answer: "We used free Deezer API for get data of all provided tracks.",
-      isDropDownHidden: true,
-    },
-  ],
+      id: '1',
+      question: 'Where did you get all the information about the tracks from?',
+      answer: 'We used free Deezer API for get data of all provided tracks.',
+      isDropDownHidden: true
+    }
+  ]
 };
 
+// /. initialState
+
 const burgerSlice = createSlice({
-  name: "burgerSlice",
+  name: 'burgerSlice',
   initialState,
   reducers: {
     switchBurgerStatus(state, action: PayloadAction<boolean>) {
@@ -63,8 +70,8 @@ const burgerSlice = createSlice({
         state.questions.forEach((item) => (item.isDropDownHidden = true));
       }
       state.questions[id].isDropDownHidden = status;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -74,7 +81,7 @@ export const {
   switchInformationStatus,
   switchContactInfoStatus,
   switchFaqsInfoStatus,
-  switchDropDownStatus,
+  switchDropDownStatus
 } = burgerSlice.actions;
 
 export default burgerSlice.reducer;

@@ -1,6 +1,11 @@
-import React, { useMemo, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Card from "../Card/CardTemplate";
+import React, { useMemo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
+
+import Card from '../Card/CardTemplate';
 import {
   setTrackPreview,
   setArtistName,
@@ -10,13 +15,13 @@ import {
   switchPauseStatus,
   setCurrentLineProgress,
   setCurrentSlideID
-} from "../../app/slices/mainSlice";
-import { RootState } from "../../app/store";
+} from '../../app/slices/mainSlice';
+import { RootState } from '../../app/store';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from "swiper";
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
+
+// /. imports
 
 const SliderCard: React.FC = () => {
   const { albumList, mockData, isLoading, musicIndex, currentSlideID } = useSelector(
@@ -29,7 +34,7 @@ const SliderCard: React.FC = () => {
     stretch: 0,
     depth: 500,
     modifier: 1,
-    slideShadows: false,
+    slideShadows: false
   });
   //
 
@@ -95,7 +100,7 @@ const SliderCard: React.FC = () => {
         spaceBetween={30}
         centeredSlides={true}
         freeMode={false}
-        effect={"coverflow"}
+        effect={'coverflow'}
         coverflowEffect={coverEffect}
 
         navigation={true}
