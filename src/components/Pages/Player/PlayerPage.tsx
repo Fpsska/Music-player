@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchMutedStatus, setFavouriteSong } from "../../../app/mainSlice";
+import { switchMutedStatus, setFavouriteSong } from "../../../app/slices/mainSlice";
 import SvgTemplate from "../../Common/SvgTemplate";
 import SliderPlayerList from "../../Slider/SliderPlayerList";
 import { RootState } from "../../../app/store";

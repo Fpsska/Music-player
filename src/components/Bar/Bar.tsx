@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setOffsetTime } from "../../app/mainSlice";
+import { setOffsetTime } from "../../app/slices/mainSlice";
 import "./bar.scss";
 import { RootState } from "../../app/store";
 

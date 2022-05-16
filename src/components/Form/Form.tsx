@@ -6,8 +6,8 @@ import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
   switchSearchPageStatus
-} from "../../app/mainSlice";
-import { switchBurgerStatus } from "../../app/burgerSlice";
+} from "../../app/slices/mainSlice";
+import { switchBurgerStatus } from "../../app/slices/burgerSlice";
 import { RootState } from "../../app/store";
 import "./form.scss";
 

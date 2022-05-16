@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction, current } from "@reduxjs/toolkit";
-import { albumListTypes, mockDataTypes } from "../Types/mainSliceTypes";
+import { albumListTypes, mockDataTypes } from "../../Types/mainSliceTypes";
 
 export const fetchAlbumsData = createAsyncThunk(
   "mainSlice/fetchAlbumData",

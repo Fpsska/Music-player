@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
-} from "../../../app/mainSlice";
-import { switchCurtainStatus } from "../../../app/burgerSlice";
+} from "../../../app/slices/mainSlice";
+import { switchCurtainStatus } from "../../../app/slices/burgerSlice";
 import SliderRecomendedList from "../../Slider/SliderRecomendedList";
 import SliderPlayList from "../../Slider/SliderPlayList";
 import BurgerMenu from "../../BurgerMenu/Burger";

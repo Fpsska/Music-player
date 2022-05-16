@@ -12,7 +12,7 @@ import {
   setDuration,
   setOffsetTime,
   setCurrentmusicIndex,
-} from "../../app/mainSlice";
+} from "../../app/slices/mainSlice";
 import "./buttons.scss";
 import { RootState } from "../../app/store";
 

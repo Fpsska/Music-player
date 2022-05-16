@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import { fetchAlbumsData, switchLoadingStatus } from "../../app/mainSlice";
+import { fetchAlbumsData, switchLoadingStatus } from "../../app/slices/mainSlice";
 import { RootState } from "../../app/store";
 
 const Layout: React.FC = () => {

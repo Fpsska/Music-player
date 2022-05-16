@@ -10,7 +10,7 @@ import {
   switchPauseStatus,
   setCurrentLineProgress,
   setCurrentSlideID
-} from "../../app/mainSlice";
+} from "../../app/slices/mainSlice";
 import { RootState } from "../../app/store";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";

@@ -4,7 +4,7 @@ import {
   switchBurgerStatus,
   swithTheme,
   switchInformationStatus,
-} from "../../app/burgerSlice";
+} from "../../app/slices/burgerSlice";
 import { Spring, animated } from "react-spring";
 import SvgTemplate from "../Common/SvgTemplate";
 import BurgerNav from "./BurgerNav";

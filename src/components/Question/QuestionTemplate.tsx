@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { switchDropDownStatus } from "../../app/burgerSlice";
+import { switchDropDownStatus } from "../../app/slices/burgerSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 
 

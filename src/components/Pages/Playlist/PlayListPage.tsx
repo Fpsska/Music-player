@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { switchPlaylistPageStatus } from "../../../app/mainSlice";
+import { switchPlaylistPageStatus } from "../../../app/slices/mainSlice";
 import CardList from "../../Card/CardList";
 
 const PlayListPage: React.FC = () => {

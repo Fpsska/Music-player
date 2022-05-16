@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { switchSearchPageStatus } from "../../app/mainSlice";
-import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from "../../app/burgerSlice";
+import { switchSearchPageStatus } from "../../app/slices/mainSlice";
+import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from "../../app/slices/burgerSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import Details from "../Details/Details";
 import { RootState } from "../../app/store";
