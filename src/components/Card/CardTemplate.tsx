@@ -10,7 +10,16 @@ interface CardPropTypes {
   isFavourite: boolean;
 }
 
-const Card: React.FC<CardPropTypes> = ({ id, image, artist, track, isFavourite }) => {
+const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
+
+  const {
+    id,
+    image,
+    artist,
+    track,
+    isFavourite
+  } = props;
+
   const {
     isPlaylistPage,
     isPlayerPage,

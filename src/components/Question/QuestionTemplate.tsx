@@ -12,12 +12,15 @@ interface QuestionPropTypes {
   isDropDownHidden: boolean;
 }
 
-const Question: React.FC<QuestionPropTypes> = ({
-  id,
-  question,
-  answer,
-  isDropDownHidden,
-}) => {
+const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
+
+  const {
+    id,
+    question,
+    answer,
+    isDropDownHidden,
+  } = props;
+
   const dispatch = useDispatch();
   const icon = useRef<HTMLButtonElement>(null);
 

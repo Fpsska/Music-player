@@ -1,6 +1,17 @@
 import { useState } from "react";
 
-export function useFilter(items: any[], filterProp: string) {
+interface propTypes {
+    items: any[],
+    filterProp: string
+}
+
+export function useFilter(props: propTypes) {
+
+    const {
+        items,
+        filterProp
+    } = props;
+
     const [enteredSearchValue, setEnteredSearchValue] = useState<string>("");
 
     const sortedItems = enteredSearchValue
