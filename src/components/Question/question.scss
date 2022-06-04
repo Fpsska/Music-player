@@ -8,7 +8,7 @@
     align-items: start;
   }
   &__item {
-    color: var(--questionItem-color);
+    color: var(--question__item-color);
     &:not(:last-child) {
       margin: 0 0 10px 0;
     }

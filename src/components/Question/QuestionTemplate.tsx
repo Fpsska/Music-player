@@ -2,8 +2,9 @@ import React from 'react';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { RiArrowDropDownLine } from 'react-icons/ri';
+
 import { switchDropDownStatus } from '../../app/slices/burgerSlice';
-import SvgTemplate from '../Common/SvgTemplate';
 
 // /. imports
 
@@ -43,7 +44,7 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
           }
           ref={icon}
         >
-          <SvgTemplate id="arrow_dropdown" />
+          <RiArrowDropDownLine size={24} color={'#eaf0ff'}/>
         </button>
       </div>
       {isDropDownHidden ? <></> : <p className="question__answer">{answer}</p>}

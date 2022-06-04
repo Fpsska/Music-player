@@ -1,8 +1,13 @@
-html[data-theme="dark"] {
-    --app-background-color: #091227;
+$primary: #eaf0ff;
+$dark: #091227;
 
-    --page-background-color: #091227;
-    --page-title-color: #fff;
+html[data-theme="dark"] {
+    --app-background-color: #{$dark};
+
+    --page-background-color: #{$dark};
+
+    --title-color: #{$primary};
+    --subtitle-color: #a5c0ff;
 
     --time-color: rgba(165, 192, 255, 0.7);
 
@@ -11,21 +16,25 @@ html[data-theme="dark"] {
     --progress-line__before-color: #fff;
 
     --burger-background-color: rgba(9, 18, 39, 0.7);
-    --burger-backgroundWrapper-color: #091227;
-    --burger__icons-color: #eaf0ff;
+    --burger__wrapper-background-color: #{$dark};
+
+    --icons-color: #{$primary};
+    --nav__icons-color: #{$primary};
 
     --menu-link-color: #dfe8ff;
     --menu-link-hoverColor: rgba(165, 192, 255, 0.7);
 
-    --card-title-color: #eaf0ff;
+    --card-title-color: #{$primary};
 
     --list-link-color: #e4e4e4;
 
-    --header-background-color: #091227;
+    --header-background-color: #{$dark};
+    --header-title-color: #{$primary};
 
-    --trackName-color: #eaf0ff;
+    --trackName-color: #{$primary};
 
-    --questionItem-color: #eaf0ff;
+    --question__item-color: #{$primary};
 
-    --search-title-color: #eaf0ff;
+    --search-title-color: #{$primary};
 }
+

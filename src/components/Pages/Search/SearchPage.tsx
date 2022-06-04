@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import SvgTemplate from '../../Common/SvgTemplate';
+import { BsHeart } from 'react-icons/bs';
+
 import { RootState } from '../../../app/store';
 import './searchPage.scss';
 
@@ -35,7 +36,7 @@ const SearchPage: React.FC = () => {
                                             </div>
                                             <div className="search__list-controls">
                                                 <button className="search__list-button">
-                                                    <SvgTemplate id="like" />
+                                                    <BsHeart size={18} color={'#8996b8'} />
                                                 </button>
                                                 <span className="search__list-time">{isLoading ? '0:00' : isPaused ? '0:00' : songDuration}</span>
                                             </div>

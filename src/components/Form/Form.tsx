@@ -2,7 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import SvgTemplate from '../Common/SvgTemplate';
+import { FiSearch } from 'react-icons/fi';
+import { RiEqualizerLine } from 'react-icons/ri';
+import { HiOutlineMenuAlt4, HiOutlineArrowLeft } from 'react-icons/hi';
+
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus,
@@ -58,13 +61,13 @@ const Form: React.FC = () => {
             type="button"
             onClick={goBack}
           >
-            <SvgTemplate id="arrow-back" />
+            <HiOutlineArrowLeft size={25} color={'#eaf0ff'} />
           </button>
           <button
             className="header__button header__button--playlist"
             type="button"
           >
-            <SvgTemplate id="mixer" />
+            <RiEqualizerLine size={25} color={'#eaf0ff'}/>
           </button>
         </div>
       ) : isPlayerPage ? (
@@ -74,7 +77,7 @@ const Form: React.FC = () => {
             type="button"
             onClick={goBack}
           >
-            <SvgTemplate id="arrow-back" />
+            <HiOutlineArrowLeft size={25} color={'#eaf0ff'} />
           </button>
           <h1 className="header__title">Playing Now</h1>
         </div>
@@ -85,7 +88,7 @@ const Form: React.FC = () => {
             type="button"
             onClick={goBack}
           >
-            <SvgTemplate id="arrow-back" />
+            <HiOutlineArrowLeft size={25} color={'#eaf0ff'} />
           </button>
           <form className="form" action="#">
             <div className="form__search">
@@ -102,7 +105,7 @@ const Form: React.FC = () => {
                 }
                 type="button"
               >
-                <SvgTemplate id="search" />
+                <FiSearch size={25} color={'#eaf0ff'} />
               </button>
             </div>
           </form>
@@ -116,7 +119,7 @@ const Form: React.FC = () => {
               type="button"
               onClick={openBurger}
             >
-              <SvgTemplate id="menu" />
+              <HiOutlineMenuAlt4 size={25} color={'#eaf0ff'} />
             </button>
             <form className="form" action="#" onSubmit={relocateToSearchPage}>
               <div className="form__search">
@@ -134,7 +137,7 @@ const Form: React.FC = () => {
                   }
                   type="button"
                 >
-                  <SvgTemplate id="search" />
+                  <FiSearch size={25} color={'#eaf0ff'} />
                 </button>
               </div>
             </form>

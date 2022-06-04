@@ -1,8 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { BsTelegram } from 'react-icons/bs';
+import { FaInstagramSquare } from 'react-icons/fa';
+import { GrInternetExplorer } from 'react-icons/gr';
+import { ImMail4 } from 'react-icons/im';
+
 import QuestionList from '../Question/QuestionList';
-import SvgTemplate from '../Common/SvgTemplate';
+
 import { RootState } from '../../app/store';
 import './details.scss';
 
@@ -27,7 +32,7 @@ const Details: React.FC = () => {
                                     href="https://t.me/Fpsska"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="telegram" />
+                                    <BsTelegram size={36} color={'#000'} />
                                     <span>Telegram</span>
                                 </a>
                             </div>
@@ -37,7 +42,7 @@ const Details: React.FC = () => {
                                     href="mailto:fpsska1337@gmail.com"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="mail" />
+                                    <ImMail4 size={36} color={'#000'} />
                                     <span>Mail</span>
                                 </a>
                             </div>
@@ -50,7 +55,7 @@ const Details: React.FC = () => {
                                     href="https://omarya.in/c06bb8267814418890050935c1319f52"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="website" />
+                                    <GrInternetExplorer size={36} color={'#000'} />
                                     <span>WebSite</span>
                                 </a>
                             </div>
@@ -60,7 +65,7 @@ const Details: React.FC = () => {
                                     href="mailto:omkumar9031@gmail.com"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="mail" />
+                                    <ImMail4 size={36} color={'#000'} />
                                     <span>Mail</span>
                                 </a>
                             </div>
@@ -70,7 +75,7 @@ const Details: React.FC = () => {
                                     href="https://www.instagram.com/uiux.om"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="instagram" />
+                                    <FaInstagramSquare size={36} color={'#000'} />
                                     <span>Instagram</span>
                                 </a>
                             </div>
@@ -83,7 +88,7 @@ const Details: React.FC = () => {
                                     href="https://developers.deezer.com/"
                                     target="_blank" rel="noreferrer"
                                 >
-                                    <SvgTemplate id="website" />
+                                    <GrInternetExplorer size={36} color={'#000'} />
                                     <span>WebSite</span>
                                 </a>
                             </div>

@@ -61,14 +61,14 @@ a {
 }
 
 .title {
-    color: #eaf0ff;
+    color: var(--title-color);
     font-weight: 500;
     line-height: 16px;
     font-size: 14px;
     @include textSlice;
 }
 .subtitle {
-    color: #a5c0ff;
+    color: var(--subtitle-color);
     font-weight: 400;
     line-height: 11.6px;
     font-size: 10px;
@@ -99,10 +99,10 @@ a {
         font-weight: 700;
         line-height: 29.02px;
         margin: 0 0 20px 0;
-        color: var(--page-title-color);
+        color: var(--title-color);
     }
     &__title a {
-        color: var(--page-title-color);
+        color: var(--title-color);
     }
     &__section--playlist {
         margin: 42px 0 0 0;
@@ -286,12 +286,12 @@ a {
 .icon__mixer,
 .icon__play,
 .icon__pause {
-    stroke: var(--burger__icons-color);
+    stroke: var(--icons-color);
 }
 
 .icon__arrow-prev,
 .icon__arrow-next {
-    fill: #eaf0ff;
+    fill: var(--nav__icons-color);
 }
 
 .icon__profile {

@@ -1,7 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import SvgTemplate from '../Common/SvgTemplate';
+
+import { IoPlayOutline } from 'react-icons/io5';
+import { AiOutlinePause } from 'react-icons/ai';
+import { MdOutlineSkipPrevious, MdOutlineSkipNext } from 'react-icons/md';
+
 import {
   switchPauseStatus,
   setTrackPreview,
@@ -14,8 +18,10 @@ import {
   setOffsetTime,
   setCurrentmusicIndex
 } from '../../app/slices/mainSlice';
-import './buttons.scss';
+
 import { RootState } from '../../app/store';
+
+import './buttons.scss';
 
 // /. imports
 
@@ -139,7 +145,7 @@ const Buttons: React.FC = () => {
             : 'nav__button prev'
         }
       >
-        <SvgTemplate id="arrow_prev_icon" />
+        <MdOutlineSkipPrevious size={32} color={'#eaf0ff'} />
       </button>
       <button
         ref={pauseBtn}
@@ -147,7 +153,7 @@ const Buttons: React.FC = () => {
         onClick={defineButtonEvent}
         className={`nav__button ${isPlayerPage ? 'nav__button--player' : ''} ${isPaused ? 'pause' : 'play'}`}
       >
-        {isPaused ? <SvgTemplate id="play" /> : <SvgTemplate id="pause" />}
+        {isPaused ? <IoPlayOutline size={34} color={'#eaf0ff'} /> : <AiOutlinePause size={34} color={'#eaf0ff'} />}
       </button>
       <button
         ref={nextBtn}
@@ -159,7 +165,7 @@ const Buttons: React.FC = () => {
             : 'nav__button next'
         }
       >
-        <SvgTemplate id="arrow__next-icon" />
+        <MdOutlineSkipNext size={32} color={'#eaf0ff'} />
       </button>
       <audio
         className="player__audio"

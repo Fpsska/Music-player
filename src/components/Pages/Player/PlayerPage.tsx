@@ -1,8 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { BsHeart } from 'react-icons/bs';
+
+import { BiVolumeLow } from 'react-icons/bi';
+import { IoMdRepeat } from 'react-icons/io';
+import { FiShuffle } from 'react-icons/fi';
+
 import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/mainSlice';
-import SvgTemplate from '../../Common/SvgTemplate';
 import SliderPlayerList from '../../Slider/SliderPlayerList';
 import { RootState } from '../../../app/store';
 
@@ -35,7 +40,7 @@ const PlayerPage: React.FC = () => {
               type="button"
               onClick={muteVolume}
             >
-              <SvgTemplate id="volume" />
+              <BiVolumeLow size={20} color={'#8996b8'} />
               <span
                 className={
                   isAudioMuted ? 'volume__label muted' : 'volume__label'
@@ -51,20 +56,20 @@ const PlayerPage: React.FC = () => {
               className="player__button player__button--repeat"
               type="button"
             >
-              <SvgTemplate id="repeat" />
+              <IoMdRepeat size={20} color={'#8996b8'} />
             </button>
             <button
               className="player__button player__button--oder"
               type="button"
             >
-              <SvgTemplate id="oder" />
+              <FiShuffle size={20} color={'#8996b8'} />
             </button>
             <button
               className="player__button player__button--like"
               type="button"
               onClick={addToFavorite}
             >
-              <SvgTemplate id="like" />
+              <BsHeart size={18} color={'#8996b8'} />
             </button>
           </div>
           <div

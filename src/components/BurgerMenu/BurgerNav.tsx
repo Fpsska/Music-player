@@ -2,9 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
+import { BsHeart, BsQuestionSquare } from 'react-icons/bs';
+import { BiMessageDetail } from 'react-icons/bi';
+import { RiContactsLine } from 'react-icons/ri';
+import { IoEarthOutline, IoSettingsOutline } from 'react-icons/io5';
+
 import { switchSearchPageStatus } from '../../app/slices/mainSlice';
 import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from '../../app/slices/burgerSlice';
-import SvgTemplate from '../Common/SvgTemplate';
+
 import Details from '../Details/Details';
 import { RootState } from '../../app/store';
 
@@ -53,7 +58,7 @@ const BurgerNav: React.FC = () => {
                 className={isInformationVisible ? 'menu opened' : 'menu'}
             >
                 <li className="menu__item">
-                    <SvgTemplate id="profile" />
+                    <RiContactsLine size={20} color={'#8996b8'} />
                     <a
                         className="menu__link"
                         href="https://github.com/Fpsska"
@@ -63,25 +68,25 @@ const BurgerNav: React.FC = () => {
                     </a>
                 </li>
                 <li className="menu__item">
-                    <SvgTemplate id="like" />
+                    <BsHeart size={20} color={'#8996b8'} />
                     <span className="menu__link" onClick={relocateToSearchPage}>
                         Liked Songs
                     </span>
                 </li>
                 <li className="menu__item">
-                    <SvgTemplate id="language" />
+                    <IoEarthOutline size={20} color={'#8996b8'} />
                     <span className="menu__link">Language</span>
                 </li>
                 <li className="menu__item" onClick={displaySocial}>
-                    <SvgTemplate id="message" />
+                    <BiMessageDetail size={20} color={'#8996b8'} />
                     <span className="menu__link">Contact us</span>
                 </li>
                 <li className="menu__item" onClick={displayFAQs}>
-                    <SvgTemplate id="faqs" />
+                    <BsQuestionSquare size={20} color={'#8996b8'} />
                     <span className="menu__link">FAQs</span>
                 </li>
                 <li className="menu__item">
-                    <SvgTemplate id="main-settings" />
+                    <IoSettingsOutline size={20} color={'#8996b8'} />
                     <span className="menu__link">Settings</span>
                 </li>
             </ul>

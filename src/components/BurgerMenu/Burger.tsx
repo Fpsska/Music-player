@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Spring, animated } from 'react-spring';
+
+import { MdOutlineClose } from 'react-icons/md';
+import { BsMoon } from 'react-icons/bs';
 
 import {
   switchBurgerStatus,
   switchInformationStatus
 } from '../../app/slices/burgerSlice';
-import SvgTemplate from '../Common/SvgTemplate';
 
 import { RootState } from '../../app/store';
 
@@ -20,13 +22,14 @@ import './burger.scss';
 // /. imports
 
 const BurgerMenu: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const { isCurtainVisible } = useSelector(
     (state: RootState) => state.burgerSlice
   );
-  const dispatch = useDispatch();
-
+  const [isVisible, setIsVisible] = useState(false);
+  const [isSwitched, setSwithedStatus] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
+
+  const dispatch = useDispatch();
   //
   const closeBurger = (): void => {
     setIsVisible(!isVisible);
@@ -36,24 +39,29 @@ const BurgerMenu: React.FC = () => {
     }, 400);
   };
 
-  const keyHandler = (e: KeyboardEvent): void => {
+  const keyHandler = useCallback((e: KeyboardEvent): void => {
     if (e.code === 'Escape') {
       closeBurger();
       setTimeout(() => {
         dispatch(switchInformationStatus(false));
       }, 450);
     }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('keydown', keyHandler);
+    return () => {
+      document.removeEventListener('keydown', keyHandler);
+    };
+  }, [isVisible, keyHandler]);
+
+  const changeTheme = (): void => {
+    setSwithedStatus(!isSwitched);
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', keyHandler);
-    return () => {
-      window.removeEventListener('keydown', keyHandler);
-    };
-  }, [isVisible]);
-
-  const changeTheme = (): void => {
-  };
+    isSwitched ? setTheme('light') : setTheme('dark');
+  }, [isSwitched]);
   //
   return (
     <>
@@ -87,14 +95,14 @@ const BurgerMenu: React.FC = () => {
                   type="button"
                   onClick={closeBurger}
                 >
-                  <SvgTemplate id="close" />
+                  <MdOutlineClose size={32} color={'#eaf0ff'} />
                 </button>
                 <button
                   className="burger__button burger__button--theme"
                   type="button"
                   onClick={changeTheme}
                 >
-                  <SvgTemplate id="theme" />
+                  <BsMoon size={22} color={'#eaf0ff'}/>
                 </button>
               </div>
               <BurgerNav />
