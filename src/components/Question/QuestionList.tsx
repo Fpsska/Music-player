@@ -9,7 +9,7 @@ import './question.scss';
 // /. imports
 
 const QuestionList: React.FC = () => {
-  const { questions, isLightTheme } = useSelector(
+  const { questions } = useSelector(
     (state: RootState) => state.burgerSlice
   );
 
@@ -26,7 +26,7 @@ const QuestionList: React.FC = () => {
   });
 
   return (
-    <div className={isLightTheme ? 'question light' : 'question'}>
+    <div className="question">
       <div className="question__wrapper">{list}</div>
     </div>
   );

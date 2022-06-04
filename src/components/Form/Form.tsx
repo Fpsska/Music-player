@@ -18,7 +18,7 @@ const Form: React.FC = () => {
   const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useSelector(
     (state: RootState) => state.mainSlice
   );
-  const { isBurgerOpen, isLightTheme } = useSelector(
+  const { isBurgerOpen } = useSelector(
     (state: RootState) => state.burgerSlice
   );
 
@@ -51,7 +51,7 @@ const Form: React.FC = () => {
     <>
       {isPlaylistPage ? (
         <div
-          className={isLightTheme ? 'header__section light' : 'header__section'}
+          className="header__section"
         >
           <button
             className="header__button header__button--playlist"
@@ -87,7 +87,7 @@ const Form: React.FC = () => {
           >
             <SvgTemplate id="arrow-back" />
           </button>
-          <form className={isLightTheme ? 'form light' : 'form'} action="#">
+          <form className="form" action="#">
             <div className="form__search">
               <input
                 className="form__input"
@@ -118,7 +118,7 @@ const Form: React.FC = () => {
             >
               <SvgTemplate id="menu" />
             </button>
-            <form className={isLightTheme ? 'form light' : 'form'} action="#" onSubmit={relocateToSearchPage}>
+            <form className="form" action="#" onSubmit={relocateToSearchPage}>
               <div className="form__search">
                 <input
                   className="form__input"

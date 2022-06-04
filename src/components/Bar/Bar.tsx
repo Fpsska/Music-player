@@ -8,7 +8,6 @@ import { RootState } from '../../app/store';
 // /. imports
 
 const Bar: React.FC = () => {
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const { currentLineProgress, duration, isPaused, isLoading } = useSelector(
     (state: RootState) => state.mainSlice
   );
@@ -48,7 +47,7 @@ const Bar: React.FC = () => {
   return (
     <div
       ref={progressArea}
-      className={isLightTheme ? 'progress light' : 'progress'}
+      className="progress"
     >
       <div
         ref={progressLine}

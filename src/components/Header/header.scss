@@ -32,6 +32,7 @@
         padding: 0;
     }
     &__title {
+        color: var(--burger__icons-color);
         font-size: 20px;
         font-weight: 500;
         margin: 0;
@@ -42,16 +43,3 @@
     padding: 10px 15px;
 }
 
-.header.light {
-    background-color: #f7faff;
-    .header__button .icon__arrow-back,
-    .icon__mixer {
-        stroke: #091127;
-    }
-    .header__title {
-        color: #091227;
-    }
-    .icon__menu {
-        stroke: #091127;
-    }
-}

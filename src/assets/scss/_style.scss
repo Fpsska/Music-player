@@ -7,7 +7,6 @@
 }
 
 body {
-    color: #eaf0ff;
     font-family: Gilroy, sans-serif;
     height: 100vh;
     margin: 0;
@@ -23,13 +22,10 @@ body {
 .App {
     height: 100%;
     position: relative;
-    background-color: #091227;
+    background-color: var(--app-background-color);
 
     display: flex;
     flex-direction: column;
-}
-.App.light {
-    background-color: #f7faff;
 }
 
 .main {
@@ -84,6 +80,7 @@ a {
 
 .page {
     height: 100%;
+    background-color: var(--page-background-color);
     &__wrapper {
         padding: 0 !important;
         &::-webkit-scrollbar {
@@ -102,20 +99,16 @@ a {
         font-weight: 700;
         line-height: 29.02px;
         margin: 0 0 20px 0;
+        color: var(--page-title-color);
+    }
+    &__title a {
+        color: var(--page-title-color);
     }
     &__section--playlist {
         margin: 42px 0 0 0;
     }
 }
-.page.light {
-    background-color: #f7faff;
-    .page__title a {
-        color: #091227;
-    }
-    .title {
-        color: #091227;
-    }
-}
+
 .page--player {
     @extend .page;
     display: flex;
@@ -212,12 +205,9 @@ a {
     font-size: 12px;
     font-weight: 400;
     line-height: 13.92px;
-    color: rgba(165, 192, 255, 0.7);
+    color: var(--time-color);
     display: flex;
     justify-content: space-between;
-}
-.time.light {
-    color: #0e172d;
 }
 
 .container {
@@ -272,6 +262,11 @@ a {
 
 // /.SLIDER
 
+.icon__like {
+    fill: #8996b8;
+    fill-opacity: 0.46;
+}
+
 .icon__search {
     stroke: #eaf0ff;
     transition: 0.25s linear;
@@ -291,7 +286,7 @@ a {
 .icon__mixer,
 .icon__play,
 .icon__pause {
-    stroke: #eaf0ff;
+    stroke: var(--burger__icons-color);
 }
 
 .icon__arrow-prev,

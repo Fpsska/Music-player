@@ -31,7 +31,6 @@ const Buttons: React.FC = () => {
     musicIndex,
     currentTrack
   } = useSelector((state: RootState) => state.mainSlice);
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const prevBtn = useRef<HTMLButtonElement>(null);
@@ -128,7 +127,7 @@ const Buttons: React.FC = () => {
   //
   return (
     <nav
-      className={`nav ${isPlayerPage ? 'nav--player' : ''} ${isLightTheme ? 'light' : ''}`}
+      className={isPlayerPage ? 'nav nav--player' : 'nav'}
     >
       <button
         ref={prevBtn}

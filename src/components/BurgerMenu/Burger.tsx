@@ -1,16 +1,17 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Spring, animated } from 'react-spring';
 
 import {
   switchBurgerStatus,
-  swithTheme,
   switchInformationStatus
 } from '../../app/slices/burgerSlice';
 import SvgTemplate from '../Common/SvgTemplate';
 
 import { RootState } from '../../app/store';
+
+import { useTheme } from '../../hooks/useTheme';
 
 import BurgerNav from './BurgerNav';
 
@@ -20,10 +21,12 @@ import './burger.scss';
 
 const BurgerMenu: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { isLightTheme, isCurtainVisible } = useSelector(
+  const { isCurtainVisible } = useSelector(
     (state: RootState) => state.burgerSlice
   );
   const dispatch = useDispatch();
+
+  const { theme, setTheme } = useTheme();
   //
   const closeBurger = (): void => {
     setIsVisible(!isVisible);
@@ -42,7 +45,7 @@ const BurgerMenu: React.FC = () => {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener('keydown', keyHandler);
     return () => {
       window.removeEventListener('keydown', keyHandler);
@@ -50,7 +53,6 @@ const BurgerMenu: React.FC = () => {
   }, [isVisible]);
 
   const changeTheme = (): void => {
-    dispatch(swithTheme(!isLightTheme));
   };
   //
   return (
@@ -75,16 +77,10 @@ const BurgerMenu: React.FC = () => {
               )}
             </>
             <div
-              className={
-                isLightTheme ? 'burger__wrapper light' : 'burger__wrapper'
-              }
+              className="burger__wrapper"
             >
               <div
-                className={
-                  isLightTheme
-                    ? 'burger__navigation light'
-                    : 'burger__navigation'
-                }
+                className="burger__navigation"
               >
                 <button
                   className="burger__button burger__button--close"

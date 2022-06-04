@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   const { albumList } = useSelector(
     (state: RootState) => state.mainSlice
   );
-  const { isBurgerOpen, isLightTheme } = useSelector(
+  const { isBurgerOpen } = useSelector(
     (state: RootState) => state.burgerSlice
   );
   //
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
       <div className="page__burger">
         {isBurgerOpen ? <BurgerMenu /> : <></>}
       </div>
-      <div className={isLightTheme ? 'home light' : 'home'}>
+      <div className="home">
         <div className="home__section home__section--recommendation">
           <h1 className="page__title title" onClick={goPlayerPage}>
             <Link to="player">Recomended for you</Link>

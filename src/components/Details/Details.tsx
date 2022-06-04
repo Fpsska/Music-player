@@ -9,7 +9,7 @@ import './details.scss';
 // /. imports
 
 const Details: React.FC = () => {
-    const { isContactInfo, isFaqsInfo, isLightTheme } = useSelector(
+    const { isContactInfo, isFaqsInfo } = useSelector(
         (state: RootState) => state.burgerSlice
     );
     // 
@@ -18,10 +18,7 @@ const Details: React.FC = () => {
             <div className="details__wrapper">
                 {isContactInfo ? (
                     <ul
-                        className={
-                            isLightTheme ? 'details__list list ligth' : 'details__list list'
-                        }
-                    >
+                        className="details__list list">
                         <li className="list__item">
                             <span className="list__title">Developed by Fpsska</span>
                             <div className="list__social">

@@ -25,6 +25,7 @@
     &__track-name {
         margin: 0 0 6px 0;
         white-space: nowrap;
+        color: var(--trackName-color);
         cursor: pointer;
     }
     &__artist-name {
@@ -40,10 +41,4 @@
 
 .navigation--player {
     margin: 0;
-}
-
-.navigation.light {
-    .navigation__track-name {
-        color: #091127;
-    }
 }

@@ -16,11 +16,10 @@ const Navigation: React.FC = () => {
     currentArtistName,
     currentTrackName
   } = useSelector((state: RootState) => state.mainSlice);
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   // 
   return (
     <div
-      className={`navigation ${isPlayerPage ? 'navigation--player' : ''} ${isLightTheme ? 'light' : ''}`}
+      className={isPlayerPage ? 'navigation navigation--player' : 'navigation'}
     >
       <div
         className={

@@ -11,7 +11,7 @@ import { RootState } from '../../app/store';
 // /. imports
 
 const BurgerNav: React.FC = () => {
-    const { isLightTheme, isInformationVisible, isContactInfo, isFaqsInfo } = useSelector((state: RootState) => state.burgerSlice);
+    const { isInformationVisible, isContactInfo, isFaqsInfo } = useSelector((state: RootState) => state.burgerSlice);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // 
@@ -50,8 +50,7 @@ const BurgerNav: React.FC = () => {
     return (
         <nav className="burger__menu">
             <ul
-                className={`menu ${isLightTheme ? 'light' : ''} ${isInformationVisible ? 'opened' : ''}`
-                }
+                className={isInformationVisible ? 'menu opened' : 'menu'}
             >
                 <li className="menu__item">
                     <SvgTemplate id="profile" />

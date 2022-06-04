@@ -1,12 +1,12 @@
 .progress {
-    background-color: rgba(255, 255, 255, 0.31);
+    background-color: var(--progress-background-color);
     width: 100%;
     height: 4px;
     position: relative;
     cursor: pointer;
     &__line {
         transition: all 0.4s linear;
-        background-color: #fff;
+        background-color: var(--progress-line-color);
         height: 100%;
         width: 0;
         position: relative;
@@ -15,7 +15,7 @@
             position: absolute;
             right: 0;
             top: -120%;
-            background-color: #fff;
+            background-color: var(--progress-line__before);
             width: 14px;
             height: 14px;
             border-radius: 100%;
@@ -27,15 +27,5 @@
 .progress__line.active {
     &::before {
         opacity: 1;
-    }
-}
-
-.progress.light {
-    background-color: #cacaca;
-    .progress__line {
-        background-color: #091227;
-        &::before {
-            background-color: #091227;
-        }
     }
 }

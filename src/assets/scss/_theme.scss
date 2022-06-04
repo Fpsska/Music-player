@@ -1,0 +1,31 @@
+html[data-theme="dark"] {
+    --app-background-color: #091227;
+
+    --page-background-color: #091227;
+    --page-title-color: #fff;
+
+    --time-color: rgba(165, 192, 255, 0.7);
+
+    --progress-background-color: rgba(255, 255, 255, 0.31);
+    --progress-line-color: #fff;
+    --progress-line__before-color: #fff;
+
+    --burger-background-color: rgba(9, 18, 39, 0.7);
+    --burger-backgroundWrapper-color: #091227;
+    --burger__icons-color: #eaf0ff;
+
+    --menu-link-color: #dfe8ff;
+    --menu-link-hoverColor: rgba(165, 192, 255, 0.7);
+
+    --card-title-color: #eaf0ff;
+
+    --list-link-color: #e4e4e4;
+
+    --header-background-color: #091227;
+
+    --trackName-color: #eaf0ff;
+
+    --questionItem-color: #eaf0ff;
+
+    --search-title-color: #eaf0ff;
+}

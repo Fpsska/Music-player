@@ -32,11 +32,10 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     currentArtistName,
     currentTrackName
   } = useSelector((state: RootState) => state.mainSlice);
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
 
   return (
     <div id={String(id)}  // Standard HTML Attributes
-      className={`card ${isPlaylistPage ? 'card--playlist' : ''} ${isPlayerPage ? 'card--player' : ''} ${isLightTheme ? 'light' : ''} ${isFavourite ? 'favourite' : ''}`}
+      className={`card ${isPlaylistPage ? 'card--playlist' : ''} ${isPlayerPage ? 'card--player' : ''} ${isFavourite ? 'favourite' : ''}`}
     >
       <img
         className={

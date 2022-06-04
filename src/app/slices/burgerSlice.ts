@@ -7,7 +7,6 @@ import { questionsTypes } from '../../Types/burgerSliceTypes';
 interface burgerSliceState {
   questions: questionsTypes[];
   isBurgerOpen: boolean;
-  isLightTheme: boolean;
   isCurtainVisible: boolean;
   isInformationVisible: boolean;
   isContactInfo: boolean;
@@ -18,7 +17,6 @@ interface burgerSliceState {
 
 const initialState: burgerSliceState = {
   isBurgerOpen: false,
-  isLightTheme: false,
   isCurtainVisible: true,
   isInformationVisible: false,
   isContactInfo: false,
@@ -49,9 +47,6 @@ const burgerSlice = createSlice({
     switchBurgerStatus(state, action: PayloadAction<boolean>) {
       state.isBurgerOpen = action.payload;
     },
-    swithTheme(state, action: PayloadAction<boolean>) {
-      state.isLightTheme = action.payload;
-    },
     switchCurtainStatus(state, action: PayloadAction<boolean>) {
       state.isCurtainVisible = action.payload;
     },
@@ -76,7 +71,6 @@ const burgerSlice = createSlice({
 
 export const {
   switchBurgerStatus,
-  swithTheme,
   switchCurtainStatus,
   switchInformationStatus,
   switchContactInfoStatus,

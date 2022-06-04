@@ -8,6 +8,7 @@
     align-items: start;
   }
   &__item {
+    color: var(--questionItem-color);
     &:not(:last-child) {
       margin: 0 0 10px 0;
     }
@@ -28,9 +29,4 @@
 }
 .question__button.opened {
   transform: rotate(180deg);
-}
-.question.light {
-  .question__item {
-    color: #091227;
-  }
 }

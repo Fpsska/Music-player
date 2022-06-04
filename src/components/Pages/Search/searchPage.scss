@@ -1,6 +1,9 @@
 .search {
     max-height: calc(100vh - 72px - 69px);
     overflow-y: scroll;
+    &__title {
+        color: var(--search-title-color);
+    }
     &__title--empty {
         font-size: 22px;
         text-align: center;

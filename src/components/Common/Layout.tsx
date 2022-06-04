@@ -12,7 +12,6 @@ import { RootState } from '../../app/store';
 // /. imports
 
 const Layout: React.FC = () => {
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const { status, isPlayerPage } = useSelector(
     (state: RootState) => state.mainSlice
   );
@@ -35,13 +34,7 @@ const Layout: React.FC = () => {
       <Header />
       <main className="main">
         <div
-          className={
-            isLightTheme
-              ? 'page light'
-              : isPlayerPage
-                ? 'page page--player'
-                : 'page'
-          }
+          className={isPlayerPage ? 'page page--player' : 'page'}
         >
           <div className="page__wrapper">
             <Outlet />

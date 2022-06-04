@@ -12,7 +12,6 @@ const PlayerPage: React.FC = () => {
   //
   const { isLoading, songDuration, currentTimeProgress, isAudioMuted } =
     useSelector((state: RootState) => state.mainSlice);
-  const { isLightTheme } = useSelector((state: RootState) => state.burgerSlice);
   const dispatch = useDispatch();
   //
   const muteVolume = (): void => {
@@ -69,10 +68,7 @@ const PlayerPage: React.FC = () => {
             </button>
           </div>
           <div
-            className={
-              isLightTheme ? 'player__time time light' : 'player__time time'
-            }
-          >
+            className="player__time time">
             <span className="time__current">
               {isLoading ? '00:00' : currentTimeProgress}
             </span>

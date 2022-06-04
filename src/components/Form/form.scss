@@ -44,16 +44,6 @@
     }
 }
 
-.form.light {
-    .form__button .icon__search,
-    .form__input {
-        color: #091127;
-        &:hover {
-            border: 1px solid #091127;
-        }
-    }
-}
-
 .form__button--search.opacity {
     opacity: 0.6;
 }
