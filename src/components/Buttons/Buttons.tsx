@@ -137,39 +137,31 @@ const Buttons: React.FC = () => {
     >
       <button
         ref={prevBtn}
-        disabled={isLoading ? true : false}
+        disabled={isLoading}
         onClick={prevSong}
-        className={
-          isPlayerPage
-            ? 'nav__button nav__button--player prev'
-            : 'nav__button prev'
-        }
-      >
+        className="nav__button prev">
         <MdOutlineSkipPrevious size={32} color={'#eaf0ff'} />
       </button>
       <button
         ref={pauseBtn}
-        disabled={isLoading ? true : false}
+        disabled={isLoading}
         onClick={defineButtonEvent}
-        className={`nav__button ${isPlayerPage ? 'nav__button--player' : ''} ${isPaused ? 'pause' : 'play'}`}
+        className={`nav__button ${isPaused ? 'pause' : 'play'}`}
       >
-        {isPaused ? <IoPlayOutline size={34} color={'#eaf0ff'} /> : <AiOutlinePause size={34} color={'#eaf0ff'} />}
+        {isPaused
+          ? <IoPlayOutline size={isPlayerPage ? 56 : 34} color={'#eaf0ff'} />
+          : <AiOutlinePause size={isPlayerPage ? 56 : 34} color={'#eaf0ff'} />}
       </button>
       <button
         ref={nextBtn}
-        disabled={isLoading ? true : false}
+        disabled={isLoading}
         onClick={nextSong}
-        className={
-          isPlayerPage
-            ? 'nav__button nav__button--player next'
-            : 'nav__button next'
-        }
-      >
+        className="nav__button next">
         <MdOutlineSkipNext size={32} color={'#eaf0ff'} />
       </button>
       <audio
         className="player__audio"
-        muted={isAudioMuted ? true : false}
+        muted={isAudioMuted}
         ref={trackOrder}
         src={currentTrack}
       ></audio>

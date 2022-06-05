@@ -35,13 +35,9 @@
     }
     &__button--close {
         padding: 0;
-        &:active svg {
-            transition: all 0.25s linear;
-            stroke: #cc0000;
-        }
         &:hover svg {
             transition: all 0.25s linear;
-            stroke: #cc0000;
+            fill: #cc0000;
         }
     }
 }
@@ -81,11 +77,8 @@
             transform: scale(1.1);
             fill: var(--menu-link-hoverColor);
         }
-        &:hover .icon__main-settings {
+        svg {
             transition: transform 0.25s linear;
-            transform: scale(1.1);
-            fill: none;
-            stroke: var(--menu-link-hoverColor);
         }
     }
     &__link {

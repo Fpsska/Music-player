@@ -78,11 +78,11 @@ const BurgerNav: React.FC = () => {
                     <span className="menu__link">Language</span>
                 </li>
                 <li className="menu__item" onClick={displaySocial}>
-                    <BiMessageDetail size={20} color={'#8996b8'} />
+                    <BiMessageDetail size={22} color={'#8996b8'} />
                     <span className="menu__link">Contact us</span>
                 </li>
                 <li className="menu__item" onClick={displayFAQs}>
-                    <BsQuestionSquare size={20} color={'#8996b8'} />
+                    <BsQuestionSquare size={18} color={'#8996b8'} />
                     <span className="menu__link">FAQs</span>
                 </li>
                 <li className="menu__item">

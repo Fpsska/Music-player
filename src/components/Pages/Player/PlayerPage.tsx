@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { BsHeart } from 'react-icons/bs';
-
 import { BiVolumeLow } from 'react-icons/bi';
 import { IoMdRepeat } from 'react-icons/io';
 import { FiShuffle } from 'react-icons/fi';
@@ -62,7 +61,7 @@ const PlayerPage: React.FC = () => {
               className="player__button player__button--oder"
               type="button"
             >
-              <FiShuffle size={20} color={'#8996b8'} />
+              <FiShuffle size={19} color={'#8996b8'} />
             </button>
             <button
               className="player__button player__button--like"
