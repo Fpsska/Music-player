@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../../app/hooks';
 
 import { RootState } from '../../app/store';
 
@@ -9,7 +10,7 @@ import './card.scss';
 // /. imports
 
 const CardList: React.FC = () => {
-  const { albumList, mockData, isLoading } = useSelector(
+  const { albumList, mockData, isLoading } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
 

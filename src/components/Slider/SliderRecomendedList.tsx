@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react';
-import { useSelector } from 'react-redux';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { FreeMode } from 'swiper';
+
+import { useAppSelector } from '../../app/hooks';
 
 import Card from '../Card/CardTemplate';
 import { RootState } from '../../app/store';
@@ -23,7 +24,7 @@ interface SliderPlayListPropTypes {
 const SliderRecomendedList: React.FC<SliderPlayListPropTypes> = ({
   albumList
 }) => {
-  const { isLoading, mockData } = useSelector(
+  const { isLoading, mockData } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
   const recomendedList = albumList.slice(0, 4);

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { BsHeart } from 'react-icons/bs';
 
+import { useAppSelector } from '../../../app/hooks';
+
 import { RootState } from '../../../app/store';
+
 import './searchPage.scss';
 
 // /. imports
 
 const SearchPage: React.FC = () => {
-    const { likedData, songDuration, isLoading, isPaused } = useSelector((state: RootState) => state.mainSlice);
+    const { likedData, songDuration, isLoading, isPaused } = useAppSelector((state: RootState) => state.mainSlice);
     const [isEmpty, setEmptyStatus] = useState(false);
     useEffect(() => {
         if (likedData.length === 0) {

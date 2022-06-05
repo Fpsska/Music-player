@@ -1,10 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useNavigate } from 'react-router';
 
 import { FiSearch } from 'react-icons/fi';
 import { RiEqualizerLine } from 'react-icons/ri';
+
 import { HiOutlineMenuAlt4, HiOutlineArrowLeft } from 'react-icons/hi';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import {
   switchPlaylistPageStatus,
@@ -18,15 +21,15 @@ import './form.scss';
 // /. imports
 
 const Form: React.FC = () => {
-  const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useSelector(
+  const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
-  const { isBurgerOpen } = useSelector(
+  const { isBurgerOpen } = useAppSelector(
     (state: RootState) => state.burgerSlice
   );
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   // 
   const goBack = (): void => {
     setTimeout(() => {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../../app/hooks';
 
 import { RootState } from '../../app/store';
 
@@ -9,7 +10,7 @@ import './question.scss';
 // /. imports
 
 const QuestionList: React.FC = () => {
-  const { questions } = useSelector(
+  const { questions } = useAppSelector(
     (state: RootState) => state.burgerSlice
   );
 

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { FreeMode } from 'swiper';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../app/hooks';
 
 import Card from '../Card/CardTemplate';
 import { RootState } from '../../app/store';
@@ -22,7 +22,7 @@ interface SliderPlayListPropTypes {
 // /. interfaces
 
 const SliderPlayList: React.FC<SliderPlayListPropTypes> = ({ albumList }) => {
-  const { mockData, isLoading } = useSelector(
+  const { mockData, isLoading } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
   const playList = albumList.slice(3, 7);

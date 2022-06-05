@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import Card from '../Card/CardTemplate';
 import {
@@ -24,10 +25,10 @@ SwiperCore.use([FreeMode, EffectCoverflow]);
 // /. imports
 
 const SliderCard: React.FC = () => {
-  const { albumList, mockData, isLoading, musicIndex, currentSlideID } = useSelector(
+  const { albumList, mockData, isLoading, musicIndex, currentSlideID } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   //
   const [coverEffect] = useState({
     rotate: 50,

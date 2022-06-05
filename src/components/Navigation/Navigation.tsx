@@ -1,9 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../../app/hooks';
 
 import Buttons from '../Buttons/Buttons';
 import Bar from '../Bar/Bar';
+
 import { RootState } from '../../app/store';
+
 import './navigation.scss';
 
 // /. imports
@@ -15,7 +18,7 @@ const Navigation: React.FC = () => {
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector((state: RootState) => state.mainSlice);
   // 
   return (
     <div

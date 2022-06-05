@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -17,7 +16,6 @@ import '../../assets/scss/_style.scss';
 import '../../assets/scss/_media.scss';
 import '../../assets/scss/_theme.scss';
 import './App.css';
-
 
 // /. imports
 

@@ -1,31 +1,37 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus
 } from '../../../app/slices/mainSlice';
-import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
+import {
+  switchCurtainStatus
+} from '../../../app/slices/burgerSlice';
+
+import { RootState } from '../../../app/store';
+
 import SliderRecomendedList from '../../Slider/SliderRecomendedList';
 import SliderPlayList from '../../Slider/SliderPlayList';
 import BurgerMenu from '../../BurgerMenu/Burger';
-import { RootState } from '../../../app/store';
 
 // /. imports
 
 const HomePage: React.FC = () => {
-  const { albumList } = useSelector(
+  const { albumList } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
-  const { isBurgerOpen } = useSelector(
+  const { isBurgerOpen } = useAppSelector(
     (state: RootState) => state.burgerSlice
   );
   //
   const [isVisible, setIsVisible] = useState(true);
   //
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   //
   const goPlayListPage = (): void => {

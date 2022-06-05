@@ -1,10 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
 import { MdOutlineSkipPrevious, MdOutlineSkipNext } from 'react-icons/md';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import {
   switchPauseStatus,
@@ -36,8 +36,8 @@ const Buttons: React.FC = () => {
     isAudioMuted,
     musicIndex,
     currentTrack
-  } = useSelector((state: RootState) => state.mainSlice);
-  const dispatch = useDispatch();
+  } = useAppSelector((state: RootState) => state.mainSlice);
+  const dispatch = useAppDispatch();
   //
   const prevBtn = useRef<HTMLButtonElement>(null);
   const pauseBtn = useRef<HTMLButtonElement>(null);

@@ -1,21 +1,23 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+
 import { Outlet } from 'react-router';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
 import { fetchAlbumsData, switchLoadingStatus } from '../../app/slices/mainSlice';
 import { RootState } from '../../app/store';
 
 // /. imports
 
 const Layout: React.FC = () => {
-  const { status, isPlayerPage } = useSelector(
+  const { status, isPlayerPage } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   //
   useEffect(() => {
     if (status === 'success') {

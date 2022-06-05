@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../../app/hooks';
 
 import { RootState } from '../../app/store';
 
@@ -31,7 +32,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector((state: RootState) => state.mainSlice);
 
   return (
     <div id={String(id)}  // Standard HTML Attributes

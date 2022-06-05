@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { setOffsetTime } from '../../app/slices/mainSlice';
 import './bar.scss';
@@ -8,12 +9,12 @@ import { RootState } from '../../app/store';
 // /. imports
 
 const Bar: React.FC = () => {
-  const { currentLineProgress, duration, isPaused, isLoading } = useSelector(
+  const { currentLineProgress, duration, isPaused, isLoading } = useAppSelector(
     (state: RootState) => state.mainSlice
   );
   const progressArea = useRef<HTMLDivElement>(null!);
   const progressLine = useRef<HTMLDivElement>(null!);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const setNewCurrentTime = useCallback(
     (event): void => {

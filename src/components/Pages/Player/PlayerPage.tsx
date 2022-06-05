@@ -1,22 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { BsHeart } from 'react-icons/bs';
 import { BiVolumeLow } from 'react-icons/bi';
 import { IoMdRepeat } from 'react-icons/io';
 import { FiShuffle } from 'react-icons/fi';
 
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+
 import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/mainSlice';
-import SliderPlayerList from '../../Slider/SliderPlayerList';
+
 import { RootState } from '../../../app/store';
+
+import SliderPlayerList from '../../Slider/SliderPlayerList';
 
 // /. imports
 
 const PlayerPage: React.FC = () => {
   //
   const { isLoading, songDuration, currentTimeProgress, isAudioMuted } =
-    useSelector((state: RootState) => state.mainSlice);
-  const dispatch = useDispatch();
+  useAppSelector((state: RootState) => state.mainSlice);
+  const dispatch = useAppDispatch();
   //
   const muteVolume = (): void => {
     dispatch(switchMutedStatus(!isAudioMuted));

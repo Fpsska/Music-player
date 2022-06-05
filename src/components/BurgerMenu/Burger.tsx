@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { Spring, animated } from 'react-spring';
 
 import { MdOutlineClose } from 'react-icons/md';
 import { BsMoon } from 'react-icons/bs';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import {
   switchBurgerStatus,
@@ -22,14 +23,14 @@ import './burger.scss';
 // /. imports
 
 const BurgerMenu: React.FC = () => {
-  const { isCurtainVisible } = useSelector(
+  const { isCurtainVisible } = useAppSelector(
     (state: RootState) => state.burgerSlice
   );
   const [isVisible, setIsVisible] = useState(false);
   const [isSwitched, setSwithedStatus] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   //
   const closeBurger = (): void => {
     setIsVisible(!isVisible);

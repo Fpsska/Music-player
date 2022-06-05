@@ -1,11 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+
+
 import { useNavigate } from 'react-router';
 
 import { BsHeart, BsQuestionSquare } from 'react-icons/bs';
 import { BiMessageDetail } from 'react-icons/bi';
 import { RiContactsLine } from 'react-icons/ri';
 import { IoEarthOutline, IoSettingsOutline } from 'react-icons/io5';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { switchSearchPageStatus } from '../../app/slices/mainSlice';
 import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from '../../app/slices/burgerSlice';
@@ -16,8 +19,8 @@ import { RootState } from '../../app/store';
 // /. imports
 
 const BurgerNav: React.FC = () => {
-    const { isInformationVisible, isContactInfo, isFaqsInfo } = useSelector((state: RootState) => state.burgerSlice);
-    const dispatch = useDispatch();
+    const { isInformationVisible, isContactInfo, isFaqsInfo } = useAppSelector((state: RootState) => state.burgerSlice);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     // 
     const displaySocial = (): void => {

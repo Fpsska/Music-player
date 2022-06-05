@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import { BsTelegram } from 'react-icons/bs';
 import { FaInstagramSquare } from 'react-icons/fa';
 import { GrInternetExplorer } from 'react-icons/gr';
 import { ImMail4 } from 'react-icons/im';
+
+import { useAppSelector } from '../../app/hooks';
 
 import QuestionList from '../Question/QuestionList';
 
@@ -14,7 +15,7 @@ import './details.scss';
 // /. imports
 
 const Details: React.FC = () => {
-    const { isContactInfo, isFaqsInfo } = useSelector(
+    const { isContactInfo, isFaqsInfo } = useAppSelector(
         (state: RootState) => state.burgerSlice
     );
     // 

@@ -1,7 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
+
+import { useAppDispatch } from '../../../app/hooks';
 
 import { switchPlaylistPageStatus } from '../../../app/slices/mainSlice';
 import CardList from '../../Card/CardList';
@@ -9,7 +11,7 @@ import CardList from '../../Card/CardList';
 // /. imports
 
 const PlayListPage: React.FC = () => {
-  const dispath = useDispatch();
+  const dispath = useAppDispatch();
   const navigate = useNavigate();
   //
   const goHomePage = (): void => {

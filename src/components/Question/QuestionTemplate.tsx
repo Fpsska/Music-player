@@ -1,8 +1,9 @@
 import React from 'react';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { RiArrowDropDownLine } from 'react-icons/ri';
+
+import { useAppDispatch } from '../../app/hooks';
 
 import { switchDropDownStatus } from '../../app/slices/burgerSlice';
 
@@ -26,7 +27,7 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
     isDropDownHidden
   } = props;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const icon = useRef<HTMLButtonElement>(null);
 
   const handleDropDown = (): void => {
@@ -44,7 +45,7 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
           }
           ref={icon}
         >
-          <RiArrowDropDownLine size={24} color={'#eaf0ff'}/>
+          <RiArrowDropDownLine size={24} color={'#eaf0ff'} />
         </button>
       </div>
       {isDropDownHidden ? <></> : <p className="question__answer">{answer}</p>}
