@@ -1,10 +1,12 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
 import { MdOutlineSkipPrevious, MdOutlineSkipNext } from 'react-icons/md';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import { useTime } from '../../hooks/useTime';
 
 import {
   switchPauseStatus,
@@ -13,8 +15,6 @@ import {
   setTrackName,
   setCurrentLineProgress,
   setCurrentTimeProgress,
-  setSongDuration,
-  setDuration,
   setOffsetTime,
   setCurrentmusicIndex
 } from '../../app/slices/mainSlice';
@@ -54,36 +54,21 @@ const Buttons: React.FC = () => {
     }
   };
 
-  const defineTimeCount = (e: any): void => {
-    const { duration, currentTime } = e.target;
-    dispatch(setDuration(duration));
-    //
-    let totalSecond = String(Math.floor(duration % 60));
-    const totalMinute = String(Math.floor(duration / 60));
-    if (+totalSecond < 10) {
-      totalSecond = `0${totalSecond}`;
-    }
-    //
-    let currentSecond = String(Math.floor(currentTime % 60));
-    const currentMinute = String(Math.floor(currentTime / 60));
-    if (+currentSecond < 10) {
-      currentSecond = `0${currentSecond}`;
-    }
-    dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
-    dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
-    dispatch(setCurrentLineProgress((currentTime / duration) * 100));
-  };
+  const { timeHandler } = useTime();
+
+  const defineTimeCount = useCallback((e: any): void => {
+    timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
+  }, []);
 
   useEffect(() => {
     trackOrder.current.addEventListener('timeupdate', defineTimeCount);
     return () =>
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
-  }, [duration, offsetCurrentTime]);
-
+  }, [duration, offsetCurrentTime, defineTimeCount]);
+  // 
   const playMusic = (): void => {
     trackOrder.current.play();
   };
-
   const pauseMusic = (): void => {
     trackOrder.current.pause();
   };
