@@ -2,16 +2,22 @@ import React, { useRef, useEffect, useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { setOffsetTime } from '../../app/slices/mainSlice';
+import { setOffsetTime } from '../../app/slices/playerSlice';
 import './bar.scss';
 import { RootState } from '../../app/store';
 
 // /. imports
 
 const Bar: React.FC = () => {
-  const { currentLineProgress, duration, isPaused, isLoading } = useAppSelector(
-    (state: RootState) => state.mainSlice
+  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const {
+    currentLineProgress,
+    duration,
+    isPaused
+  } = useAppSelector(
+    (state: RootState) => state.playerSlice
   );
+  
   const progressArea = useRef<HTMLDivElement>(null!);
   const progressLine = useRef<HTMLDivElement>(null!);
   const dispatch = useAppDispatch();

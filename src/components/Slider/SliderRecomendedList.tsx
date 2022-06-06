@@ -21,12 +21,11 @@ interface SliderPlayListPropTypes {
 
 // /. interfaces
 
-const SliderRecomendedList: React.FC<SliderPlayListPropTypes> = ({
-  albumList
-}) => {
-  const { isLoading, mockData } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
+const SliderRecomendedList: React.FC<SliderPlayListPropTypes> = ({ albumList }) => {
+
+  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const { mockData } = useAppSelector((state: RootState) => state.playerSlice);
+
   const recomendedList = albumList.slice(0, 4);
   //
   const list = useMemo(

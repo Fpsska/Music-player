@@ -17,7 +17,7 @@ import {
   setCurrentTimeProgress,
   setOffsetTime,
   setCurrentmusicIndex
-} from '../../app/slices/mainSlice';
+} from '../../app/slices/playerSlice';
 
 import { RootState } from '../../app/store';
 
@@ -26,17 +26,16 @@ import './buttons.scss';
 // /. imports
 
 const Buttons: React.FC = () => {
+  const { isPlayerPage, isLoading } = useAppSelector((state: RootState) => state.mainSlice);
   const {
-    isPlayerPage,
     isPaused,
-    isLoading,
     albumList,
     duration,
     offsetCurrentTime,
     isAudioMuted,
     musicIndex,
     currentTrack
-  } = useAppSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector((state: RootState) => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   const prevBtn = useRef<HTMLButtonElement>(null);
@@ -54,6 +53,11 @@ const Buttons: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    loadMusic(musicIndex);
+  }, [isLoading, albumList]);
+
+
   const { timeHandler } = useTime();
 
   const defineTimeCount = useCallback((e: any): void => {
@@ -65,13 +69,19 @@ const Buttons: React.FC = () => {
     return () =>
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
   }, [duration, offsetCurrentTime, defineTimeCount]);
-  // 
+
+
   const playMusic = (): void => {
     trackOrder.current.play();
   };
   const pauseMusic = (): void => {
     trackOrder.current.pause();
   };
+  const defineButtonEvent = (): void => {
+    dispatch(switchPauseStatus(!isPaused));
+    !isPaused ? pauseMusic() : playMusic();
+  };
+
 
   const nextSong = (): void => {
     dispatch(setCurrentmusicIndex(musicIndex + 1));
@@ -103,14 +113,6 @@ const Buttons: React.FC = () => {
     console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
-  const defineButtonEvent = (): void => {
-    dispatch(switchPauseStatus(!isPaused));
-    !isPaused ? pauseMusic() : playMusic();
-  };
-  //
-  useEffect(() => {
-    loadMusic(musicIndex);
-  }, [isLoading, albumList]);
 
   useEffect(() => {
     trackOrder.current.currentTime = offsetCurrentTime;

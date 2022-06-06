@@ -7,7 +7,7 @@ import { FiShuffle } from 'react-icons/fi';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/mainSlice';
+import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/playerSlice';
 
 import { RootState } from '../../../app/store';
 
@@ -16,9 +16,13 @@ import SliderPlayerList from '../../Slider/SliderPlayerList';
 // /. imports
 
 const PlayerPage: React.FC = () => {
-  //
-  const { isLoading, songDuration, currentTimeProgress, isAudioMuted } =
-  useAppSelector((state: RootState) => state.mainSlice);
+
+  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const {
+    songDuration,
+    currentTimeProgress,
+    isAudioMuted
+  } = useAppSelector((state: RootState) => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   const muteVolume = (): void => {

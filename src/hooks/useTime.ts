@@ -5,7 +5,7 @@ import {
     setCurrentLineProgress,
     setDuration,
     setSongDuration
-} from '../app/slices/mainSlice';
+} from '../app/slices/playerSlice';
 
 // /. imports
 

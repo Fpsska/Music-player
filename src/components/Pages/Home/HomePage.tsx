@@ -22,12 +22,8 @@ import BurgerMenu from '../../BurgerMenu/Burger';
 // /. imports
 
 const HomePage: React.FC = () => {
-  const { albumList } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
-  const { isBurgerOpen } = useAppSelector(
-    (state: RootState) => state.burgerSlice
-  );
+  const { albumList } = useAppSelector((state: RootState) => state.playerSlice);
+  const { isBurgerOpen } = useAppSelector((state: RootState) => state.burgerSlice);
   //
   const [isVisible, setIsVisible] = useState(true);
   //

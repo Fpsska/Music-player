@@ -10,9 +10,8 @@ import './card.scss';
 // /. imports
 
 const CardList: React.FC = () => {
-  const { albumList, mockData, isLoading } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
+  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const { albumList, mockData } = useAppSelector((state: RootState) => state.playerSlice);
 
   const list = useMemo(
     () =>

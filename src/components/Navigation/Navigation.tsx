@@ -12,13 +12,13 @@ import './navigation.scss';
 // /. imports
 
 const Navigation: React.FC = () => {
+
+  const { isPlayerPage, isLoading } = useAppSelector((state: RootState) => state.mainSlice);
   const {
-    isPlayerPage,
-    isLoading,
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useAppSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector((state: RootState) => state.playerSlice);
   // 
   return (
     <div

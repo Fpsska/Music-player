@@ -26,13 +26,17 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     isFavourite
   } = props;
 
+
   const {
     isPlaylistPage,
-    isPlayerPage,
+    isPlayerPage
+  } = useAppSelector((state: RootState) => state.mainSlice);
+
+  const {
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useAppSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector((state: RootState) => state.playerSlice);
 
   return (
     <div id={String(id)}  // Standard HTML Attributes

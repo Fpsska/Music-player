@@ -16,7 +16,7 @@ import {
   switchPauseStatus,
   setCurrentLineProgress,
   setCurrentSlideID
-} from '../../app/slices/mainSlice';
+} from '../../app/slices/playerSlice';
 import { RootState } from '../../app/store';
 // Import Swiper React components
 // install Swiper modules
@@ -25,9 +25,15 @@ SwiperCore.use([FreeMode, EffectCoverflow]);
 // /. imports
 
 const SliderCard: React.FC = () => {
-  const { albumList, mockData, isLoading, musicIndex, currentSlideID } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
+
+  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const {
+    albumList,
+    mockData,
+    musicIndex,
+    currentSlideID
+  } = useAppSelector((state: RootState) => state.playerSlice);
+
   const dispatch = useAppDispatch();
   //
   const [coverEffect] = useState({
@@ -38,7 +44,6 @@ const SliderCard: React.FC = () => {
     slideShadows: false
   });
   //
-
   const list = useMemo(
     () =>
       albumList.map((item) => {

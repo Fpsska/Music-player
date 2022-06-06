@@ -8,15 +8,15 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-import { fetchAlbumsData, switchLoadingStatus } from '../../app/slices/mainSlice';
+import { switchLoadingStatus } from '../../app/slices/mainSlice';
+import { fetchAlbumsData } from '../../app/slices/playerSlice';
 import { RootState } from '../../app/store';
 
 // /. imports
 
 const Layout: React.FC = () => {
-  const { status, isPlayerPage } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
+  const { isPlayerPage } = useAppSelector((state: RootState) => state.mainSlice);
+  const { status } = useAppSelector((state: RootState) => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   useEffect(() => {

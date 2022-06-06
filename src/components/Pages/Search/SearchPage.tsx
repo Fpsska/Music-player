@@ -11,8 +11,16 @@ import './searchPage.scss';
 // /. imports
 
 const SearchPage: React.FC = () => {
-    const { likedData, songDuration, isLoading, isPaused } = useAppSelector((state: RootState) => state.mainSlice);
+
+    const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+    const {
+        likedData,
+        songDuration,
+        isPaused
+    } = useAppSelector((state: RootState) => state.playerSlice);
+
     const [isEmpty, setEmptyStatus] = useState(false);
+    
     useEffect(() => {
         if (likedData.length === 0) {
             setEmptyStatus(true);
