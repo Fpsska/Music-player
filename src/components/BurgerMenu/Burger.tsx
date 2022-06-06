@@ -57,7 +57,7 @@ const BurgerMenu: React.FC = () => {
   }, [isVisible, keyHandler]);
 
   const changeTheme = (): void => {
-    setSwithedStatus(!isSwitched);
+    // setSwithedStatus(!isSwitched);
   };
 
   useEffect(() => {

@@ -11,7 +11,7 @@ import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/playerS
 
 import { RootState } from '../../../app/store';
 
-import SliderPlayerList from '../../Slider/SliderPlayerList';
+import Slider from '../../Slider/Slider';
 
 // /. imports
 
@@ -21,7 +21,8 @@ const PlayerPage: React.FC = () => {
   const {
     songDuration,
     currentTimeProgress,
-    isAudioMuted
+    isAudioMuted,
+    albumList
   } = useAppSelector((state: RootState) => state.playerSlice);
   const dispatch = useAppDispatch();
   //
@@ -37,7 +38,7 @@ const PlayerPage: React.FC = () => {
     <div className="container">
       <div className="player">
         <div className="player__slider">
-          <SliderPlayerList />
+          <Slider data={albumList} name={'playerlist'} />
         </div>
         <div className="player__section">
           <div className="player__navigation">

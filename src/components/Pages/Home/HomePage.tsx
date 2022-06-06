@@ -15,8 +15,7 @@ import {
 
 import { RootState } from '../../../app/store';
 
-import SliderRecomendedList from '../../Slider/SliderRecomendedList';
-import SliderPlayList from '../../Slider/SliderPlayList';
+import Slider from '../../Slider/Slider';
 import BurgerMenu from '../../BurgerMenu/Burger';
 
 // /. imports
@@ -72,20 +71,20 @@ const HomePage: React.FC = () => {
             <Link to="player">Recomended for you</Link>
           </h1>
           <div className="home__slider">
-            <SliderRecomendedList albumList={albumList} />
+            <Slider data={albumList} name={'recomended'} />
           </div>
         </div>
         <div className="home__section home__section--playlist">
           <h2 className="page__title title" onClick={goPlayListPage}>
             <Link to="playlist">My Playlist</Link>
           </h2>
-          <SliderPlayList albumList={albumList} />
+          <Slider data={albumList} name={'playlist'} />
         </div>
         <div className="home__section home__section--playlist">
           <h2 className="page__title title" onClick={goPlayListPage}>
             <Link to="playlist">Test</Link>
           </h2>
-          <SliderPlayList albumList={albumList} />
+          <Slider data={albumList} name={'test'} />
         </div>
       </div>
     </>
