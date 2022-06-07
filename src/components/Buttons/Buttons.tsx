@@ -61,14 +61,22 @@ const Buttons: React.FC = () => {
   const { timeHandler } = useTime();
 
   const defineTimeCount = useCallback((e: any): void => {
-    timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
+    if (!isLoading) {
+      setTimeout(() => {
+        timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
+      }, 150);
+    }
+  }, [isLoading]);
+
+  useEffect(() => { // set initial currentTime, duration
+    timeHandler({ currentTime: 0, duration: 0 });
   }, []);
 
   useEffect(() => {
     trackOrder.current.addEventListener('timeupdate', defineTimeCount);
     return () =>
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
-  }, [duration, offsetCurrentTime, defineTimeCount]);
+  }, [defineTimeCount]);
 
 
   const playMusic = (): void => {

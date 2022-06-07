@@ -146,6 +146,7 @@ a {
     }
     &__navigation {
         display: flex;
+        justify-content: space-between;
         position: relative;
     }
     &__button {
@@ -174,13 +175,14 @@ a {
 }
 .volume {
     position: relative;
+    flex-grow: 0;
     &__label {
         background-color: #cc0000;
         position: absolute;
         height: 10px;
         width: 1px;
         bottom: 35%;
-        left: 10%;
+        left: 2rem;
         display: none;
     }
     :nth-child(2) {

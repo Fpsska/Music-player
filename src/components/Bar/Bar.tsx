@@ -3,8 +3,10 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { setOffsetTime } from '../../app/slices/playerSlice';
-import './bar.scss';
+
 import { RootState } from '../../app/store';
+
+import './bar.scss';
 
 // /. imports
 
@@ -17,21 +19,21 @@ const Bar: React.FC = () => {
   } = useAppSelector(
     (state: RootState) => state.playerSlice
   );
-  
+
   const progressArea = useRef<HTMLDivElement>(null!);
   const progressLine = useRef<HTMLDivElement>(null!);
   const dispatch = useAppDispatch();
 
-  const setNewCurrentTime = useCallback(
+  const setNewCurrentTime = useCallback(   // handle progress bar line 
     (event): void => {
-      if (!isPaused && !isLoading) {
+      if (!isLoading) {
         const width = progressArea.current.clientWidth;
         const offset = event.offsetX;
         const newCurrentTime = (offset / width) * duration;
         dispatch(setOffsetTime(newCurrentTime));
       }
     },
-    [duration]
+    [isLoading, duration]
   );
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const Bar: React.FC = () => {
     return () => {
       progressArea.current.removeEventListener('click', setNewCurrentTime);
     };
-  }, [duration]);
+  }, [setNewCurrentTime]); 
 
   useEffect(() => {
     if (!isPaused && !isLoading) {

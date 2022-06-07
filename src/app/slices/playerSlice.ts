@@ -29,11 +29,12 @@ interface mainSliceState {
 
     musicIndex: number;
     currentSlideID: string;
-    currentLineProgress: number;
-    currentTimeProgress: number;
-    songDuration: number;
-    duration: number;
-    offsetCurrentTime: number;
+
+    currentLineProgress: any;
+    currentTimeProgress: any;
+    songDuration: any;
+    duration: any;
+    offsetCurrentTime: any;
 }
 
 // /. interfaces

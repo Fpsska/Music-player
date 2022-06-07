@@ -17,7 +17,6 @@ import Slider from '../../Slider/Slider';
 
 const PlayerPage: React.FC = () => {
 
-  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
   const {
     songDuration,
     currentTimeProgress,
@@ -59,18 +58,22 @@ const PlayerPage: React.FC = () => {
                 }
               ></span>
             </button>
-            <button
-              className="player__button player__button--repeat"
-              type="button"
-            >
-              <IoMdRepeat size={20} color={'#8996b8'} />
-            </button>
-            <button
-              className="player__button player__button--oder"
-              type="button"
-            >
-              <FiShuffle size={19} color={'#8996b8'} />
-            </button>
+
+            <div>
+              <button
+                className="player__button player__button--repeat"
+                type="button"
+              >
+                <IoMdRepeat size={20} color={'#8996b8'} />
+              </button>
+              <button
+                className="player__button player__button--oder"
+                type="button"
+              >
+                <FiShuffle size={19} color={'#8996b8'} />
+              </button>
+            </div>
+
             <button
               className="player__button player__button--like"
               type="button"
@@ -82,10 +85,10 @@ const PlayerPage: React.FC = () => {
           <div
             className="player__time time">
             <span className="time__current">
-              {isLoading ? '00:00' : currentTimeProgress}
+              {currentTimeProgress}
             </span>
             <span className="time__length">
-              {isLoading ? '00:00' : songDuration}
+              {songDuration}
             </span>
           </div>
         </div>
