@@ -30,7 +30,6 @@ const Buttons: React.FC = () => {
   const {
     isPaused,
     albumList,
-    duration,
     offsetCurrentTime,
     isAudioMuted,
     musicIndex,
@@ -44,39 +43,40 @@ const Buttons: React.FC = () => {
   const trackOrder = useRef<HTMLAudioElement>(null!);
   //
 
-  const loadMusic = (index: number): void => {
+  const loadMusic = useCallback((index: number): void => {
     if (!isLoading) {
       trackOrder.current.src = albumList[index - 1].preview;
       dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
       dispatch(setArtistName(albumList[index - 1].artist.name));
       dispatch(setTrackName(albumList[index - 1].title));
     }
-  };
+  }, [isLoading, albumList]);
 
   useEffect(() => {
     loadMusic(musicIndex);
-  }, [isLoading, albumList]);
+  }, [isLoading, loadMusic]);
 
 
   const { timeHandler } = useTime();
-
-  const defineTimeCount = useCallback((e: any): void => {
-    if (!isLoading) {
-      setTimeout(() => {
-        timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
-      }, 150);
-    }
-  }, [isLoading]);
 
   useEffect(() => { // set initial currentTime, duration
     timeHandler({ currentTime: 0, duration: 0 });
   }, []);
 
   useEffect(() => {
+    const defineTimeCount = (e: any): void => {
+      if (!isLoading) {
+        setTimeout(() => {
+          timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
+        }, 150);
+      }
+    };
+
     trackOrder.current.addEventListener('timeupdate', defineTimeCount);
-    return () =>
+    return () => {
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
-  }, [defineTimeCount]);
+    };
+  }, [isLoading]);
 
 
   const playMusic = (): void => {

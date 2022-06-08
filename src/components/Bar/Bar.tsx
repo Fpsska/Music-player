@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
@@ -24,30 +24,25 @@ const Bar: React.FC = () => {
   const progressLine = useRef<HTMLDivElement>(null!);
   const dispatch = useAppDispatch();
 
-  const setNewCurrentTime = useCallback(   // handle progress bar line 
-    (event): void => {
+  useEffect(() => {
+    const setNewCurrentTime = (event: any): void => { // handle progress bar line 
       if (!isLoading) {
         const width = progressArea.current.clientWidth;
         const offset = event.offsetX;
         const newCurrentTime = (offset / width) * duration;
         dispatch(setOffsetTime(newCurrentTime));
       }
-    },
-    [isLoading, duration]
-  );
+    };
 
-  useEffect(() => {
     progressArea.current.addEventListener('click', setNewCurrentTime);
     return () => {
       progressArea.current.removeEventListener('click', setNewCurrentTime);
     };
-  }, [setNewCurrentTime]); 
+  }, [isLoading, duration]);
 
   useEffect(() => {
     if (!isPaused && !isLoading) {
-      setTimeout(() => {
-        progressLine.current.classList.add('active');
-      }, 500);
+      progressLine.current.classList.add('active');
     } else {
       progressLine.current.classList.remove('active');
     }

@@ -26,7 +26,6 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     isFavourite
   } = props;
 
-
   const {
     isPlaylistPage,
     isPlayerPage

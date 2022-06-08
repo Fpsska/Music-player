@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Spring, animated } from 'react-spring';
 
@@ -40,21 +40,21 @@ const BurgerMenu: React.FC = () => {
     }, 400);
   };
 
-  const keyHandler = useCallback((e: KeyboardEvent): void => {
-    if (e.code === 'Escape') {
-      closeBurger();
-      setTimeout(() => {
-        dispatch(switchInformationStatus(false));
-      }, 450);
-    }
-  }, []);
-
   useEffect(() => {
+    const keyHandler = (e: KeyboardEvent): void => {
+      if (e.code === 'Escape') {
+        closeBurger();
+        setTimeout(() => {
+          dispatch(switchInformationStatus(false));
+        }, 450);
+      }
+    };
+
     document.addEventListener('keydown', keyHandler);
     return () => {
       document.removeEventListener('keydown', keyHandler);
     };
-  }, [isVisible, keyHandler]);
+  }, [isVisible]);
 
   const changeTheme = (): void => {
     // setSwithedStatus(!isSwitched);
@@ -103,7 +103,7 @@ const BurgerMenu: React.FC = () => {
                   type="button"
                   onClick={changeTheme}
                 >
-                  <BsMoon size={22} color={'#eaf0ff'}/>
+                  <BsMoon size={22} color={'#eaf0ff'} />
                 </button>
               </div>
               <BurgerNav />

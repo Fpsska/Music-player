@@ -23,6 +23,7 @@ const PlayerPage: React.FC = () => {
     isAudioMuted,
     albumList
   } = useAppSelector((state: RootState) => state.playerSlice);
+  
   const dispatch = useAppDispatch();
   //
   const muteVolume = (): void => {
@@ -58,8 +59,7 @@ const PlayerPage: React.FC = () => {
                 }
               ></span>
             </button>
-
-            <div>
+            <div> {/* NAME */}
               <button
                 className="player__button player__button--repeat"
                 type="button"
@@ -73,7 +73,6 @@ const PlayerPage: React.FC = () => {
                 <FiShuffle size={19} color={'#8996b8'} />
               </button>
             </div>
-
             <button
               className="player__button player__button--like"
               type="button"

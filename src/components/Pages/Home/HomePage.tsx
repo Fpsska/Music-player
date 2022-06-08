@@ -39,19 +39,19 @@ const HomePage: React.FC = () => {
     navigate('player');
   };
 
-  const defineCurtainStatus = (): void => {
-    if (window.innerWidth >= 768) {
-      dispatch(switchCurtainStatus(false));
-    } else {
-      dispatch(switchCurtainStatus(true));
-    }
-  };
-  //
   useEffect(() => {
     setIsVisible(!isVisible);
   }, [isBurgerOpen]);
 
   useLayoutEffect(() => {
+    const defineCurtainStatus = (): void => {
+      if (window.innerWidth >= 768) {
+        dispatch(switchCurtainStatus(false));
+      } else {
+        dispatch(switchCurtainStatus(true));
+      }
+    };
+
     window.addEventListener('resize', defineCurtainStatus);
     window.addEventListener('load', defineCurtainStatus);
     return () => {
