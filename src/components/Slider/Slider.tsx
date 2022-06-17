@@ -4,11 +4,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import Card from '../Card/CardTemplate';
-import { RootState } from '../../app/store';
+
 import { albumListTypes } from '../../Types/mainSliceTypes';
+
+import { setCurrentmusicIndex } from '../../app/slices/playerSlice';
+
+import { useLoadMusic } from '../../hooks/useLoadMusic';
+
 // Import Swiper React components
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
@@ -29,8 +34,10 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
         name
     } = props;
 
-    const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
-    const { mockData } = useAppSelector((state: RootState) => state.playerSlice);
+    const { isLoading, isPlayerPage } = useAppSelector(state => state.mainSlice);
+    const { mockData, albumList, musicIndex } = useAppSelector(state => state.playerSlice);
+
+    const dispatch = useAppDispatch();
 
     const [currentData, setCurrentData] = useState<albumListTypes[]>(data);
     const [coverEffect] = useState({
@@ -65,6 +72,8 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
         }
     });
 
+    const { loadMusic } = useLoadMusic();
+
     useEffect(() => {
         switch (name) {
             case 'recomended':
@@ -82,6 +91,20 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
         }
     }, [data, name]);
 
+    const slideChangeHandler = (): void => {
+        if (isPlayerPage && !isLoading) {
+            dispatch(setCurrentmusicIndex(musicIndex - 1));
+            musicIndex <= 1
+                ? dispatch(setCurrentmusicIndex(albumList.length))
+                : dispatch(setCurrentmusicIndex(musicIndex - 1));
+            // value check
+
+            loadMusic({ index: musicIndex });
+
+            (document.querySelector('.player__audio') as HTMLVideoElement | null)?.play();
+        };
+    };
+
     return (
         <Swiper
             className="mySwiper"
@@ -97,6 +120,8 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
             modules={[Navigation]}
 
             breakpoints={name === 'playerlist' ? {} : breakpoints}
+
+            onSlideChange={() => slideChangeHandler()}
         >
             {
                 isLoading

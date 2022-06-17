@@ -21,6 +21,8 @@ import {
 
 import { RootState } from '../../app/store';
 
+import { useLoadMusic } from '../../hooks/useLoadMusic';
+
 import './buttons.scss';
 
 // /. imports
@@ -43,21 +45,12 @@ const Buttons: React.FC = () => {
   const trackOrder = useRef<HTMLAudioElement>(null!);
   //
 
-  const loadMusic = useCallback((index: number): void => {
-    if (!isLoading) {
-      trackOrder.current.src = albumList[index - 1].preview;
-      dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
-      dispatch(setArtistName(albumList[index - 1].artist.name));
-      dispatch(setTrackName(albumList[index - 1].title));
-    }
-  }, [isLoading, albumList]);
+  const { loadMusic } = useLoadMusic();
+  const { timeHandler } = useTime();
 
   useEffect(() => {
-    loadMusic(musicIndex);
-  }, [isLoading, loadMusic]);
-
-
-  const { timeHandler } = useTime();
+    loadMusic({ index: musicIndex });
+  }, [isLoading]);
 
   useEffect(() => { // set initial currentTime, duration
     timeHandler({ currentTime: 0, duration: 0 });
@@ -97,13 +90,15 @@ const Buttons: React.FC = () => {
       ? dispatch(setCurrentmusicIndex(1))
       : dispatch(setCurrentmusicIndex(musicIndex + 1));
     // value check
-    loadMusic(musicIndex);
+    loadMusic({ index: musicIndex });
     playMusic();
+
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-    console.log(document.querySelector('.swiper-slide'));
+
+    // console.log(document.querySelector('.swiper-slide'));
   };
 
   const prevSong = (): void => {
@@ -112,7 +107,7 @@ const Buttons: React.FC = () => {
       ? dispatch(setCurrentmusicIndex(albumList.length))
       : dispatch(setCurrentmusicIndex(musicIndex - 1));
     // value check
-    loadMusic(musicIndex);
+    loadMusic({ index: musicIndex });
     playMusic();
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
