@@ -171,6 +171,12 @@ a {
         transform: scale(1);
         transition: all 0.25s linear;
         z-index: 1;
+        &:active svg {
+            fill: red;
+        }
+        svg {
+            transition: all 0.25s linear;
+        }
     }
 }
 .volume {

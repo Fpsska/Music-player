@@ -35,7 +35,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
     } = props;
 
     const { isLoading, isPlayerPage } = useAppSelector(state => state.mainSlice);
-    const { mockData, albumList, musicIndex } = useAppSelector(state => state.playerSlice);
+    const { mockData, albumList, musicIndex, currentSlideID } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
 
@@ -144,7 +144,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
                         return (
                             <SwiperSlide key={item.id}>
                                 <Card
-                                    id={item.id}
+                                    id={currentSlideID}
                                     artist={item.artist.name}
                                     track={item.title}
                                     image={item.artist.picture_medium}

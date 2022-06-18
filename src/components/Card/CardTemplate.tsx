@@ -7,7 +7,7 @@ import { RootState } from '../../app/store';
 // /. imports
 
 interface CardPropTypes {
-  id: number;
+  id: string;
   image: string;
   artist: string;
   track: string;
@@ -36,10 +36,10 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     currentArtistName,
     currentTrackName
   } = useAppSelector((state: RootState) => state.playerSlice);
-
+  // 
   return (
-    <div id={String(id)}  // Standard HTML Attributes
-      className={`card ${isPlaylistPage ? 'card--playlist' : ''} ${isPlayerPage ? 'card--player' : ''} ${isFavourite ? 'favourite' : ''}`}
+    <div id={id}  // Standard HTML Attributes (should be string)
+      className={`card ${isPlaylistPage ? 'card--playlist' : isPlayerPage ? 'card--player' : isFavourite ? 'favourite' : ''}`}
     >
       <img
         className={

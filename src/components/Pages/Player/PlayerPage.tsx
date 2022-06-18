@@ -21,9 +21,10 @@ const PlayerPage: React.FC = () => {
     songDuration,
     currentTimeProgress,
     isAudioMuted,
-    albumList
+    albumList,
+    currentSlideID
   } = useAppSelector((state: RootState) => state.playerSlice);
-  
+
   const dispatch = useAppDispatch();
   //
   const muteVolume = (): void => {
@@ -31,7 +32,8 @@ const PlayerPage: React.FC = () => {
   };
   // 
   const addToFavorite = (): void => {
-    dispatch(setFavouriteSong());
+    dispatch(setFavouriteSong(currentSlideID));
+    console.log('added')
   };
   //
   return (

@@ -16,7 +16,8 @@ const SearchPage: React.FC = () => {
     const {
         likedData,
         songDuration,
-        isPaused
+        isPaused,
+        currentSlideID
     } = useAppSelector((state: RootState) => state.playerSlice);
 
     const [isEmpty, setEmptyStatus] = useState(false);
@@ -38,7 +39,7 @@ const SearchPage: React.FC = () => {
                                 :
                                 likedData.map(item => {
                                     return (
-                                        <div className="search__list-item" key={item.id}>
+                                        <div className="search__list-item" key={item.id} id={currentSlideID}>
                                             <img className="search__list-image" src={item.artist.picture_medium} alt="album" />
                                             <div className="search__list-information">
                                                 <span className="search__list-song">{item.title}</span>

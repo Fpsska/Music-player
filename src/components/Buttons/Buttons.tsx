@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -10,13 +10,11 @@ import { useTime } from '../../hooks/useTime';
 
 import {
   switchPauseStatus,
-  setTrackPreview,
-  setArtistName,
-  setTrackName,
   setCurrentLineProgress,
   setCurrentTimeProgress,
   setOffsetTime,
-  setCurrentmusicIndex
+  setCurrentmusicIndex,
+  setCurrentSlideID
 } from '../../app/slices/playerSlice';
 
 import { RootState } from '../../app/store';
@@ -65,6 +63,8 @@ const Buttons: React.FC = () => {
       }
     };
 
+    trackOrder.current.volume = 0.1; // set initial volume
+
     trackOrder.current.addEventListener('timeupdate', defineTimeCount);
     return () => {
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
@@ -109,11 +109,13 @@ const Buttons: React.FC = () => {
     // value check
     loadMusic({ index: musicIndex });
     playMusic();
+
     dispatch(switchPauseStatus(false));
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
+
+    // console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
 

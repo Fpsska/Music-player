@@ -46,11 +46,9 @@ const Form: React.FC = () => {
 
   const relocateToSearchPage = (e: React.SyntheticEvent): void => {
     console.log('SUBMITED');
-    setTimeout(() => {
-      e.preventDefault();
-      dispatch(switchSearchPageStatus(true));
-      navigate('search');
-    }, 1000);
+    e.preventDefault();
+    dispatch(switchSearchPageStatus(true));
+    navigate('search');
   };
   // 
   return (
@@ -70,7 +68,7 @@ const Form: React.FC = () => {
             className="header__button header__button--playlist"
             type="button"
           >
-            <RiEqualizerLine size={25} color={'#eaf0ff'}/>
+            <RiEqualizerLine size={25} color={'#eaf0ff'} />
           </button>
         </div>
       ) : isPlayerPage ? (

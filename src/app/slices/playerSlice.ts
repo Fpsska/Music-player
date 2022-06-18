@@ -17,6 +17,7 @@ export const fetchAlbumsData = createAsyncThunk(
 interface mainSliceState {
     albumList: albumListTypes[];
     likedData: albumListTypes[];
+    filteredData: albumListTypes[];
     mockData: mockDataTypes[];
 
     isPaused: boolean;
@@ -42,6 +43,7 @@ interface mainSliceState {
 const initialState: mainSliceState = {
     albumList: [],
     likedData: [],
+    filteredData: [],
     mockData: [
         {
             id: 1
@@ -124,17 +126,15 @@ const playerSlice = createSlice({
             state.musicIndex = action.payload;
         },
         setCurrentSlideID(state, action: PayloadAction<any>) {
-            const { id } = action.payload;
-            state.currentSlideID = id;
+            state.currentSlideID = action.payload;
         },
-        setFavouriteSong(state) {
-            state.albumList.forEach(item => {
-                if (String(item.id) === state.currentSlideID) {
+        setFavouriteSong(state, action: PayloadAction<string>) {
+            state.filteredData.forEach(item => {
+                if (item.id === +action.payload) {
                     item.isFavourite = true;
-                    console.log('currentSlideID /', state.currentSlideID, ':', item.id);
                 }
             });
-            state.likedData = state.albumList.filter(item => item.isFavourite === true);
+            state.likedData = state.filteredData.filter(item => item.isFavourite === true);
         }
     },
     extraReducers: {
@@ -147,6 +147,8 @@ const playerSlice = createSlice({
         ) => {
             state.albumList = action.payload;
             state.albumList.map(item => item.isFavourite = false);
+            state.likedData = action.payload;
+            state.filteredData = action.payload;
             state.status = 'success';
         },
         [fetchAlbumsData.rejected.type]: (state) => {
