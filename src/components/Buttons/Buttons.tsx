@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -13,8 +13,7 @@ import {
   setCurrentLineProgress,
   setCurrentTimeProgress,
   setOffsetTime,
-  setCurrentmusicIndex,
-  setCurrentSlideID
+  setCurrentmusicIndex
 } from '../../app/slices/playerSlice';
 
 import { RootState } from '../../app/store';
@@ -47,15 +46,15 @@ const Buttons: React.FC = () => {
   const { loadMusic } = useLoadMusic();
   const { timeHandler } = useTime();
 
-  useEffect(() => {
-    loadMusic({ index: musicIndex });
+  useEffect(() => { 
+    if (!isLoading) { // set initiall song
+      loadMusic({ songObj: albumList[1] }); 
+    }
+    timeHandler({ currentTime: 0, duration: 0 });  // set initial currentTime, duration
   }, [isLoading]);
 
-  useEffect(() => { // set initial currentTime, duration
-    timeHandler({ currentTime: 0, duration: 0 });
-  }, []);
-
   useEffect(() => {
+
     const defineTimeCount = (e: any): void => {
       if (!isLoading) {
         setTimeout(() => {
@@ -75,58 +74,60 @@ const Buttons: React.FC = () => {
 
   const playMusic = (): void => {
     trackOrder.current.play();
+    dispatch(switchPauseStatus(false));
   };
+
   const pauseMusic = (): void => {
     trackOrder.current.pause();
+    dispatch(switchPauseStatus(true));
   };
+
   const defineButtonEvent = (): void => {
-    dispatch(switchPauseStatus(!isPaused));
-    !isPaused ? pauseMusic() : playMusic();
+    if (isPaused) {
+      playMusic();
+    } else {
+      pauseMusic();
+    }
   };
 
 
   const nextSong = (): void => {
     dispatch(setCurrentmusicIndex(musicIndex + 1));
 
-    if (musicIndex > (albumList.length - 1)) {
+    if (musicIndex >= (albumList.length - 1)) {
       dispatch(setCurrentmusicIndex(0));
     }
 
-    loadMusic({ index: musicIndex });
+    loadMusic({ songObj: albumList[musicIndex] });
 
     playMusic();
 
     dispatch(switchPauseStatus(false));
 
-  
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-
-    // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
 
     console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
   const prevSong = (): void => {
     dispatch(setCurrentmusicIndex(musicIndex - 1));
-    
-    if (musicIndex < 0) {
+
+    if (musicIndex <= 0) {
       dispatch(setCurrentmusicIndex(albumList.length - 1));
     }
 
-    loadMusic({ index: musicIndex });
+    loadMusic({ songObj: albumList[musicIndex] });
 
     playMusic();
 
     dispatch(switchPauseStatus(false));
 
-    
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
 
-    // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
     console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 

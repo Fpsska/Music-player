@@ -8,8 +8,9 @@ import {
 
 // /. imports
 
+
 interface propTypes {
-    index: number,
+    songObj: any,
 }
 
 // ./ interfaces
@@ -17,19 +18,18 @@ interface propTypes {
 export function useLoadMusic() {
 
     const { isLoading } = useAppSelector(state => state.mainSlice);
-    const { albumList } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
 
     const loadMusic = (props: propTypes) => {
 
-        const { index } = props;
+        const { songObj } = props;
 
         if (!isLoading) {
-            document.querySelector('.player__audio')?.setAttribute('src', albumList[index - 1].preview);
-            dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
-            dispatch(setArtistName(albumList[index - 1].artist.name));
-            dispatch(setTrackName(albumList[index - 1].title));
+            document.querySelector('.player__audio')?.setAttribute('src', songObj.preview); // mp3
+            dispatch(setTrackPreview(songObj.artist.picture_medium)); // image
+            dispatch(setArtistName(songObj.artist.name)); // artist-name
+            dispatch(setTrackName(songObj.title)); // song-name
         }
     };
 

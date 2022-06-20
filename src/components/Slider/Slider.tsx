@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
 
@@ -74,8 +74,6 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
 
     const { loadMusic } = useLoadMusic();
 
-    const swiper = useSwiper();
-
     useEffect(() => {
         switch (name) {
             case 'recomended':
@@ -96,13 +94,13 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
     const slideChangeHandler = (): void => {
         if (isPlayerPage && !isLoading) {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
-            musicIndex <= 1
-                ? dispatch(setCurrentmusicIndex(albumList.length))
-                : dispatch(setCurrentmusicIndex(musicIndex - 1));
+
+            if (musicIndex <= 0) {
+                dispatch(setCurrentmusicIndex(albumList.length - 1));
+            }
             // value check
 
-            loadMusic({ index: musicIndex });
-
+            loadMusic({ songObj: albumList[musicIndex] });
 
             // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
 
