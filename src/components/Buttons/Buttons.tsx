@@ -48,7 +48,7 @@ const Buttons: React.FC = () => {
 
   useEffect(() => { 
     if (!isLoading) { // set initiall song
-      loadMusic({ songObj: albumList[1] }); 
+      loadMusic({ songObj: albumList[0] }); 
     }
     timeHandler({ currentTime: 0, duration: 0 });  // set initial currentTime, duration
   }, [isLoading]);

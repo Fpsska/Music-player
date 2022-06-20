@@ -10,7 +10,7 @@ import Card from '../Card/CardTemplate';
 
 import { albumListTypes } from '../../Types/mainSliceTypes';
 
-import { setCurrentmusicIndex, setCurrentSlideID } from '../../app/slices/playerSlice';
+import { setCurrentmusicIndex, switchPauseStatus } from '../../app/slices/playerSlice';
 
 import { useLoadMusic } from '../../hooks/useLoadMusic';
 
@@ -101,6 +101,8 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
             // value check
 
             loadMusic({ songObj: albumList[musicIndex] });
+
+            dispatch(switchPauseStatus(false));
 
             // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
 
