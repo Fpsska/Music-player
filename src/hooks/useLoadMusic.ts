@@ -3,8 +3,7 @@ import { useAppDispatch, useAppSelector } from '../app/hooks';
 import {
     setArtistName,
     setTrackPreview,
-    setTrackName,
-    setCurrentSlideID
+    setTrackName
 } from '../app/slices/playerSlice';
 
 // /. imports
@@ -31,8 +30,6 @@ export function useLoadMusic() {
             dispatch(setTrackPreview(albumList[index - 1].artist.picture_medium));
             dispatch(setArtistName(albumList[index - 1].artist.name));
             dispatch(setTrackName(albumList[index - 1].title));
-
-            dispatch(setCurrentSlideID(albumList[index - 1].id));
         }
     };
 

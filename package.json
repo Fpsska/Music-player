@@ -23,7 +23,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-spring": "^9.4.1",
-    "swiper": "^7.4.1",
+    "swiper": "^8.2.4",
     "typescript": "^4.6.2"
   },
   "scripts": {

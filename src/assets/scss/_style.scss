@@ -171,11 +171,14 @@ a {
         transform: scale(1);
         transition: all 0.25s linear;
         z-index: 1;
+        &:hover svg {
+            fill: rgba(255, 4, 4, 0.75);
+        }
         &:active svg {
-            fill: red;
+            fill: rgba(255, 4, 4, 0.75);
         }
         svg {
-            transition: all 0.25s linear;
+            transition: all 0.15s linear;
         }
     }
 }
@@ -355,4 +358,8 @@ a {
     100% {
         transform: translateX(-200%);
     }
+}
+
+.id {
+    color: #fff;
 }

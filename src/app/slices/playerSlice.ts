@@ -126,14 +126,21 @@ const playerSlice = createSlice({
             state.musicIndex = action.payload;
         },
         setCurrentSlideID(state, action: PayloadAction<any>) {
+            console.log('id slice', action.payload)
             state.currentSlideID = action.payload;
         },
-        setFavouriteSong(state, action: PayloadAction<string>) {
-            state.filteredData.forEach(item => {
-                if (item.id === +action.payload) {
-                    item.isFavourite = true;
+        handleFavouriteStatus(state, action: PayloadAction<{ id: string, status: boolean }>) {
+            const { id, status } = action.payload;
+
+            state.filteredData.map(item => {
+                if (item.id === +id) {
+                    return item.isFavourite = status;
+                } else {
+                    return item;
                 }
             });
+        },
+        setLikedData(state) {
             state.likedData = state.filteredData.filter(item => item.isFavourite === true);
         }
     },
@@ -171,7 +178,9 @@ export const {
     switchMutedStatus,
     setCurrentmusicIndex,
     setCurrentSlideID,
-    setFavouriteSong
+
+    handleFavouriteStatus,
+    setLikedData
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

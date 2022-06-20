@@ -7,7 +7,7 @@ import { FiShuffle } from 'react-icons/fi';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import { switchMutedStatus, setFavouriteSong } from '../../../app/slices/playerSlice';
+import { switchMutedStatus, handleFavouriteStatus, setLikedData } from '../../../app/slices/playerSlice';
 
 import { RootState } from '../../../app/store';
 
@@ -32,7 +32,10 @@ const PlayerPage: React.FC = () => {
   };
   // 
   const addToFavorite = (): void => {
-    dispatch(setFavouriteSong(currentSlideID));
+    console.log('current active', Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id)
+
+    dispatch(handleFavouriteStatus({ id: Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id, status: true }));
+    dispatch(setLikedData()); // run data filter
     console.log('added')
   };
   //

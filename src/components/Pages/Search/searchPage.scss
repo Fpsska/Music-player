@@ -27,11 +27,15 @@
         }
     }
     &-artist {
+        color: #fff;
+    }
+    &-song {
         color: #b0b0b0;
     }
     &-controls {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         flex: 1;
         margin: 0 0 0 10px;
         :not(:last-child) {
@@ -40,8 +44,14 @@
     }
     &-button {
         padding: 0;
-        .icon__like {
-            fill: #5c5c5c;
+        &:hover svg {
+            fill: rgba(255, 4, 4, 0.75);
+        }
+        &:active svg {
+            fill: rgba(255, 4, 4, 0.75);
+        }
+        svg {
+            transition: all 0.15s linear;
         }
     }
     &-image {
@@ -50,5 +60,8 @@
         border-radius: 8px;
         object-fit: cover;
         margin: 0 20px 0 0;
+    }
+    &-time {
+        color: rgb(137, 150, 184);
     }
 }

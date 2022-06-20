@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { BsHeart } from 'react-icons/bs';
+import { BiTrash } from 'react-icons/bi';
 
-import { useAppSelector } from '../../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
 import { RootState } from '../../../app/store';
+
+import { setLikedData } from '../../../app/slices/playerSlice';
 
 import './searchPage.scss';
 
@@ -16,17 +18,23 @@ const SearchPage: React.FC = () => {
     const {
         likedData,
         songDuration,
-        isPaused,
-        currentSlideID
+        isPaused
     } = useAppSelector((state: RootState) => state.playerSlice);
 
     const [isEmpty, setEmptyStatus] = useState(false);
-    
+
+    const dispatch = useAppDispatch();
+
     useEffect(() => {
         if (likedData.length === 0) {
             setEmptyStatus(true);
         }
+        console.log(likedData)
     }, [likedData]);
+
+    useEffect(() => {
+        dispatch(setLikedData());  // hide all items, which has flag FALSE
+    }, []);
 
     return (
         <div className="container">
@@ -39,7 +47,7 @@ const SearchPage: React.FC = () => {
                                 :
                                 likedData.map(item => {
                                     return (
-                                        <div className="search__list-item" key={item.id} id={currentSlideID}>
+                                        <div className="search__list-item" key={item.id} id={String(item.id)}>
                                             <img className="search__list-image" src={item.artist.picture_medium} alt="album" />
                                             <div className="search__list-information">
                                                 <span className="search__list-song">{item.title}</span>
@@ -47,10 +55,11 @@ const SearchPage: React.FC = () => {
                                             </div>
                                             <div className="search__list-controls">
                                                 <button className="search__list-button">
-                                                    <BsHeart size={18} color={'#8996b8'} />
+                                                    <BiTrash size={18} color={'#8996b8'} />
                                                 </button>
                                                 <span className="search__list-time">{isLoading ? '0:00' : isPaused ? '0:00' : songDuration}</span>
                                             </div>
+                                            <span className="id">{item.id}</span>
                                         </div>
                                     );
                                 })

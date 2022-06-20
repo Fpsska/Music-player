@@ -11,7 +11,7 @@ import './card.scss';
 
 const CardList: React.FC = () => {
   const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
-  const { albumList, mockData, currentSlideID } = useAppSelector((state: RootState) => state.playerSlice);
+  const { albumList, mockData } = useAppSelector((state: RootState) => state.playerSlice);
 
   return (
     <>
@@ -34,7 +34,7 @@ const CardList: React.FC = () => {
             return (
               <Card
                 key={item.id}
-                id={currentSlideID}
+                id={item.id}
                 artist={item.artist.name}
                 track={item.title}
                 image={item.artist.picture_medium}

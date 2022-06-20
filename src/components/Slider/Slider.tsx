@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 
 import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
 
@@ -10,7 +10,7 @@ import Card from '../Card/CardTemplate';
 
 import { albumListTypes } from '../../Types/mainSliceTypes';
 
-import { setCurrentmusicIndex } from '../../app/slices/playerSlice';
+import { setCurrentmusicIndex, setCurrentSlideID } from '../../app/slices/playerSlice';
 
 import { useLoadMusic } from '../../hooks/useLoadMusic';
 
@@ -74,6 +74,8 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
 
     const { loadMusic } = useLoadMusic();
 
+    const swiper = useSwiper();
+
     useEffect(() => {
         switch (name) {
             case 'recomended':
@@ -100,6 +102,9 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
             // value check
 
             loadMusic({ index: musicIndex });
+
+
+            // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
 
             (document.querySelector('.player__audio') as HTMLVideoElement | null)?.play();
         };
@@ -144,7 +149,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
                         return (
                             <SwiperSlide key={item.id}>
                                 <Card
-                                    id={currentSlideID}
+                                    id={item.id}
                                     artist={item.artist.name}
                                     track={item.title}
                                     image={item.artist.picture_medium}
