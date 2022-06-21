@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BsHeart } from 'react-icons/bs';
-import { IoTennisball } from 'react-icons/io5';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -39,8 +38,15 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
   const {
     currentTrackPreview,
     currentArtistName,
-    currentTrackName
+    currentTrackName,
+    likedData
   } = useAppSelector(state => state.playerSlice);
+
+  const [isAlreadyAdded, setAddedStatus] = useState<boolean>(false);
+
+  useEffect(() => {
+    likedData.some(item => item.id === id) ? setAddedStatus(true) : setAddedStatus(false);
+  }, [likedData]);
 
   const dispatch = useAppDispatch();
 
@@ -48,6 +54,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     dispatch(addToLikedAlbum(card));
     console.log('added')
   };
+
   // 
   return (
     <div id={String(id)}  // Standard HTML Attributes (should be string)
@@ -89,7 +96,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
           <button
             className="card__button card__button--like"
             type="button"
-            onClick={addToFavorite}
+            onClick={() => !isAlreadyAdded && addToFavorite()}
           >
             <BsHeart size={18} color={'#8996b8'} />
           </button>
