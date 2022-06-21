@@ -29,7 +29,6 @@ interface mainSliceState {
     currentTrack: string;
 
     musicIndex: number;
-    currentSlideID: string;
 
     currentLineProgress: any;
     currentTimeProgress: any;
@@ -73,7 +72,6 @@ const initialState: mainSliceState = {
     currentArtistName: 'untitled',
     currentTrackName: 'untitled',
     currentTrack: '',
-    currentSlideID: '',
 
     musicIndex: 1,
     currentLineProgress: 0,
@@ -92,7 +90,7 @@ const playerSlice = createSlice({
         switchPauseStatus(state, action: PayloadAction<boolean>) {
             state.isPaused = action.payload;
         },
-        setTrackPreview(state, action: PayloadAction<string>) { // img
+        setTrackPreview(state, action: PayloadAction<string>) { // image
             state.currentTrackPreview = action.payload;
         },
         setArtistName(state, action: PayloadAction<string>) {
@@ -125,23 +123,12 @@ const playerSlice = createSlice({
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
             state.musicIndex = action.payload;
         },
-        setCurrentSlideID(state, action: PayloadAction<any>) {
-            console.log('id slice', action.payload)
-            state.currentSlideID = action.payload;
-        },
-        handleFavouriteStatus(state, action: PayloadAction<{ id: string, status: boolean }>) {
-            const { id, status } = action.payload;
 
-            state.filteredData.map(item => {
-                if (item.id === +id) {
-                    return item.isFavourite = status;
-                } else {
-                    return item;
-                }
-            });
+        addToLikedAlbum(state, action: PayloadAction<any>) {
+            state.likedData.push(action.payload);
         },
-        setLikedData(state) {
-            state.likedData = state.filteredData.filter(item => item.isFavourite === true);
+        removeFromLikedAlbum(state, action: PayloadAction<number>) {
+            state.likedData = state.likedData.filter(item => item.id !== action.payload);
         }
     },
     extraReducers: {
@@ -153,9 +140,6 @@ const playerSlice = createSlice({
             action: PayloadAction<albumListTypes[]>
         ) => {
             state.albumList = action.payload;
-            state.albumList.map(item => item.isFavourite = false);
-            state.likedData = action.payload;
-            state.filteredData = action.payload;
             state.status = 'success';
         },
         [fetchAlbumsData.rejected.type]: (state) => {
@@ -177,10 +161,9 @@ export const {
     setOffsetTime,
     switchMutedStatus,
     setCurrentmusicIndex,
-    setCurrentSlideID,
 
-    handleFavouriteStatus,
-    setLikedData
+    addToLikedAlbum,
+    removeFromLikedAlbum
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

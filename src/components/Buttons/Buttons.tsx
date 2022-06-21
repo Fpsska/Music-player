@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -108,7 +108,6 @@ const Buttons: React.FC = () => {
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
 
-    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
   const prevSong = (): void => {
@@ -127,8 +126,6 @@ const Buttons: React.FC = () => {
     dispatch(setCurrentLineProgress(0));
     dispatch(setCurrentTimeProgress(0));
     dispatch(setOffsetTime(0));
-
-    console.log(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id);
   };
 
 

@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { BsHeart } from 'react-icons/bs';
 import { BiVolumeLow } from 'react-icons/bi';
 import { IoMdRepeat } from 'react-icons/io';
 import { FiShuffle } from 'react-icons/fi';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import { switchMutedStatus, handleFavouriteStatus, setLikedData } from '../../../app/slices/playerSlice';
+import { switchMutedStatus } from '../../../app/slices/playerSlice';
 
 import { RootState } from '../../../app/store';
 
@@ -21,8 +20,7 @@ const PlayerPage: React.FC = () => {
     songDuration,
     currentTimeProgress,
     isAudioMuted,
-    albumList,
-    currentSlideID
+    albumList
   } = useAppSelector((state: RootState) => state.playerSlice);
 
   const dispatch = useAppDispatch();
@@ -31,14 +29,6 @@ const PlayerPage: React.FC = () => {
     dispatch(switchMutedStatus(!isAudioMuted));
   };
   // 
-  const addToFavorite = (): void => {
-    console.log('current active', Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id)
-
-    dispatch(handleFavouriteStatus({ id: Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id, status: true }));
-    dispatch(setLikedData()); // run data filter
-    console.log('added')
-  };
-  //
   return (
     <div className="container">
       <div className="player">
@@ -78,13 +68,6 @@ const PlayerPage: React.FC = () => {
                 <FiShuffle size={19} color={'#8996b8'} />
               </button>
             </div>
-            <button
-              className="player__button player__button--like"
-              type="button"
-              onClick={addToFavorite}
-            >
-              <BsHeart size={18} color={'#8996b8'} />
-            </button>
           </div>
           <div
             className="player__time time">

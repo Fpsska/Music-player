@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
 import { RootState } from '../../../app/store';
 
-import { setLikedData } from '../../../app/slices/playerSlice';
+import { removeFromLikedAlbum } from '../../../app/slices/playerSlice';
 
 import './searchPage.scss';
 
@@ -29,12 +29,7 @@ const SearchPage: React.FC = () => {
         if (likedData.length === 0) {
             setEmptyStatus(true);
         }
-        console.log(likedData)
     }, [likedData]);
-
-    useEffect(() => {
-        dispatch(setLikedData());  // hide all items, which has flag FALSE
-    }, []);
 
     return (
         <div className="container">
@@ -54,12 +49,11 @@ const SearchPage: React.FC = () => {
                                                 <span className="search__list-artist">{item.artist.name}</span>
                                             </div>
                                             <div className="search__list-controls">
-                                                <button className="search__list-button">
+                                                <button className="search__list-button" onClick={() => { dispatch(removeFromLikedAlbum(item.id)) }}>
                                                     <BiTrash size={18} color={'#8996b8'} />
                                                 </button>
                                                 <span className="search__list-time">{isLoading ? '0:00' : isPaused ? '0:00' : songDuration}</span>
                                             </div>
-                                            <span className="id">{item.id}</span>
                                         </div>
                                     );
                                 })

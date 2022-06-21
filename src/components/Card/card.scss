@@ -43,6 +43,23 @@
         z-index: 1;
         position: relative;
     }
+    &__button--like {
+        position: absolute;
+        right: 0;
+        // top: -295%;
+        transform: scale(1);
+        transition: all 0.25s linear;
+        z-index: 1;
+        &:hover svg {
+            fill: rgba(255, 4, 4, 0.75);
+        }
+        &:active svg {
+            fill: rgba(255, 4, 4, 0.75);
+        }
+        svg {
+            transition: all 0.15s linear;
+        }
+    }
 }
 
 .card--playlist {

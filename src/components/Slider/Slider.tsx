@@ -35,7 +35,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
     } = props;
 
     const { isLoading, isPlayerPage } = useAppSelector(state => state.mainSlice);
-    const { mockData, albumList, musicIndex, currentSlideID } = useAppSelector(state => state.playerSlice);
+    const { mockData, albumList, musicIndex } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
 
@@ -93,7 +93,11 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
 
     const slideChangeHandler = (): void => {
         if (isPlayerPage && !isLoading) {
-            dispatch(setCurrentmusicIndex(musicIndex - 1));
+            dispatch(setCurrentmusicIndex(musicIndex + 1));
+
+            if (musicIndex >= (albumList.length - 1)) {
+                dispatch(setCurrentmusicIndex(0));
+            }
 
             if (musicIndex <= 0) {
                 dispatch(setCurrentmusicIndex(albumList.length - 1));
@@ -103,8 +107,6 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
             loadMusic({ songObj: albumList[musicIndex] });
 
             dispatch(switchPauseStatus(false));
-
-            // dispatch(setCurrentSlideID(Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-active'))[0].children[0].id));
 
             (document.querySelector('.player__audio') as HTMLVideoElement | null)?.play();
         };
@@ -150,6 +152,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
                             <SwiperSlide key={item.id}>
                                 <Card
                                     id={item.id}
+                                    card={item}
                                     artist={item.artist.name}
                                     track={item.title}
                                     image={item.artist.picture_medium}

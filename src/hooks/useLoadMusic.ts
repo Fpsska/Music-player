@@ -8,7 +8,6 @@ import {
 
 // /. imports
 
-
 interface propTypes {
     songObj: any,
 }

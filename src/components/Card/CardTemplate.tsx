@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { BsHeart } from 'react-icons/bs';
+import { IoTennisball } from 'react-icons/io5';
 
-import { RootState } from '../../app/store';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+
+import { addToLikedAlbum } from '../../app/slices/playerSlice';
 
 // /. imports
 
 interface CardPropTypes {
   id: number;
+  card: any;
   image: string;
   artist: string;
   track: string;
@@ -20,6 +24,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
   const {
     id,
+    card,
     image,
     artist,
     track,
@@ -29,13 +34,20 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
   const {
     isPlaylistPage,
     isPlayerPage
-  } = useAppSelector((state: RootState) => state.mainSlice);
+  } = useAppSelector(state => state.mainSlice);
 
   const {
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useAppSelector((state: RootState) => state.playerSlice);
+  } = useAppSelector(state => state.playerSlice);
+
+  const dispatch = useAppDispatch();
+
+  const addToFavorite = (): void => {
+    dispatch(addToLikedAlbum(card));
+    console.log('added')
+  };
   // 
   return (
     <div id={String(id)}  // Standard HTML Attributes (should be string)
@@ -71,9 +83,18 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
       >
         {isPlayerPage ? currentArtistName : artist}
       </span>
-      <br />
-      <br />
-      <span className="id">{id}</span>
+      <>
+        {
+          isPlayerPage &&
+          <button
+            className="card__button card__button--like"
+            type="button"
+            onClick={addToFavorite}
+          >
+            <BsHeart size={18} color={'#8996b8'} />
+          </button>
+        }
+      </>
     </div>
   );
 };
