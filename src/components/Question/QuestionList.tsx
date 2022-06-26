@@ -2,18 +2,15 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { RootState } from '../../app/store';
-
 import Question from './QuestionTemplate';
+
 import './question.scss';
 
 // /. imports
 
 const QuestionList: React.FC = () => {
-  const { questions } = useAppSelector(
-    (state: RootState) => state.burgerSlice
-  );
-
+  const { questions } = useAppSelector(state => state.burgerSlice);
+  // 
   return (
     <div className="question">
       <div className="question__wrapper">

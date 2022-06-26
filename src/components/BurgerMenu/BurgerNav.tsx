@@ -14,12 +14,11 @@ import { switchSearchPageStatus } from '../../app/slices/mainSlice';
 import { switchInformationStatus, switchContactInfoStatus, switchBurgerStatus, switchFaqsInfoStatus } from '../../app/slices/burgerSlice';
 
 import Details from '../Details/Details';
-import { RootState } from '../../app/store';
 
 // /. imports
 
 const BurgerNav: React.FC = () => {
-    const { isInformationVisible, isContactInfo, isFaqsInfo } = useAppSelector((state: RootState) => state.burgerSlice);
+    const { isInformationVisible, isContactInfo, isFaqsInfo } = useAppSelector(state => state.burgerSlice);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     // 

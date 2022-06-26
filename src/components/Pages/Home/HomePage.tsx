@@ -13,16 +13,14 @@ import {
   switchCurtainStatus
 } from '../../../app/slices/burgerSlice';
 
-import { RootState } from '../../../app/store';
-
 import Slider from '../../Slider/Slider';
 import BurgerMenu from '../../BurgerMenu/Burger';
 
 // /. imports
 
 const HomePage: React.FC = () => {
-  const { albumList } = useAppSelector((state: RootState) => state.playerSlice);
-  const { isBurgerOpen } = useAppSelector((state: RootState) => state.burgerSlice);
+  const { albumList } = useAppSelector(state => state.playerSlice);
+  const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
   //
   const [isVisible, setIsVisible] = useState(true);
   //

@@ -16,8 +16,6 @@ import {
   setCurrentmusicIndex
 } from '../../app/slices/playerSlice';
 
-import { RootState } from '../../app/store';
-
 import { useLoadMusic } from '../../hooks/useLoadMusic';
 
 import './buttons.scss';
@@ -26,7 +24,7 @@ import './buttons.scss';
 // /. imports
 
 const Buttons: React.FC = () => {
-  const { isPlayerPage, isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const { isPlayerPage, isLoading } = useAppSelector(state => state.mainSlice);
   const {
     isPaused,
     albumList,
@@ -34,7 +32,7 @@ const Buttons: React.FC = () => {
     isAudioMuted,
     musicIndex,
     currentTrack
-  } = useAppSelector((state: RootState) => state.playerSlice);
+  } = useAppSelector(state => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   const prevBtn = useRef<HTMLButtonElement>(null);

@@ -2,16 +2,15 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { RootState } from '../../app/store';
-
 import Card from './CardTemplate';
+
 import './card.scss';
 
 // /. imports
 
 const CardList: React.FC = () => {
-  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
-  const { albumList, mockData } = useAppSelector((state: RootState) => state.playerSlice);
+  const { isLoading } = useAppSelector(state => state.mainSlice);
+  const { albumList, mockData } = useAppSelector(state => state.playerSlice);
 
   return (
     <>

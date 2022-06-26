@@ -4,21 +4,17 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { setOffsetTime } from '../../app/slices/playerSlice';
 
-import { RootState } from '../../app/store';
-
 import './bar.scss';
 
 // /. imports
 
 const Bar: React.FC = () => {
-  const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const { isLoading } = useAppSelector(state => state.mainSlice);
   const {
     currentLineProgress,
     duration,
     isPaused
-  } = useAppSelector(
-    (state: RootState) => state.playerSlice
-  );
+  } = useAppSelector(state => state.playerSlice);
 
   const progressArea = useRef<HTMLDivElement>(null!);
   const progressLine = useRef<HTMLDivElement>(null!);

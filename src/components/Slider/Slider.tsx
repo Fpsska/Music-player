@@ -6,13 +6,13 @@ import SwiperCore, { FreeMode, EffectCoverflow, Navigation } from 'swiper';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import Card from '../Card/CardTemplate';
-
 import { albumListTypes } from '../../Types/mainSliceTypes';
 
 import { setCurrentmusicIndex, switchPauseStatus } from '../../app/slices/playerSlice';
 
 import { useLoadMusic } from '../../hooks/useLoadMusic';
+
+import Card from '../Card/CardTemplate';
 
 // Import Swiper React components
 // install Swiper modules
@@ -111,7 +111,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
             (document.querySelector('.player__audio') as HTMLVideoElement | null)?.play();
         };
     };
-
+    // 
     return (
         <Swiper
             className="mySwiper"

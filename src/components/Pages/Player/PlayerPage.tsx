@@ -8,8 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import { switchMutedStatus } from '../../../app/slices/playerSlice';
 
-import { RootState } from '../../../app/store';
-
 import Slider from '../../Slider/Slider';
 
 // /. imports
@@ -21,7 +19,7 @@ const PlayerPage: React.FC = () => {
     currentTimeProgress,
     isAudioMuted,
     albumList
-  } = useAppSelector((state: RootState) => state.playerSlice);
+  } = useAppSelector(state => state.playerSlice);
 
   const dispatch = useAppDispatch();
   //

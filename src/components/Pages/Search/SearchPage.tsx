@@ -4,8 +4,6 @@ import { BiTrash } from 'react-icons/bi';
 
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
-import { RootState } from '../../../app/store';
-
 import { removeFromLikedAlbum } from '../../../app/slices/playerSlice';
 
 import './searchPage.scss';
@@ -14,12 +12,12 @@ import './searchPage.scss';
 
 const SearchPage: React.FC = () => {
 
-    const { isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+    const { isLoading } = useAppSelector(state => state.mainSlice);
     const {
         likedData,
         songDuration,
         isPaused
-    } = useAppSelector((state: RootState) => state.playerSlice);
+    } = useAppSelector(state => state.playerSlice);
 
     const [isEmpty, setEmptyStatus] = useState(false);
 

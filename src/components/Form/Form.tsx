@@ -14,19 +14,16 @@ import {
   switchPlayerPageStatus,
   switchSearchPageStatus
 } from '../../app/slices/mainSlice';
+
 import { switchBurgerStatus } from '../../app/slices/burgerSlice';
-import { RootState } from '../../app/store';
+
 import './form.scss';
 
 // /. imports
 
 const Form: React.FC = () => {
-  const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useAppSelector(
-    (state: RootState) => state.mainSlice
-  );
-  const { isBurgerOpen } = useAppSelector(
-    (state: RootState) => state.burgerSlice
-  );
+  const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } = useAppSelector(state => state.mainSlice);
+  const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -82,47 +79,18 @@ const Form: React.FC = () => {
           </button>
           <h1 className="header__title">Playing Now</h1>
         </div>
-      ) : isSearchPage ? (
-        <div className="header__section">
-          <button
-            className="header__button header__button--search"
-            type="button"
-            onClick={goBack}
-          >
-            <HiOutlineArrowLeft size={25} color={'#eaf0ff'} />
-          </button>
-          <form className="form" action="#">
-            <div className="form__search">
-              <input
-                className="form__input"
-                type="text"
-                disabled={isLoading ? true : isBurgerOpen ? true : false}
-              />
-              <button
-                className={
-                  isBurgerOpen
-                    ? 'form__button form__button--search opacity'
-                    : 'form__button form__button--search'
-                }
-                type="button"
-              >
-                <FiSearch size={25} color={'#eaf0ff'} />
-              </button>
-            </div>
-          </form>
-        </div>
-      )
-        :
-        (
+      ) :
+
+        isSearchPage ? (
           <div className="header__section">
             <button
-              className="header__button header__button--menu"
+              className="header__button header__button--search"
               type="button"
-              onClick={openBurger}
+              onClick={goBack}
             >
-              <HiOutlineMenuAlt4 size={25} color={'#eaf0ff'} />
+              <HiOutlineArrowLeft size={25} color={'#eaf0ff'} />
             </button>
-            <form className="form" action="#" onSubmit={relocateToSearchPage}>
+            <form className="form" action="#" onSubmit={(e) => e.preventDefault()}>
               <div className="form__search">
                 <input
                   className="form__input"
@@ -130,7 +98,6 @@ const Form: React.FC = () => {
                   disabled={isLoading ? true : isBurgerOpen ? true : false}
                 />
                 <button
-                  onClick={(e) => relocateToSearchPage(e)}
                   className={
                     isBurgerOpen
                       ? 'form__button form__button--search opacity'
@@ -143,7 +110,41 @@ const Form: React.FC = () => {
               </div>
             </form>
           </div>
-        )}
+        )
+
+
+          :
+          (
+            <div className="header__section">
+              <button
+                className="header__button header__button--menu"
+                type="button"
+                onClick={openBurger}
+              >
+                <HiOutlineMenuAlt4 size={25} color={'#eaf0ff'} />
+              </button>
+              <form className="form" action="#" onSubmit={relocateToSearchPage}>
+                <div className="form__search">
+                  <input
+                    className="form__input"
+                    type="text"
+                    disabled={isLoading ? true : isBurgerOpen ? true : false}
+                  />
+                  <button
+                    onClick={(e) => relocateToSearchPage(e)}
+                    className={
+                      isBurgerOpen
+                        ? 'form__button form__button--search opacity'
+                        : 'form__button form__button--search'
+                    }
+                    type="button"
+                  >
+                    <FiSearch size={25} color={'#eaf0ff'} />
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
     </>
   );
 };

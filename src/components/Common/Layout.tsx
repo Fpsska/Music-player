@@ -10,13 +10,12 @@ import Footer from '../Footer/Footer';
 
 import { switchLoadingStatus } from '../../app/slices/mainSlice';
 import { fetchAlbumsData } from '../../app/slices/playerSlice';
-import { RootState } from '../../app/store';
 
 // /. imports
 
 const Layout: React.FC = () => {
-  const { isPlayerPage } = useAppSelector((state: RootState) => state.mainSlice);
-  const { status } = useAppSelector((state: RootState) => state.playerSlice);
+  const { isPlayerPage } = useAppSelector(state => state.mainSlice);
+  const { status } = useAppSelector(state => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   useEffect(() => {

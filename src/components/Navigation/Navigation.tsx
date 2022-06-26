@@ -5,20 +5,18 @@ import { useAppSelector } from '../../app/hooks';
 import Buttons from '../Buttons/Buttons';
 import Bar from '../Bar/Bar';
 
-import { RootState } from '../../app/store';
-
 import './navigation.scss';
 
 // /. imports
 
 const Navigation: React.FC = () => {
 
-  const { isPlayerPage, isLoading } = useAppSelector((state: RootState) => state.mainSlice);
+  const { isPlayerPage, isLoading } = useAppSelector(state => state.mainSlice);
   const {
     currentTrackPreview,
     currentArtistName,
     currentTrackName
-  } = useAppSelector((state: RootState) => state.playerSlice);
+  } = useAppSelector(state => state.playerSlice);
   // 
   return (
     <div

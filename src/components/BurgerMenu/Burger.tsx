@@ -12,8 +12,6 @@ import {
   switchInformationStatus
 } from '../../app/slices/burgerSlice';
 
-import { RootState } from '../../app/store';
-
 import { useTheme } from '../../hooks/useTheme';
 
 import BurgerNav from './BurgerNav';
@@ -23,9 +21,7 @@ import './burger.scss';
 // /. imports
 
 const BurgerMenu: React.FC = () => {
-  const { isCurtainVisible } = useAppSelector(
-    (state: RootState) => state.burgerSlice
-  );
+  const { isCurtainVisible } = useAppSelector(state => state.burgerSlice);
   const [isVisible, setIsVisible] = useState(false);
   const [isSwitched, setSwithedStatus] = useState<boolean>(false);
   const { theme, setTheme } = useTheme();

@@ -9,15 +9,12 @@ import { useAppSelector } from '../../app/hooks';
 
 import QuestionList from '../Question/QuestionList';
 
-import { RootState } from '../../app/store';
 import './details.scss';
 
 // /. imports
 
 const Details: React.FC = () => {
-    const { isContactInfo, isFaqsInfo } = useAppSelector(
-        (state: RootState) => state.burgerSlice
-    );
+    const { isContactInfo, isFaqsInfo } = useAppSelector(state => state.burgerSlice);
     // 
     return (
         <div className="details">
