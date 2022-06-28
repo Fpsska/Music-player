@@ -17,6 +17,8 @@ import {
 
 import { switchBurgerStatus } from '../../app/slices/burgerSlice';
 
+import { useInput } from '../../hooks/useInput';
+
 import './form.scss';
 
 // /. imports
@@ -27,6 +29,9 @@ const Form: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const searchInput = useInput('');
+
   // 
   const goBack = (): void => {
     setTimeout(() => {
@@ -95,7 +100,9 @@ const Form: React.FC = () => {
                 <input
                   className="form__input"
                   type="text"
-                  disabled={isLoading ? true : isBurgerOpen ? true : false}
+                  disabled={isLoading || isBurgerOpen}
+                  onChange={(e) => searchInput.onInputChange({ name: 'search', value: e.target.value })}
+                  value={searchInput.value}
                 />
                 <button
                   className={
@@ -112,7 +119,6 @@ const Form: React.FC = () => {
           </div>
         )
 
-
           :
           (
             <div className="header__section">
@@ -123,21 +129,23 @@ const Form: React.FC = () => {
               >
                 <HiOutlineMenuAlt4 size={25} color={'#eaf0ff'} />
               </button>
-              <form className="form" action="#" onSubmit={relocateToSearchPage}>
+              <form className="form" action="#" onSubmit={(e) => relocateToSearchPage(e)}>
                 <div className="form__search">
                   <input
                     className="form__input"
                     type="text"
-                    disabled={isLoading ? true : isBurgerOpen ? true : false}
+                    disabled={isLoading || isBurgerOpen}
+                    onChange={(e) => searchInput.onInputChange({ name: 'search', value: e.target.value })}
+                    value={searchInput.value}
                   />
                   <button
-                    onClick={(e) => relocateToSearchPage(e)}
                     className={
                       isBurgerOpen
                         ? 'form__button form__button--search opacity'
                         : 'form__button form__button--search'
                     }
                     type="button"
+                    onClick={relocateToSearchPage}
                   >
                     <FiSearch size={25} color={'#eaf0ff'} />
                   </button>

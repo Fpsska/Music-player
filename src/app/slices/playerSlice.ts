@@ -123,12 +123,16 @@ const playerSlice = createSlice({
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
             state.musicIndex = action.payload;
         },
-
         addToLikedAlbum(state, action: PayloadAction<any>) {
             state.likedData.push(action.payload);
+            state.filteredData = state.likedData;
         },
-        removeFromLikedAlbum(state, action: PayloadAction<number>) {
-            state.likedData = state.likedData.filter(item => item.id !== action.payload);
+        removeFromLikedAlbum(state, action: PayloadAction<{id: number}>) {
+            state.likedData = state.likedData.filter(item => item.id !== action.payload.id);
+            state.filteredData = state.filteredData.filter(item => item.id !== action.payload.id);
+        },
+        filterLikedData(state, action: PayloadAction<string>) {
+            state.likedData = state.filteredData.filter(item => RegExp(action.payload, 'gi').test((item.title)));
         }
     },
     extraReducers: {
@@ -140,6 +144,7 @@ const playerSlice = createSlice({
             action: PayloadAction<albumListTypes[]>
         ) => {
             state.albumList = action.payload;
+            // state.filteredData = action.payload; // displayed all data of initial filtering
             state.status = 'success';
         },
         [fetchAlbumsData.rejected.type]: (state) => {
@@ -161,9 +166,9 @@ export const {
     setOffsetTime,
     switchMutedStatus,
     setCurrentmusicIndex,
-
     addToLikedAlbum,
-    removeFromLikedAlbum
+    removeFromLikedAlbum,
+    filterLikedData
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
