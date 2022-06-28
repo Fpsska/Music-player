@@ -33,7 +33,6 @@ const CardList: React.FC = () => {
             return (
               <Card
                 key={item.id}
-                card={item}
                 id={item.id}
                 artist={item.artist.name}
                 track={item.title}

@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { albumListTypes } from '../../Types/mainSliceTypes';
 
-import { setCurrentmusicIndex, switchPauseStatus } from '../../app/slices/playerSlice';
+import { setCurrentmusicIndex, switchPauseStatus, setCurrentCardID } from '../../app/slices/playerSlice';
 
 import { useLoadMusic } from '../../hooks/useLoadMusic';
 
@@ -108,6 +108,9 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
 
             dispatch(switchPauseStatus(false));
 
+            // dispatch(setCurrentCardID());
+            dispatch(setCurrentCardID(+Array.from(document.querySelectorAll('.swiper-slide')).filter(item => item.classList.contains('swiper-slide-visible'))[0].children[0].id));
+
             (document.querySelector('.player__audio') as HTMLVideoElement | null)?.play();
         };
     };
@@ -152,7 +155,6 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
                             <SwiperSlide key={item.id}>
                                 <Card
                                     id={item.id}
-                                    card={item}
                                     artist={item.artist.name}
                                     track={item.title}
                                     image={item.artist.picture_medium}
