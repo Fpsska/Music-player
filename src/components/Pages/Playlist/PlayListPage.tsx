@@ -23,13 +23,11 @@ const PlayListPage: React.FC = () => {
   return (
     <>
       <div className="playlist">
-        <div className="container container--playlist">
-          <h1 className="page__title title" onClick={goHomePage}>
-            <Link to="/Music-player">Liked Songs</Link>
-          </h1>
-          <div className="playlist__wrapper">
-            <CardList />
-          </div>
+        <h1 className="page__title title" onClick={goHomePage}>
+          <Link to="/Music-player">Liked Songs</Link>
+        </h1>
+        <div className="playlist__wrapper">
+          <CardList />
         </div>
       </div>
     </>

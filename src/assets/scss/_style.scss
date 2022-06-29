@@ -114,6 +114,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 0 5px;
 }
 
 .home {
@@ -128,8 +129,8 @@ a {
 }
 
 .playlist {
-    max-height: 75vh;
-    height: 100%;
+    height: calc(100vh - 48px - 69px);
+    padding: 0 5px;
     overflow-y: scroll;
     &__wrapper {
         display: flex;
@@ -213,21 +214,10 @@ a {
     justify-content: space-between;
 }
 
-.container {
-    max-width: 330px;
-    padding: 0 5px;
-    margin: 0 auto;
-}
 .container--loading {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-.container--playlist {
-    @extend .container;
-}
-.container--footer {
-    margin: 0 auto calc(100vh / 5) auto;
 }
 
 // /.PAGES
