@@ -133,9 +133,9 @@ a {
     padding: 0 5px;
     overflow-y: scroll;
     &__wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 20px;
     }
 }
 .player {

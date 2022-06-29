@@ -40,13 +40,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
       className={`card ${isPlaylistPage ? 'card--playlist' : isPlayerPage ? 'card--player' : isFavourite ? 'favourite' : ''}`}
     >
       <img
-        className={
-          isPlaylistPage
-            ? 'card__image card__image--playlist'
-            : isPlayerPage
-              ? 'card__image card__image--player'
-              : 'card__image'
-        }
+        className={`card__image ${isPlaylistPage ? 'card__image--playlist' : ''} ${isPlayerPage ? 'card__image--player' : ''}`}
         src={isPlayerPage ? currentTrackPreview : image}
         alt="albom-preview"
       />
@@ -69,8 +63,8 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
       >
         {isPlayerPage ? currentArtistName : artist}
       </span>
-      <br />
-      <span style={{ color: '#fff' }}>{id}</span>
+      {/* <br /> */}
+      {/* <span style={{ color: '#fff' }}>{id}</span> */}
     </div>
   );
 };

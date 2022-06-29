@@ -30,8 +30,8 @@
         height: 230px;
     }
     &__image--playlist {
-        width: 150px;
-        height: 145px;
+        width: 190px;
+        height: 190px;
     }
     &__title {
         color: var(--card-title-color);
@@ -46,7 +46,6 @@
     &__button--like {
         position: absolute;
         right: 0;
-        // top: -295%;
         transform: scale(1);
         transition: all 0.25s linear;
         z-index: 1;
@@ -63,17 +62,8 @@
 }
 
 .card--playlist {
-    max-width: 150px;
+    margin: auto;
     width: 100%;
-    &:nth-child(1) {
-        margin: 0 15px 0 0;
-    }
-    &:not(:last-child) {
-        margin: 0 0 24px 0;
-    }
-    &:nth-last-child(2) {
-        margin: 0;
-    }
 }
 .card--player {
     max-width: 230px;
