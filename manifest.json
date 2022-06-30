@@ -1,38 +1,37 @@
 {
-  "name": "Music-Player",
-  "short_name": "Music-Player",
+  "name": "Music Player",
+  "short_name": "MPlayer",
   "theme_color": "#091227",
   "background_color": "#091227",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/",
+  "start_url": ".",
+  "prefer_related_applications": true,
   "icons": [
     {
-      "src": "maskable.png",
-      "sizes": "196x196",
-      "type": "image/png",
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon",
       "purpose": "any maskable"
     },
     {
       "src": "logo192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "logo256.png",
       "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "logo384.png",
-      "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
