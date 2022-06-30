@@ -1,19 +1,17 @@
 {
   "name": "Music Player",
   "short_name": "MPlayer",
+  "description": "Free web application for listening demo-tracks by Deezer API",
   "theme_color": "#091227",
   "background_color": "#091227",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/",
-  "start_url": ".",
-  "prefer_related_applications": true,
+  "start_url": "/Music-player",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon",
-      "purpose": "any maskable"
+      "type": "image/x-icon"
     },
     {
       "src": "logo192.png",
@@ -24,14 +22,12 @@
     {
       "src": "logo256.png",
       "sizes": "256x256",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "logo512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
