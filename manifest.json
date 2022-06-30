@@ -6,7 +6,7 @@
   "background_color": "#091227",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "/Music-player/service-worker.js",
+  "start_url": ".",
   "icons": [
     {
       "src": "favicon.ico",
