@@ -6,7 +6,8 @@
   "background_color": "#091227",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": ".",
+  "start_url": "/Music-player/", 
+  "scope": "/Music-player/",
   "icons": [
     {
       "src": "favicon.ico",
