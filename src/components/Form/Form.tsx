@@ -144,6 +144,7 @@ const Form: React.FC = () => {
                         ? 'form__button form__button--search opacity'
                         : 'form__button form__button--search'
                     }
+                    disabled={isLoading || isBurgerOpen}
                     type="button"
                     onClick={relocateToSearchPage}
                   >

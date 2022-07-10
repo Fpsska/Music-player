@@ -13,7 +13,7 @@
         max-height: calc(100vh - 50px - 69px);
     }
     .header {
-        padding: 10px 15px;
+        padding: 10px;
     }
     .playlist__wrapper {
         grid-template-columns: 1fr;
@@ -54,7 +54,7 @@
 
 @media screen and (min-width: 1440px) {
     .header {
-        padding: 20px 28px 20px 28px;
+        padding: 20px 28px 20px 10px;
     }
     .playlist {
         height: calc(100vh - 70px - 69px);

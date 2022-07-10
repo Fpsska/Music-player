@@ -9,6 +9,12 @@
     }
     &__button {
         padding: 0;
+        &:disabled {
+            svg {
+                // stroke: rgba(233, 65, 65, 0.85);
+                opacity: 0.5;
+            }
+        }
     }
     &__button--search {
         top: 50%;
