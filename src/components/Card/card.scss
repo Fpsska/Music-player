@@ -6,6 +6,7 @@
     position: relative;
     transition: scale 1s linear;
     overflow: hidden;
+    cursor: pointer;
     &::before {
         content: "";
         position: absolute;

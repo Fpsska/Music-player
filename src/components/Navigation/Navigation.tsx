@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useNavigate } from 'react-router';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import { switchPlayerPageStatus } from '../../app/slices/mainSlice';
 
 import Buttons from '../Buttons/Buttons';
 import Bar from '../Bar/Bar';
@@ -17,6 +21,14 @@ const Navigation: React.FC = () => {
     currentArtistName,
     currentTrackName
   } = useAppSelector(state => state.playerSlice);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const goPlayerPage = (): void => {
+    dispatch(switchPlayerPageStatus(true));
+    navigate('player');
+  };
   // 
   return (
     <div
@@ -47,6 +59,7 @@ const Navigation: React.FC = () => {
                     className="navigation__image"
                     src={currentTrackPreview}
                     alt="album-preview"
+                    onClick={goPlayerPage}
                   />
                 )}
               </>

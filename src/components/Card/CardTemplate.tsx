@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useNavigate } from 'react-router';
+
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
+import { switchPlayerPageStatus } from '../../app/slices/mainSlice';
 
 // /. imports
 
@@ -34,6 +38,14 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     currentArtistName,
     currentTrackName
   } = useAppSelector(state => state.playerSlice);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const goPlayerPage = (): void => {
+    dispatch(switchPlayerPageStatus(true));
+    navigate('player');
+  };
   // 
   return (
     <div id={String(id)}  // Standard HTML Attributes (should be string)
@@ -43,6 +55,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
         className={`card__image ${isPlaylistPage ? 'card__image--playlist' : ''} ${isPlayerPage ? 'card__image--player' : ''}`}
         src={isPlayerPage ? currentTrackPreview : image}
         alt="albom-preview"
+        onClick={() => !isPlaylistPage && !isPlayerPage && goPlayerPage()}
       />
       <h2
         className={
