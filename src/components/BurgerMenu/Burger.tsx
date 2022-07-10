@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Spring, animated } from 'react-spring';
 
@@ -27,6 +27,7 @@ const BurgerMenu: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   const dispatch = useAppDispatch();
+  const burgerRef = useRef<HTMLDivElement>(null!);
   //
   const closeBurger = (): void => {
     setIsVisible(!isVisible);
@@ -46,15 +47,26 @@ const BurgerMenu: React.FC = () => {
       }
     };
 
+    const areaHandler = (e: any): void => {
+      const validArea = e.target === 'burger__wrapper' || burgerRef.current.contains(e.target);
+      const validElements = e.target.className === 'burger__button burger__button--close';
+      if (!validArea && !validElements) {
+        closeBurger();
+      }
+    };
+
     document.addEventListener('keydown', keyHandler);
+    document.addEventListener('click', areaHandler);
     return () => {
       document.removeEventListener('keydown', keyHandler);
+      document.removeEventListener('click', areaHandler);
     };
   }, [isVisible]);
 
   const changeTheme = (): void => {
     // setSwithedStatus(!isSwitched);
   };
+
 
   useEffect(() => {
     isSwitched ? setTheme('light') : setTheme('dark');
@@ -82,6 +94,7 @@ const BurgerMenu: React.FC = () => {
               )}
             </>
             <div
+              ref={burgerRef}
               className="burger__wrapper"
             >
               <div
