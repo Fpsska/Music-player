@@ -140,7 +140,7 @@ const Slider: React.FC<SliderPropTypes> = (props) => {
                         return (
                             <SwiperSlide key={item.id}>
                                 <div className="loading">
-                                    <div className="loading__card">
+                                    <div className={isPlayerPage ? 'loading__card loading__card--player' : 'loading__card'}>
                                         <div className="loading__preview animated"></div>
                                         <div className="loading__text animated"></div>
                                         <div className="loading__text animated"></div>

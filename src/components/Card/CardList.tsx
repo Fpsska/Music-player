@@ -20,7 +20,7 @@ const CardList: React.FC = () => {
           mockData.map(item => {
             return (
               <div className="loading" key={item.id}>
-                <div className="loading__card">
+                <div className="loading__card loading__card--playlist">
                   <div className="loading__preview animated"></div>
                   <div className="loading__text animated"></div>
                   <div className="loading__text animated"></div>

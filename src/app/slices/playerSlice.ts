@@ -63,6 +63,9 @@ const initialState: mainSliceState = {
         },
         {
             id: 7
+        },
+        {
+            id: 8
         }
     ],
 
