@@ -51,7 +51,7 @@ const SearchPage: React.FC = () => {
                                                 <button className="search__list-button" onClick={() => { dispatch(removeFromLikedAlbum({ id: item.id })); }}>
                                                     <BiTrash size={18} color={'#8996b8'} />
                                                 </button>
-                                                <span className="search__list-time">{isLoading ? '0:00' : isPaused ? '0:00' : songDuration}</span>
+                                                <span className="search__list-time">{songDuration || '0:00'}</span>
                                             </div>
                                         </div>
                                     );

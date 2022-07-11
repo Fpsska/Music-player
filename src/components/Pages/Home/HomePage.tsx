@@ -65,23 +65,23 @@ const HomePage: React.FC = () => {
       </div>
       <div className="home">
         <div className="home__section home__section--recommendation">
-          <h1 className="page__title title" onClick={goPlayerPage}>
+          <span className="page__title title" onClick={goPlayerPage}>
             <Link to="player">Recomended for you</Link>
-          </h1>
+          </span>
           <div className="home__slider">
             <Slider data={albumList} name={'recomended'} />
           </div>
         </div>
         <div className="home__section home__section--playlist">
-          <h2 className="page__title title" onClick={goPlayListPage}>
+          <span className="page__title title" onClick={goPlayListPage}>
             <Link to="playlist">My Playlist</Link>
-          </h2>
+          </span>
           <Slider data={albumList} name={'playlist'} />
         </div>
         <div className="home__section home__section--playlist">
-          <h2 className="page__title title" onClick={goPlayListPage}>
+          <span className="page__title title" onClick={goPlayListPage}>
             <Link to="playlist">Test</Link>
-          </h2>
+          </span>
           <Slider data={albumList} name={'test'} />
         </div>
       </div>

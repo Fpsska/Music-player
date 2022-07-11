@@ -44,21 +44,18 @@ const Buttons: React.FC = () => {
   const { loadMusic } = useLoadMusic();
   const { timeHandler } = useTime();
 
-  useEffect(() => { 
-    if (!isLoading) { // set initiall song
-      loadMusic({ songObj: albumList[0] }); 
-    }
+  useEffect(() => {
+    !isLoading && loadMusic({ songObj: albumList[0] });
     timeHandler({ currentTime: 0, duration: 0 });  // set initial currentTime, duration
   }, [isLoading]);
 
   useEffect(() => {
 
-    const defineTimeCount = (e: any): void => {
-      if (!isLoading) {
+    const defineTimeCount = (e: any): void => { // add logic of set time for searchPage items
+      !isLoading &&
         setTimeout(() => {
           timeHandler({ duration: e.target.duration, currentTime: e.target.currentTime });
         }, 150);
-      }
     };
 
     trackOrder.current.volume = 0.1; // set initial volume
@@ -68,7 +65,6 @@ const Buttons: React.FC = () => {
       trackOrder.current.removeEventListener('timeupdate', defineTimeCount);
     };
   }, [isLoading]);
-
 
   const playMusic = (): void => {
     trackOrder.current.play();
@@ -81,11 +77,7 @@ const Buttons: React.FC = () => {
   };
 
   const defineButtonEvent = (): void => {
-    if (isPaused) {
-      playMusic();
-    } else {
-      pauseMusic();
-    }
+    isPaused ? playMusic() : pauseMusic();
   };
 
 
