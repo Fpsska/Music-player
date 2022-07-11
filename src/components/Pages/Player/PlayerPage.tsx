@@ -87,7 +87,7 @@ const PlayerPage: React.FC = () => {
             <button
               className="player__button player__button--like"
               type="button"
-              onClick={() => !isAlreadyAdded && addToFavorite()}
+              onClick={() => !isAlreadyAdded && !isLoading && addToFavorite()}
             >
               <BsHeart size={18} color={'#8996b8'} />
             </button>

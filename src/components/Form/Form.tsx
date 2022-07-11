@@ -111,6 +111,7 @@ const Form: React.FC = () => {
                       : 'form__button form__button--search'
                   }
                   type="button"
+                  disabled={isLoading || isBurgerOpen}
                 >
                   <FiSearch size={25} color={'#eaf0ff'} />
                 </button>

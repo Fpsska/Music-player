@@ -61,10 +61,7 @@ const burgerSlice = createSlice({
     },
     switchDropDownStatus(state, action: PayloadAction<any>) {
       const { id, status } = action.payload;
-      if (id) {
-        state.questions.forEach((item) => (item.isDropDownHidden = true));
-      }
-      state.questions[id].isDropDownHidden = status;
+      state.questions.map(item => item.id === id ? item.isDropDownHidden = status : item);
     }
   }
 });

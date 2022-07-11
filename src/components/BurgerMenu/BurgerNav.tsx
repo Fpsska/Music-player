@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import { useNavigate } from 'react-router';
 
 import { BsHeart, BsQuestionSquare } from 'react-icons/bs';
@@ -23,27 +22,15 @@ const BurgerNav: React.FC = () => {
     const navigate = useNavigate();
     // 
     const displaySocial = (): void => {
-        if (isContactInfo) {
-            dispatch(switchInformationStatus(false));
-            dispatch(switchContactInfoStatus(false));
-            dispatch(switchFaqsInfoStatus(true));
-        } else {
-            dispatch(switchInformationStatus(true));
-            dispatch(switchContactInfoStatus(true));
-            dispatch(switchFaqsInfoStatus(false));
-        }
-
+        !isFaqsInfo && isInformationVisible ? dispatch(switchInformationStatus(false)) : dispatch(switchInformationStatus(true));
+        dispatch(switchContactInfoStatus(true));
+        dispatch(switchFaqsInfoStatus(false));
     };
+
     const displayFAQs = (): void => {
-        if (isFaqsInfo) {
-            dispatch(switchInformationStatus(false));
-            dispatch(switchFaqsInfoStatus(false));
-            dispatch(switchContactInfoStatus(true));
-        } else {
-            dispatch(switchInformationStatus(true));
-            dispatch(switchFaqsInfoStatus(true));
-            dispatch(switchContactInfoStatus(false));
-        }
+        !isContactInfo && isInformationVisible ? dispatch(switchInformationStatus(false)) : dispatch(switchInformationStatus(true));
+        dispatch(switchFaqsInfoStatus(true));
+        dispatch(switchContactInfoStatus(false));
     };
 
     const relocateToSearchPage = (): void => {

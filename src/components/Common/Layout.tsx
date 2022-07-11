@@ -22,7 +22,7 @@ const Layout: React.FC = () => {
     if (status === 'success') {
       setTimeout(() => {
         dispatch(switchLoadingStatus(false));
-      }, 2000);
+      }, 2131232000);
     }
   }, [status]);
 
