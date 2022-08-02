@@ -1,6 +1,7 @@
 const express = require('express');
-const fetch = require('node-fetch');
 require('dotenv').config();
+
+const tracksRouter = require('./routes/tracks.routes');
 
 
 
@@ -23,14 +24,7 @@ app.get('/', (req, res) => {
     res.send('start route');
 });
 
-app.use('/api/data', async (req, res) => {
-
-    const response = await fetch(process.env.API_URL)
-    .then(data => data.json())
-    .catch(err => console.error(err.message || err));
-
-    res.json(response.data);
-});
+app.use('/api/data', tracksRouter);
 
 
 
