@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ###### _designed by [Om Arya](https://omarya.in/)_
 ###### _hosted by_
-- [heroku](https://www.heroku.com/)
+- [vercel](https://vercel.com/)
 ###### _powered by_
 - [deezer API](https://developers.deezer.com/)
 - [react-icons](https://react-icons.github.io/react-icons/)
