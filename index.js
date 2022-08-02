@@ -1,11 +1,14 @@
 const express = require('express');
-const axios = require('axios');
+const fetch = require('node-fetch');
+require('dotenv').config();
 
-const PORT = process.env.PORT || 8080;
+
 
 const app = express();
 
 
+
+// middleware
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -13,19 +16,25 @@ app.use((req, res, next) => {
     next()
 });
 
+
+
+// routes
 app.get('/', (req, res) => {
-    axios.get("https://api.deezer.com/user/2529/flow")
-    .then(response => {
-        responseData = response.data
-        res.json(responseData)
-    })
+    res.send('start route');
+});
+
+app.use('/api/data', async (req, res) => {
+
+    const response = await fetch(process.env.API_URL)
+    .then(data => data.json())
+    .catch(err => console.error(err.message || err));
+
+    res.json(response.data);
 });
 
 
-app.listen(PORT, (err) => {
-    if (err) {
-        console.log("LISTEN ERROR: ", err);
-        return;
-    }
-    console.log(`Server started on port ${PORT}`);
-});
+
+// connection
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
