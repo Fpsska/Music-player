@@ -1,16 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // /. imports
 
-export const fetchAlbumsData = createAsyncThunk(
-  'mainSlice/fetchAlbumData',
-  async () => {
-    const response = await fetch('https://backend-music-player.herokuapp.com/');
-    const data = await response.json();
-    const result = data.data;
-    return result;
-  }
-);
 
 interface mainSliceState {
   isSearchPage: boolean;
@@ -45,7 +36,7 @@ const mainSlice = createSlice({
     },
     switchLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
-  }
+    }
   }
 });
 

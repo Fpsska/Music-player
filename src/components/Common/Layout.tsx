@@ -15,15 +15,15 @@ import { fetchAlbumsData } from '../../app/slices/playerSlice';
 
 const Layout: React.FC = () => {
   const { isPlayerPage } = useAppSelector(state => state.mainSlice);
-  const { status } = useAppSelector(state => state.playerSlice);
+  const { status, error } = useAppSelector(state => state.playerSlice);
   const dispatch = useAppDispatch();
   //
   useEffect(() => {
-    if (status === 'success') {
+    if (status === 'success' && !error) {
       setTimeout(() => {
         dispatch(switchLoadingStatus(false));
       }, 2000);
-    } 
+    }
   }, [status]);
 
   useEffect(() => {
@@ -33,10 +33,9 @@ const Layout: React.FC = () => {
   return (
     <>
       <Header />
+      {error && <div className="error">Application error: {error}</div>}
       <main className="main">
-        <div
-          className={isPlayerPage ? 'page page--player' : 'page'}
-        >
+        <div className={isPlayerPage ? 'page page--player' : 'page'}>
           <div className="page__wrapper">
             <Outlet />
           </div>
