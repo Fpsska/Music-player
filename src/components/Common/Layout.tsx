@@ -22,8 +22,8 @@ const Layout: React.FC = () => {
     if (status === 'success') {
       setTimeout(() => {
         dispatch(switchLoadingStatus(false));
-      }, 2131232000);
-    }
+      }, 2000);
+    } 
   }, [status]);
 
   useEffect(() => {
