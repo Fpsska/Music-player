@@ -2,9 +2,11 @@
     max-height: calc(100vh - 72px - 69px);
     padding: 0 10px;
     overflow-y: scroll;
+
     &__title {
         color: var(--search-title-color);
     }
+
     &__title--empty {
         font-size: 22px;
         text-align: center;
@@ -16,45 +18,57 @@
         display: flex;
         align-items: center;
         width: 100%;
+
         &:not(:last-child) {
             margin: 0 0 20px 0;
         }
     }
+
     &-information {
         display: flex;
         flex-direction: column;
+
         :not(:last-child) {
             margin: 0 0 10px 0;
         }
     }
+
     &-artist {
         color: #fff;
     }
+
     &-song {
         color: #b0b0b0;
     }
+
     &-controls {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         flex: 1;
         margin: 0 0 0 10px;
+
         :not(:last-child) {
             margin: 0 40px 0 0;
         }
     }
+
     &-button {
         padding: 0;
+
         &:hover svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         &:active svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         svg {
             transition: all 0.15s linear;
         }
     }
+
     &-image {
         width: 100px;
         height: 100px;
@@ -62,6 +76,7 @@
         object-fit: cover;
         margin: 0 20px 0 0;
     }
+
     &-time {
         color: rgb(137, 150, 184);
     }

@@ -7,6 +7,7 @@
     transition: scale 1s linear;
     overflow: hidden;
     cursor: pointer;
+
     &::before {
         content: "";
         position: absolute;
@@ -19,6 +20,7 @@
         border-radius: 60%;
         filter: blur(20px);
     }
+
     &__image {
         width: 190px;
         height: 190px;
@@ -26,36 +28,44 @@
         position: relative;
         border-radius: 8px;
     }
+
     &__image--player {
         width: 230px;
         height: 230px;
     }
+
     &__image--playlist {
         width: 190px;
         height: 190px;
     }
+
     &__title {
         color: var(--card-title-color);
         margin: 16px 0 6px 0;
         white-space: nowrap !important;
         cursor: pointer;
     }
+
     &__subtitle {
         z-index: 1;
         position: relative;
     }
+
     &__button--like {
         position: absolute;
         right: 0;
         transform: scale(1);
         transition: all 0.25s linear;
         z-index: 1;
+
         &:hover svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         &:active svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         svg {
             transition: all 0.15s linear;
         }
@@ -66,17 +76,21 @@
     margin: auto;
     width: 100%;
 }
+
 .card--player {
     max-width: 230px;
     width: 100%;
 }
+
 .card--player.favourite {
     border: 1px solid rgb(1, 255, 35);
 }
+
 .card__title--player.card__title--player {
     font-size: 22px;
     line-height: 28.25px;
 }
+
 .card__subtitle--player.card__subtitle--player {
     font-size: 14px;
 }

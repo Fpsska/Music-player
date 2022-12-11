@@ -2,30 +2,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     &__search {
         position: relative;
         display: flex;
         align-items: center;
     }
+
     &__button {
         padding: 0;
+
         &:disabled {
             svg {
                 opacity: 0.5;
             }
         }
     }
+
     &__button--search {
         top: 50%;
         right: 0;
         transform: translate(0, -45%);
         position: absolute;
         margin: 0 5px 0 0;
+
         svg {
             width: 18px;
             height: 18px;
         }
     }
+
     &__input {
         padding: 12px 24px 12px 5px;
         border-radius: 5px;
@@ -33,16 +39,20 @@
         color: #fff;
         border: 1px solid transparent;
         transition: all 0.25s linear;
+
         &:hover {
             cursor: pointer;
             border: 1px solid #a5c0ff;
-            + .form__button--search .icon__search {
+
+            +.form__button--search .icon__search {
                 stroke: #a5c0ff;
             }
+
             &:disabled {
                 border: 1px solid rgba(233, 65, 65, 0.5);
             }
         }
+
         &:focus {
             border: 1px solid #a5c0ff;
         }
@@ -52,4 +62,3 @@
 .form__button--search.opacity {
     opacity: 0.6;
 }
-

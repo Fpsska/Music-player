@@ -1,36 +1,45 @@
 .header {
     flex: 0 0 auto;
     transition: all 0.1s linear;
+
     &__section {
         display: flex;
         justify-content: space-between;
     }
+
     &__section--player {
         position: relative;
         justify-content: center;
     }
+
     &__button {
         transition: transform 0.25s linear;
+
         &:active {
             transform: scale(1.25);
         }
     }
+
     &__button--player {
         position: absolute;
         left: 0;
         padding: 0;
     }
+
     &__button--menu {
         text-align: start;
         transition: transform 0.25s linear;
+
         &:active {
             transform: scale(1.25);
         }
     }
+
     &__button--playlist,
     &__button--search {
         padding: 0;
     }
+
     &__title {
         color: var(--header-title-color);
         font-size: 20px;
@@ -42,4 +51,3 @@
 .header.squeezed {
     padding: 10px 15px;
 }
-

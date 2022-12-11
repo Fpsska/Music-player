@@ -4,12 +4,14 @@
     height: 4px;
     position: relative;
     cursor: pointer;
+
     &__line {
         transition: all 0.4s linear;
         background-color: var(--progress-line-color);
         height: 100%;
         width: 0;
         position: relative;
+
         &::before {
             content: "";
             position: absolute;
@@ -24,6 +26,7 @@
         }
     }
 }
+
 .progress__line.active {
     &::before {
         opacity: 1;

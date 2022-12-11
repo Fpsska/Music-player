@@ -1,6 +1,7 @@
 .details {
   max-height: calc(100vh - 450px);
   overflow-y: scroll;
+
   &__wrapper {
     padding: 25px;
     display: flex;
@@ -14,36 +15,43 @@
   list-style: none;
   display: flex;
   flex-direction: column;
+
   &__item {
     display: flex;
     flex-direction: column;
+
     &:not(:last-child) {
       margin: 0 0 10px 0;
     }
   }
+
   &__title {
     margin: 0 0 10px 0 !important;
     color: #8b949e;
   }
+
   &__image {
     width: 35px;
     height: 35px;
     object-fit: cover;
   }
+
   &__social {
     display: flex;
     align-items: center;
+
     &:not(:last-child) {
       margin: 0 0 6px 0;
     }
   }
+
   &__link {
     color: var(--list-link-color);
     display: flex;
     align-items: center;
+
     :not(:last-child) {
       margin: 0 10px 0 0;
     }
   }
 }
-

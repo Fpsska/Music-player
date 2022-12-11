@@ -11,11 +11,13 @@ import FilterPage from '../Pages/Search/SearchPage';
 
 import { useTheme } from '../../hooks/useTheme';
 
-import '../../../node_modules/swiper/swiper.scss';
-import '../../assets/scss/_style.scss';
-import '../../assets/scss/_media.scss';
-import '../../assets/scss/_theme.scss';
 import './App.css';
+import '../../assets/styles/_reset.scss';
+import '../../assets/styles/style.scss';
+import '../../assets/styles/_media.scss';
+import '../../assets/styles/_theme.scss';
+
+import '../../../node_modules/swiper/swiper.scss';
 
 // /. imports
 

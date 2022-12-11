@@ -1,10 +1,6 @@
-* {
-    box-sizing: border-box;
-}
+@import './mixins';
 
-::-webkit-scrollbar {
-    width: 0;
-}
+// /. imports
 
 body {
     font-family: Gilroy, sans-serif;
@@ -32,34 +28,6 @@ body {
     flex: 1 0 auto;
 }
 
-svg {
-    flex-shrink: 0;
-}
-.icon {
-    z-index: 1;
-}
-
-button,
-input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-}
-
-// /.NULLSTYLES
-
-@mixin textSlice {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 .title {
     color: var(--title-color);
     font-weight: 500;
@@ -67,6 +35,7 @@ a {
     font-size: 14px;
     @include textSlice;
 }
+
 .subtitle {
     color: var(--subtitle-color);
     font-weight: 400;
@@ -76,24 +45,33 @@ a {
     @include textSlice;
 }
 
-// /.GENERAL
+.icon {
+    z-index: 1;
+}
+
+// /. general-styles
 
 .page {
     height: 100%;
     background-color: var(--page-background-color);
+
     &__wrapper {
         padding: 0 !important;
+
         &::-webkit-scrollbar {
             background-color: transparent;
             width: 0;
         }
+
         &::-webkit-scrollbar-track {
             background-color: transparent;
         }
+
         &::-webkit-scrollbar-thumb {
             background-color: transparent;
         }
     }
+
     &__title {
         display: inline-block;
         font-size: 24px;
@@ -102,9 +80,11 @@ a {
         margin: 0 0 20px 0;
         color: var(--title-color);
     }
+
     &__title a {
         color: var(--title-color);
     }
+
     &__section--playlist {
         margin: 42px 0 0 0;
     }
@@ -139,6 +119,7 @@ a {
     flex-grow: 1;
     overflow-y: scroll;
     padding: 0 0 0 28px;
+
     &__section {
         &:not(:first-child) {
             margin: 34px 0 0 0;
@@ -150,39 +131,48 @@ a {
     height: calc(100vh - 48px - 69px);
     padding: 0 10px;
     overflow-y: scroll;
+
     &__wrapper {
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-gap: 20px;
     }
 }
+
 .player {
     &__section {
         margin: 35px 0 0 0;
     }
+
     &__time {
         margin: 40px 0 20px 0;
     }
+
     &__navigation {
         display: flex;
         justify-content: space-between;
         position: relative;
     }
+
     &__button {
         padding: 0;
     }
+
     &__button--volume {
         flex: 1;
         text-align: start;
         transform: scale(1);
         transition: transform 0.35s linear;
+
         &:active {
             transform: scale(1.005);
         }
     }
+
     &__button--repeat {
         margin: 0 12px;
     }
+
     &__button--like {
         position: absolute;
         right: 0;
@@ -190,20 +180,25 @@ a {
         transform: scale(1);
         transition: all 0.25s linear;
         z-index: 1;
+
         &:hover svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         &:active svg {
             fill: rgba(255, 4, 4, 0.75);
         }
+
         svg {
             transition: all 0.15s linear;
         }
     }
 }
+
 .volume {
     position: relative;
     flex-grow: 0;
+
     &__label {
         background-color: #cc0000;
         position: absolute;
@@ -213,16 +208,20 @@ a {
         left: 2rem;
         display: none;
     }
+
     :nth-child(2) {
         transform: rotate(45deg);
     }
+
     :nth-child(3) {
         transform: rotate(-45deg);
     }
 }
+
 .volume__label.muted {
     display: block;
 }
+
 .time {
     font-size: 12px;
     font-weight: 400;
@@ -238,13 +237,14 @@ a {
     flex-wrap: wrap;
 }
 
-// /.PAGES
+// /. pages-styles
 
 .swiper {
     width: 100%;
     height: 100%;
     cursor: grab;
 }
+
 .swiper-slide {
     text-align: center;
     /* Center slide text vertically */
@@ -261,18 +261,21 @@ a {
     -webkit-align-items: center;
     align-items: center;
 }
+
 .swiper-overflow-container {
     overflow-x: hidden;
+
     .container {
         overflow: visible;
         outline: 2px solid red;
     }
+
     .swiper-container {
         overflow: visible;
     }
 }
 
-// /.SLIDER
+// /. slider-styles
 
 .loading {
     &__preview {
@@ -282,9 +285,10 @@ a {
         border-radius: 8px;
         margin: 0 0 10px 0;
     }
+
     &__text {
         width: 85%;
-        height: 12px; 
+        height: 12px;
         background-color: #555b6a;
         border-radius: 8px;
     }
@@ -294,9 +298,11 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     :nth-child(2) {
         margin: 16px 0 12px 0;
     }
+
     :nth-child(3) {
         width: 70%;
     }
@@ -308,9 +314,11 @@ a {
         height: 230px;
         margin: 0 0 14px 0;
     }
+
     .loading__text {
-        height: 14px; 
+        height: 14px;
     }
+
     :nth-child(2) {
         margin: 16px 0 15px 0;
     }
@@ -322,13 +330,16 @@ a {
         height: 175px;
         margin: 0 0 14px 0;
     }
+
     .loading__text {
         height: 14px;
         width: 55%;
     }
+
     :nth-child(2) {
         margin: 16px 0 15px 0;
     }
+
     :nth-child(3) {
         width: 40%;
     }
@@ -344,14 +355,18 @@ a {
 
 .loading--nav {
     @extend .loading__card;
+
     :not(:last-child) {
         margin: 0 0 6px 0;
     }
+
     align-items: flex-start;
 }
+
 .loading__text--track {
     width: 100px;
 }
+
 .loading__text--artist {
     width: 70px;
 }
@@ -359,6 +374,7 @@ a {
 .animated {
     animation: skeleton-loading 1s linear infinite alternate;
 }
+
 @keyframes skeleton-loading {
     0% {
         background-color: rgba($color: #555b6a, $alpha: 0.45);
@@ -372,10 +388,12 @@ a {
 .slide {
     animation: slider 10s infinite linear;
 }
+
 @keyframes slider {
     0% {
         transform: translateX(100%);
     }
+
     100% {
         transform: translateX(-200%);
     }

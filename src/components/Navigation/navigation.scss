@@ -4,33 +4,40 @@
         display: flex;
         flex-direction: column;
     }
+
     &__wrapper--player {
         justify-content: space-between;
         height: 100%;
     }
+
     &__bar {
         display: flex;
         justify-content: space-between;
     }
+
     &__description {
         display: flex;
         align-items: center;
     }
+
     &__informantion {
         display: flex;
         flex-direction: column;
         overflow: hidden;
         max-width: 150px;
     }
+
     &__track-name {
         margin: 0 0 6px 0;
         white-space: nowrap;
         color: var(--trackName-color);
         cursor: pointer;
     }
+
     &__artist-name {
         cursor: pointer;
     }
+
     &__image {
         cursor: pointer;
         object-fit: cover;
