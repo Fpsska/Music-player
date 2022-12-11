@@ -5,7 +5,9 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 export const fetchAlbumsData = createAsyncThunk(
   'mainSlice/fetchAlbumData',
   async () => {
-    const response = await fetch('https://backend-music-player.herokuapp.com/');
+    const response = await fetch(
+      'https://backend-music-player.herokuapp.com/'
+    );
     const data = await response.json();
     const result = data.data;
     return result;
@@ -45,7 +47,7 @@ const mainSlice = createSlice({
     },
     switchLoadingStatus(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
-  }
+    }
   }
 });
 

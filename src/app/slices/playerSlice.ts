@@ -7,10 +7,11 @@ import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
 export const fetchAlbumsData = createAsyncThunk(
     'mainSlice/fetchAlbumData',
     async () => {
-        const response = await fetch('https://backend-music-player.herokuapp.com/');
+        const response = await fetch(
+            'https://music-player-backend-ps8zm5180-fpsska.vercel.app/api/data'
+        );
         const data = await response.json();
-        const result = data.data;
-        return result;
+        return data;
     }
 );
 
@@ -36,7 +37,7 @@ interface mainSliceState {
     duration: any;
     offsetCurrentTime: any;
 
-    currentCardID: number
+    currentCardID: number;
 }
 
 // /. interfaces
@@ -97,7 +98,8 @@ const playerSlice = createSlice({
         switchPauseStatus(state, action: PayloadAction<boolean>) {
             state.isPaused = action.payload;
         },
-        setTrackPreview(state, action: PayloadAction<string>) { // image
+        setTrackPreview(state, action: PayloadAction<string>) {
+            // image
             state.currentTrackPreview = action.payload;
         },
         setArtistName(state, action: PayloadAction<string>) {
@@ -106,7 +108,8 @@ const playerSlice = createSlice({
         setTrackName(state, action: PayloadAction<string>) {
             state.currentTrackName = action.payload;
         },
-        setTrack(state, action: PayloadAction<string>) {  // mp3
+        setTrack(state, action: PayloadAction<string>) {
+            // mp3
             state.currentTrack = action.payload;
         },
         setCurrentLineProgress(state, action: PayloadAction<number>) {
@@ -130,21 +133,34 @@ const playerSlice = createSlice({
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
             state.musicIndex = action.payload;
         },
-        addToLikedAlbum(state, action: PayloadAction<{ id: number, status: boolean }>) { 
+        addToLikedAlbum(
+            state,
+            action: PayloadAction<{ id: number; status: boolean }>
+        ) {
             const { id, status } = action.payload;
             state.likedData = state.albumList; // set initial likedData array data
 
-            state.likedData.map(item => item.id === id ? item.isFavourite = status : item); // change isFavourite filed for currect item
-            state.likedData = state.likedData.filter(item => item.isFavourite === true);  // filter by isFavourite filed 
+            state.likedData.map(item =>
+                item.id === id ? (item.isFavourite = status) : item
+            ); // change isFavourite filed for currect item
+            state.likedData = state.likedData.filter(
+                item => item.isFavourite === true
+            ); // filter by isFavourite filed
 
             state.filteredData = state.likedData; // for correct display render data in SearchPage.tsx
         },
         removeFromLikedAlbum(state, action: PayloadAction<{ id: number }>) {
-            state.likedData = state.likedData.filter(item => item.id !== action.payload.id);
-            state.filteredData = state.filteredData.filter(item => item.id !== action.payload.id);
+            state.likedData = state.likedData.filter(
+                item => item.id !== action.payload.id
+            );
+            state.filteredData = state.filteredData.filter(
+                item => item.id !== action.payload.id
+            );
         },
         filterLikedData(state, action: PayloadAction<string>) {
-            state.likedData = state.filteredData.filter(item => RegExp(action.payload, 'gi').test((item.title)));
+            state.likedData = state.filteredData.filter(item =>
+                RegExp(action.payload, 'gi').test(item.title)
+            );
         },
         setCurrentCardID(state, action: PayloadAction<number>) {
             state.currentCardID = action.payload;
@@ -152,7 +168,7 @@ const playerSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchAlbumsData.pending.type]: (state) => {
+        [fetchAlbumsData.pending.type]: state => {
             state.status = 'loading';
         },
         [fetchAlbumsData.fulfilled.type]: (
@@ -166,7 +182,7 @@ const playerSlice = createSlice({
             // state.filteredData = action.payload; // displayed all data of initial filtering
             state.status = 'success';
         },
-        [fetchAlbumsData.rejected.type]: (state) => {
+        [fetchAlbumsData.rejected.type]: state => {
             state.status = 'failed';
         }
     }

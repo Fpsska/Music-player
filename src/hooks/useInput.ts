@@ -7,14 +7,13 @@ import { filterLikedData } from '../app/slices/playerSlice';
 // /. imports
 
 interface propTypes {
-    name: string,
-    value: string
+    name: string;
+    value: string;
 }
 
 // /. interfaces
 
 export function useInput(currentValue: string) {
-
     const [value, setValue] = useState<string>(currentValue);
 
     const dispatch = useAppDispatch();
@@ -25,7 +24,9 @@ export function useInput(currentValue: string) {
         switch (name) {
             case 'search':
                 setValue(value.replace(/[^a-zA-Z\s]/g, ''));
-                dispatch(filterLikedData(value.replace(/[^a-zA-Z\s]/g, '').trim()));
+                dispatch(
+                    filterLikedData(value.replace(/[^a-zA-Z\s]/g, '').trim())
+                );
                 break;
         }
     };

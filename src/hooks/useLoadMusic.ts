@@ -9,23 +9,23 @@ import {
 // /. imports
 
 interface propTypes {
-    songObj: any,
+    songObj: any;
 }
 
 // ./ interfaces
 
 export function useLoadMusic() {
-
     const { isLoading } = useAppSelector(state => state.mainSlice);
 
     const dispatch = useAppDispatch();
 
     const loadMusic = (props: propTypes) => {
-
         const { songObj } = props;
 
         if (!isLoading) {
-            document.querySelector('.player__audio')?.setAttribute('src', songObj.preview); // mp3
+            document
+                .querySelector('.player__audio')
+                ?.setAttribute('src', songObj.preview); // mp3
             dispatch(setTrackPreview(songObj.artist.picture_medium)); // image
             dispatch(setArtistName(songObj.artist.name)); // artist-name
             dispatch(setTrackName(songObj.title)); // song-name
@@ -33,5 +33,4 @@ export function useLoadMusic() {
     };
 
     return { loadMusic };
-
-}; 
+}

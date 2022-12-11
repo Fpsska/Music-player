@@ -11,21 +11,16 @@ import {
 
 interface propTypes {
     duration: any;
-    currentTime: any
+    currentTime: any;
 }
 
 // /. interfaces
 
 export function useTime() {
-
     const dispatch = useAppDispatch();
 
     const timeHandler = (props: propTypes) => {
-
-        const {
-            duration,
-            currentTime
-        } = props;
+        const { duration, currentTime } = props;
 
         let totalSecond = String(Math.floor(duration % 60));
         const totalMinute = String(Math.floor(duration / 60));
@@ -46,4 +41,4 @@ export function useTime() {
     };
 
     return { timeHandler };
-};
+}

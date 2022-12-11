@@ -14,92 +14,92 @@ import './navigation.scss';
 // /. imports
 
 const Navigation: React.FC = () => {
+    const { isPlayerPage, isLoading } = useAppSelector(
+        state => state.mainSlice
+    );
+    const { currentTrackPreview, currentArtistName, currentTrackName } =
+        useAppSelector(state => state.playerSlice);
 
-  const { isPlayerPage, isLoading } = useAppSelector(state => state.mainSlice);
-  const {
-    currentTrackPreview,
-    currentArtistName,
-    currentTrackName
-  } = useAppSelector(state => state.playerSlice);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const goPlayerPage = (): void => {
-    dispatch(switchPlayerPageStatus(true));
-    navigate('player');
-  };
-  // 
-  return (
-    <div
-      className={isPlayerPage ? 'navigation navigation--player' : 'navigation'}
-    >
-      <div
-        className={
-          isPlayerPage
-            ? 'navigation__wrapper navigation__wrapper--player'
-            : 'navigation__wrapper'
-        }
-      >
-        <Bar />
-        <div className="navigation__bar">
-          {isPlayerPage ? (
-            <></>
-          ) : (
-            <div className="navigation__description">
-              <>
-                {isLoading ? (
-                  <div className="loading">
-                    <div className="loading__preview loading__preview--nav animated"></div>
-                  </div>
-                ) : isPlayerPage ? (
-                  <></>
-                ) : (
-                  <img
-                    className="navigation__image"
-                    src={currentTrackPreview}
-                    alt="album-preview"
-                    onClick={goPlayerPage}
-                  />
-                )}
-              </>
-              {isPlayerPage ? (
-                <></>
-              ) : (
-                <div className="navigation__informantion">
-                  <span
-                    className="navigation__track-name slide"
-                    title={currentTrackName}
-                  >
-                    {isLoading ? (
-                      <div className="loading loading--nav">
-                        <div className="loading__text loading__text--track animated"></div>
-                      </div>
+    const goPlayerPage = (): void => {
+        dispatch(switchPlayerPageStatus(true));
+        navigate('player');
+    };
+    //
+    return (
+        <div
+            className={
+                isPlayerPage ? 'navigation navigation--player' : 'navigation'
+            }
+        >
+            <div
+                className={
+                    isPlayerPage
+                        ? 'navigation__wrapper navigation__wrapper--player'
+                        : 'navigation__wrapper'
+                }
+            >
+                <Bar />
+                <div className="navigation__bar">
+                    {isPlayerPage ? (
+                        <></>
                     ) : (
-                      currentTrackName
+                        <div className="navigation__description">
+                            <>
+                                {isLoading ? (
+                                    <div className="loading">
+                                        <div className="loading__preview loading__preview--nav animated"></div>
+                                    </div>
+                                ) : isPlayerPage ? (
+                                    <></>
+                                ) : (
+                                    <img
+                                        className="navigation__image"
+                                        src={currentTrackPreview}
+                                        alt="album-preview"
+                                        onClick={goPlayerPage}
+                                    />
+                                )}
+                            </>
+                            {isPlayerPage ? (
+                                <></>
+                            ) : (
+                                <div className="navigation__informantion">
+                                    <span
+                                        className="navigation__track-name slide"
+                                        title={currentTrackName}
+                                    >
+                                        {isLoading ? (
+                                            <div className="loading loading--nav">
+                                                <div className="loading__text loading__text--track animated"></div>
+                                            </div>
+                                        ) : (
+                                            currentTrackName
+                                        )}
+                                    </span>
+                                    <span
+                                        className="navigation__artist-name subtitle"
+                                        title={currentArtistName}
+                                    >
+                                        {isLoading ? (
+                                            <div className="loading loading--nav">
+                                                <div className="loading__text loading__text--artist animated"></div>
+                                            </div>
+                                        ) : (
+                                            currentArtistName
+                                        )}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
                     )}
-                  </span>
-                  <span
-                    className="navigation__artist-name subtitle"
-                    title={currentArtistName}
-                  >
-                    {isLoading ? (
-                      <div className="loading loading--nav">
-                        <div className="loading__text loading__text--artist animated"></div>
-                      </div>
-                    ) : (
-                      currentArtistName
-                    )}
-                  </span>
+                    <Buttons />
                 </div>
-              )}
             </div>
-          )}
-          <Buttons />
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Navigation;

@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
-import { BiTrash } from 'react-icons/bi';
+import { BiTrash } from 'react-icons/bi'
 
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks'
 
-import { removeFromLikedAlbum } from '../../../app/slices/playerSlice';
+import { removeFromLikedAlbum } from '../../../app/slices/playerSlice'
 
-import './searchPage.scss';
+import './searchPage.scss'
 
 // /. imports
 
 const SearchPage: React.FC = () => {
 
-    const { isLoading } = useAppSelector(state => state.mainSlice);
+    const { isLoading } = useAppSelector(state => state.mainSlice)
     const {
         likedData,
         filteredData,
         songDuration,
         isPaused
-    } = useAppSelector(state => state.playerSlice);
+    } = useAppSelector(state => state.playerSlice)
 
-    const [isEmpty, setEmptyStatus] = useState(false);
+    const [isEmpty, setEmptyStatus] = useState(false)
 
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         if (likedData.length === 0 && filteredData.length === 0) {
-            setEmptyStatus(true);
+            setEmptyStatus(true)
         }
-    }, [likedData, filteredData]);
+    }, [likedData, filteredData])
     // 
     return (
         <div className="container">
@@ -48,20 +48,20 @@ const SearchPage: React.FC = () => {
                                                 <span className="search__list-artist">{item.artist.name}</span>
                                             </div>
                                             <div className="search__list-controls">
-                                                <button className="search__list-button" onClick={() => { dispatch(removeFromLikedAlbum({ id: item.id })); }}>
+                                                <button className="search__list-button" onClick={() => { dispatch(removeFromLikedAlbum({ id: item.id })) }}>
                                                     <BiTrash size={18} color={'#8996b8'} />
                                                 </button>
                                                 <span className="search__list-time">{songDuration || '0:00'}</span>
                                             </div>
                                         </div>
-                                    );
+                                    )
                                 })
                         }
                     </div>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default SearchPage;
+export default SearchPage

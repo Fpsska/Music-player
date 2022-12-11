@@ -25,13 +25,13 @@ const initialState: burgerSliceState = {
     {
       id: '0',
       question: 'Which technologies used in this app?',
-      answer:
-        'This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.',
+      answer: 'This project was bootstrapped with Create React App, using the Redux and Redux Toolkit template.',
       isDropDownHidden: true
     },
     {
       id: '1',
-      question: 'Where did you get all the information about the tracks from?',
+      question:
+        'Where did you get all the information about the tracks from?',
       answer: 'We used free Deezer API for get data of all provided tracks.',
       isDropDownHidden: true
     }
@@ -61,7 +61,9 @@ const burgerSlice = createSlice({
     },
     switchDropDownStatus(state, action: PayloadAction<any>) {
       const { id, status } = action.payload;
-      state.questions.map(item => item.id === id ? item.isDropDownHidden = status : item);
+      state.questions.map(item =>
+        item.id === id ? (item.isDropDownHidden = status) : item
+      );
     }
   }
 });

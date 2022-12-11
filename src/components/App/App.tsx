@@ -20,20 +20,35 @@ import './App.css';
 // /. imports
 
 const App: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/Music-player" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="playlist" element={<PlayListPage />} />
-          <Route path="player" element={<PlayerPage />} />
-          <Route path="search" element={<FilterPage />} />
-        </Route>
-      </Routes>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Routes>
+                <Route
+                    path="/Music-player"
+                    element={<Layout />}
+                >
+                    <Route
+                        index
+                        element={<HomePage />}
+                    />
+                    <Route
+                        path="playlist"
+                        element={<PlayListPage />}
+                    />
+                    <Route
+                        path="player"
+                        element={<PlayerPage />}
+                    />
+                    <Route
+                        path="search"
+                        element={<FilterPage />}
+                    />
+                </Route>
+            </Routes>
+        </div>
+    );
 };
 
 export default App;

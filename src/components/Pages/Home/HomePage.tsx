@@ -1,62 +1,62 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 
-import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 
 import {
   switchPlaylistPageStatus,
   switchPlayerPageStatus
-} from '../../../app/slices/mainSlice';
+} from '../../../app/slices/mainSlice'
 import {
   switchCurtainStatus
-} from '../../../app/slices/burgerSlice';
+} from '../../../app/slices/burgerSlice'
 
-import Slider from '../../Slider/Slider';
-import BurgerMenu from '../../BurgerMenu/Burger';
+import Slider from '../../Slider/Slider'
+import BurgerMenu from '../../BurgerMenu/Burger'
 
 // /. imports
 
 const HomePage: React.FC = () => {
-  const { albumList } = useAppSelector(state => state.playerSlice);
-  const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
+  const { albumList } = useAppSelector(state => state.playerSlice)
+  const { isBurgerOpen } = useAppSelector(state => state.burgerSlice)
   //
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(true)
   //
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   //
   const goPlayListPage = (): void => {
-    dispatch(switchPlaylistPageStatus(true));
-    navigate('playlist');
-  };
+    dispatch(switchPlaylistPageStatus(true))
+    navigate('playlist')
+  }
   //
   const goPlayerPage = (): void => {
-    dispatch(switchPlayerPageStatus(true));
-    navigate('player');
-  };
+    dispatch(switchPlayerPageStatus(true))
+    navigate('player')
+  }
 
   useEffect(() => {
-    setIsVisible(!isVisible);
-  }, [isBurgerOpen]);
+    setIsVisible(!isVisible)
+  }, [isBurgerOpen])
 
   useLayoutEffect(() => {
     const defineCurtainStatus = (): void => {
       if (window.innerWidth >= 768) {
-        dispatch(switchCurtainStatus(false));
+        dispatch(switchCurtainStatus(false))
       } else {
-        dispatch(switchCurtainStatus(true));
+        dispatch(switchCurtainStatus(true))
       }
-    };
+    }
 
-    window.addEventListener('resize', defineCurtainStatus);
-    window.addEventListener('load', defineCurtainStatus);
+    window.addEventListener('resize', defineCurtainStatus)
+    window.addEventListener('load', defineCurtainStatus)
     return () => {
-      window.removeEventListener('resize', defineCurtainStatus);
-      window.removeEventListener('load', defineCurtainStatus);
-    };
-  }, []);
+      window.removeEventListener('resize', defineCurtainStatus)
+      window.removeEventListener('load', defineCurtainStatus)
+    }
+  }, [])
   // 
   return (
     <>
@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
