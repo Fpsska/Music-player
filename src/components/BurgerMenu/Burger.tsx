@@ -28,7 +28,9 @@ const BurgerMenu: React.FC = () => {
 
     const dispatch = useAppDispatch();
     const burgerRef = useRef<HTMLDivElement>(null!);
-    //
+
+    // /. hooks
+
     const closeBurger = (): void => {
         setIsVisible(!isVisible);
         setTimeout(() => {
@@ -36,6 +38,12 @@ const BurgerMenu: React.FC = () => {
             dispatch(switchInformationStatus(false));
         }, 400);
     };
+
+    const changeTheme = (): void => {
+        // setSwithedStatus(!isSwitched);
+    };
+
+    // /. functions
 
     useEffect(() => {
         const keyHandler = (e: KeyboardEvent): void => {
@@ -66,70 +74,64 @@ const BurgerMenu: React.FC = () => {
         };
     }, [isVisible]);
 
-    const changeTheme = (): void => {
-        // setSwithedStatus(!isSwitched);
-    };
-
     useEffect(() => {
         isSwitched ? setTheme('light') : setTheme('dark');
     }, [isSwitched]);
-    //
+
+    // /. effects
+
     return (
-        <>
-            <Spring
-                from={{ transform: 'translateX(-300px)' }}
-                to={{ transform: 'translateX(0px)' }}
-                config={{ duration: 360 }}
-                reverse={isVisible}
-                delay={100}
-            >
-                {styles => (
-                    <animated.div
-                        className="burger"
-                        style={styles}
+        <Spring
+            from={{ transform: 'translateX(-300px)' }}
+            to={{ transform: 'translateX(0px)' }}
+            config={{ duration: 360 }}
+            reverse={isVisible}
+            delay={100}
+        >
+            {styles => (
+                <animated.div
+                    className="burger"
+                    style={styles}
+                >
+                    <>
+                        {isCurtainVisible && (
+                            <animated.div
+                                className="burger__background"
+                                style={styles}
+                            ></animated.div>
+                        )}
+                    </>
+                    <div
+                        ref={burgerRef}
+                        className="burger__wrapper"
                     >
-                        <>
-                            {isCurtainVisible ? (
-                                <animated.div
-                                    className="burger__background"
-                                    style={styles}
-                                ></animated.div>
-                            ) : (
-                                <></>
-                            )}
-                        </>
-                        <div
-                            ref={burgerRef}
-                            className="burger__wrapper"
-                        >
-                            <div className="burger__navigation">
-                                <button
-                                    className="burger__button burger__button--close"
-                                    type="button"
-                                    onClick={closeBurger}
-                                >
-                                    <MdOutlineClose
-                                        size={32}
-                                        color={'#eaf0ff'}
-                                    />
-                                </button>
-                                <button
-                                    className="burger__button burger__button--theme"
-                                    type="button"
-                                    onClick={changeTheme}
-                                >
-                                    <BsMoon
-                                        size={22}
-                                        color={'#eaf0ff'}
-                                    />
-                                </button>
-                            </div>
-                            <BurgerNav />
+                        <div className="burger__navigation">
+                            <button
+                                className="burger__button burger__button--close"
+                                type="button"
+                                onClick={closeBurger}
+                            >
+                                <MdOutlineClose
+                                    size={32}
+                                    color={'#eaf0ff'}
+                                />
+                            </button>
+                            <button
+                                className="burger__button burger__button--theme"
+                                type="button"
+                                onClick={changeTheme}
+                            >
+                                <BsMoon
+                                    size={22}
+                                    color={'#eaf0ff'}
+                                />
+                            </button>
                         </div>
-                    </animated.div>
-                )}
-            </Spring>
-        </>
+                        <BurgerNav />
+                    </div>
+                </animated.div>
+            )}
+        </Spring>
     );
 };
 

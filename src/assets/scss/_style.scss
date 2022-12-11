@@ -110,6 +110,23 @@ a {
     }
 }
 
+.error {
+    position: absolute;
+    z-index: 5;
+    background-color: rgba($color: #000000, $alpha: 0.45);
+    color: red;
+    font-weight: 700;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .page--player {
     @extend .page;
     display: flex;

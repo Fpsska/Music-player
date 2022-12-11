@@ -8,6 +8,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 import { switchLoadingStatus } from '../../app/slices/mainSlice';
+
 import { fetchAlbumsData } from '../../app/slices/playerSlice';
 
 // /. imports

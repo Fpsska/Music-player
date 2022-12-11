@@ -6,12 +6,22 @@ import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
 
 export const fetchAlbumsData = createAsyncThunk(
     'mainSlice/fetchAlbumData',
-    async () => {
-        const response = await fetch(
-            'https://music-player-backend-ps8zm5180-fpsska.vercel.app/api/data'
-        );
-        const data = await response.json();
-        return data;
+    async (_, { rejectWithValue }) => {
+        try {
+            const URL =
+                'https://music-player-backend-ps8zm5180-fpsska.vercel.app/api/data';
+            const response = await fetch(URL);
+
+            if (!response.ok) {
+                console.error('Error: response error');
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (err: any) {
+            console.error(err || err.message);
+            return rejectWithValue(err.message); // send to case rejected.type of extreReducers
+        }
     }
 );
 
@@ -24,6 +34,7 @@ interface mainSliceState {
     isPaused: boolean;
     isAudioMuted: boolean;
     status: string;
+    error: string;
     currentTrackPreview: string;
     currentArtistName: string;
     currentTrackName: string;
@@ -74,6 +85,7 @@ const initialState: mainSliceState = {
     isAudioMuted: false,
 
     status: '',
+    error: '',
     currentTrackPreview: '',
     currentArtistName: 'untitled',
     currentTrackName: 'untitled',
@@ -182,8 +194,12 @@ const playerSlice = createSlice({
             // state.filteredData = action.payload; // displayed all data of initial filtering
             state.status = 'success';
         },
-        [fetchAlbumsData.rejected.type]: state => {
+        [fetchAlbumsData.rejected.type]: (
+            state,
+            action: PayloadAction<string>
+        ) => {
             state.status = 'failed';
+            state.error = action.payload;
         }
     }
 });

@@ -18,6 +18,8 @@ const Bar: React.FC = () => {
     const progressLine = useRef<HTMLDivElement>(null!);
     const dispatch = useAppDispatch();
 
+    // /. hooks
+
     useEffect(() => {
         const setNewCurrentTime = (event: any): void => {
             // handle progress bar line
@@ -45,7 +47,9 @@ const Bar: React.FC = () => {
             progressLine.current.classList.remove('active');
         }
     }, [isPaused, isLoading]);
-    //
+
+    // /. effects
+
     return (
         <div
             ref={progressArea}
