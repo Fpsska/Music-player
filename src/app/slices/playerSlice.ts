@@ -145,38 +145,30 @@ const playerSlice = createSlice({
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
             state.musicIndex = action.payload;
         },
-        addToLikedAlbum(
-            state,
-            action: PayloadAction<{ id: number; status: boolean }>
-        ) {
-            const { id, status } = action.payload;
-            state.likedData = state.albumList; // set initial likedData array data
+        addToLikedAlbum(state, action: PayloadAction<{ id: number }>) {
+            const { id } = action.payload;
+            // /. payload
+            const targetTrack = state.albumList.find(item => item.id === id);
 
-            state.likedData.map(item =>
-                item.id === id ? (item.isFavourite = status) : item
-            ); // change isFavourite filed for currect item
-            state.likedData = state.likedData.filter(
-                item => item.isFavourite === true
-            ); // filter by isFavourite filed
-
-            state.filteredData = state.likedData; // for correct display render data in SearchPage.tsx
+            if (targetTrack) {
+                targetTrack.isFavourite = true;
+                state.likedData.push(targetTrack);
+                state.filteredData = state.likedData;
+            }
         },
         removeFromLikedAlbum(state, action: PayloadAction<{ id: number }>) {
-            state.likedData = state.likedData.filter(
-                item => item.id !== action.payload.id
-            );
-            state.filteredData = state.filteredData.filter(
+            state.filteredData = state.likedData.filter(
                 item => item.id !== action.payload.id
             );
         },
         filterLikedData(state, action: PayloadAction<string>) {
-            state.likedData = state.filteredData.filter(item =>
+            state.filteredData = state.likedData.filter(item =>
                 RegExp(action.payload, 'gi').test(item.title)
             );
         },
         setCurrentCardID(state, action: PayloadAction<number>) {
             state.currentCardID = action.payload;
-            console.log(state.currentCardID);
+            // console.log(state.currentCardID);
         }
     },
     extraReducers: {
@@ -191,7 +183,6 @@ const playerSlice = createSlice({
             state.albumList.map(item => {
                 item.isFavourite = false;
             });
-            // state.filteredData = action.payload; // displayed all data of initial filtering
             state.status = 'success';
         },
         [fetchAlbumsData.rejected.type]: (
