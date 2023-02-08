@@ -64,10 +64,8 @@ const HomePage: React.FC = () => {
 
     return (
         <>
-            <div className="page__burger">
-                {isBurgerOpen ? <BurgerMenu /> : <></>}
-            </div>
-            <div className="home">
+            <div className="page__burger">{isBurgerOpen && <BurgerMenu />}</div>
+            <section className="home">
                 <div className="home__section home__section--recommendation">
                     <span
                         className="page__title title"
@@ -106,7 +104,7 @@ const HomePage: React.FC = () => {
                         name={'test'}
                     />
                 </div>
-            </div>
+            </section>
         </>
     );
 };

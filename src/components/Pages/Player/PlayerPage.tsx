@@ -69,7 +69,7 @@ const PlayerPage: React.FC = () => {
     // /. effects
 
     return (
-        <div className="player">
+        <section className="player">
             <div className="player__slider">
                 <Slider
                     data={albumList}
@@ -146,7 +146,7 @@ const PlayerPage: React.FC = () => {
                     </span>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

@@ -9,15 +9,22 @@ import Footer from '../Footer/Footer';
 
 import { switchLoadingStatus } from '../../app/slices/mainSlice';
 
-import { fetchAlbumsData } from '../../app/slices/playerSlice';
+import { fetchAlbumsData } from '../../app/api/fetchAlbumsData';
 
 // /. imports
 
 const Layout: React.FC = () => {
     const { isPlayerPage } = useAppSelector(state => state.mainSlice);
     const { status } = useAppSelector(state => state.playerSlice);
+
     const dispatch = useAppDispatch();
-    //
+
+    // /. hooks
+
+    useEffect(() => {
+        dispatch(fetchAlbumsData());
+    }, []);
+
     useEffect(() => {
         if (status === 'success') {
             setTimeout(() => {
@@ -26,10 +33,8 @@ const Layout: React.FC = () => {
         }
     }, [status]);
 
-    useEffect(() => {
-        dispatch(fetchAlbumsData());
-    }, []);
-    //
+    // /. effects
+
     return (
         <>
             <Header />

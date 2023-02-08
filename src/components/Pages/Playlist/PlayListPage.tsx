@@ -26,7 +26,7 @@ const PlayListPage: React.FC = () => {
 
     return (
         <>
-            <div className="playlist">
+            <section className="playlist">
                 <h1
                     className="page__title title"
                     onClick={goHomePage}
@@ -36,7 +36,7 @@ const PlayListPage: React.FC = () => {
                 <div className="playlist__wrapper">
                     <CardList />
                 </div>
-            </div>
+            </section>
         </>
     );
 };

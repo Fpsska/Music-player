@@ -126,7 +126,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
             (
                 document.querySelector(
                     '.player__audio'
-                ) as HTMLVideoElement | null
+                ) as HTMLAudioElement | null
             )?.play();
         }
     };

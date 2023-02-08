@@ -24,6 +24,8 @@ import '../../../node_modules/swiper/swiper.scss';
 const App: React.FC = () => {
     const { theme, setTheme } = useTheme();
 
+    // /. hooks
+
     return (
         <div className="App">
             <Routes>

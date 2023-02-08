@@ -1,29 +1,10 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { fetchAlbumsData } from '../api/fetchAlbumsData';
 
 import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
 
 // /. imports
-
-export const fetchAlbumsData = createAsyncThunk(
-    'mainSlice/fetchAlbumData',
-    async (_, { rejectWithValue }) => {
-        try {
-            const URL =
-                'https://music-player-backend-ps8zm5180-fpsska.vercel.app/api/data';
-            const response = await fetch(URL);
-
-            if (!response.ok) {
-                console.error('Error: response error');
-            }
-
-            const data = await response.json();
-            return data;
-        } catch (err: any) {
-            console.error(err || err.message);
-            return rejectWithValue(err.message); // send to case rejected.type of extreReducers
-        }
-    }
-);
 
 interface mainSliceState {
     albumList: albumListTypes[];
@@ -34,7 +15,7 @@ interface mainSliceState {
     isPaused: boolean;
     isAudioMuted: boolean;
     status: string;
-    error: string;
+    error: string | null;
     currentTrackPreview: string;
     currentArtistName: string;
     currentTrackName: string;
@@ -184,6 +165,7 @@ const playerSlice = createSlice({
                 item.isFavourite = false;
             });
             state.status = 'success';
+            state.error = null;
         },
         [fetchAlbumsData.rejected.type]: (
             state,
