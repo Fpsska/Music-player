@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
+
+import { useAppDispatch } from '../../app/hooks';
+
+import { switchPageStatus } from '../../app/slices/mainSlice';
 
 import Layout from '../Common/Layout';
 
@@ -10,6 +14,7 @@ import PlayerPage from '../Pages/Player/PlayerPage';
 import FilterPage from '../Pages/Search/SearchPage';
 
 import { useTheme } from '../../hooks/useTheme';
+import { useLocationData } from '../../hooks/useLocationData';
 
 import './App.css';
 import '../../assets/styles/_reset.scss';
@@ -22,9 +27,18 @@ import '../../../node_modules/swiper/swiper.scss';
 // /. imports
 
 const App: React.FC = () => {
-    const { theme, setTheme } = useTheme();
+    const { setTheme } = useTheme();
+    const location = useLocationData();
+
+    const dispatch = useAppDispatch();
 
     // /. hooks
+
+    useEffect(() => {
+        dispatch(switchPageStatus({ locationData: location }));
+    }, [location]);
+
+    // /. effects
 
     return (
         <div className="App">

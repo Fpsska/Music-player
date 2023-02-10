@@ -88,7 +88,7 @@ const BurgerMenu: React.FC = () => {
             reverse={isVisible}
             delay={100}
         >
-            {styles => (
+            {(styles: any) => (
                 <animated.div
                     className="burger"
                     style={styles}

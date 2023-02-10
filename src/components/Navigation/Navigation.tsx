@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { switchPlayerPageStatus } from '../../app/slices/mainSlice';
+import { switchPageStatus } from '../../app/slices/mainSlice';
 
 import Buttons from '../Buttons/Buttons';
 import Bar from '../Bar/Bar';
@@ -14,7 +14,7 @@ import './navigation.scss';
 // /. imports
 
 const Navigation: React.FC = () => {
-    const { isPlayerPage, isLoading } = useAppSelector(
+    const { pagesStatuses, isLoading } = useAppSelector(
         state => state.mainSlice
     );
     const { currentTrackPreview, currentArtistName, currentTrackName } =
@@ -24,26 +24,28 @@ const Navigation: React.FC = () => {
     const navigate = useNavigate();
 
     const goPlayerPage = (): void => {
-        dispatch(switchPlayerPageStatus(true));
+        // dispatch(switchPlayerPageStatus(true));
         navigate('player');
     };
     //
     return (
         <div
             className={
-                isPlayerPage ? 'navigation navigation--player' : 'navigation'
+                pagesStatuses.isPlayerPage
+                    ? 'navigation navigation--player'
+                    : 'navigation'
             }
         >
             <div
                 className={
-                    isPlayerPage
+                    pagesStatuses.isPlayerPage
                         ? 'navigation__wrapper navigation__wrapper--player'
                         : 'navigation__wrapper'
                 }
             >
                 <Bar />
                 <div className="navigation__bar">
-                    {isPlayerPage ? (
+                    {pagesStatuses.isPlayerPage ? (
                         <></>
                     ) : (
                         <div className="navigation__description">
@@ -52,7 +54,7 @@ const Navigation: React.FC = () => {
                                     <div className="loading">
                                         <div className="loading__preview loading__preview--nav animated"></div>
                                     </div>
-                                ) : isPlayerPage ? (
+                                ) : pagesStatuses.isPlayerPage ? (
                                     <></>
                                 ) : (
                                     <img
@@ -63,7 +65,7 @@ const Navigation: React.FC = () => {
                                     />
                                 )}
                             </>
-                            {isPlayerPage ? (
+                            {pagesStatuses.isPlayerPage ? (
                                 <></>
                             ) : (
                                 <div className="navigation__informantion">

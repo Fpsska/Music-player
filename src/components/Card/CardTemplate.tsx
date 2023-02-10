@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { switchPlayerPageStatus } from '../../app/slices/mainSlice';
+import { useLocationData } from '../../hooks/useLocationData';
 
 // /. imports
 
@@ -21,28 +21,29 @@ interface CardPropTypes {
 const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     const { id, image, artist, track, isFavourite } = props;
 
-    const { isPlaylistPage, isPlayerPage } = useAppSelector(
-        state => state.mainSlice
-    );
+    const { pagesStatuses } = useAppSelector(state => state.mainSlice);
 
     const { currentTrackPreview, currentArtistName, currentTrackName } =
         useAppSelector(state => state.playerSlice);
+
+    const { state } = useLocationData();
+    // console.log(state);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const goPlayerPage = (): void => {
-        dispatch(switchPlayerPageStatus(true));
         navigate('player');
     };
+
     //
     return (
         <div
             id={String(id)} // Standard HTML Attributes (should be string)
             className={`card ${
-                isPlaylistPage
+                pagesStatuses.isPlaylistPage
                     ? 'card--playlist'
-                    : isPlayerPage
+                    : pagesStatuses.isPlayerPage
                     ? 'card--player'
                     : isFavourite
                     ? 'favourite'
@@ -51,32 +52,34 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
         >
             <img
                 className={`card__image ${
-                    isPlaylistPage ? 'card__image--playlist' : ''
-                } ${isPlayerPage ? 'card__image--player' : ''}`}
-                src={isPlayerPage ? currentTrackPreview : image}
+                    pagesStatuses.isPlaylistPage ? 'card__image--playlist' : ''
+                } ${pagesStatuses.isPlayerPage ? 'card__image--player' : ''}`}
+                src={pagesStatuses.isPlayerPage ? currentTrackPreview : image}
                 alt="albom-preview"
                 onClick={() =>
-                    !isPlaylistPage && !isPlayerPage && goPlayerPage()
+                    !pagesStatuses.isPlaylistPage &&
+                    !pagesStatuses.isPlayerPage &&
+                    goPlayerPage()
                 }
             />
             <h2
                 className={
-                    isPlayerPage
+                    pagesStatuses.isPlayerPage
                         ? 'card__title card__title--player slide'
                         : 'card__title title'
                 }
                 title={currentTrackName}
             >
-                {isPlayerPage ? currentTrackName : track}
+                {pagesStatuses.isPlayerPage ? currentTrackName : track}
             </h2>
             <span
                 className={
-                    isPlayerPage
+                    pagesStatuses.isPlayerPage
                         ? 'card__subtitle card__subtitle--player subtitle'
                         : 'card__subtitle subtitle'
                 }
             >
-                {isPlayerPage ? currentArtistName : artist}
+                {pagesStatuses.isPlayerPage ? currentArtistName : artist}
             </span>
             {/* <br /> */}
             {/* <span style={{ color: '#fff' }}>{id}</span> */}

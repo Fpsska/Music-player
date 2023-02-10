@@ -12,22 +12,31 @@ import './footer.scss';
 
 const Footer: React.FC = () => {
     const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
-    const { isPlayerPage } = useAppSelector(state => state.mainSlice);
+    const { pagesStatuses } = useAppSelector(state => state.mainSlice);
+
     const [isVisible, setIsVisible] = useState(true);
+
+    // /. hooks
 
     useEffect(() => {
         setIsVisible(!isVisible);
     }, [isBurgerOpen]);
 
+    // /. effects
+
     return (
         //
-        <footer className={isPlayerPage ? 'footer footer--player' : 'footer'}>
+        <footer
+            className={
+                pagesStatuses.isPlayerPage ? 'footer footer--player' : 'footer'
+            }
+        >
             <Spring
                 from={{ transform: 'translateY(200px)' }}
                 to={{ transform: 'translateY(0px)' }}
                 reverse={isVisible}
             >
-                {styles => (
+                {(styles: any) => (
                     <animated.div
                         className="footer__navigation"
                         style={styles}

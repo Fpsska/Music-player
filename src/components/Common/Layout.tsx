@@ -14,7 +14,7 @@ import { fetchAlbumsData } from '../../app/api/fetchAlbumsData';
 // /. imports
 
 const Layout: React.FC = () => {
-    const { isPlayerPage } = useAppSelector(state => state.mainSlice);
+    const { pagesStatuses } = useAppSelector(state => state.mainSlice);
     const { status } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
@@ -39,7 +39,13 @@ const Layout: React.FC = () => {
         <>
             <Header />
             <main className="main">
-                <div className={isPlayerPage ? 'page page--player' : 'page'}>
+                <div
+                    className={
+                        pagesStatuses.isPlayerPage
+                            ? 'page page--player'
+                            : 'page'
+                    }
+                >
                     <div className="page__wrapper">
                         <Outlet />
                     </div>

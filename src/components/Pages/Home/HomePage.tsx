@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import {
-    switchPlaylistPageStatus,
-    switchPlayerPageStatus
-} from '../../../app/slices/mainSlice';
+import { switchPageStatus } from '../../../app/slices/mainSlice';
 import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
 
 import Slider from '../../Slider/Slider';
@@ -28,12 +25,10 @@ const HomePage: React.FC = () => {
     // /. hooks
 
     const goPlayListPage = (): void => {
-        dispatch(switchPlaylistPageStatus(true));
         navigate('playlist');
     };
 
     const goPlayerPage = (): void => {
-        dispatch(switchPlayerPageStatus(true));
         navigate('player');
     };
 
@@ -71,7 +66,12 @@ const HomePage: React.FC = () => {
                         className="page__title title"
                         onClick={goPlayerPage}
                     >
-                        <Link to="player">Recomended for you</Link>
+                        <Link
+                            to="player"
+                            state="playerPage"
+                        >
+                            Recomended for you
+                        </Link>
                     </span>
                     <div className="home__slider">
                         <Slider
@@ -85,7 +85,12 @@ const HomePage: React.FC = () => {
                         className="page__title title"
                         onClick={goPlayListPage}
                     >
-                        <Link to="playlist">My Playlist</Link>
+                        <Link
+                            to="playlist"
+                            state="playlistPage"
+                        >
+                            My Playlist
+                        </Link>
                     </span>
                     <Slider
                         data={albumList}
@@ -97,7 +102,12 @@ const HomePage: React.FC = () => {
                         className="page__title title"
                         onClick={goPlayListPage}
                     >
-                        <Link to="playlist">Test</Link>
+                        <Link
+                            to="playlist"
+                            state="playlistPage"
+                        >
+                            Test
+                        </Link>
                     </span>
                     <Slider
                         data={albumList}

@@ -1,20 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
+import { handleObjProperties } from '../../helpers/handleObjProperties';
 // /. imports
 
 interface mainSliceState {
-    isSearchPage: boolean;
-    isPlaylistPage: boolean;
-    isPlayerPage: boolean;
+    pagesStatuses: any;
     isLoading: boolean;
 }
 
 // /. interfaces
 
 const initialState: mainSliceState = {
-    isSearchPage: false,
-    isPlaylistPage: false,
-    isPlayerPage: false,
+    pagesStatuses: {
+        isHomePage: true,
+        isPlayerPage: false,
+        isPlaylistPage: false,
+        isSearchPage: false
+    },
     isLoading: true
 };
 
@@ -24,14 +26,41 @@ const mainSlice = createSlice({
     name: 'mainSlice',
     initialState,
     reducers: {
-        switchSearchPageStatus(state, action: PayloadAction<boolean>) {
-            state.isSearchPage = action.payload;
-        },
-        switchPlaylistPageStatus(state, action: PayloadAction<boolean>) {
-            state.isPlaylistPage = action.payload;
-        },
-        switchPlayerPageStatus(state, action: PayloadAction<boolean>) {
-            state.isPlayerPage = action.payload;
+        switchPageStatus(state, action: PayloadAction<{ locationData: any }>) {
+            const { locationData } = action.payload;
+            // /. payload
+
+            const pathName = locationData.pathname.toLowerCase();
+
+            switch (pathName) {
+                case '/music-player':
+                    state.pagesStatuses = handleObjProperties(
+                        'isHomePage',
+                        state.pagesStatuses
+                    );
+                    break;
+                case '/music-player/player':
+                    state.pagesStatuses = handleObjProperties(
+                        'isPlayerPage',
+                        state.pagesStatuses
+                    );
+                    break;
+                case '/music-player/playlist':
+                    state.pagesStatuses = handleObjProperties(
+                        'isPlaylistPage',
+                        state.pagesStatuses
+                    );
+                    break;
+                case '/music-player/search':
+                    state.pagesStatuses = handleObjProperties(
+                        'isSearchPage',
+                        state.pagesStatuses
+                    );
+                    break;
+                default:
+                    return;
+            }
+            console.log(state.pagesStatuses);
         },
         switchLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isLoading = action.payload;
@@ -39,11 +68,6 @@ const mainSlice = createSlice({
     }
 });
 
-export const {
-    switchSearchPageStatus,
-    switchPlaylistPageStatus,
-    switchPlayerPageStatus,
-    switchLoadingStatus
-} = mainSlice.actions;
+export const { switchPageStatus, switchLoadingStatus } = mainSlice.actions;
 
 export default mainSlice.reducer;

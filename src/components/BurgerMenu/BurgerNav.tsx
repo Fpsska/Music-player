@@ -9,7 +9,6 @@ import { IoEarthOutline, IoSettingsOutline } from 'react-icons/io5';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { switchSearchPageStatus } from '../../app/slices/mainSlice';
 import {
     switchInformationStatus,
     switchContactInfoStatus,
@@ -48,7 +47,6 @@ const BurgerNav: React.FC = () => {
         setTimeout(() => {
             navigate('search');
             dispatch(switchBurgerStatus(false));
-            dispatch(switchSearchPageStatus(true));
         }, 200);
     };
     //

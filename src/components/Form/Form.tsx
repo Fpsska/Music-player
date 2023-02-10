@@ -9,12 +9,6 @@ import { HiOutlineMenuAlt4, HiOutlineArrowLeft } from 'react-icons/hi';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import {
-    switchPlaylistPageStatus,
-    switchPlayerPageStatus,
-    switchSearchPageStatus
-} from '../../app/slices/mainSlice';
-
 import { switchBurgerStatus } from '../../app/slices/burgerSlice';
 
 import { useInput } from '../../hooks/useInput';
@@ -24,8 +18,9 @@ import './form.scss';
 // /. imports
 
 const Form: React.FC = () => {
-    const { isPlaylistPage, isPlayerPage, isSearchPage, isLoading } =
-        useAppSelector(state => state.mainSlice);
+    const { pagesStatuses, isLoading } = useAppSelector(
+        state => state.mainSlice
+    );
     const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
 
     const navigate = useNavigate();
@@ -33,13 +28,11 @@ const Form: React.FC = () => {
 
     const searchInput = useInput('');
 
-    //
+    // /. hooks
+
     const goBack = (): void => {
         setTimeout(() => {
             navigate('/Music-player');
-            dispatch(switchPlaylistPageStatus(false));
-            dispatch(switchPlayerPageStatus(false));
-            dispatch(switchSearchPageStatus(false));
         }, 200);
     };
 
@@ -50,13 +43,14 @@ const Form: React.FC = () => {
     const relocateToSearchPage = (e: React.SyntheticEvent): void => {
         console.log('SUBMITED');
         e.preventDefault();
-        dispatch(switchSearchPageStatus(true));
         navigate('search');
     };
-    //
+
+    // /. functions
+
     return (
         <>
-            {isPlaylistPage ? (
+            {pagesStatuses.isPlaylistPage ? (
                 <div className="header__section">
                     <button
                         className="header__button header__button--playlist"
@@ -78,7 +72,7 @@ const Form: React.FC = () => {
                         />
                     </button>
                 </div>
-            ) : isPlayerPage ? (
+            ) : pagesStatuses.isPlayerPage ? (
                 <div className="header__section header__section--player">
                     <button
                         className="header__button header__button--player"
@@ -92,7 +86,7 @@ const Form: React.FC = () => {
                     </button>
                     <h1 className="header__title">Playing Now</h1>
                 </div>
-            ) : isSearchPage ? (
+            ) : pagesStatuses.isSearchPage ? (
                 <div className="header__section">
                     <button
                         className="header__button header__button--search"

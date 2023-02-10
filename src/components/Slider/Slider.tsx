@@ -34,7 +34,7 @@ interface SliderPropTypes {
 const Slider: React.FC<SliderPropTypes> = props => {
     const { data, name } = props;
 
-    const { isLoading, isPlayerPage } = useAppSelector(
+    const { isLoading, pagesStatuses } = useAppSelector(
         state => state.mainSlice
     );
     const { mockData, albumList, musicIndex } = useAppSelector(
@@ -96,7 +96,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
     }, [data, name]);
 
     const slideChangeHandler = (): void => {
-        if (isPlayerPage && !isLoading) {
+        if (pagesStatuses.isPlayerPage && !isLoading) {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
 
             if (musicIndex >= albumList.length - 1) {
@@ -152,7 +152,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
                               <div className="loading">
                                   <div
                                       className={
-                                          isPlayerPage
+                                          pagesStatuses.isPlayerPage
                                               ? 'loading__card loading__card--player'
                                               : 'loading__card'
                                       }

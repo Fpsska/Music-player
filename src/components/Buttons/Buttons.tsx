@@ -23,7 +23,7 @@ import './buttons.scss';
 // /. imports
 
 const Buttons: React.FC = () => {
-    const { isPlayerPage, isLoading } = useAppSelector(
+    const { pagesStatuses, isLoading } = useAppSelector(
         state => state.mainSlice
     );
     const {
@@ -128,7 +128,7 @@ const Buttons: React.FC = () => {
     }, [offsetCurrentTime]);
     //
     return (
-        <nav className={isPlayerPage ? 'nav nav--player' : 'nav'}>
+        <nav className={pagesStatuses.isPlayerPage ? 'nav nav--player' : 'nav'}>
             <button
                 ref={prevBtn}
                 disabled={isLoading}
@@ -148,12 +148,12 @@ const Buttons: React.FC = () => {
             >
                 {isPaused ? (
                     <IoPlayOutline
-                        size={isPlayerPage ? 56 : 34}
+                        size={pagesStatuses.isPlayerPage ? 56 : 34}
                         color={'#eaf0ff'}
                     />
                 ) : (
                     <AiOutlinePause
-                        size={isPlayerPage ? 56 : 34}
+                        size={pagesStatuses.isPlayerPage ? 56 : 34}
                         color={'#eaf0ff'}
                     />
                 )}

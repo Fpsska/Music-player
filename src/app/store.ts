@@ -7,11 +7,11 @@ import playerSlice from './slices/playerSlice';
 // /. imports
 
 export const store = configureStore({
-  reducer: {
-    mainSlice: mainSlice,
-    burgerSlice: burgerSlice,
-    playerSlice: playerSlice
-  }
+    reducer: {
+        mainSlice,
+        burgerSlice,
+        playerSlice
+    }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
