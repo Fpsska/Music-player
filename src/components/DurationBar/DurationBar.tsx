@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import { setOffsetTime } from '../../app/slices/playerSlice';
 
-import './bar.scss';
+import './duration-bar.scss';
 
 // /. imports
 
-const Bar: React.FC = () => {
+const DurationBar: React.FC = () => {
     const { isLoading } = useAppSelector(state => state.mainSlice);
     const { currentLineProgress, duration, isPaused } = useAppSelector(
         state => state.playerSlice
@@ -53,15 +53,15 @@ const Bar: React.FC = () => {
     return (
         <div
             ref={progressArea}
-            className="progress"
+            className="duration-bar"
         >
             <div
                 ref={progressLine}
-                className="progress__line"
+                className="duration-bar__line"
                 style={{ width: `${currentLineProgress}%` }}
             ></div>
         </div>
     );
 };
 
-export default Bar;
+export default DurationBar;

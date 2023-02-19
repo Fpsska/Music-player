@@ -21,11 +21,15 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
     const { id, question, answer, isDropDownHidden } = props;
 
     const dispatch = useAppDispatch();
-    const icon = useRef<HTMLButtonElement>(null);
+    const refIcon = useRef<HTMLButtonElement>(null);
+
+    // /. hooks
 
     const handleDropDown = (): void => {
         dispatch(switchDropDownStatus({ id, status: !isDropDownHidden }));
     };
+
+    // /. functions
 
     return (
         <div
@@ -35,13 +39,19 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
             <div className="question__header">
                 <h4 className="question__title">{question}</h4>
                 <button
-                    onClick={handleDropDown}
                     className={
                         isDropDownHidden
                             ? 'question__button'
                             : 'question__button opened'
                     }
-                    ref={icon}
+                    ref={refIcon}
+                    type="button"
+                    aria-label={
+                        isDropDownHidden
+                            ? 'show answer content'
+                            : 'hide answer content'
+                    }
+                    onClick={handleDropDown}
                 >
                     <RiArrowDropDownLine
                         size={24}
@@ -49,11 +59,7 @@ const Question: React.FC<QuestionPropTypes> = (props: QuestionPropTypes) => {
                     />
                 </button>
             </div>
-            {isDropDownHidden ? (
-                <></>
-            ) : (
-                <p className="question__answer">{answer}</p>
-            )}
+            {!isDropDownHidden && <p className="question__answer">{answer}</p>}
         </div>
     );
 };

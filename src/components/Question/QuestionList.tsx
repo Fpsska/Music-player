@@ -10,7 +10,9 @@ import './question.scss';
 
 const QuestionList: React.FC = () => {
     const { questions } = useAppSelector(state => state.burgerSlice);
-    //
+
+    // /. hooks
+
     return (
         <div className="question">
             <div className="question__wrapper">

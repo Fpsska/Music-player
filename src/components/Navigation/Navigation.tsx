@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { switchPageStatus } from '../../app/slices/mainSlice';
 
 import Buttons from '../Buttons/Buttons';
-import Bar from '../Bar/Bar';
+import Bar from '../DurationBar/DurationBar';
 
 import './navigation.scss';
 

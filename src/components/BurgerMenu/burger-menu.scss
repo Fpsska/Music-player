@@ -69,8 +69,6 @@
     }
 
     &__item {
-        display: flex;
-        align-items: center;
         transition: transform 0.25s linear;
         padding: 0 25px;
 
@@ -91,13 +89,19 @@
             transform: scale(1.1);
             fill: var(--menu-link-hoverColor);
         }
+    }
+
+    &__button {
+
+        display: flex;
+        align-items: center;
 
         svg {
             transition: transform 0.25s linear;
         }
     }
 
-    &__link {
+    &__text {
         font-size: 20px;
         font-weight: 400;
         line-height: 23.54px;

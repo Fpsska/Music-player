@@ -17,7 +17,9 @@ const Details: React.FC = () => {
     const { isContactInfo, isFaqsInfo } = useAppSelector(
         state => state.burgerSlice
     );
-    //
+
+    // /. hooks
+
     return (
         <div className="details">
             <div className="details__wrapper">

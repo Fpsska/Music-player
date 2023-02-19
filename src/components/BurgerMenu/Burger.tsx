@@ -16,7 +16,7 @@ import { useTheme } from '../../hooks/useTheme';
 
 import BurgerNav from './BurgerNav';
 
-import './burger.scss';
+import './burger-menu.scss';
 
 // /. imports
 
