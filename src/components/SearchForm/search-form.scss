@@ -1,4 +1,4 @@
-.form {
+.search-form {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,6 @@
         right: 0;
         transform: translate(0, -45%);
         position: absolute;
-        margin: 0 5px 0 0;
 
         svg {
             width: 18px;

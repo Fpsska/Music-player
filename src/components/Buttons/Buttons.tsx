@@ -130,10 +130,12 @@ const Buttons: React.FC = () => {
     return (
         <nav className={pagesStatuses.isPlayerPage ? 'nav nav--player' : 'nav'}>
             <button
+                className="nav__button prev"
                 ref={prevBtn}
+                type="button"
+                aria-label="switch to previous track"
                 disabled={isLoading}
                 onClick={prevSong}
-                className="nav__button prev"
             >
                 <MdOutlineSkipPrevious
                     size={32}
@@ -141,10 +143,12 @@ const Buttons: React.FC = () => {
                 />
             </button>
             <button
+                className={`nav__button ${isPaused ? 'pause' : 'play'}`}
                 ref={pauseBtn}
+                type="button"
+                aria-label={isPaused ? 'play track' : 'pause track'}
                 disabled={isLoading}
                 onClick={defineButtonEvent}
-                className={`nav__button ${isPaused ? 'pause' : 'play'}`}
             >
                 {isPaused ? (
                     <IoPlayOutline
@@ -159,10 +163,12 @@ const Buttons: React.FC = () => {
                 )}
             </button>
             <button
+                className="nav__button next"
                 ref={nextBtn}
+                type="button"
+                aria-label="switch to next track"
                 disabled={isLoading}
                 onClick={nextSong}
-                className="nav__button next"
             >
                 <MdOutlineSkipNext
                     size={32}

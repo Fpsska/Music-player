@@ -81,6 +81,9 @@ const PlayerPage: React.FC = () => {
                     <button
                         className="player__button player__button--volume volume"
                         type="button"
+                        aria-label={
+                            isAudioMuted ? 'unmute sound' : 'mute sound'
+                        }
                         onClick={muteVolume}
                     >
                         <BiVolumeLow
@@ -108,6 +111,7 @@ const PlayerPage: React.FC = () => {
                         <button
                             className="player__button player__button--repeat"
                             type="button"
+                            aria-label="repeat track"
                         >
                             <IoMdRepeat
                                 size={20}
@@ -117,6 +121,7 @@ const PlayerPage: React.FC = () => {
                         <button
                             className="player__button player__button--oder"
                             type="button"
+                            aria-label="shuffle track"
                         >
                             <FiShuffle
                                 size={19}
@@ -126,6 +131,7 @@ const PlayerPage: React.FC = () => {
                         <button
                             className="player__button player__button--like"
                             type="button"
+                            aria-label="add to favourite playlist"
                             onClick={() =>
                                 !isAlreadyAdded && !isLoading && addToFavorite()
                             }

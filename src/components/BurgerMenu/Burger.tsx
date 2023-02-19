@@ -109,6 +109,7 @@ const BurgerMenu: React.FC = () => {
                             <button
                                 className="burger__button burger__button--close"
                                 type="button"
+                                aria-label="close burger menu"
                                 onClick={closeBurger}
                             >
                                 <MdOutlineClose
@@ -119,6 +120,7 @@ const BurgerMenu: React.FC = () => {
                             <button
                                 className="burger__button burger__button--theme"
                                 type="button"
+                                aria-label="switch application theme"
                                 onClick={changeTheme}
                             >
                                 <BsMoon
