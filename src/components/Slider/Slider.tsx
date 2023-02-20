@@ -76,7 +76,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
         }
     });
 
-    const { loadMusic } = useLoadMusic();
+    const { loadMusic, resetBarState } = useLoadMusic();
 
     // /. hooks
 
@@ -99,40 +99,45 @@ const Slider: React.FC<SliderPropTypes> = props => {
 
     // /. effects
 
-    const slideChangeHandler = (): void => {
-        if (pagesStatuses.isPlayerPage && !isLoading) {
-            dispatch(setCurrentmusicIndex(musicIndex + 1));
+    const isValidCondition = pagesStatuses.isPlayerPage && !isLoading;
 
-            if (musicIndex >= albumList.length - 1) {
-                dispatch(setCurrentmusicIndex(0));
-            }
+    const onNextSliderSwipe = (): void => {
+        console.log('next swipe');
+        dispatch(setCurrentmusicIndex(musicIndex + 1));
 
-            if (musicIndex <= 0) {
-                dispatch(setCurrentmusicIndex(albumList.length - 1));
-            }
-            // value check
-
-            loadMusic(musicIndex);
-
-            dispatch(switchPauseStatus(false));
-
-            // dispatch(setCurrentCardID());
-            dispatch(
-                setCurrentCardID(
-                    +Array.from(
-                        document.querySelectorAll('.swiper-slide')
-                    ).filter(item =>
-                        item.classList.contains('swiper-slide-visible')
-                    )[0].children[0].id
-                )
-            );
-
-            (
-                document.querySelector(
-                    '.player__audio'
-                ) as HTMLAudioElement | null
-            )?.play();
+        if (musicIndex >= albumList.length - 1) {
+            dispatch(setCurrentmusicIndex(0));
         }
+    };
+
+    const onPrevSliderSwipe = (): void => {
+        console.log('prev swipe');
+        dispatch(setCurrentmusicIndex(musicIndex - 1));
+
+        if (musicIndex <= 0) {
+            dispatch(setCurrentmusicIndex(albumList.length - 1));
+        }
+    };
+
+    const slideChangeHandler = (): void => {
+        loadMusic(musicIndex);
+        resetBarState();
+
+        const audioEl = document.querySelector(
+            '.player__audio'
+        ) as HTMLAudioElement;
+        audioEl.play();
+
+        dispatch(switchPauseStatus(false));
+
+        // dispatch(setCurrentCardID());
+        dispatch(
+            setCurrentCardID(
+                +Array.from(document.querySelectorAll('.swiper-slide')).filter(
+                    item => item.classList.contains('swiper-slide-visible')
+                )[0].children[0].id
+            )
+        );
     };
 
     // /. functions
@@ -149,7 +154,13 @@ const Slider: React.FC<SliderPropTypes> = props => {
             navigation={name === 'playerlist' ? true : false}
             modules={[Navigation]}
             breakpoints={name === 'playerlist' ? {} : breakpoints}
-            onSlideChange={() => slideChangeHandler()}
+            onSlideChange={() => isValidCondition && slideChangeHandler()}
+            onSlideNextTransitionEnd={() =>
+                isValidCondition && onNextSliderSwipe()
+            }
+            onSlidePrevTransitionEnd={() =>
+                isValidCondition && onPrevSliderSwipe()
+            }
         >
             {isLoading
                 ? mockData.map(item => {
