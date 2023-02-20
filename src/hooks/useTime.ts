@@ -10,8 +10,8 @@ import {
 // /. imports
 
 interface propTypes {
-    duration: any;
-    currentTime: any;
+    duration: number;
+    currentTime: number;
 }
 
 // /. interfaces
@@ -22,21 +22,31 @@ export function useTime() {
     const timeHandler = (props: propTypes) => {
         const { duration, currentTime } = props;
 
-        let totalSecond = String(Math.floor(duration % 60));
-        const totalMinute = String(Math.floor(duration / 60));
-        if (+totalSecond < 10) {
-            totalSecond = `0${totalSecond}`;
+        if (isNaN(duration)) return;
+
+        console.log('duration:', duration, currentTime);
+
+        let currentMinutes = String(Math.floor(currentTime / 60));
+        let currentSeconds = String(Math.floor(currentTime % 60));
+        let totalMinutes = String(Math.floor(duration / 60));
+        let totalSeconds = String(Math.floor(duration % 60));
+
+        if (+currentMinutes < 10) {
+            currentMinutes = `0${currentMinutes}`;
         }
-        //
-        let currentSecond = String(Math.floor(currentTime % 60));
-        const currentMinute = String(Math.floor(currentTime / 60));
-        if (+currentSecond < 10) {
-            currentSecond = `0${currentSecond}`;
+        if (+currentSeconds < 10) {
+            currentSeconds = `0${currentSeconds}`;
+        }
+        if (+totalMinutes < 10) {
+            totalMinutes = `0${totalMinutes}`;
+        }
+        if (+totalSeconds < 10) {
+            totalSeconds = `0${totalSeconds}`;
         }
 
         dispatch(setDuration(duration));
-        dispatch(setSongDuration(`${totalMinute}:${totalSecond}`));
-        dispatch(setCurrentTimeProgress(`${currentMinute}:${currentSecond}`));
+        dispatch(setSongDuration(`${totalMinutes}:${totalSeconds}`));
+        dispatch(setCurrentTimeProgress(`${currentMinutes}:${currentSeconds}`));
         dispatch(setCurrentLineProgress((currentTime / duration) * 100));
     };
 

@@ -33,7 +33,7 @@ const Buttons: React.FC = () => {
     const nextBtn = useRef<HTMLButtonElement>(null!);
 
     const { loadMusic, resetBarState } = useLoadMusic();
-    // const { timeHandler } = useTime();
+    const { timeHandler } = useTime();
 
     // /. hooks
 
@@ -83,32 +83,33 @@ const Buttons: React.FC = () => {
 
     useEffect(() => {
         !isLoading && loadMusic(musicIndex);
-        // timeHandler({ currentTime: 0, duration: 0 }); // set initial currentTime, duration
+        timeHandler({ currentTime: 0, duration: 0 }); // set initial currentTime, duration
+        audioElRef.current.volume = 0.1; // set initial volume value
     }, [isLoading]);
 
     useEffect(() => {
-        // const defineTimeCount = (e: any): void => {
-        //     // add logic of set time for searchPage items
-        //     !isLoading &&
-        //         setTimeout(() => {
-        //             timeHandler({
-        //                 duration: e.target.duration,
-        //                 currentTime: e.target.currentTime
-        //             });
-        //         }, 150);
-        // };
-        // trackOrder.current.volume = 0.1; // set initial volume
-        // trackOrder.current.addEventListener('timeupdate', defineTimeCount);
-        // return () => {
-        //     trackOrder.current.removeEventListener(
-        //         'timeupdate',
-        //         defineTimeCount
-        //     );
-        // };
+        // update duration, songDuration
+        const defineTimeCount = (e: any): void => {
+            if (isLoading || !audioElRef) return;
+
+            timeHandler({
+                duration: e.target.duration,
+                currentTime: e.target.currentTime
+            });
+        };
+
+        audioElRef.current.addEventListener('timeupdate', defineTimeCount);
+        return () => {
+            audioElRef.current.removeEventListener(
+                'timeupdate',
+                defineTimeCount
+            );
+        };
     }, [isLoading]);
 
     useEffect(() => {
-        // trackOrder.current.currentTime = offsetCurrentTime;
+        // controle duration-bar value by click
+        audioElRef.current.currentTime = offsetCurrentTime;
     }, [offsetCurrentTime]);
 
     // /. effects

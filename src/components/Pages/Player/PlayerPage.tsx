@@ -145,10 +145,10 @@ const PlayerPage: React.FC = () => {
                 </div>
                 <div className="player__time time">
                     <span className="time__current">
-                        {currentTimeProgress || '0:00'}
+                        {currentTimeProgress || '00:00'}
                     </span>
                     <span className="time__length">
-                        {songDuration || '0:00'}
+                        {songDuration || '00:00'}
                     </span>
                 </div>
             </div>
