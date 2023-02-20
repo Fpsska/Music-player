@@ -9,14 +9,15 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useTime } from '../../hooks/useTime';
 
 import {
+    setArtistName,
+    setTrackPreview,
+    setTrackName,
     switchPauseStatus,
     setCurrentLineProgress,
     setCurrentTimeProgress,
     setOffsetTime,
     setCurrentmusicIndex
 } from '../../app/slices/playerSlice';
-
-import { useLoadMusic } from '../../hooks/useLoadMusic';
 
 import './buttons.scss';
 
@@ -26,60 +27,38 @@ const Buttons: React.FC = () => {
     const { pagesStatuses, isLoading } = useAppSelector(
         state => state.mainSlice
     );
-    const {
-        isPaused,
-        albumList,
-        offsetCurrentTime,
-        isAudioMuted,
-        musicIndex,
-        currentTrack
-    } = useAppSelector(state => state.playerSlice);
+    const { isPaused, albumList, offsetCurrentTime, isAudioMuted, musicIndex } =
+        useAppSelector(state => state.playerSlice);
+
     const dispatch = useAppDispatch();
-    //
-    const prevBtn = useRef<HTMLButtonElement>(null);
-    const pauseBtn = useRef<HTMLButtonElement>(null);
-    const nextBtn = useRef<HTMLButtonElement>(null);
-    const trackOrder = useRef<HTMLAudioElement>(null!);
-    //
 
-    const { loadMusic } = useLoadMusic();
-    const { timeHandler } = useTime();
+    const audioElRef = useRef<HTMLAudioElement>(null!);
+    const prevBtn = useRef<HTMLButtonElement>(null!);
+    const pauseBtn = useRef<HTMLButtonElement>(null!);
+    const nextBtn = useRef<HTMLButtonElement>(null!);
 
-    useEffect(() => {
-        !isLoading && loadMusic({ songObj: albumList[0] });
-        timeHandler({ currentTime: 0, duration: 0 }); // set initial currentTime, duration
-    }, [isLoading]);
+    // const { timeHandler } = useTime();
 
-    useEffect(() => {
-        const defineTimeCount = (e: any): void => {
-            // add logic of set time for searchPage items
-            !isLoading &&
-                setTimeout(() => {
-                    timeHandler({
-                        duration: e.target.duration,
-                        currentTime: e.target.currentTime
-                    });
-                }, 150);
-        };
+    // /. hooks
 
-        trackOrder.current.volume = 0.1; // set initial volume
+    const loadMusic = (musicIndex: number) => {
+        if (!audioElRef) return;
 
-        trackOrder.current.addEventListener('timeupdate', defineTimeCount);
-        return () => {
-            trackOrder.current.removeEventListener(
-                'timeupdate',
-                defineTimeCount
-            );
-        };
-    }, [isLoading]);
+        resetBarState();
+
+        audioElRef.current.src = albumList[musicIndex].preview; // mp3
+        dispatch(setTrackPreview(albumList[musicIndex].artist.picture_medium)); // image
+        dispatch(setArtistName(albumList[musicIndex].artist.name)); // artist-name
+        dispatch(setTrackName(albumList[musicIndex].title)); // song-name
+    };
 
     const playMusic = (): void => {
-        trackOrder.current.play();
+        audioElRef.current.play();
         dispatch(switchPauseStatus(false));
     };
 
     const pauseMusic = (): void => {
-        trackOrder.current.pause();
+        audioElRef.current.pause();
         dispatch(switchPauseStatus(true));
     };
 
@@ -87,46 +66,74 @@ const Buttons: React.FC = () => {
         isPaused ? playMusic() : pauseMusic();
     };
 
-    const nextSong = (): void => {
+    const resetBarState = (): void => {
+        dispatch(setCurrentLineProgress(0));
+        dispatch(setCurrentTimeProgress(0));
+        dispatch(setOffsetTime(0));
+    };
+
+    const playNextSong = (): void => {
         dispatch(setCurrentmusicIndex(musicIndex + 1));
 
         if (musicIndex >= albumList.length - 1) {
             dispatch(setCurrentmusicIndex(0));
         }
 
-        loadMusic({ songObj: albumList[musicIndex] });
-
+        loadMusic(musicIndex);
         playMusic();
 
         dispatch(switchPauseStatus(false));
-
-        dispatch(setCurrentLineProgress(0));
-        dispatch(setCurrentTimeProgress(0));
-        dispatch(setOffsetTime(0));
+        resetBarState();
     };
 
-    const prevSong = (): void => {
+    const playPrevSong = (): void => {
         dispatch(setCurrentmusicIndex(musicIndex - 1));
 
         if (musicIndex <= 0) {
             dispatch(setCurrentmusicIndex(albumList.length - 1));
         }
 
-        loadMusic({ songObj: albumList[musicIndex] });
-
+        loadMusic(musicIndex);
         playMusic();
 
         dispatch(switchPauseStatus(false));
-
-        dispatch(setCurrentLineProgress(0));
-        dispatch(setCurrentTimeProgress(0));
-        dispatch(setOffsetTime(0));
+        resetBarState();
     };
 
+    // /. functions
+
     useEffect(() => {
-        trackOrder.current.currentTime = offsetCurrentTime;
+        !isLoading && loadMusic(musicIndex);
+        // timeHandler({ currentTime: 0, duration: 0 }); // set initial currentTime, duration
+    }, [isLoading]);
+
+    useEffect(() => {
+        // const defineTimeCount = (e: any): void => {
+        //     // add logic of set time for searchPage items
+        //     !isLoading &&
+        //         setTimeout(() => {
+        //             timeHandler({
+        //                 duration: e.target.duration,
+        //                 currentTime: e.target.currentTime
+        //             });
+        //         }, 150);
+        // };
+        // trackOrder.current.volume = 0.1; // set initial volume
+        // trackOrder.current.addEventListener('timeupdate', defineTimeCount);
+        // return () => {
+        //     trackOrder.current.removeEventListener(
+        //         'timeupdate',
+        //         defineTimeCount
+        //     );
+        // };
+    }, [isLoading]);
+
+    useEffect(() => {
+        // trackOrder.current.currentTime = offsetCurrentTime;
     }, [offsetCurrentTime]);
-    //
+
+    // /. effects
+
     return (
         <nav className={pagesStatuses.isPlayerPage ? 'nav nav--player' : 'nav'}>
             <button
@@ -135,7 +142,7 @@ const Buttons: React.FC = () => {
                 type="button"
                 aria-label="switch to previous track"
                 disabled={isLoading}
-                onClick={prevSong}
+                onClick={playPrevSong}
             >
                 <MdOutlineSkipPrevious
                     size={32}
@@ -168,7 +175,7 @@ const Buttons: React.FC = () => {
                 type="button"
                 aria-label="switch to next track"
                 disabled={isLoading}
-                onClick={nextSong}
+                onClick={playNextSong}
             >
                 <MdOutlineSkipNext
                     size={32}
@@ -177,9 +184,8 @@ const Buttons: React.FC = () => {
             </button>
             <audio
                 className="player__audio"
+                ref={audioElRef}
                 muted={isAudioMuted}
-                ref={trackOrder}
-                src={currentTrack}
             ></audio>
         </nav>
     );

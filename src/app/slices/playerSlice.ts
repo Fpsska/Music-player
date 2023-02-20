@@ -19,7 +19,6 @@ interface mainSliceState {
     currentTrackPreview: string;
     currentArtistName: string;
     currentTrackName: string;
-    currentTrack: string;
 
     musicIndex: number;
 
@@ -67,10 +66,10 @@ const initialState: mainSliceState = {
 
     status: '',
     error: '',
-    currentTrackPreview: '',
+
+    currentTrackPreview: '', // image
     currentArtistName: 'untitled',
     currentTrackName: 'untitled',
-    currentTrack: '',
 
     musicIndex: 1,
     currentLineProgress: 0,
@@ -92,7 +91,6 @@ const playerSlice = createSlice({
             state.isPaused = action.payload;
         },
         setTrackPreview(state, action: PayloadAction<string>) {
-            // image
             state.currentTrackPreview = action.payload;
         },
         setArtistName(state, action: PayloadAction<string>) {
@@ -100,10 +98,6 @@ const playerSlice = createSlice({
         },
         setTrackName(state, action: PayloadAction<string>) {
             state.currentTrackName = action.payload;
-        },
-        setTrack(state, action: PayloadAction<string>) {
-            // mp3
-            state.currentTrack = action.payload;
         },
         setCurrentLineProgress(state, action: PayloadAction<number>) {
             state.currentLineProgress = action.payload;
@@ -182,7 +176,6 @@ export const {
     setTrackPreview,
     setArtistName,
     setTrackName,
-    setTrack,
     setCurrentLineProgress,
     setCurrentTimeProgress,
     setSongDuration,

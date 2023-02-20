@@ -60,7 +60,6 @@ const mainSlice = createSlice({
                 default:
                     return;
             }
-            console.log(state.pagesStatuses);
         },
         switchLoadingStatus(state, action: PayloadAction<boolean>) {
             state.isLoading = action.payload;
