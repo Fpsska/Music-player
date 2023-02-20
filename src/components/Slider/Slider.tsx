@@ -78,6 +78,8 @@ const Slider: React.FC<SliderPropTypes> = props => {
 
     const { loadMusic } = useLoadMusic();
 
+    // /. hooks
+
     useEffect(() => {
         switch (name) {
             case 'recomended':
@@ -95,6 +97,8 @@ const Slider: React.FC<SliderPropTypes> = props => {
         }
     }, [data, name]);
 
+    // /. effects
+
     const slideChangeHandler = (): void => {
         if (pagesStatuses.isPlayerPage && !isLoading) {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
@@ -108,7 +112,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
             }
             // value check
 
-            loadMusic({ songObj: albumList[musicIndex] });
+            loadMusic(musicIndex);
 
             dispatch(switchPauseStatus(false));
 
@@ -130,7 +134,9 @@ const Slider: React.FC<SliderPropTypes> = props => {
             )?.play();
         }
     };
-    //
+
+    // /. functions
+
     return (
         <Swiper
             className="mySwiper"

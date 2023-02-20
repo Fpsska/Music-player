@@ -6,16 +6,11 @@ import { MdOutlineSkipPrevious, MdOutlineSkipNext } from 'react-icons/md';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
+import { useLoadMusic } from '../../hooks/useLoadMusic';
 import { useTime } from '../../hooks/useTime';
 
 import {
-    setArtistName,
-    setTrackPreview,
-    setTrackName,
     switchPauseStatus,
-    setCurrentLineProgress,
-    setCurrentTimeProgress,
-    setOffsetTime,
     setCurrentmusicIndex
 } from '../../app/slices/playerSlice';
 
@@ -37,20 +32,10 @@ const Buttons: React.FC = () => {
     const pauseBtn = useRef<HTMLButtonElement>(null!);
     const nextBtn = useRef<HTMLButtonElement>(null!);
 
+    const { loadMusic, resetBarState } = useLoadMusic();
     // const { timeHandler } = useTime();
 
     // /. hooks
-
-    const loadMusic = (musicIndex: number) => {
-        if (!audioElRef) return;
-
-        resetBarState();
-
-        audioElRef.current.src = albumList[musicIndex].preview; // mp3
-        dispatch(setTrackPreview(albumList[musicIndex].artist.picture_medium)); // image
-        dispatch(setArtistName(albumList[musicIndex].artist.name)); // artist-name
-        dispatch(setTrackName(albumList[musicIndex].title)); // song-name
-    };
 
     const playMusic = (): void => {
         audioElRef.current.play();
@@ -64,12 +49,6 @@ const Buttons: React.FC = () => {
 
     const defineButtonEvent = (): void => {
         isPaused ? playMusic() : pauseMusic();
-    };
-
-    const resetBarState = (): void => {
-        dispatch(setCurrentLineProgress(0));
-        dispatch(setCurrentTimeProgress(0));
-        dispatch(setOffsetTime(0));
     };
 
     const playNextSong = (): void => {
