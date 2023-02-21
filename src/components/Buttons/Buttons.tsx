@@ -38,8 +38,12 @@ const Buttons: React.FC = () => {
     // /. hooks
 
     const playMusic = (): void => {
-        audioElRef.current.play();
-        dispatch(switchPauseStatus(false));
+        setTimeout(() => {
+            // fix Uncaught (in promise) DOMException: The play() request was interrupted by a call to pause() error
+            // when song is automaticly switched
+            audioElRef.current.play();
+            dispatch(switchPauseStatus(false));
+        }, 0);
     };
 
     const pauseMusic = (): void => {
@@ -47,44 +51,43 @@ const Buttons: React.FC = () => {
         dispatch(switchPauseStatus(true));
     };
 
-    const defineButtonEvent = (): void => {
+    const determineButtonEvent = (): void => {
         isPaused ? playMusic() : pauseMusic();
     };
 
     const playNextSong = (): void => {
-        dispatch(setCurrentmusicIndex(musicIndex + 1));
-
         if (musicIndex >= albumList.length - 1) {
             dispatch(setCurrentmusicIndex(0));
+        } else {
+            dispatch(setCurrentmusicIndex(musicIndex + 1));
         }
 
         loadMusic(musicIndex);
         playMusic();
-
-        dispatch(switchPauseStatus(false));
         resetBarState();
     };
 
     const playPrevSong = (): void => {
-        dispatch(setCurrentmusicIndex(musicIndex - 1));
-
         if (musicIndex <= 0) {
             dispatch(setCurrentmusicIndex(albumList.length - 1));
+        } else {
+            dispatch(setCurrentmusicIndex(musicIndex - 1));
         }
 
         loadMusic(musicIndex);
         playMusic();
-
-        dispatch(switchPauseStatus(false));
         resetBarState();
     };
 
     // /. functions
 
     useEffect(() => {
-        !isLoading && loadMusic(musicIndex);
-        timeHandler({ currentTime: 0, duration: 0 }); // set initial currentTime, duration
-        audioElRef.current.volume = 0.1; // set initial volume value
+        if (!isLoading) {
+            // set initial currentTime, duration, musicIndex
+            loadMusic(0);
+            timeHandler({ currentTime: 0, duration: 0 });
+        }
+        if (audioElRef) audioElRef.current.volume = 0.1; // set initial volume value
     }, [isLoading]);
 
     useEffect(() => {
@@ -146,7 +149,7 @@ const Buttons: React.FC = () => {
                 type="button"
                 aria-label={isPaused ? 'play track' : 'pause track'}
                 disabled={isLoading}
-                onClick={defineButtonEvent}
+                onClick={determineButtonEvent}
             >
                 {isPaused ? (
                     <IoPlayOutline
