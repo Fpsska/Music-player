@@ -24,7 +24,7 @@ export function useTime() {
 
         if (isNaN(duration)) return;
 
-        console.log('duration:', duration, currentTime);
+        // console.log('duration:', duration, currentTime);
 
         let currentMinutes = String(Math.floor(currentTime / 60));
         let currentSeconds = String(Math.floor(currentTime % 60));

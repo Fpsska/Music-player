@@ -20,10 +20,13 @@ export function useLoadMusic() {
     // /. hooks
 
     const loadMusic = (musicIndex: number): void => {
-        if (!isLoading) {
-            document
-                .querySelector('.player__audio')
-                ?.setAttribute('src', albumList[musicIndex].preview); // mp3
+        const audioEl = document.querySelector(
+            '.player__audio'
+        ) as HTMLAudioElement;
+
+        if (!isLoading && audioEl) {
+            audioEl.setAttribute('src', albumList[musicIndex].preview); // mp3
+            audioEl.load(); // reload audio track
 
             dispatch(
                 setTrackPreview(albumList[musicIndex].artist.picture_medium)

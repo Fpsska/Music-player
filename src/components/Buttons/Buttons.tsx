@@ -98,11 +98,22 @@ const Buttons: React.FC = () => {
             });
         };
 
+        const eventAfterSongEnded = (): void => {
+            setTimeout(() => {
+                playNextSong();
+            }, 1000);
+        };
+
         audioElRef.current.addEventListener('timeupdate', defineTimeCount);
+        audioElRef.current.addEventListener('ended', eventAfterSongEnded);
         return () => {
             audioElRef.current.removeEventListener(
                 'timeupdate',
                 defineTimeCount
+            );
+            audioElRef.current.removeEventListener(
+                'ended',
+                () => eventAfterSongEnded
             );
         };
     }, [isLoading]);
