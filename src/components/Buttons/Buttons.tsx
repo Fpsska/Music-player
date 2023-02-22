@@ -28,9 +28,9 @@ const Buttons: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const audioElRef = useRef<HTMLAudioElement>(null!);
-    const prevBtn = useRef<HTMLButtonElement>(null!);
-    const pauseBtn = useRef<HTMLButtonElement>(null!);
-    const nextBtn = useRef<HTMLButtonElement>(null!);
+    const prevBtnRef = useRef<HTMLButtonElement>(null!);
+    const pauseBtnRef = useRef<HTMLButtonElement>(null!);
+    const nextBtnRef = useRef<HTMLButtonElement>(null!);
 
     const { loadMusic, resetBarState } = useLoadMusic();
     const { timeHandler } = useTime();
@@ -57,34 +57,39 @@ const Buttons: React.FC = () => {
 
     const playNextSong = (): void => {
         if (musicIndex >= albumList.length - 1) {
-            dispatch(setCurrentmusicIndex(0));
+            nextBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
-        }
+            prevBtnRef.current.removeAttribute('disabled');
 
-        loadMusic(musicIndex);
-        playMusic();
-        resetBarState();
+            playMusic();
+            resetBarState();
+        }
     };
 
     const playPrevSong = (): void => {
         if (musicIndex <= 0) {
-            dispatch(setCurrentmusicIndex(albumList.length - 1));
+            prevBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
-        }
+            nextBtnRef.current.removeAttribute('disabled');
 
-        loadMusic(musicIndex);
-        playMusic();
-        resetBarState();
+            playMusic();
+            resetBarState();
+        }
     };
 
     // /. functions
 
     useEffect(() => {
+        // load current song
+        loadMusic(musicIndex);
+    }, [musicIndex]);
+
+    useEffect(() => {
         if (!isLoading) {
             // set initial currentTime, duration, musicIndex
-            loadMusic(0);
+            loadMusic(musicIndex);
             timeHandler({ currentTime: 0, duration: 0 });
         }
         if (audioElRef) audioElRef.current.volume = 0.1; // set initial volume value
@@ -132,7 +137,7 @@ const Buttons: React.FC = () => {
         <nav className={pagesStatuses.isPlayerPage ? 'nav nav--player' : 'nav'}>
             <button
                 className="nav__button prev"
-                ref={prevBtn}
+                ref={prevBtnRef}
                 type="button"
                 aria-label="switch to previous track"
                 disabled={isLoading}
@@ -145,7 +150,7 @@ const Buttons: React.FC = () => {
             </button>
             <button
                 className={`nav__button ${isPaused ? 'pause' : 'play'}`}
-                ref={pauseBtn}
+                ref={pauseBtnRef}
                 type="button"
                 aria-label={isPaused ? 'play track' : 'pause track'}
                 disabled={isLoading}
@@ -165,7 +170,7 @@ const Buttons: React.FC = () => {
             </button>
             <button
                 className="nav__button next"
-                ref={nextBtn}
+                ref={nextBtnRef}
                 type="button"
                 aria-label="switch to next track"
                 disabled={isLoading}

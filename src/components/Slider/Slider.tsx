@@ -41,8 +41,6 @@ const Slider: React.FC<SliderPropTypes> = props => {
         state => state.playerSlice
     );
 
-    const dispatch = useAppDispatch();
-
     const [currentData, setCurrentData] = useState<albumListTypes[]>(data);
     const [coverEffect] = useState({
         rotate: 45,
@@ -76,11 +74,63 @@ const Slider: React.FC<SliderPropTypes> = props => {
         }
     });
 
-    const { loadMusic, resetBarState } = useLoadMusic();
+    const dispatch = useAppDispatch();
+    const { resetBarState } = useLoadMusic();
 
     // /. hooks
 
+    const isValidCondition = pagesStatuses.isPlayerPage && !isLoading;
+    const audioEl = document.querySelector(
+        '.player__audio'
+    ) as HTMLAudioElement;
+
+    const playMusic = (): void => {
+        audioEl &&
+            setTimeout(() => {
+                audioEl.play();
+                dispatch(switchPauseStatus(false));
+            }, 0);
+    };
+
+    const onNextSliderSwipe = (swiper: any): void => {
+        // console.log('next swipe');
+        if (musicIndex >= albumList.length - 1) {
+            // console.log(swiper)
+        } else {
+            dispatch(setCurrentmusicIndex(musicIndex + 1));
+
+            playMusic();
+            resetBarState();
+        }
+    };
+
+    const onPrevSliderSwipe = (swiper: any): void => {
+        // console.log('prev swipe');
+        if (musicIndex <= 0) {
+            // console.log(swiper)
+        } else {
+            dispatch(setCurrentmusicIndex(musicIndex - 1));
+
+            playMusic();
+            resetBarState();
+        }
+    };
+
+    const slideChangeHandler = (): void => {
+        // dispatch(setCurrentCardID());
+        // dispatch(
+        //     setCurrentCardID(
+        //         +Array.from(document.querySelectorAll('.swiper-slide')).filter(
+        //             item => item.classList.contains('swiper-slide-visible')
+        //         )[0].children[0].id
+        //     )
+        // );
+    };
+
+    // /. functions
+
     useEffect(() => {
+        // determine current data for render
         switch (name) {
             case 'recomended':
                 setCurrentData(data.slice(0, 5));
@@ -94,53 +144,17 @@ const Slider: React.FC<SliderPropTypes> = props => {
             case 'test':
                 setCurrentData(data);
                 break;
+            default:
+                return;
         }
     }, [data, name]);
 
+    useEffect(() => {
+        const songs = [...currentData].map(item => item.artist.name);
+        console.log(songs);
+    }, [currentData]);
+
     // /. effects
-
-    const isValidCondition = pagesStatuses.isPlayerPage && !isLoading;
-
-    const onNextSliderSwipe = (): void => {
-        console.log('next swipe');
-        dispatch(setCurrentmusicIndex(musicIndex + 1));
-
-        if (musicIndex >= albumList.length - 1) {
-            dispatch(setCurrentmusicIndex(0));
-        }
-    };
-
-    const onPrevSliderSwipe = (): void => {
-        console.log('prev swipe');
-        dispatch(setCurrentmusicIndex(musicIndex - 1));
-
-        if (musicIndex <= 0) {
-            dispatch(setCurrentmusicIndex(albumList.length - 1));
-        }
-    };
-
-    const slideChangeHandler = (): void => {
-        loadMusic(musicIndex);
-        resetBarState();
-
-        const audioEl = document.querySelector(
-            '.player__audio'
-        ) as HTMLAudioElement;
-        audioEl.play();
-
-        dispatch(switchPauseStatus(false));
-
-        // dispatch(setCurrentCardID());
-        dispatch(
-            setCurrentCardID(
-                +Array.from(document.querySelectorAll('.swiper-slide')).filter(
-                    item => item.classList.contains('swiper-slide-visible')
-                )[0].children[0].id
-            )
-        );
-    };
-
-    // /. functions
 
     return (
         <Swiper
@@ -154,12 +168,12 @@ const Slider: React.FC<SliderPropTypes> = props => {
             navigation={name === 'playerlist' ? true : false}
             modules={[Navigation]}
             breakpoints={name === 'playerlist' ? {} : breakpoints}
-            onSlideChange={() => isValidCondition && slideChangeHandler()}
-            onSlideNextTransitionEnd={() =>
-                isValidCondition && onNextSliderSwipe()
+            // onSlideChange={() => isValidCondition && slideChangeHandler()}
+            onSlideNextTransitionEnd={swiper =>
+                isValidCondition && onNextSliderSwipe(swiper)
             }
-            onSlidePrevTransitionEnd={() =>
-                isValidCondition && onPrevSliderSwipe()
+            onSlidePrevTransitionEnd={swiper =>
+                isValidCondition && onPrevSliderSwipe(swiper)
             }
         >
             {isLoading

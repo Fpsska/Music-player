@@ -10,9 +10,18 @@
         transition: all 0.1s linear;
         overflow: hidden;
         height: 45px;
+        opacity: 1;
 
         &:active {
             transform: scale(1.1);
+        }
+
+        &:disabled {
+            opacity: 0.25;
+
+            &:active {
+                transform: scale(1);
+            }
         }
     }
 }

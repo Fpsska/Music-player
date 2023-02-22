@@ -71,7 +71,7 @@ const initialState: mainSliceState = {
     currentArtistName: 'untitled',
     currentTrackName: 'untitled',
 
-    musicIndex: 1,
+    musicIndex: 0,
     currentLineProgress: 0,
     currentTimeProgress: 0,
     songDuration: 0,
@@ -118,6 +118,7 @@ const playerSlice = createSlice({
             state.isAudioMuted = action.payload;
         },
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
+            console.log(action.payload);
             state.musicIndex = action.payload;
         },
         addToLikedAlbum(state, action: PayloadAction<{ id: number }>) {

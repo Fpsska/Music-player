@@ -20,6 +20,8 @@ export function useLoadMusic() {
     // /. hooks
 
     const loadMusic = (musicIndex: number): void => {
+        console.log('load func:', musicIndex);
+
         const audioEl = document.querySelector(
             '.player__audio'
         ) as HTMLAudioElement;
