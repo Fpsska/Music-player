@@ -46,11 +46,9 @@ const Buttons: React.FC = () => {
 
     const playNextSong = (): void => {
         if (musicIndex >= albumList.length - 1) {
-            nextBtnRef.current.setAttribute('disabled', '');
+            // nextBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
-            prevBtnRef.current.removeAttribute('disabled');
-
             playMusic(audioElRef.current);
             resetBarState();
         }
@@ -58,11 +56,9 @@ const Buttons: React.FC = () => {
 
     const playPrevSong = (): void => {
         if (musicIndex <= 0) {
-            prevBtnRef.current.setAttribute('disabled', '');
+            // prevBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
-            nextBtnRef.current.removeAttribute('disabled');
-
             playMusic(audioElRef.current);
             resetBarState();
         }
@@ -74,6 +70,24 @@ const Buttons: React.FC = () => {
         // load current song info from albumList[] by musicIndex
         loadMusic(audioElRef.current, musicIndex);
     }, [musicIndex]);
+
+    useEffect(() => {
+        // determine status of disabled attr for nav__button elmts
+        if (!isLoading) {
+            if (musicIndex >= albumList.length - 1) {
+                nextBtnRef.current.setAttribute('disabled', '');
+            }
+            if (musicIndex < albumList.length - 1) {
+                nextBtnRef.current.removeAttribute('disabled');
+            }
+            if (musicIndex <= 0) {
+                prevBtnRef.current.setAttribute('disabled', '');
+            }
+            if (musicIndex > 0) {
+                prevBtnRef.current.removeAttribute('disabled');
+            }
+        }
+    }, [musicIndex, albumList, isLoading]);
 
     useEffect(() => {
         if (!isLoading) {

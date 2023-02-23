@@ -17,6 +17,8 @@ import { useMusicController } from '../../hooks/useMusicController';
 
 import Card from '../Card/CardTemplate';
 
+import './slider.scss';
+
 // Import Swiper React components
 // install Swiper modules
 SwiperCore.use([FreeMode, EffectCoverflow]);
@@ -72,6 +74,11 @@ const Slider: React.FC<SliderPropTypes> = props => {
             spaceBetween: 30
         }
     });
+
+    const navigation: { [key: string]: string } = {
+        prevEl: '.nav__button.prev',
+        nextEl: '.nav__button.next'
+    };
 
     const dispatch = useAppDispatch();
     const { resetBarState, playMusic } = useMusicController();
@@ -156,7 +163,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
             centeredSlides={name === 'playerlist' ? true : false}
             effect={'coverflow'}
             coverflowEffect={coverEffect}
-            navigation={name === 'playerlist' ? true : false}
+            navigation={name === 'playerlist' ? navigation : false}
             modules={[Navigation]}
             breakpoints={name === 'playerlist' ? {} : breakpoints}
             // onSlideChange={() => isValidCondition && slideChangeHandler()}
