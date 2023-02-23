@@ -118,7 +118,7 @@ const playerSlice = createSlice({
             state.isAudioMuted = action.payload;
         },
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
-            console.log(action.payload);
+            // console.log(action.payload);
             state.musicIndex = action.payload;
         },
         addToLikedAlbum(state, action: PayloadAction<{ id: number }>) {

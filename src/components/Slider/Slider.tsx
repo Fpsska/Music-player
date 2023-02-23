@@ -10,11 +10,10 @@ import { albumListTypes } from '../../Types/mainSliceTypes';
 
 import {
     setCurrentmusicIndex,
-    switchPauseStatus,
     setCurrentCardID
 } from '../../app/slices/playerSlice';
 
-import { useLoadMusic } from '../../hooks/useLoadMusic';
+import { useMusicController } from '../../hooks/useMusicController';
 
 import Card from '../Card/CardTemplate';
 
@@ -75,7 +74,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
     });
 
     const dispatch = useAppDispatch();
-    const { resetBarState } = useLoadMusic();
+    const { resetBarState, playMusic } = useMusicController();
 
     // /. hooks
 
@@ -84,14 +83,6 @@ const Slider: React.FC<SliderPropTypes> = props => {
         '.player__audio'
     ) as HTMLAudioElement;
 
-    const playMusic = (): void => {
-        audioEl &&
-            setTimeout(() => {
-                audioEl.play();
-                dispatch(switchPauseStatus(false));
-            }, 0);
-    };
-
     const onNextSliderSwipe = (swiper: any): void => {
         // console.log('next swipe');
         if (musicIndex >= albumList.length - 1) {
@@ -99,7 +90,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
 
-            playMusic();
+            playMusic(audioEl);
             resetBarState();
         }
     };
@@ -111,7 +102,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
         } else {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
 
-            playMusic();
+            playMusic(audioEl);
             resetBarState();
         }
     };

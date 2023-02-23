@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import {
+    switchPauseStatus,
     setArtistName,
     setTrackPreview,
     setTrackName,
@@ -11,7 +12,7 @@ import {
 
 // /. imports
 
-export function useLoadMusic() {
+export function useMusicController() {
     const { isLoading } = useAppSelector(state => state.mainSlice);
     const { albumList } = useAppSelector(state => state.playerSlice);
 
@@ -19,13 +20,8 @@ export function useLoadMusic() {
 
     // /. hooks
 
-    const loadMusic = (musicIndex: number): void => {
+    const loadMusic = (audioEl: HTMLAudioElement, musicIndex: number): void => {
         console.log('load func:', musicIndex);
-
-        const audioEl = document.querySelector(
-            '.player__audio'
-        ) as HTMLAudioElement;
-
         if (!isLoading && audioEl) {
             audioEl.setAttribute('src', albumList[musicIndex].preview); // mp3
             audioEl.load(); // reload audio track
@@ -38,6 +34,23 @@ export function useLoadMusic() {
         }
     };
 
+    const playMusic = (audioEl: HTMLAudioElement): void => {
+        audioEl &&
+            setTimeout(() => {
+                // fix Uncaught (in promise) DOMException: The play() request was interrupted by a call to pause() error
+                // when song is automaticly switched
+                audioEl.play();
+                dispatch(switchPauseStatus(false));
+            }, 0);
+    };
+
+    const pauseMusic = (audioEl: HTMLAudioElement): void => {
+        if (audioEl) {
+            audioEl.pause();
+            dispatch(switchPauseStatus(true));
+        }
+    };
+
     const resetBarState = (): void => {
         dispatch(setCurrentLineProgress(0));
         dispatch(setCurrentTimeProgress(0));
@@ -46,5 +59,5 @@ export function useLoadMusic() {
 
     // /. functions
 
-    return { loadMusic, resetBarState };
+    return { loadMusic, playMusic, pauseMusic, resetBarState };
 }

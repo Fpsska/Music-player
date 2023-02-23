@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -6,7 +6,7 @@ import { MdOutlineSkipPrevious, MdOutlineSkipNext } from 'react-icons/md';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
-import { useLoadMusic } from '../../hooks/useLoadMusic';
+import { useMusicController } from '../../hooks/useMusicController';
 import { useTime } from '../../hooks/useTime';
 
 import {
@@ -32,27 +32,16 @@ const Buttons: React.FC = () => {
     const pauseBtnRef = useRef<HTMLButtonElement>(null!);
     const nextBtnRef = useRef<HTMLButtonElement>(null!);
 
-    const { loadMusic, resetBarState } = useLoadMusic();
+    const { loadMusic, playMusic, pauseMusic, resetBarState } =
+        useMusicController();
     const { timeHandler } = useTime();
 
     // /. hooks
 
-    const playMusic = (): void => {
-        setTimeout(() => {
-            // fix Uncaught (in promise) DOMException: The play() request was interrupted by a call to pause() error
-            // when song is automaticly switched
-            audioElRef.current.play();
-            dispatch(switchPauseStatus(false));
-        }, 0);
-    };
-
-    const pauseMusic = (): void => {
-        audioElRef.current.pause();
-        dispatch(switchPauseStatus(true));
-    };
-
     const determineButtonEvent = (): void => {
-        isPaused ? playMusic() : pauseMusic();
+        isPaused
+            ? playMusic(audioElRef.current)
+            : pauseMusic(audioElRef.current);
     };
 
     const playNextSong = (): void => {
@@ -62,7 +51,7 @@ const Buttons: React.FC = () => {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
             prevBtnRef.current.removeAttribute('disabled');
 
-            playMusic();
+            playMusic(audioElRef.current);
             resetBarState();
         }
     };
@@ -74,7 +63,7 @@ const Buttons: React.FC = () => {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
             nextBtnRef.current.removeAttribute('disabled');
 
-            playMusic();
+            playMusic(audioElRef.current);
             resetBarState();
         }
     };
@@ -82,14 +71,14 @@ const Buttons: React.FC = () => {
     // /. functions
 
     useEffect(() => {
-        // load current song
-        loadMusic(musicIndex);
+        // load current song info from albumList[] by musicIndex
+        loadMusic(audioElRef.current, musicIndex);
     }, [musicIndex]);
 
     useEffect(() => {
         if (!isLoading) {
             // set initial currentTime, duration, musicIndex
-            loadMusic(musicIndex);
+            loadMusic(audioElRef.current, musicIndex);
             timeHandler({ currentTime: 0, duration: 0 });
         }
         if (audioElRef) audioElRef.current.volume = 0.1; // set initial volume value
@@ -106,25 +95,38 @@ const Buttons: React.FC = () => {
             });
         };
 
-        const eventAfterSongEnded = (): void => {
-            setTimeout(() => {
-                playNextSong();
-            }, 1000);
-        };
-
         audioElRef.current.addEventListener('timeupdate', defineTimeCount);
-        audioElRef.current.addEventListener('ended', eventAfterSongEnded);
         return () => {
             audioElRef.current.removeEventListener(
                 'timeupdate',
                 defineTimeCount
             );
+        };
+    }, [isLoading]);
+
+    useEffect(() => {
+        // determine next song after last song of albumList[] is finished playing
+        const eventAfterSongEnded = (): void => {
+            console.log('ended EVENT');
+            if (musicIndex < albumList.length - 1 && musicIndex !== 0) {
+                setTimeout(() => {
+                    playNextSong();
+                }, 1000);
+            } else {
+                // switch to 1st song when current song is last in []
+                dispatch(setCurrentmusicIndex(0));
+                resetBarState();
+            }
+        };
+
+        audioElRef.current.addEventListener('ended', eventAfterSongEnded);
+        return () => {
             audioElRef.current.removeEventListener(
                 'ended',
                 () => eventAfterSongEnded
             );
         };
-    }, [isLoading]);
+    }, [musicIndex, albumList]);
 
     useEffect(() => {
         // controle duration-bar value by click
