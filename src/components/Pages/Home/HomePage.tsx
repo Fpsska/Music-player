@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import { switchPageStatus } from '../../../app/slices/mainSlice';
+import { setCurrentPlayerData } from '../../../app/slices/playerSlice';
 import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
+
+import { determineCurrentPlayerData } from '../../../helpers/determineCurrentPlayerData';
 
 import Slider from '../../Slider/Slider';
 import BurgerMenu from '../../BurgerMenu/Burger';
@@ -14,8 +17,8 @@ import BurgerMenu from '../../BurgerMenu/Burger';
 // /. imports
 
 const HomePage: React.FC = () => {
-    const { albumList } = useAppSelector(state => state.playerSlice);
     const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
+    const { albumList } = useAppSelector(state => state.playerSlice);
 
     const [isVisible, setIsVisible] = useState(true);
 
@@ -26,10 +29,29 @@ const HomePage: React.FC = () => {
 
     const goPlayListPage = (): void => {
         navigate('playlist');
+        dispatch(
+            setCurrentPlayerData(
+                determineCurrentPlayerData(albumList, 'playlist')
+            )
+        );
     };
 
-    const goPlayerPage = (): void => {
+    const goToRecomendedSongs = (): void => {
         navigate('player');
+        dispatch(
+            setCurrentPlayerData(
+                determineCurrentPlayerData(albumList, 'recomended')
+            )
+        );
+    };
+
+    const goToPopularSongs = (): void => {
+        navigate('player');
+        dispatch(
+            setCurrentPlayerData(
+                determineCurrentPlayerData(albumList, 'popular')
+            )
+        );
     };
 
     // /. functions
@@ -64,20 +86,12 @@ const HomePage: React.FC = () => {
                 <div className="home__section home__section--recommendation">
                     <span
                         className="page__title title"
-                        onClick={goPlayerPage}
+                        onClick={goToRecomendedSongs}
                     >
-                        <Link
-                            to="player"
-                            state="playerPage"
-                        >
-                            Recomended for you
-                        </Link>
+                        <Link to="player">Recomended for you</Link>
                     </span>
                     <div className="home__slider">
-                        <Slider
-                            data={albumList}
-                            name={'recomended'}
-                        />
+                        <Slider role={'recomended'} />
                     </div>
                 </div>
                 <div className="home__section home__section--playlist">
@@ -85,34 +99,18 @@ const HomePage: React.FC = () => {
                         className="page__title title"
                         onClick={goPlayListPage}
                     >
-                        <Link
-                            to="playlist"
-                            state="playlistPage"
-                        >
-                            My Playlist
-                        </Link>
+                        <Link to="playlist">My Playlist</Link>
                     </span>
-                    <Slider
-                        data={albumList}
-                        name={'playlist'}
-                    />
+                    <Slider role={'playlist'} />
                 </div>
                 <div className="home__section home__section--playlist">
                     <span
                         className="page__title title"
-                        onClick={goPlayListPage}
+                        onClick={goToPopularSongs}
                     >
-                        <Link
-                            to="playlist"
-                            state="playlistPage"
-                        >
-                            Test
-                        </Link>
+                        <Link to="playlist">Popular</Link>
                     </span>
-                    <Slider
-                        data={albumList}
-                        name={'test'}
-                    />
+                    <Slider role={'popular'} />
                 </div>
             </section>
         </>

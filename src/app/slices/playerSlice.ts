@@ -8,6 +8,7 @@ import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
 
 interface mainSliceState {
     albumList: albumListTypes[];
+    currentPlayerData: albumListTypes[];
     likedData: albumListTypes[];
     filteredData: albumListTypes[];
     mockData: mockDataTypes[];
@@ -35,6 +36,7 @@ interface mainSliceState {
 
 const initialState: mainSliceState = {
     albumList: [],
+    currentPlayerData: [],
     likedData: [],
     filteredData: [],
     mockData: [
@@ -121,6 +123,10 @@ const playerSlice = createSlice({
             // console.log(action.payload);
             state.musicIndex = action.payload;
         },
+        setCurrentPlayerData(state, action: PayloadAction<albumListTypes[]>) {
+            console.log(action.payload);
+            state.currentPlayerData = action.payload;
+        },
         addToLikedAlbum(state, action: PayloadAction<{ id: number }>) {
             const { id } = action.payload;
             // /. payload
@@ -184,6 +190,7 @@ export const {
     setOffsetTime,
     switchMutedStatus,
     setCurrentmusicIndex,
+    setCurrentPlayerData,
     addToLikedAlbum,
     removeFromLikedAlbum,
     filterLikedData,

@@ -14,23 +14,25 @@ import {
 
 export function useMusicController() {
     const { isLoading } = useAppSelector(state => state.mainSlice);
-    const { albumList } = useAppSelector(state => state.playerSlice);
+    const { currentPlayerData } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
 
     // /. hooks
 
     const loadMusic = (audioEl: HTMLAudioElement, musicIndex: number): void => {
-        console.log('load func:', musicIndex);
-        if (!isLoading && audioEl) {
-            audioEl.setAttribute('src', albumList[musicIndex].preview); // mp3
+        // console.log('load func:', musicIndex);
+        if (!isLoading && audioEl && currentPlayerData.length !== 0) {
+            audioEl.setAttribute('src', currentPlayerData[musicIndex].preview); // mp3
             audioEl.load(); // reload audio track
 
             dispatch(
-                setTrackPreview(albumList[musicIndex].artist.picture_medium)
+                setTrackPreview(
+                    currentPlayerData[musicIndex].artist.picture_medium
+                )
             ); // image
-            dispatch(setArtistName(albumList[musicIndex].artist.name)); // artist-name
-            dispatch(setTrackName(albumList[musicIndex].title)); // song-name
+            dispatch(setArtistName(currentPlayerData[musicIndex].artist.name)); // artist-name
+            dispatch(setTrackName(currentPlayerData[musicIndex].title)); // song-name
         }
     };
 

@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
-import { useAppDispatch } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchPageStatus } from '../../app/slices/mainSlice';
+import { setCurrentPlayerData } from '../../app/slices/playerSlice';
+
+import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
 
 import Layout from '../Common/Layout';
 
@@ -27,6 +30,8 @@ import '../../../node_modules/swiper/swiper.scss';
 // /. imports
 
 const App: React.FC = () => {
+    const { albumList } = useAppSelector(state => state.playerSlice);
+
     const { setTheme } = useTheme();
     const location = useLocationData();
 
@@ -37,6 +42,15 @@ const App: React.FC = () => {
     useEffect(() => {
         dispatch(switchPageStatus({ locationData: location }));
     }, [location]);
+
+    useEffect(() => {
+        // set (recomended category) data like initial data
+        dispatch(
+            setCurrentPlayerData(
+                determineCurrentPlayerData(albumList, 'recomended')
+            )
+        );
+    }, [albumList]);
 
     // /. effects
 

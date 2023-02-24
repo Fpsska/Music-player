@@ -10,10 +10,12 @@ import { albumListTypes } from '../../Types/mainSliceTypes';
 
 import {
     setCurrentmusicIndex,
-    setCurrentCardID
+    setCurrentCardID,
+    setCurrentPlayerData
 } from '../../app/slices/playerSlice';
 
 import { useMusicController } from '../../hooks/useMusicController';
+import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
 
 import Card from '../Card/CardTemplate';
 
@@ -26,23 +28,22 @@ SwiperCore.use([FreeMode, EffectCoverflow]);
 // /. imports
 
 interface SliderPropTypes {
-    data: albumListTypes[];
-    name: string;
+    role: string;
 }
 
 // ./ interfaces
 
 const Slider: React.FC<SliderPropTypes> = props => {
-    const { data, name } = props;
+    const { role } = props;
 
     const { isLoading, pagesStatuses } = useAppSelector(
         state => state.mainSlice
     );
-    const { mockData, albumList, musicIndex } = useAppSelector(
-        state => state.playerSlice
-    );
+    const { mockData, albumList, currentPlayerData, musicIndex } =
+        useAppSelector(state => state.playerSlice);
 
-    const [currentData, setCurrentData] = useState<albumListTypes[]>(data);
+    const [currentData, setCurrentData] =
+        useState<albumListTypes[]>(currentPlayerData);
     const [coverEffect] = useState({
         rotate: 45,
         stretch: 0,
@@ -92,7 +93,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
 
     const onNextSliderSwipe = (swiper: any): void => {
         // console.log('next swipe');
-        if (musicIndex >= albumList.length - 1) {
+        if (musicIndex >= currentData.length - 1) {
             // console.log(swiper)
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
@@ -129,43 +130,29 @@ const Slider: React.FC<SliderPropTypes> = props => {
 
     useEffect(() => {
         // determine current data for render
-        switch (name) {
-            case 'recomended':
-                setCurrentData(data.slice(0, 5));
-                break;
-            case 'playlist':
-                setCurrentData([...data].reverse());
-                break;
-            case 'playerlist':
-                setCurrentData(data);
-                break;
-            case 'test':
-                setCurrentData(data);
-                break;
-            default:
-                return;
+        if (role === 'playerlist') {
+            // use playerlist slider only for render passed data
+            setCurrentData(currentPlayerData);
+        } else {
+            // for correct render data of all HomePage.tsx sliders
+            setCurrentData(determineCurrentPlayerData(albumList, role));
         }
-    }, [data, name]);
-
-    useEffect(() => {
-        const songs = [...currentData].map(item => item.artist.name);
-        console.log(songs);
-    }, [currentData]);
+    }, [currentPlayerData, albumList, role]);
 
     // /. effects
 
     return (
         <Swiper
             className="mySwiper"
-            freeMode={name === 'playerlist' ? false : true}
+            freeMode={role === 'playerlist' ? false : true}
             slidesPerView={1}
-            spaceBetween={name === 'playerlist' ? 30 : 0}
-            centeredSlides={name === 'playerlist' ? true : false}
+            spaceBetween={role === 'playerlist' ? 30 : 0}
+            centeredSlides={role === 'playerlist' ? true : false}
             effect={'coverflow'}
             coverflowEffect={coverEffect}
-            navigation={name === 'playerlist' ? navigation : false}
+            navigation={role === 'playerlist' ? navigation : false}
             modules={[Navigation]}
-            breakpoints={name === 'playerlist' ? {} : breakpoints}
+            breakpoints={role === 'playerlist' ? {} : breakpoints}
             // onSlideChange={() => isValidCondition && slideChangeHandler()}
             onSlideNextTransitionEnd={swiper =>
                 isValidCondition && onNextSliderSwipe(swiper)

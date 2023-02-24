@@ -22,7 +22,7 @@ const PlayerPage: React.FC = () => {
         songDuration,
         currentTimeProgress,
         isAudioMuted,
-        albumList,
+        currentPlayerData,
         likedData,
         currentCardID
     } = useAppSelector(state => state.playerSlice);
@@ -53,28 +53,29 @@ const PlayerPage: React.FC = () => {
     }, [likedData, currentCardID]);
 
     useEffect(() => {
-        // set initial first card ID
-        !isLoading &&
-            dispatch(
-                setCurrentCardID(
-                    +Array.from(
-                        document.querySelectorAll('.swiper-slide')
-                    ).filter(item =>
-                        item.classList.contains('swiper-slide-active')
-                    )[0].children[0].id
-                )
-            );
-    }, [isLoading]);
+        console.log(currentPlayerData);
+    }, [currentPlayerData]);
+
+    // useEffect(() => {
+    //     // set initial first card ID
+    //     !isLoading &&
+    //         dispatch(
+    //             setCurrentCardID(
+    //                 +Array.from(
+    //                     document.querySelectorAll('.swiper-slide')
+    //                 ).filter(item =>
+    //                     item.classList.contains('swiper-slide-active')
+    //                 )[0].children[0].id
+    //             )
+    //         );
+    // }, [isLoading]);
 
     // /. effects
 
     return (
         <section className="player">
             <div className="player__slider">
-                <Slider
-                    data={albumList}
-                    name={'playerlist'}
-                />
+                <Slider role={'playerlist'} />
             </div>
             <div className="player__section">
                 <div className="player__navigation">

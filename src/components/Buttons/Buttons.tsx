@@ -22,8 +22,13 @@ const Buttons: React.FC = () => {
     const { pagesStatuses, isLoading } = useAppSelector(
         state => state.mainSlice
     );
-    const { isPaused, albumList, offsetCurrentTime, isAudioMuted, musicIndex } =
-        useAppSelector(state => state.playerSlice);
+    const {
+        isPaused,
+        currentPlayerData,
+        offsetCurrentTime,
+        isAudioMuted,
+        musicIndex
+    } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
 
@@ -45,7 +50,7 @@ const Buttons: React.FC = () => {
     };
 
     const playNextSong = (): void => {
-        if (musicIndex >= albumList.length - 1) {
+        if (musicIndex >= currentPlayerData.length - 1) {
             // nextBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
@@ -74,10 +79,10 @@ const Buttons: React.FC = () => {
     useEffect(() => {
         // determine status of disabled attr for nav__button elmts
         if (!isLoading) {
-            if (musicIndex >= albumList.length - 1) {
+            if (musicIndex >= currentPlayerData.length - 1) {
                 nextBtnRef.current.setAttribute('disabled', '');
             }
-            if (musicIndex < albumList.length - 1) {
+            if (musicIndex < currentPlayerData.length - 1) {
                 nextBtnRef.current.removeAttribute('disabled');
             }
             if (musicIndex <= 0) {
@@ -87,7 +92,7 @@ const Buttons: React.FC = () => {
                 prevBtnRef.current.removeAttribute('disabled');
             }
         }
-    }, [musicIndex, albumList, isLoading]);
+    }, [musicIndex, currentPlayerData, isLoading]);
 
     useEffect(() => {
         if (!isLoading) {
@@ -121,8 +126,8 @@ const Buttons: React.FC = () => {
     useEffect(() => {
         // determine next song after last song of albumList[] is finished playing
         const eventAfterSongEnded = (): void => {
-            console.log('ended EVENT');
-            if (musicIndex < albumList.length - 1 && musicIndex !== 0) {
+            // console.log('ended EVENT');
+            if (musicIndex < currentPlayerData.length - 1 && musicIndex !== 0) {
                 setTimeout(() => {
                     playNextSong();
                 }, 1000);
@@ -140,12 +145,17 @@ const Buttons: React.FC = () => {
                 () => eventAfterSongEnded
             );
         };
-    }, [musicIndex, albumList]);
+    }, [musicIndex, currentPlayerData]);
 
     useEffect(() => {
         // controle duration-bar value by click
         audioElRef.current.currentTime = offsetCurrentTime;
     }, [offsetCurrentTime]);
+
+    // useEffect(() => {
+    //     const songs = [...albumList].map(item => item.artist.name);
+    //     console.log(songs);
+    // }, [albumList]);
 
     // /. effects
 

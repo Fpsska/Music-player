@@ -8,9 +8,15 @@ import './card.scss';
 
 // /. imports
 
-const CardList: React.FC = () => {
+interface propTypes {
+    data: any[];
+}
+
+const CardList: React.FC<propTypes> = ({ data }) => {
     const { isLoading } = useAppSelector(state => state.mainSlice);
     const { albumList, mockData } = useAppSelector(state => state.playerSlice);
+
+    // /. hooks
 
     return (
         <>
@@ -29,7 +35,7 @@ const CardList: React.FC = () => {
                           </div>
                       );
                   })
-                : albumList.map(item => {
+                : data.map(item => {
                       return (
                           <Card
                               key={item.id}
