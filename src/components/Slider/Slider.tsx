@@ -86,7 +86,8 @@ const Slider: React.FC<SliderPropTypes> = props => {
 
     // /. hooks
 
-    const isValidCondition = pagesStatuses.isPlayerPage && !isLoading;
+    const isSliderActive = pagesStatuses.isPlayerPage && !isLoading;
+    const isDataEmpty = isLoading || currentData.length === 0;
     const audioEl = document.querySelector(
         '.player__audio'
     ) as HTMLAudioElement;
@@ -153,15 +154,15 @@ const Slider: React.FC<SliderPropTypes> = props => {
             navigation={role === 'playerlist' ? navigation : false}
             modules={[Navigation]}
             breakpoints={role === 'playerlist' ? {} : breakpoints}
-            // onSlideChange={() => isValidCondition && slideChangeHandler()}
+            // onSlideChange={() => isSliderActive && slideChangeHandler()}
             onSlideNextTransitionEnd={swiper =>
-                isValidCondition && onNextSliderSwipe(swiper)
+                isSliderActive && onNextSliderSwipe(swiper)
             }
             onSlidePrevTransitionEnd={swiper =>
-                isValidCondition && onPrevSliderSwipe(swiper)
+                isSliderActive && onPrevSliderSwipe(swiper)
             }
         >
-            {isLoading
+            {isDataEmpty
                 ? mockData.map(item => {
                       return (
                           <SwiperSlide key={item.id}>

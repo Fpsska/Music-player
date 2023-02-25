@@ -43,6 +43,8 @@ const Buttons: React.FC = () => {
 
     // /. hooks
 
+    const isNavDisabled = isLoading || currentPlayerData.length === 0;
+
     const determineButtonEvent = (): void => {
         isPaused
             ? playMusic(audioElRef.current)
@@ -166,7 +168,7 @@ const Buttons: React.FC = () => {
                 ref={prevBtnRef}
                 type="button"
                 aria-label="switch to previous track"
-                disabled={isLoading}
+                disabled={isNavDisabled}
                 onClick={playPrevSong}
             >
                 <MdOutlineSkipPrevious
@@ -179,7 +181,7 @@ const Buttons: React.FC = () => {
                 ref={pauseBtnRef}
                 type="button"
                 aria-label={isPaused ? 'play track' : 'pause track'}
-                disabled={isLoading}
+                disabled={isNavDisabled}
                 onClick={determineButtonEvent}
             >
                 {isPaused ? (
@@ -199,7 +201,7 @@ const Buttons: React.FC = () => {
                 ref={nextBtnRef}
                 type="button"
                 aria-label="switch to next track"
-                disabled={isLoading}
+                disabled={isNavDisabled}
                 onClick={playNextSong}
             >
                 <MdOutlineSkipNext

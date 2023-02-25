@@ -2,12 +2,13 @@ import React from 'react';
 
 import { useNavigate } from 'react-router';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-
-import { switchPageStatus } from '../../app/slices/mainSlice';
+import { useAppSelector } from '../../app/hooks';
 
 import Buttons from '../Buttons/Buttons';
 import Bar from '../DurationBar/DurationBar';
+
+import previewWebp from '../../assets/images/preview_placeholder.webp';
+import previewPng from '../../assets/images/preview_placeholder.png';
 
 import './navigation.scss';
 
@@ -20,14 +21,16 @@ const Navigation: React.FC = () => {
     const { currentTrackPreview, currentArtistName, currentTrackName } =
         useAppSelector(state => state.playerSlice);
 
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    // /. hooks
+
     const goPlayerPage = (): void => {
-        // dispatch(switchPlayerPageStatus(true));
         navigate('player');
     };
-    //
+
+    // /. functions
+
     return (
         <div
             className={
@@ -57,12 +60,30 @@ const Navigation: React.FC = () => {
                                 ) : pagesStatuses.isPlayerPage ? (
                                     <></>
                                 ) : (
-                                    <img
-                                        className="navigation__image"
-                                        src={currentTrackPreview}
-                                        alt="album-preview"
-                                        onClick={goPlayerPage}
-                                    />
+                                    <>
+                                        {currentTrackPreview ? (
+                                            <div className="navigation__image-wrapper">
+                                                <img
+                                                    className="navigation__image"
+                                                    src={currentTrackPreview}
+                                                    alt="album-preview"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <picture className="navigation__image-wrapper">
+                                                <source
+                                                    srcSet={previewWebp}
+                                                    type="image/webp"
+                                                />
+                                                <img
+                                                    className="navigation__image"
+                                                    src={previewPng}
+                                                    alt="album-preview"
+                                                    onClick={goPlayerPage}
+                                                />
+                                            </picture>
+                                        )}
+                                    </>
                                 )}
                             </>
                             {pagesStatuses.isPlayerPage ? (

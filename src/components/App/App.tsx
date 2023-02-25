@@ -44,7 +44,7 @@ const App: React.FC = () => {
     }, [location]);
 
     useEffect(() => {
-        // set (recomended category) data like initial data
+        // set (recomended category) data as initial data for playing
         dispatch(
             setCurrentPlayerData(
                 determineCurrentPlayerData(albumList, 'recomended')

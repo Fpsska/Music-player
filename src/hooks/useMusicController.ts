@@ -37,17 +37,18 @@ export function useMusicController() {
     };
 
     const playMusic = (audioEl: HTMLAudioElement): void => {
-        audioEl &&
+        if (audioEl && currentPlayerData.length !== 0) {
             setTimeout(() => {
                 // fix Uncaught (in promise) DOMException: The play() request was interrupted by a call to pause() error
                 // when song is automaticly switched
                 audioEl.play();
                 dispatch(switchPauseStatus(false));
             }, 0);
+        }
     };
 
     const pauseMusic = (audioEl: HTMLAudioElement): void => {
-        if (audioEl) {
+        if (audioEl && currentPlayerData.length !== 0) {
             audioEl.pause();
             dispatch(switchPauseStatus(true));
         }

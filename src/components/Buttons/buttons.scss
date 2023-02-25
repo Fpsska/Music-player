@@ -38,10 +38,10 @@
     }
 }
 
-.pause,
-.play,
-.prev,
-.next {
+.nav__button.pause,
+.nav__button.play,
+.nav__button.prev,
+.nav__button.next {
     display: flex;
     align-items: center;
     justify-content: center;

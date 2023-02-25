@@ -16,6 +16,12 @@ input {
     cursor: pointer;
 }
 
+img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+}
+
 a {
     text-decoration: none;
     color: #fff;
