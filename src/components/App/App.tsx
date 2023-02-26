@@ -5,7 +5,10 @@ import { Routes, Route } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchPageStatus } from '../../app/slices/mainSlice';
-import { setCurrentPlayerData } from '../../app/slices/playerSlice';
+import {
+    setCurrentPlayerData,
+    switchPauseStatus
+} from '../../app/slices/playerSlice';
 
 import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
 
@@ -18,6 +21,7 @@ import FilterPage from '../Pages/Search/SearchPage';
 
 import { useTheme } from '../../hooks/useTheme';
 import { useLocationData } from '../../hooks/useLocationData';
+import { useMusicController } from '../../hooks/useMusicController';
 
 import './App.css';
 import '../../assets/styles/_reset.scss';
@@ -25,17 +29,22 @@ import '../../assets/styles/style.scss';
 import '../../assets/styles/_media.scss';
 import '../../assets/styles/_theme.scss';
 
-import '../../../node_modules/swiper/swiper.scss';
-
 // /. imports
 
 const App: React.FC = () => {
-    const { albumList } = useAppSelector(state => state.playerSlice);
+    const { albumList, currentPlayerData, musicIndex, musicCategory } =
+        useAppSelector(state => state.playerSlice);
 
     const { setTheme } = useTheme();
     const location = useLocationData();
 
     const dispatch = useAppDispatch();
+
+    const audioEl = document.querySelector(
+        '.player__audio'
+    ) as HTMLAudioElement;
+
+    // const { loadMusic, resetBarState } = useMusicController(audioEl);
 
     // /. hooks
 
@@ -47,10 +56,17 @@ const App: React.FC = () => {
         // set (recomended category) data as initial data for playing
         dispatch(
             setCurrentPlayerData(
-                determineCurrentPlayerData(albumList, 'recomended')
+                determineCurrentPlayerData(albumList, musicCategory)
             )
         );
-    }, [albumList]);
+    }, [albumList, musicCategory]);
+
+    // useEffect(() => {
+    //     loadMusic(musicIndex);
+    //     resetBarState();
+
+    //     dispatch(switchPauseStatus(true));
+    // }, [currentPlayerData, musicCategory, musicIndex]);
 
     // /. effects
 

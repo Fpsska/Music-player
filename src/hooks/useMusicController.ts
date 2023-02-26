@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import {
@@ -12,7 +14,7 @@ import {
 
 // /. imports
 
-export function useMusicController() {
+export function useMusicController(audioEl: HTMLAudioElement) {
     const { isLoading } = useAppSelector(state => state.mainSlice);
     const { currentPlayerData } = useAppSelector(state => state.playerSlice);
 
@@ -20,12 +22,13 @@ export function useMusicController() {
 
     // /. hooks
 
-    const loadMusic = (audioEl: HTMLAudioElement, musicIndex: number): void => {
-        // console.log('load func:', musicIndex);
-        if (!isLoading && audioEl && currentPlayerData.length !== 0) {
+    const isFuncsAvailable =
+        !isLoading && audioEl && currentPlayerData.length !== 0;
+
+    const loadMusic = (musicIndex: number): void => {
+        if (isFuncsAvailable) {
             audioEl.setAttribute('src', currentPlayerData[musicIndex].preview); // mp3
             audioEl.load(); // reload audio track
-
             dispatch(
                 setTrackPreview(
                     currentPlayerData[musicIndex].artist.picture_medium
@@ -34,10 +37,11 @@ export function useMusicController() {
             dispatch(setArtistName(currentPlayerData[musicIndex].artist.name)); // artist-name
             dispatch(setTrackName(currentPlayerData[musicIndex].title)); // song-name
         }
+        return;
     };
 
-    const playMusic = (audioEl: HTMLAudioElement): void => {
-        if (audioEl && currentPlayerData.length !== 0) {
+    const playMusic = (): void => {
+        if (isFuncsAvailable && audioEl.src) {
             setTimeout(() => {
                 // fix Uncaught (in promise) DOMException: The play() request was interrupted by a call to pause() error
                 // when song is automaticly switched
@@ -45,13 +49,15 @@ export function useMusicController() {
                 dispatch(switchPauseStatus(false));
             }, 0);
         }
+        return;
     };
 
-    const pauseMusic = (audioEl: HTMLAudioElement): void => {
-        if (audioEl && currentPlayerData.length !== 0) {
+    const pauseMusic = (): void => {
+        if (isFuncsAvailable && audioEl.src) {
             audioEl.pause();
             dispatch(switchPauseStatus(true));
         }
+        return;
     };
 
     const resetBarState = (): void => {

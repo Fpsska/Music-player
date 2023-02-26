@@ -82,15 +82,16 @@ const Slider: React.FC<SliderPropTypes> = props => {
     };
 
     const dispatch = useAppDispatch();
-    const { resetBarState, playMusic } = useMusicController();
 
-    // /. hooks
-
-    const isSliderActive = pagesStatuses.isPlayerPage && !isLoading;
-    const isDataEmpty = isLoading || currentData.length === 0;
     const audioEl = document.querySelector(
         '.player__audio'
     ) as HTMLAudioElement;
+    const isSliderActive = pagesStatuses.isPlayerPage && !isLoading;
+    const isDataEmpty = isLoading || currentData.length === 0;
+
+    const { resetBarState, playMusic } = useMusicController(audioEl);
+
+    // /. hooks
 
     const onNextSliderSwipe = (swiper: any): void => {
         // console.log('next swipe');
@@ -99,7 +100,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
 
-            playMusic(audioEl);
+            playMusic();
             resetBarState();
         }
     };
@@ -111,7 +112,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
         } else {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
 
-            playMusic(audioEl);
+            playMusic();
             resetBarState();
         }
     };

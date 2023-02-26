@@ -9,6 +9,7 @@ import { switchPageStatus } from '../../../app/slices/mainSlice';
 import { setCurrentPlayerData } from '../../../app/slices/playerSlice';
 import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
 
+import { useMusicController } from '../../../hooks/useMusicController';
 import { determineCurrentPlayerData } from '../../../helpers/determineCurrentPlayerData';
 
 import Slider from '../../Slider/Slider';
@@ -18,12 +19,20 @@ import BurgerMenu from '../../BurgerMenu/Burger';
 
 const HomePage: React.FC = () => {
     const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
-    const { albumList } = useAppSelector(state => state.playerSlice);
+    const { albumList, musicIndex } = useAppSelector(
+        state => state.playerSlice
+    );
 
     const [isVisible, setIsVisible] = useState(true);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const audioEl = document.querySelector(
+        '.player__audio'
+    ) as HTMLAudioElement;
+
+    const { loadMusic } = useMusicController(audioEl);
 
     // /. hooks
 

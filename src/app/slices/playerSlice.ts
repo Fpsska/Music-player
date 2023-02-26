@@ -22,6 +22,7 @@ interface mainSliceState {
     currentTrackName: string;
 
     musicIndex: number;
+    musicCategory: string;
 
     currentLineProgress: any;
     currentTimeProgress: any;
@@ -74,6 +75,8 @@ const initialState: mainSliceState = {
     currentTrackName: 'untitled',
 
     musicIndex: 0,
+    musicCategory: 'recomended',
+
     currentLineProgress: 0,
     currentTimeProgress: 0,
     songDuration: 0,
@@ -122,6 +125,9 @@ const playerSlice = createSlice({
         setCurrentmusicIndex(state, action: PayloadAction<number>) {
             // console.log(action.payload);
             state.musicIndex = action.payload;
+        },
+        setCurrentMusicCategory(state, action: PayloadAction<string>) {
+            state.musicCategory = action.payload;
         },
         setCurrentPlayerData(state, action: PayloadAction<albumListTypes[]>) {
             console.log(action.payload);

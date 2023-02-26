@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -27,7 +27,8 @@ const Buttons: React.FC = () => {
         currentPlayerData,
         offsetCurrentTime,
         isAudioMuted,
-        musicIndex
+        musicIndex,
+        musicCategory
     } = useAppSelector(state => state.playerSlice);
 
     const dispatch = useAppDispatch();
@@ -38,17 +39,16 @@ const Buttons: React.FC = () => {
     const nextBtnRef = useRef<HTMLButtonElement>(null!);
 
     const { loadMusic, playMusic, pauseMusic, resetBarState } =
-        useMusicController();
+        useMusicController(audioElRef.current);
     const { timeHandler } = useTime();
 
     // /. hooks
 
-    const isNavDisabled = isLoading || currentPlayerData.length === 0;
+    const isNavDisabled =
+        isLoading || currentPlayerData.length === 0 || !audioElRef.current.src;
 
     const determineButtonEvent = (): void => {
-        isPaused
-            ? playMusic(audioElRef.current)
-            : pauseMusic(audioElRef.current);
+        isPaused ? playMusic() : pauseMusic();
     };
 
     const playNextSong = (): void => {
@@ -56,7 +56,7 @@ const Buttons: React.FC = () => {
             // nextBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex + 1));
-            playMusic(audioElRef.current);
+            playMusic();
             resetBarState();
         }
     };
@@ -66,7 +66,7 @@ const Buttons: React.FC = () => {
             // prevBtnRef.current.setAttribute('disabled', '');
         } else {
             dispatch(setCurrentmusicIndex(musicIndex - 1));
-            playMusic(audioElRef.current);
+            playMusic();
             resetBarState();
         }
     };
@@ -75,7 +75,7 @@ const Buttons: React.FC = () => {
 
     useEffect(() => {
         // load current song info from albumList[] by musicIndex
-        loadMusic(audioElRef.current, musicIndex);
+        loadMusic(musicIndex);
     }, [musicIndex]);
 
     useEffect(() => {
@@ -99,7 +99,7 @@ const Buttons: React.FC = () => {
     useEffect(() => {
         if (!isLoading) {
             // set initial currentTime, duration, musicIndex
-            loadMusic(audioElRef.current, musicIndex);
+            loadMusic(musicIndex);
             timeHandler({ currentTime: 0, duration: 0 });
         }
         if (audioElRef) audioElRef.current.volume = 0.1; // set initial volume value
