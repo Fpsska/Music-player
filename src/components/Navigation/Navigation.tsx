@@ -67,6 +67,7 @@ const Navigation: React.FC = () => {
                                                     className="navigation__image"
                                                     src={currentTrackPreview}
                                                     alt="album-preview"
+                                                    onClick={goPlayerPage}
                                                 />
                                             </div>
                                         ) : (
@@ -93,6 +94,7 @@ const Navigation: React.FC = () => {
                                     <span
                                         className="navigation__track-name slide"
                                         title={currentTrackName}
+                                        onClick={goPlayerPage}
                                     >
                                         {isLoading ? (
                                             <div className="loading loading--nav">
@@ -105,6 +107,7 @@ const Navigation: React.FC = () => {
                                     <span
                                         className="navigation__artist-name subtitle"
                                         title={currentArtistName}
+                                        onClick={goPlayerPage}
                                     >
                                         {isLoading ? (
                                             <div className="loading loading--nav">

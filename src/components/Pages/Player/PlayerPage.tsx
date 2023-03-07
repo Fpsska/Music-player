@@ -13,6 +13,8 @@ import {
     setCurrentCardID
 } from '../../../app/slices/playerSlice';
 
+import { useMusicController } from '../../../hooks/useMusicController';
+
 import Slider from '../../Slider/Slider';
 
 // /. imports
@@ -24,13 +26,20 @@ const PlayerPage: React.FC = () => {
         isAudioMuted,
         currentPlayerData,
         likedData,
-        currentCardID
+        currentCardID,
+        musicIndex
     } = useAppSelector(state => state.playerSlice);
 
     const { isLoading } = useAppSelector(state => state.mainSlice);
     const [isAlreadyAdded, setAddedStatus] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
+
+    const audioEl = document.querySelector(
+        '.player__audio'
+    ) as HTMLAudioElement;
+
+    const { loadMusic, resetBarState, playMusic } = useMusicController(audioEl);
 
     // /. hooks
 
@@ -39,11 +48,17 @@ const PlayerPage: React.FC = () => {
     };
 
     const addToFavorite = (): void => {
-        dispatch(addToLikedAlbum({ id: currentCardID }));
-        console.log('added');
+        // dispatch(addToLikedAlbum({ id: currentCardID }));
+        // console.log('added');
     };
 
     // /. functions
+
+    useEffect(() => {
+        // autoplay song
+        loadMusic(musicIndex);
+        playMusic();
+    }, [currentPlayerData, musicIndex, currentCardID]);
 
     useEffect(() => {
         // check equal items in likedData
@@ -51,10 +66,6 @@ const PlayerPage: React.FC = () => {
             ? setAddedStatus(true)
             : setAddedStatus(false);
     }, [likedData, currentCardID]);
-
-    useEffect(() => {
-        console.log(currentPlayerData);
-    }, [currentPlayerData]);
 
     // useEffect(() => {
     //     // set initial first card ID

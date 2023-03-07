@@ -16,6 +16,7 @@ import {
 
 import { useMusicController } from '../../hooks/useMusicController';
 import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
+import { swapArrayElementsPositions } from '../../helpers/swapArrayElementsPositions';
 
 import Card from '../Card/CardTemplate';
 
@@ -39,8 +40,13 @@ const Slider: React.FC<SliderPropTypes> = props => {
     const { isLoading, pagesStatuses } = useAppSelector(
         state => state.mainSlice
     );
-    const { mockData, albumList, currentPlayerData, musicIndex } =
-        useAppSelector(state => state.playerSlice);
+    const {
+        mockData,
+        albumList,
+        currentPlayerData,
+        currentCardID,
+        musicIndex
+    } = useAppSelector(state => state.playerSlice);
 
     const [currentData, setCurrentData] =
         useState<albumListTypes[]>(currentPlayerData);
@@ -131,15 +137,31 @@ const Slider: React.FC<SliderPropTypes> = props => {
     // /. functions
 
     useEffect(() => {
-        // determine current data for render
-        if (role === 'playerlist') {
-            // use playerlist slider only for render passed data
-            setCurrentData(currentPlayerData);
-        } else {
-            // for correct render data of all HomePage.tsx sliders
+        // for determine render data of all HomePage.tsx sliders
+        if (role !== 'playerlist') {
             setCurrentData(determineCurrentPlayerData(albumList, role));
         }
-    }, [currentPlayerData, albumList, role]);
+        return;
+    }, [albumList, role]);
+
+    useEffect(() => {
+        if (role === 'playerlist') {
+            setCurrentData(currentPlayerData);
+            // dispatch(
+            //     setCurrentPlayerData(
+            //         swapArrayElementsPositions(currentPlayerData, currentCardID)
+            //     )
+            // );
+            // console.log(currentPlayerData);
+            // console.log(
+            //     swapArrayElementsPositions(currentPlayerData, currentCardID)
+            // );
+        }
+    }, [currentPlayerData, role]);
+
+    // useEffect(() => {
+    //     console.log('currentD', currentData);
+    // }, [currentData]);
 
     // /. effects
 

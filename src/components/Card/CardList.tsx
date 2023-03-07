@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
+import { albumListTypes } from '../../Types/mainSliceTypes';
+
 import Card from './CardTemplate';
 
 import './card.scss';
@@ -9,12 +11,12 @@ import './card.scss';
 // /. imports
 
 interface propTypes {
-    data: any[];
+    data: albumListTypes[];
 }
 
 const CardList: React.FC<propTypes> = ({ data }) => {
     const { isLoading } = useAppSelector(state => state.mainSlice);
-    const { albumList, mockData } = useAppSelector(state => state.playerSlice);
+    const { mockData } = useAppSelector(state => state.playerSlice);
 
     // /. hooks
 

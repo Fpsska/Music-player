@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchAlbumsData } from '../api/fetchAlbumsData';
 
+import { swapArrayElementsPositions } from '../../helpers/swapArrayElementsPositions';
+
 import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
 
 // /. imports
@@ -30,7 +32,7 @@ interface mainSliceState {
     duration: any;
     offsetCurrentTime: any;
 
-    currentCardID: number;
+    currentCardID: null | number;
 }
 
 // /. interfaces
@@ -83,7 +85,7 @@ const initialState: mainSliceState = {
     duration: 0,
     offsetCurrentTime: 0,
 
-    currentCardID: 0
+    currentCardID: null
 };
 
 // /. initialState
@@ -129,9 +131,31 @@ const playerSlice = createSlice({
         setCurrentMusicCategory(state, action: PayloadAction<string>) {
             state.musicCategory = action.payload;
         },
-        setCurrentPlayerData(state, action: PayloadAction<albumListTypes[]>) {
-            console.log(action.payload);
-            state.currentPlayerData = action.payload;
+        setCurrentPlayerData(
+            state,
+            action: PayloadAction<{ data: albumListTypes[]; id?: number }>
+        ) {
+            const { data, id } = action.payload;
+            // /. payload
+
+            if (id) {
+                const isFirstEl =
+                    state.currentPlayerData.findIndex(
+                        song => song.id === id
+                    ) === 0;
+
+                if (!isFirstEl) {
+                    state.currentPlayerData = swapArrayElementsPositions(
+                        state.currentPlayerData,
+                        id
+                    );
+                }
+
+                return;
+            } else {
+                console.log(action.payload, 'else statement');
+                state.currentPlayerData = data;
+            }
         },
         addToLikedAlbum(state, action: PayloadAction<{ id: number }>) {
             const { id } = action.payload;
@@ -155,8 +179,10 @@ const playerSlice = createSlice({
             );
         },
         setCurrentCardID(state, action: PayloadAction<number>) {
-            state.currentCardID = action.payload;
-            // console.log(state.currentCardID);
+            if (state.currentCardID !== action.payload) {
+                state.currentCardID = action.payload;
+                console.log(action.payload);
+            }
         }
     },
     extraReducers: {

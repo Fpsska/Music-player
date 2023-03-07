@@ -27,6 +27,7 @@ export function useMusicController(audioEl: HTMLAudioElement) {
 
     const loadMusic = (musicIndex: number): void => {
         if (isFuncsAvailable) {
+            console.log('load');
             audioEl.setAttribute('src', currentPlayerData[musicIndex].preview); // mp3
             audioEl.load(); // reload audio track
             dispatch(
@@ -54,6 +55,7 @@ export function useMusicController(audioEl: HTMLAudioElement) {
 
     const pauseMusic = (): void => {
         if (isFuncsAvailable && audioEl.src) {
+            console.log('paused');
             audioEl.pause();
             dispatch(switchPauseStatus(true));
         }

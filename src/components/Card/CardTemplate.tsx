@@ -3,8 +3,15 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+    setCurrentCardID,
+    setCurrentPlayerData
+} from '../../app/slices/playerSlice';
+
+import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
 
 import { useLocationData } from '../../hooks/useLocationData';
+import { useMusicController } from '../../hooks/useMusicController';
 
 // /. imports
 
@@ -23,8 +30,13 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
     const { pagesStatuses } = useAppSelector(state => state.mainSlice);
 
-    const { currentTrackPreview, currentArtistName, currentTrackName } =
-        useAppSelector(state => state.playerSlice);
+    const {
+        currentTrackPreview,
+        currentArtistName,
+        currentTrackName,
+        musicIndex,
+        currentPlayerData
+    } = useAppSelector(state => state.playerSlice);
 
     const { state } = useLocationData();
     // console.log(state);
@@ -32,8 +44,21 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
+    const audioEl = document.querySelector(
+        '.player__audio'
+    ) as HTMLAudioElement;
+    const { loadMusic } = useMusicController(audioEl);
+
     const goPlayerPage = (): void => {
         navigate('player');
+        dispatch(setCurrentCardID(id));
+        dispatch(
+            setCurrentPlayerData({
+                data: currentPlayerData,
+                id
+            })
+        );
+        loadMusic(0);
     };
 
     //
@@ -81,8 +106,8 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
             >
                 {pagesStatuses.isPlayerPage ? currentArtistName : artist}
             </span>
-            {/* <br /> */}
-            {/* <span style={{ color: '#fff' }}>{id}</span> */}
+            <br />
+            <span style={{ color: '#fff' }}>{id}</span>
         </div>
     );
 };

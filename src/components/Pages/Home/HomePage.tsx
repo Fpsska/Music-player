@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
-import { switchPageStatus } from '../../../app/slices/mainSlice';
 import { setCurrentPlayerData } from '../../../app/slices/playerSlice';
 import { switchCurtainStatus } from '../../../app/slices/burgerSlice';
 
-import { useMusicController } from '../../../hooks/useMusicController';
 import { determineCurrentPlayerData } from '../../../helpers/determineCurrentPlayerData';
 
 import Slider from '../../Slider/Slider';
@@ -19,47 +17,52 @@ import BurgerMenu from '../../BurgerMenu/Burger';
 
 const HomePage: React.FC = () => {
     const { isBurgerOpen } = useAppSelector(state => state.burgerSlice);
-    const { albumList, musicIndex } = useAppSelector(
-        state => state.playerSlice
-    );
+    const { albumList } = useAppSelector(state => state.playerSlice);
 
     const [isVisible, setIsVisible] = useState(true);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const audioEl = document.querySelector(
-        '.player__audio'
-    ) as HTMLAudioElement;
-
-    const { loadMusic } = useMusicController(audioEl);
-
     // /. hooks
 
     const goPlayListPage = (): void => {
-        navigate('playlist');
+        navigate('playlist', {
+            state: {
+                title: 'Liked Songs'
+            }
+        });
+        // determine data for audio element
         dispatch(
-            setCurrentPlayerData(
-                determineCurrentPlayerData(albumList, 'playlist')
-            )
+            setCurrentPlayerData({
+                data: determineCurrentPlayerData(albumList, 'playlist')
+            })
         );
     };
 
     const goToRecomendedSongs = (): void => {
-        navigate('player');
+        navigate('playlist', {
+            state: {
+                title: 'Recomended Songs'
+            }
+        });
         dispatch(
-            setCurrentPlayerData(
-                determineCurrentPlayerData(albumList, 'recomended')
-            )
+            setCurrentPlayerData({
+                data: determineCurrentPlayerData(albumList, 'recomended')
+            })
         );
     };
 
     const goToPopularSongs = (): void => {
-        navigate('player');
+        navigate('playlist', {
+            state: {
+                title: 'Popular Songs'
+            }
+        });
         dispatch(
-            setCurrentPlayerData(
-                determineCurrentPlayerData(albumList, 'popular')
-            )
+            setCurrentPlayerData({
+                data: determineCurrentPlayerData(albumList, 'popular')
+            })
         );
     };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
@@ -13,6 +13,7 @@ const PlayListPage: React.FC = () => {
     const { currentPlayerData } = useAppSelector(state => state.playerSlice);
 
     const navigate = useNavigate();
+    const { state } = useLocation();
 
     // /. hooks
 
@@ -28,7 +29,9 @@ const PlayListPage: React.FC = () => {
                 className="page__title title"
                 onClick={goHomePage}
             >
-                <Link to="/Music-player">Liked Songs</Link>
+                <Link to="/Music-player">
+                    {state ? state.title : 'untitled'}
+                </Link>
             </h1>
             <div className="playlist__wrapper">
                 <CardList data={currentPlayerData} />
