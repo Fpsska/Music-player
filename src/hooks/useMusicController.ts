@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 import {
     switchPauseStatus,
@@ -10,7 +10,7 @@ import {
     setCurrentLineProgress,
     setCurrentTimeProgress,
     setOffsetTime
-} from '../app/slices/playerSlice';
+} from 'app/slices/playerSlice';
 
 // /. imports
 

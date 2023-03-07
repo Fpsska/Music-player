@@ -5,10 +5,11 @@ import { Provider } from 'react-redux';
 
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './components/App/App';
-import { store } from './app/store';
+import App from 'components/layout/App/App';
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { store } from 'app/store';
+
+import * as serviceWorkerRegistration from 'serviceWorkerRegistration';
 
 // /. imports
 

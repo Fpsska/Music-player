@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch } from 'app/hooks';
 
-import { filterLikedData } from '../app/slices/playerSlice';
+import { filterLikedData } from 'app/slices/playerSlice';
 
 // /. imports
 

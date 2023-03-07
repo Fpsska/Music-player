@@ -1,4 +1,4 @@
-import { albumListTypes } from '../Types/mainSliceTypes';
+import { albumListTypes } from 'types/mainSliceTypes';
 
 // /. imports
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { questionsTypes } from '../../Types/burgerSliceTypes';
+import { questionsTypes } from 'types/burgerSliceTypes';
 
 // /. imports
 

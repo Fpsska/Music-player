@@ -1,11 +1,11 @@
-import { useAppDispatch } from '../app/hooks';
-
 import {
     setCurrentTimeProgress,
     setCurrentLineProgress,
     setDuration,
     setSongDuration
-} from '../app/slices/playerSlice';
+} from 'app/slices/playerSlice';
+
+import { useAppDispatch } from 'app/hooks';
 
 // /. imports
 

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchAlbumsData } from '../api/fetchAlbumsData';
+import { swapArrayElementsPositions } from 'helpers/swapArrayElementsPositions';
 
-import { swapArrayElementsPositions } from '../../helpers/swapArrayElementsPositions';
+import { albumListTypes, mockDataTypes } from 'types/mainSliceTypes';
 
-import { albumListTypes, mockDataTypes } from '../../Types/mainSliceTypes';
+import { fetchAlbumsData } from 'app/api/fetchAlbumsData';
 
 // /. imports
 
