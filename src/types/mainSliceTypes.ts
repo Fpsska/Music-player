@@ -1,16 +1,16 @@
-export interface albumListTypes {
+export interface IalbumList {
     id: number;
     title: string;
     preview: string;
-    artist: artistTypes;
+    artist: Iartist;
     isFavourite: boolean;
 }
 
-interface artistTypes {
+interface Iartist {
     name: string;
     picture_medium: string;
 }
 
-export interface mockDataTypes {
+export interface ImockData {
     id: number;
 }

@@ -1,12 +1,12 @@
-import { albumListTypes } from 'types/mainSliceTypes';
+import { IalbumList } from 'types/mainSliceTypes';
 
 // /. imports
 
 export function determineCurrentPlayerData(
-    array: albumListTypes[],
+    array: IalbumList[],
     name: string
-): albumListTypes[] {
-    const dataCopy: albumListTypes[] = [...array];
+): IalbumList[] {
+    const dataCopy: IalbumList[] = [...array];
 
     switch (name) {
         case 'recomended':

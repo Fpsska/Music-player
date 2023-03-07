@@ -9,7 +9,7 @@ import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
 
 import { useMusicController } from 'hooks/useMusicController';
 
-import { albumListTypes } from 'types/mainSliceTypes';
+import { IalbumList } from 'types/mainSliceTypes';
 
 // /. imports
 
@@ -20,7 +20,7 @@ interface CardPropTypes {
     track: string;
     isFavourite: boolean;
     role?: string;
-    data?: albumListTypes[];
+    data?: IalbumList[];
 }
 
 // /. interfaces

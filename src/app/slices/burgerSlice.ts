@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { questionsTypes } from 'types/burgerSliceTypes';
+import { Iquestion } from 'types/burgerSliceTypes';
 
 // /. imports
 
 interface burgerSliceState {
-    questions: questionsTypes[];
+    questions: Iquestion[];
     isBurgerOpen: boolean;
     isCurtainVisible: boolean;
     isInformationVisible: boolean;

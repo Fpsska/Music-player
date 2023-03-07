@@ -2,18 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { swapArrayElementsPositions } from 'helpers/swapArrayElementsPositions';
 
-import { albumListTypes, mockDataTypes } from 'types/mainSliceTypes';
+import { IalbumList, ImockData } from 'types/mainSliceTypes';
 
 import { fetchAlbumsData } from 'app/api/fetchAlbumsData';
 
 // /. imports
 
 interface mainSliceState {
-    albumList: albumListTypes[];
-    currentPlayerData: albumListTypes[];
-    likedData: albumListTypes[];
-    filteredData: albumListTypes[];
-    mockData: mockDataTypes[];
+    albumList: IalbumList[];
+    currentPlayerData: IalbumList[];
+    likedData: IalbumList[];
+    filteredData: IalbumList[];
+    mockData: ImockData[];
 
     isPaused: boolean;
     isAudioMuted: boolean;
@@ -133,7 +133,7 @@ const playerSlice = createSlice({
         },
         setCurrentPlayerData(
             state,
-            action: PayloadAction<{ data: albumListTypes[]; id?: number }>
+            action: PayloadAction<{ data: IalbumList[]; id?: number }>
         ) {
             const { data, id } = action.payload;
             // /. payload
@@ -195,7 +195,7 @@ const playerSlice = createSlice({
         },
         [fetchAlbumsData.fulfilled.type]: (
             state,
-            action: PayloadAction<albumListTypes[]>
+            action: PayloadAction<IalbumList[]>
         ) => {
             state.albumList = action.payload;
             state.albumList.map(item => {

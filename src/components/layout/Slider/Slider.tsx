@@ -12,7 +12,7 @@ import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
 
 import { swapArrayElementsPositions } from 'helpers/swapArrayElementsPositions';
 
-import { albumListTypes } from 'types/mainSliceTypes';
+import { IalbumList } from 'types/mainSliceTypes';
 
 import {
     setCurrentmusicIndex,
@@ -51,7 +51,7 @@ const Slider: React.FC<SliderPropTypes> = props => {
     } = useAppSelector(state => state.playerSlice);
 
     const [currentData, setCurrentData] =
-        useState<albumListTypes[]>(currentPlayerData);
+        useState<IalbumList[]>(currentPlayerData);
     const [coverEffect] = useState({
         rotate: 45,
         stretch: 0,

@@ -1,4 +1,4 @@
-export interface questionsTypes {
+export interface Iquestion {
     id: string;
     question: string;
     answer: string;

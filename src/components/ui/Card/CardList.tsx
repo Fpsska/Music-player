@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from 'app/hooks';
 
-import { albumListTypes } from 'types/mainSliceTypes';
+import { IalbumList } from 'types/mainSliceTypes';
 
 import CardTemplate from './CardTemplate';
 
@@ -11,7 +11,7 @@ import './card.scss';
 // /. imports
 
 interface propTypes {
-    data: albumListTypes[];
+    data: IalbumList[];
 }
 
 const CardList: React.FC<propTypes> = ({ data }) => {
