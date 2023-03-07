@@ -3,14 +3,10 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-    setCurrentCardID,
-    setCurrentPlayerData
-} from '../../app/slices/playerSlice';
+import { setCurrentPlayerData } from '../../app/slices/playerSlice';
 
 import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayerData';
 
-import { useLocationData } from '../../hooks/useLocationData';
 import { useMusicController } from '../../hooks/useMusicController';
 
 // /. imports
@@ -21,12 +17,13 @@ interface CardPropTypes {
     artist: string;
     track: string;
     isFavourite: boolean;
+    role?: string;
 }
 
 // /. interfaces
 
 const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
-    const { id, image, artist, track, isFavourite } = props;
+    const { id, image, artist, track, isFavourite, role } = props;
 
     const { pagesStatuses } = useAppSelector(state => state.mainSlice);
 
@@ -34,12 +31,8 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
         currentTrackPreview,
         currentArtistName,
         currentTrackName,
-        musicIndex,
-        currentPlayerData
+        albumList
     } = useAppSelector(state => state.playerSlice);
-
-    const { state } = useLocationData();
-    // console.log(state);
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -49,22 +42,25 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     ) as HTMLAudioElement;
     const { loadMusic } = useMusicController(audioEl);
 
+    // /. hooks
+
     const goPlayerPage = (): void => {
         navigate('player');
-        dispatch(setCurrentCardID(id));
-        dispatch(
-            setCurrentPlayerData({
-                data: currentPlayerData,
-                id
-            })
-        );
+        role &&
+            dispatch(
+                setCurrentPlayerData({
+                    data: determineCurrentPlayerData(albumList, role),
+                    id
+                })
+            );
         loadMusic(0);
     };
 
-    //
+    // /. functions
+
     return (
         <div
-            id={String(id)} // Standard HTML Attributes (should be string)
+            id={String(id)}
             className={`card ${
                 pagesStatuses.isPlaylistPage
                     ? 'card--playlist'

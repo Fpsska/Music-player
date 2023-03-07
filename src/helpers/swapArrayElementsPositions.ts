@@ -8,7 +8,5 @@ export function swapArrayElementsPositions(array: any[], targetItemID: number) {
     arrayCopy[secondItemIDX] = arrayCopy[targetItemIDX];
     arrayCopy[targetItemIDX] = temp;
 
-    console.log('swap func:', arrayCopy);
-
     return arrayCopy;
 }

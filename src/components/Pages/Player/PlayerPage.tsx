@@ -26,8 +26,8 @@ const PlayerPage: React.FC = () => {
         isAudioMuted,
         currentPlayerData,
         likedData,
-        currentCardID,
-        musicIndex
+        musicIndex,
+        currentCardID
     } = useAppSelector(state => state.playerSlice);
 
     const { isLoading } = useAppSelector(state => state.mainSlice);

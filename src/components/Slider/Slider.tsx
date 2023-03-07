@@ -205,15 +205,16 @@ const Slider: React.FC<SliderPropTypes> = props => {
                           </SwiperSlide>
                       );
                   })
-                : currentData.map(item => {
+                : currentData.map(song => {
                       return (
-                          <SwiperSlide key={item.id}>
+                          <SwiperSlide key={song.id}>
                               <Card
-                                  id={item.id}
-                                  artist={item.artist.name}
-                                  track={item.title}
-                                  image={item.artist.picture_medium}
-                                  isFavourite={item.isFavourite}
+                                  id={song.id}
+                                  artist={song.artist.name}
+                                  track={song.title}
+                                  image={song.artist.picture_medium}
+                                  isFavourite={song.isFavourite}
+                                  role={role}
                               />
                           </SwiperSlide>
                       );

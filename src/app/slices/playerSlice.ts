@@ -146,14 +146,14 @@ const playerSlice = createSlice({
 
                 if (!isFirstEl) {
                     state.currentPlayerData = swapArrayElementsPositions(
-                        state.currentPlayerData,
+                        data,
                         id
                     );
                 }
 
                 return;
             } else {
-                console.log(action.payload, 'else statement');
+                console.log(action.payload, 'default assign');
                 state.currentPlayerData = data;
             }
         },
@@ -178,9 +178,13 @@ const playerSlice = createSlice({
                 RegExp(action.payload, 'gi').test(item.title)
             );
         },
-        setCurrentCardID(state, action: PayloadAction<number>) {
-            if (state.currentCardID !== action.payload) {
-                state.currentCardID = action.payload;
+
+        setCurrentCardID(state, action: PayloadAction<{ id: number }>) {
+            const { id } = action.payload;
+            // /. payload
+
+            if (state.currentCardID !== id) {
+                state.currentCardID = id;
                 console.log(action.payload);
             }
         }
