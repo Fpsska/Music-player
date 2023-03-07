@@ -9,6 +9,8 @@ import { determineCurrentPlayerData } from '../../helpers/determineCurrentPlayer
 
 import { useMusicController } from '../../hooks/useMusicController';
 
+import { albumListTypes } from '../../Types/mainSliceTypes';
+
 // /. imports
 
 interface CardPropTypes {
@@ -18,12 +20,13 @@ interface CardPropTypes {
     track: string;
     isFavourite: boolean;
     role?: string;
+    data?: albumListTypes[];
 }
 
 // /. interfaces
 
 const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
-    const { id, image, artist, track, isFavourite, role } = props;
+    const { id, image, artist, track, isFavourite, role, data } = props;
 
     const { pagesStatuses } = useAppSelector(state => state.mainSlice);
 
@@ -44,8 +47,15 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
     // /. hooks
 
-    const goPlayerPage = (): void => {
-        navigate('player');
+    const isRelocateFuncAvaliable = !pagesStatuses.isPlayerPage;
+
+    const actionFromPlaylist = (): void => {
+        console.log('actionFromPlaylist');
+        data && dispatch(setCurrentPlayerData({ data, id }));
+    };
+
+    const actionFromSlider = (): void => {
+        console.log('actionFromSlider');
         role &&
             dispatch(
                 setCurrentPlayerData({
@@ -53,10 +63,20 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
                     id
                 })
             );
-        loadMusic(0);
     };
 
-    // /. functions
+    const goPlayerPage = (): void => {
+        navigate('/Music-player/player');
+        loadMusic(0);
+        if (pagesStatuses.isHomePage) {
+            actionFromSlider();
+        }
+        if (pagesStatuses.isPlaylistPage) {
+            actionFromPlaylist();
+        }
+    };
+
+    // /. functions+
 
     return (
         <div
@@ -77,11 +97,7 @@ const Card: React.FC<CardPropTypes> = (props: CardPropTypes) => {
                 } ${pagesStatuses.isPlayerPage ? 'card__image--player' : ''}`}
                 src={pagesStatuses.isPlayerPage ? currentTrackPreview : image}
                 alt="albom-preview"
-                onClick={() =>
-                    !pagesStatuses.isPlaylistPage &&
-                    !pagesStatuses.isPlayerPage &&
-                    goPlayerPage()
-                }
+                onClick={() => isRelocateFuncAvaliable && goPlayerPage()}
             />
             <h2
                 className={

@@ -46,6 +46,7 @@ const CardList: React.FC<propTypes> = ({ data }) => {
                               track={item.title}
                               image={item.artist.picture_medium}
                               isFavourite={item.isFavourite}
+                              data={data}
                           />
                       );
                   })}

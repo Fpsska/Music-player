@@ -1,5 +1,12 @@
-export function determineCurrentPlayerData(array: any[], name: string): any[] {
-    const dataCopy = [...array];
+import { albumListTypes } from '../Types/mainSliceTypes';
+
+// /. imports
+
+export function determineCurrentPlayerData(
+    array: albumListTypes[],
+    name: string
+): albumListTypes[] {
+    const dataCopy: albumListTypes[] = [...array];
 
     switch (name) {
         case 'recomended':

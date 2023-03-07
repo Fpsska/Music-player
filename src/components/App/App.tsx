@@ -28,7 +28,7 @@ import '../../assets/styles/_theme.scss';
 // /. imports
 
 const App: React.FC = () => {
-    const { albumList, musicCategory, currentCardID } = useAppSelector(
+    const { albumList, musicCategory } = useAppSelector(
         state => state.playerSlice
     );
 
