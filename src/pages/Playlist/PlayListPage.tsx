@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { useAppSelector, useAppDispatch } from 'app/hooks';
+import { useAppSelector } from 'app/hooks';
 
 import CardList from 'components/ui/Card/CardList';
 

@@ -27,7 +27,8 @@ const PlayerPage: React.FC = () => {
         currentPlayerData,
         likedData,
         musicIndex,
-        currentCardID
+        currentCardID,
+        isSameSong
     } = useAppSelector(state => state.playerSlice);
 
     const { isLoading } = useAppSelector(state => state.mainSlice);
@@ -55,10 +56,13 @@ const PlayerPage: React.FC = () => {
     // /. functions
 
     useEffect(() => {
-        // autoplay song
-        loadMusic(musicIndex);
-        playMusic();
-    }, [currentPlayerData, musicIndex, currentCardID]);
+        // autoplay different song
+        if (!isSameSong) {
+            loadMusic(musicIndex);
+            playMusic();
+            resetBarState();
+        }
+    }, [currentPlayerData, musicIndex, isSameSong]);
 
     useEffect(() => {
         // check equal items in likedData
@@ -66,20 +70,6 @@ const PlayerPage: React.FC = () => {
             ? setAddedStatus(true)
             : setAddedStatus(false);
     }, [likedData, currentCardID]);
-
-    // useEffect(() => {
-    //     // set initial first card ID
-    //     !isLoading &&
-    //         dispatch(
-    //             setCurrentCardID(
-    //                 +Array.from(
-    //                     document.querySelectorAll('.swiper-slide')
-    //                 ).filter(item =>
-    //                     item.classList.contains('swiper-slide-active')
-    //                 )[0].children[0].id
-    //             )
-    //         );
-    // }, [isLoading]);
 
     // /. effects
 

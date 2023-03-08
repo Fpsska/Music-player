@@ -7,7 +7,7 @@ import { useTheme } from 'hooks/useTheme';
 import { useLocationData } from 'hooks/useLocationData';
 
 import { switchPageStatus } from 'app/slices/mainSlice';
-import { setCurrentPlayerData } from 'app/slices/playerSlice';
+import { setCurrentPlayerData, setCurrentCardID } from 'app/slices/playerSlice';
 
 import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
 
@@ -30,7 +30,8 @@ import 'assets/styles/_theme.scss';
 // /. imports
 
 const App: React.FC = () => {
-    const { albumList, musicCategory } = useAppSelector(
+    const { pagesStatuses } = useAppSelector(state => state.mainSlice);
+    const { albumList, musicCategory, currentPlayerData } = useAppSelector(
         state => state.playerSlice
     );
 
@@ -53,6 +54,12 @@ const App: React.FC = () => {
             })
         );
     }, [albumList, musicCategory]);
+
+    useEffect(() => {
+        // fix: reload audio track when user is choose same song in one category playlist
+        const firstSongID = currentPlayerData[0]?.id;
+        dispatch(setCurrentCardID({ id: firstSongID }));
+    }, [currentPlayerData]);
 
     // /. effects
 

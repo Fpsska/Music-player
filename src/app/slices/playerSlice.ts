@@ -33,6 +33,7 @@ interface mainSliceState {
     offsetCurrentTime: any;
 
     currentCardID: null | number;
+    isSameSong: boolean;
 }
 
 // /. interfaces
@@ -85,7 +86,8 @@ const initialState: mainSliceState = {
     duration: 0,
     offsetCurrentTime: 0,
 
-    currentCardID: null
+    currentCardID: null,
+    isSameSong: false
 };
 
 // /. initialState
@@ -184,8 +186,11 @@ const playerSlice = createSlice({
             // /. payload
 
             if (state.currentCardID !== id) {
+                console.log(id);
                 state.currentCardID = id;
-                console.log(action.payload);
+                state.isSameSong = false;
+            } else {
+                state.isSameSong = true;
             }
         }
     },

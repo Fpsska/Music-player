@@ -3,11 +3,10 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from 'app/hooks';
-import { setCurrentPlayerData } from 'app/slices/playerSlice';
+
+import { setCurrentPlayerData, setCurrentCardID } from 'app/slices/playerSlice';
 
 import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
-
-import { useMusicController } from 'hooks/useMusicController';
 
 import { IalbumList } from 'types/mainSliceTypes';
 
@@ -40,11 +39,6 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const audioEl = document.querySelector(
-        '.player__audio'
-    ) as HTMLAudioElement;
-    const { loadMusic } = useMusicController(audioEl);
-
     // /. hooks
 
     const isRelocateFuncAvaliable = !pagesStatuses.isPlayerPage;
@@ -67,7 +61,7 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
     const goPlayerPage = (): void => {
         navigate('/Music-player/player');
-        loadMusic(0);
+        dispatch(setCurrentCardID({ id }));
         if (pagesStatuses.isHomePage) {
             actionFromSlider();
         }
@@ -76,7 +70,7 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
         }
     };
 
-    // /. functions+
+    // /. functions
 
     return (
         <div
