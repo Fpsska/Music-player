@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -35,6 +35,8 @@ const App: React.FC = () => {
         state => state.playerSlice
     );
 
+    const [initialLoading, setInitialLoadingStatus] = useState<boolean>(true);
+
     const { setTheme } = useTheme();
     const location = useLocationData();
 
@@ -56,10 +58,16 @@ const App: React.FC = () => {
     }, [albumList, musicCategory]);
 
     useEffect(() => {
-        // fix: reload audio track when user is choose same song in one category playlist
-        const firstSongID = currentPlayerData[0]?.id;
-        dispatch(setCurrentCardID({ id: firstSongID }));
-    }, [currentPlayerData]);
+        // fix: reload audio track when choose same song in one category playlist
+        if (initialLoading) {
+            console.log('case');
+            const firstSongEl = currentPlayerData[0];
+            if (firstSongEl) {
+                dispatch(setCurrentCardID({ id: firstSongEl.id }));
+                setInitialLoadingStatus(false);
+            }
+        }
+    }, [currentPlayerData, initialLoading]);
 
     // /. effects
 

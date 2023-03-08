@@ -147,6 +147,8 @@ const playerSlice = createSlice({
                     ) === 0;
 
                 if (!isFirstEl) {
+                    console.log(action.payload, 'shuffled assign');
+
                     state.currentPlayerData = swapArrayElementsPositions(
                         data,
                         id
