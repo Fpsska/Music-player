@@ -9,7 +9,7 @@ import { useLocationData } from 'hooks/useLocationData';
 import { switchPageStatus } from 'app/slices/mainSlice';
 import { setCurrentPlayerData, setCurrentCardID } from 'app/slices/playerSlice';
 
-import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
+import { determineCurrentPlayerData } from 'utils/helpers/determineCurrentPlayerData';
 
 import { useAppSelector, useAppDispatch } from 'app/hooks';
 

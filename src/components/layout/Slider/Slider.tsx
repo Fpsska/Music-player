@@ -8,9 +8,9 @@ import CardTemplate from 'components/ui/Card/CardTemplate';
 
 import { useMusicController } from 'hooks/useMusicController';
 
-import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
+import { determineCurrentPlayerData } from 'utils/helpers/determineCurrentPlayerData';
 
-import { swapArrayElementsPositions } from 'helpers/swapArrayElementsPositions';
+import { swapArrayElementsPositions } from 'utils/helpers/swapArrayElementsPositions';
 
 import { IalbumList } from 'types/mainSliceTypes';
 

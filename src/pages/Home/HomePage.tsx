@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { setCurrentPlayerData } from 'app/slices/playerSlice';
 import { switchCurtainStatus } from 'app/slices/burgerSlice';
 
-import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
+import { determineCurrentPlayerData } from 'utils/helpers/determineCurrentPlayerData';
 
 import Slider from 'components/layout/Slider/Slider';
 

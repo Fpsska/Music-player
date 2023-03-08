@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { swapArrayElementsPositions } from 'helpers/swapArrayElementsPositions';
+import { swapArrayElementsPositions } from 'utils/helpers/swapArrayElementsPositions';
 
 import { IalbumList, ImockData } from 'types/mainSliceTypes';
 

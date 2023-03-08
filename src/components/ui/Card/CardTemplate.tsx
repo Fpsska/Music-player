@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 import { setCurrentPlayerData, setCurrentCardID } from 'app/slices/playerSlice';
 
-import { determineCurrentPlayerData } from 'helpers/determineCurrentPlayerData';
+import { determineCurrentPlayerData } from 'utils/helpers/determineCurrentPlayerData';
+import { generateClassNames } from 'utils/helpers/generateClassNames';
 
 import { IalbumList } from 'types/mainSliceTypes';
 
@@ -43,6 +44,16 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
 
     const isRelocateFuncAvaliable = !pagesStatuses.isPlayerPage;
 
+    const cardClassNames: string[] = [
+        pagesStatuses.isPlaylistPage ? 'card--playlist' : '',
+        pagesStatuses.isPlayerPage ? 'card--player' : '',
+        isFavourite ? 'favourite' : ''
+    ];
+    const cardImageClassNames: string[] = [
+        pagesStatuses.isPlaylistPage ? 'card__image--playlist' : '',
+        pagesStatuses.isPlayerPage ? 'card__image--player' : ''
+    ];
+
     const actionFromPlaylist = (): void => {
         console.log('actionFromPlaylist');
         data && dispatch(setCurrentPlayerData({ data, id }));
@@ -75,20 +86,12 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
     return (
         <div
             id={String(id)}
-            className={`card ${
-                pagesStatuses.isPlaylistPage
-                    ? 'card--playlist'
-                    : pagesStatuses.isPlayerPage
-                    ? 'card--player'
-                    : isFavourite
-                    ? 'favourite'
-                    : ''
-            }`}
+            className={`card ${generateClassNames(...cardClassNames)}`}
         >
             <img
-                className={`card__image ${
-                    pagesStatuses.isPlaylistPage ? 'card__image--playlist' : ''
-                } ${pagesStatuses.isPlayerPage ? 'card__image--player' : ''}`}
+                className={`card__image ${generateClassNames(
+                    ...cardImageClassNames
+                )}`}
                 src={pagesStatuses.isPlayerPage ? currentTrackPreview : image}
                 alt="albom-preview"
                 onClick={() => isRelocateFuncAvaliable && goPlayerPage()}

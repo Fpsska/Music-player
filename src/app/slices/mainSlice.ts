@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { handleObjProperties } from 'helpers/handleObjProperties';
+import { handleObjProperties } from 'utils/helpers/handleObjProperties';
 // /. imports
 
 interface mainSliceState {
