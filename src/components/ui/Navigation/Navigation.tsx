@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useNavigate } from 'react-router';
 
-import previewWebp from 'assets/images/preview_placeholder.webp';
+import previewImageWebp from 'assets/images/preview_placeholder.webp';
 
-import previewPng from 'assets/images/preview_placeholder.png';
+import placeholderImagePng from 'assets/images/preview_placeholder.png';
 
 import { useAppSelector } from 'app/hooks';
 
@@ -69,17 +69,25 @@ const Navigation: React.FC = () => {
                                                     src={currentTrackPreview}
                                                     alt="album-preview"
                                                     onClick={goPlayerPage}
+                                                    onError={(
+                                                        e: React.SyntheticEvent<HTMLImageElement>
+                                                    ) => {
+                                                        e.currentTarget.onerror =
+                                                            null;
+                                                        e.currentTarget.src =
+                                                            placeholderImagePng;
+                                                    }}
                                                 />
                                             </div>
                                         ) : (
                                             <picture className="navigation__image-wrapper">
                                                 <source
-                                                    srcSet={previewWebp}
+                                                    srcSet={previewImageWebp}
                                                     type="image/webp"
                                                 />
                                                 <img
                                                     className="navigation__image"
-                                                    src={previewPng}
+                                                    src={placeholderImagePng}
                                                     alt="album-preview"
                                                     onClick={goPlayerPage}
                                                 />

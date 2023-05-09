@@ -11,6 +11,8 @@ import { generateClassNames } from 'utils/helpers/generateClassNames';
 
 import { IalbumList } from 'types/mainSliceTypes';
 
+import placeholderIMG from 'assets/images/image-error.png';
+
 // /. imports
 
 interface CardPropTypes {
@@ -95,6 +97,10 @@ const CardTemplate: React.FC<CardPropTypes> = (props: CardPropTypes) => {
                 src={pagesStatuses.isPlayerPage ? currentTrackPreview : image}
                 alt="albom-preview"
                 onClick={() => isRelocateFuncAvaliable && goPlayerPage()}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = placeholderIMG;
+                }}
             />
             <h2
                 className={

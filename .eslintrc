@@ -35,7 +35,10 @@
     },
     "rules": {
         "prettier/prettier": [
-            "warn"
+            "off",
+            {
+                "endOfLine": "auto"
+            }
         ],
         "no-console": "warn",
         "quotes": [
@@ -73,6 +76,7 @@
                 "newlines-between": "always-and-inside-groups"
             }
         ],
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "react/prop-types": "off"
     }
 }
