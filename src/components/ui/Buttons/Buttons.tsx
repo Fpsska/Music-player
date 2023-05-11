@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import { IoPlayOutline } from 'react-icons/io5';
 import { AiOutlinePause } from 'react-icons/ai';
@@ -47,11 +47,11 @@ const Buttons: React.FC = () => {
     const isNavDisabled =
         isLoading || currentPlayerData.length === 0 || !audioElRef.current.src;
 
-    const determineButtonEvent = (): void => {
+    const determineButtonEvent = useCallback((): void => {
         isPaused ? playMusic() : pauseMusic();
-    };
+    }, [isPaused, playMusic, pauseMusic]);
 
-    const playNextSong = (): void => {
+    const playNextSong = useCallback((): void => {
         if (musicIndex >= currentPlayerData.length - 1) {
             // nextBtnRef.current.setAttribute('disabled', '');
         } else {
@@ -59,9 +59,9 @@ const Buttons: React.FC = () => {
             playMusic();
             resetBarState();
         }
-    };
+    }, [musicIndex, currentPlayerData]);
 
-    const playPrevSong = (): void => {
+    const playPrevSong = useCallback((): void => {
         if (musicIndex <= 0) {
             // prevBtnRef.current.setAttribute('disabled', '');
         } else {
@@ -69,7 +69,7 @@ const Buttons: React.FC = () => {
             playMusic();
             resetBarState();
         }
-    };
+    }, [musicIndex]);
 
     // /. functions
 
@@ -154,10 +154,31 @@ const Buttons: React.FC = () => {
         audioElRef.current.currentTime = offsetCurrentTime;
     }, [offsetCurrentTime]);
 
-    // useEffect(() => {
-    //     const songs = [...albumList].map(item => item.artist.name);
-    //     console.log(songs);
-    // }, [albumList]);
+    useEffect(() => {
+        // play/pause music by keyboard event
+        if (isLoading) return;
+
+        const onDocumentKeyPress = (e: KeyboardEvent): void => {
+            switch (e.code) {
+                case 'Space':
+                    determineButtonEvent();
+                    break;
+                case 'ArrowLeft':
+                    playPrevSong();
+                    break;
+                case 'ArrowRight':
+                    playNextSong();
+                    break;
+                default:
+                    return;
+            }
+        };
+
+        document.addEventListener('keydown', onDocumentKeyPress);
+        return () => {
+            document.removeEventListener('keydown', onDocumentKeyPress);
+        };
+    }, [isLoading, determineButtonEvent, playPrevSong, playNextSong]);
 
     // /. effects
 
