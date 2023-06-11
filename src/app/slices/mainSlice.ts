@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
-import { handleObjProperties } from 'utils/helpers/handleObjProperties';
+import { handleObjStatuses } from 'utils/helpers/handleObjStatuses';
 // /. imports
 
 interface mainSliceState {
-    pagesStatuses: { [key: string]: boolean };
+    pagesStatuses: Record<string, boolean>;
     isLoading: boolean;
 }
 
@@ -34,25 +34,25 @@ const mainSlice = createSlice({
 
             switch (pathName) {
                 case '/music-player':
-                    state.pagesStatuses = handleObjProperties(
+                    state.pagesStatuses = handleObjStatuses(
                         'isHomePage',
                         state.pagesStatuses
                     );
                     break;
                 case '/music-player/player':
-                    state.pagesStatuses = handleObjProperties(
+                    state.pagesStatuses = handleObjStatuses(
                         'isPlayerPage',
                         state.pagesStatuses
                     );
                     break;
                 case '/music-player/playlist':
-                    state.pagesStatuses = handleObjProperties(
+                    state.pagesStatuses = handleObjStatuses(
                         'isPlaylistPage',
                         state.pagesStatuses
                     );
                     break;
                 case '/music-player/search':
-                    state.pagesStatuses = handleObjProperties(
+                    state.pagesStatuses = handleObjStatuses(
                         'isSearchPage',
                         state.pagesStatuses
                     );

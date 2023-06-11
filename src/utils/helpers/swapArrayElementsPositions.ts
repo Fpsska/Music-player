@@ -1,14 +1,10 @@
-import { IalbumList } from 'types/mainSliceTypes';
-
-// /. imports
-
-export function swapArrayElementsPositions(
-    array: IalbumList[],
+export function swapArrayElementsPositions<T extends { id: number }>(
+    array: T[],
     targetItemID: number
-): IalbumList[] {
+): T[] {
     const arrayCopy = JSON.parse(JSON.stringify(array));
 
-    const targetItemIDX = array.findIndex(item => item.id === targetItemID);
+    const targetItemIDX = array.findIndex((item: T) => item.id === targetItemID);
     const secondItemIDX = 0;
 
     const temp = arrayCopy[secondItemIDX];
